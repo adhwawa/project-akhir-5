@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,26 +10,23 @@
 </head>
 
 <body>
+    
     <div class="container">
-
         <div class="logo">
             <h1>Daily Crave</h1>
             <p>Your daily dose of deliciousness</p>
         </div>
-
         <div class="form-heading">
             <h2 class="form-title">Welcome Back!</h2>
             <p class="form-description">
                 Please enter your details to sign in.
             </p>
         </div>
-
         @if ($errors->any())
             <div class="alert">
                 {{ $errors->first() }}
             </div>
         @endif
-
         <form action="{{ route('login.process') }}" method="POST">
             @csrf
 
