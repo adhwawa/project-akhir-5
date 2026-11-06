@@ -24,3 +24,8 @@ Route::post('/register', [AuthController::class, 'register'])
 // LOGOUT
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+
+//dashbord
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
