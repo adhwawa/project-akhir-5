@@ -27,16 +27,6 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
 //dashbord
-// DASHBOARD
-Route::get('/dashboard', [NusantaraController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('dashboard');
-
-// nusantara
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [NusantaraController::class, 'index'])
-        ->name('dashboard');
-
-    Route::get('/menu', [NusantaraController::class, 'index'])
-        ->name('menu.index');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
