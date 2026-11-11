@@ -31,6 +31,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 //menu utama
-Route::get('/maincourst', function () {
-    return view('pages.maincourst');
-})->name('maincourst');
+Route::get('/maincourse', function () {
+    return view('auth.maincourse');
+})->name('maincourse');
