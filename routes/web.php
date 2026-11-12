@@ -35,8 +35,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
 //dashbord
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // MENU MAKANAN
 Route::get('/maincourse', [MainCourseController::class, 'index'])
