@@ -46,3 +46,11 @@ Route::get('/maincourse', function () {
 Route::get('/nusantara', function () {
     return view('auth.nusantara');
 })->name('nusantara');
+
+Route::get('/extra', function () {
+    return view('auth.extra');
+})->name('extra');
+
+Route::get('/comfort', function () {
+    return view('comfort');
+})->name('comfort');
