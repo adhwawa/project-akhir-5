@@ -57,5 +57,5 @@ Route::get('/extra', function () {
 })->name('extra');
 
 Route::get('/comfort', function () {
-    return view('comfort');
+    return view('auth.comfort');
 })->name('comfort');

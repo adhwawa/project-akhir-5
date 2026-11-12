@@ -384,11 +384,12 @@
         </div>
 
         <div class="nav-menu">
-            <a href="{{ route('dashboard') }}   ">Menu Kami</a>
+            <a href="{{ route('dashboard') }}">Menu Kami</a>
             <a href="{{ route('maincourse') }}" class="active">Makanan</a>
             <a href="{{ route('coffeandtea') }}">Minuman</a>
             <a href="dessert.html">Dessert</a>
         </div>
+
 
     </nav>
 
@@ -423,7 +424,7 @@
 
       <a href="{{ route('maincourse') }}" class="active">Main Course</a>
       <a href="{{ route('nusantara') }}">Nusantara</a>
-      <a href="#main-course">Comfort</a>
+      <a href="{{ route('comfort') }}">Comfort</a>
       <a href="{{ route('extra') }}">Extra</a>
 
       <span class="category-note">
@@ -457,7 +458,7 @@
         <article class="menu-card">
 
           <img
-            src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500"
+          src="{{ asset('gambar/maincourse/grillchikensteak.png') }}"
             alt="Grill Chicken Steak">
 
           <div class="menu-info">
@@ -483,7 +484,7 @@
         <article class="menu-card">
 
           <img
-            src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=500"
+          src="{{ asset('gambar/maincourse/speagetibolokatsu.png') }}"
             alt="Spaghetti Bolognese Katsu">
 
           <div class="menu-info">
@@ -509,7 +510,7 @@
         <article class="menu-card">
 
           <img
-            src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500"
+          src="{{ asset('gambar/maincourse/supiga.png') }}"
             alt="Sop Iga">
 
           <div class="menu-info">
@@ -535,7 +536,7 @@
         <article class="menu-card">
 
           <img
-            src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500"
+          src="{{ asset('gambar/maincourse/nasgorkatsu.png') }}"
             alt="Nasi Goreng Katsu">
 
           <div class="menu-info">
@@ -561,7 +562,7 @@
         <article class="menu-card">
 
           <img
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500"
+          src="{{ asset('gambar/maincourse/nTimbel.png') }}"
             alt="Nasi Timbel Ayam Goreng">
 
           <div class="menu-info">

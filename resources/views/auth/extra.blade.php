@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+
   <style>
     * {
       margin: 0;
@@ -22,20 +23,23 @@
     }
 
     body {
-      background: #f3f1ed;
-      color: #553b2b;
-      font-family: 'Poppins', sans-serif;
-      width: 100%;
+        background: #f3f1ed;
+        color: #553b2b;
+        font-family: 'Poppins', sans-serif;
+        padding: 0;
+        width: 100%;
     }
 
     .container {
-      width: 100%;
-      min-height: 100vh;
-      background: #fdfbf8;
-      overflow: hidden;
+        width: 100%;
+        max-width: none;
+        min-height: 100vh;
+        margin: 0;
+        background: #fdfbf8;
+        overflow: hidden;
     }
 
-    /* NAVBAR */
+    /* HEADER */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -60,15 +64,18 @@
     }
 
     .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 35px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 35px;
+        margin-left: auto;
     }
 
     .nav-menu a {
-      text-decoration: none;
-      font-size: 12px;
-      color: #92745e;
+        text-decoration: none;
+        font-size: 12px;
+        color: #92745e;
     }
 
     .nav-menu a.active {
@@ -84,7 +91,7 @@
       grid-template-columns: 1.2fr 0.8fr;
       align-items: center;
       gap: 35px;
-      padding: 40px 5.5%;
+      padding: 40px;
     }
 
     .hero-text p {
@@ -102,7 +109,7 @@
       margin-bottom: 15px;
     }
 
-    .hero-text .description {
+    .hero-text span {
       max-width: 390px;
       color: #806e5e;
       font-size: 11px;
@@ -111,12 +118,12 @@
 
     .hero img {
       width: 100%;
-      height: 235px;
+      height: 220px;
       object-fit: cover;
-      border-radius: 12px;
+      border-radius: 18px;
     }
 
-    /* CATEGORY */
+    /* CATEGORY NAVIGATION */
     .category-bar {
       min-height: 50px;
       padding: 9px 5.5%;
@@ -149,9 +156,9 @@
       white-space: nowrap;
     }
 
-    /* MENU */
+    /* MAIN COURSE */
     .menu-section {
-      padding: 35px 5.5% 65px;
+      padding: 30px 5.5% 40px;
       background: #fdfbf8;
     }
 
@@ -160,12 +167,12 @@
       align-items: end;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 17px;
     }
 
     .section-subtitle {
       color: #a58c76;
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 1.4px;
       margin-bottom: 3px;
     }
@@ -185,29 +192,29 @@
 
     .menu-list {
       display: grid;
-      gap: 14px;
+      gap: 10px;
     }
 
     /* MENU CARD */
     .menu-card {
-      min-height: 165px;
+      min-height: 116px;
       display: grid;
-      grid-template-columns: 190px minmax(0, 1fr) 30px;
+      grid-template-columns: 155px minmax(0, 1fr) 25px;
       align-items: center;
-      gap: 18px;
-      padding: 10px;
+      gap: 15px;
+      padding: 8px 10px 8px 9px;
       background: #fff;
       border: 1px solid #eee7df;
-      border-radius: 10px;
+      border-radius: 9px;
       box-shadow: 0 2px 7px rgba(91, 63, 42, .025);
     }
 
     .menu-card img {
       display: block;
       width: 100%;
-      height: 135px;
+      height: 98px;
       object-fit: cover;
-      border-radius: 7px;
+      border-radius: 6px;
     }
 
     .menu-info h3 {
@@ -220,31 +227,29 @@
 
     .price {
       color: #8a6244;
+      font-family: 'Poppins', serif;
       font-size: 13px;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
     .menu-info p {
       color: #8b8177;
       font-size: 11px;
-      line-height: 1.8;
+      line-height: 1.65;
     }
 
-    /* TOMBOL PLUS */
     .add-button {
       width: 28px;
       height: 28px;
-      border: 1px solid #eee5d9;
-      border-radius: 50%;
+      border: 0;
+      border-radius: 60%;
       background: #f5f0e8;
       color: #9a785b;
       font-family: 'Poppins', sans-serif;
-      font-size: 17px;
+      font-size: 20px;
       line-height: 1;
       cursor: pointer;
-      align-self: start;
-      margin-top: 15px;
     }
 
     .add-button:hover {
@@ -254,8 +259,8 @@
 
     /* FOOTER */
     footer {
-      min-height: 112px;
-      padding: 30px 5.5%;
+      min-height: 72px;
+      padding: 25px 5.5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -265,7 +270,7 @@
       font-size: 10px;
     }
 
-    .footer-links {
+    footer .footer-links {
       display: flex;
       gap: 18px;
     }
@@ -275,93 +280,94 @@
       text-decoration: none;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 700px) {
-      .navbar {
-        padding: 18px 5%;
-        flex-wrap: wrap;
-        gap: 18px;
-      }
-
-      .nav-menu {
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .nav-menu a {
-        font-size: 10px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 25px 5%;
-        gap: 20px;
-      }
-
+    /* DESKTOP */
+    @media (min-width: 1100px) {
       .hero img {
-        height: 200px;
-      }
-
-      .category-bar {
-        padding: 10px 3%;
-        overflow-x: auto;
-      }
-
-      .category-bar a {
-        font-size: 10px;
-        padding: 8px 10px;
-      }
-
-      .category-note {
-        display: none;
-      }
-
-      .menu-section {
-        padding: 25px 5% 40px;
-      }
-
-      .section-title {
-        font-size: 23px;
-      }
-
-      .section-hint {
-        display: none;
+        height: 235px;
       }
 
       .menu-card {
-        grid-template-columns: 105px minmax(0, 1fr) 25px;
-        gap: 10px;
-        min-height: 125px;
+        grid-template-columns: 170px minmax(0, 1fr) 25px;
+        min-height: 126px;
       }
 
       .menu-card img {
-        height: 105px;
+        height: 108px;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      body {
+        padding: 15;
       }
 
-      .menu-info h3 {
-        font-size: 14px;
-      }
+      /* FULL WIDTH DESKTOP */
 
-      .menu-info p {
-        font-size: 9px;
-        line-height: 1.6;
-      }
+    @media (min-width: 701px) {
 
-      .price {
-        font-size: 11px;
-      }
+        .navbar {
+            width: 100%;
+            padding: 25px 5%;
+        }
 
-      .add-button {
-        width: 24px;
-        height: 24px;
-        font-size: 15px;
-      }
+        .hero {
+            width: 100%;
+            padding: 20px 5% 40px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+        }
 
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 25px 5%;
-      }
+        .hero img {
+            width: 100%;
+            height: 270px;
+        }
+
+        .category-bar {
+            width: 100%;
+            padding: 12px 5%;
+        }
+
+        .menu-section {
+            width: 100%;
+            padding: 35px 5% 45px;
+        }
+
+        .menu-list {
+            width: 100%;
+            gap: 14px;
+        }
+
+        .menu-card {
+            width: 100%;
+            min-height: 135px;
+            grid-template-columns: 190px minmax(0, 1fr) 30px;
+            padding: 10px;
+            gap: 18px;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 115px;
+        }
+
+        .menu-info h3 {
+            font-size: 17px;
+        }
+
+        .menu-info p {
+            font-size: 9px;
+            line-height: 1.8;
+        }
+
+        .price {
+            font-size: 10px;
+        }
+
+        footer {
+            width: 100%;
+            padding: 30px 5%;
+        }
     }
   </style>
 </head>
@@ -381,7 +387,7 @@
     <div class="nav-menu">
       <a href="{{ route('dashboard') }}">Menu Kami</a>
       <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-      <a href="minuman.html">Minuman</a>
+      <a href="{{ route('coffeandtea') }}">Minuman</a>
       <a href="dessert.html">Dessert</a>
     </div>
 
@@ -400,9 +406,9 @@
       </h1>
 
       <p class="description">
-        Jelajahi pilihan makanan, minuman, dan dessert.
-        Luangkan waktu, temukan yang ingin Anda nikmati
-        dengan cita rasa istimewa.
+         Jelajahi pilihan makanan, minuman, dan dessert.
+          Pilihan rasa yang pas untuk menemani harimu
+          dengan cita rasa yang istimewa.
       </p>
 
     </div>
@@ -418,7 +424,7 @@
 
     <a href="{{ route('maincourse') }}">Main Course</a>
 <a href="{{ route('nusantara') }}">Nusantara</a>
-<a href="{{ url('/comfort') }}">Comfort</a>
+      <a href="{{ route('comfort') }}">Comfort</a>
 <a href="{{ route('extra') }}" class="active">Extra</a>
 
     <span class="category-note">
@@ -452,7 +458,7 @@
       <article class="menu-card">
 
         <img
-          src="{{ asset('gambar/extra/nasiputih.jpg') }}"
+          src="{{ asset('gambar/extra/nasiputih.png') }}"
           alt="Nasi Putih">
 
         <div class="menu-info">
@@ -478,7 +484,7 @@
       <article class="menu-card">
 
         <img
-          src="{{ asset('gambar/extra/telur.jpg') }}"
+          src="{{ asset('gambar/extra/telur.png') }}"
           alt="Telur">
 
         <div class="menu-info">

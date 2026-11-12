@@ -423,7 +423,7 @@
 
       <a href="{{ route('maincourse') }}">Main Course</a>
       <a href="{{ route('nusantara') }}" class="active">Nusantara</a>
-      <a href="#nusantara">Comfort</a>
+      <a href="{{ route('comfort') }}">Comfort</a>
       <a href="{{ route('extra') }}">Extra</a>
 
       <span class="category-note">
@@ -457,7 +457,8 @@
 
             <div class="menu-card">
 
-                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400"
+                <img
+          src="{{ asset('gambar/nusantara/n.igabakar.png') }}"
                 alt="Nasi Iga Bakar">
 
                 <div class="menu-info">
@@ -482,7 +483,8 @@
 
             <div class="menu-card">
 
-                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400"
+                <img
+          src="{{ asset('gambar/nusantara/taliwang.png') }}"
                 alt="Nasi Campur Taliwang">
 
                 <div class="menu-info">
@@ -507,7 +509,8 @@
 
             <div class="menu-card">
 
-                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400"
+                <img
+          src="{{ asset('gambar/nusantara/nasgorjawa.jpeg') }}"
                 alt="Nasi Goreng Jawa">
 
                 <div class="menu-info">
@@ -532,7 +535,8 @@
 
             <div class="menu-card">
 
-                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400"
+                <img
+          src="{{ asset('gambar/nusantara/miegoreng.png') }}"
                 alt="Mie Goreng Jawa">
 
                 <div class="menu-info">
@@ -557,7 +561,8 @@
 
             <div class="menu-card">
 
-                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400"
+                <img
+          src="{{ asset('gambar/nusantara/mienyemek.png') }}"
                 alt="Mie Nyemek Kampung Jawa">
 
                 <div class="menu-info">

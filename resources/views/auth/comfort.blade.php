@@ -1,220 +1,682 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Crave - Menu</title>
+    <title>Daily Crave - Comfort</title>
 
-    <!-- Google Fonts: Cormorant Garamond / Playfair Display (Serif) & Inter (Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: {
-                            bg: '#FBF9F6',
-                            card: '#FFFFFF',
-                            badge: '#F2EDE4',
-                            footer: '#F3ECE1',
-                        },
-                        brand: {
-                            dark: '#4A3525',
-                            accent: '#6B533E',
-                            text: '#2C231C',
-                            muted: '#8C827A',
-                            subtle: '#A89F97',
-                            buttonBg: '#F5EFE6',
-                            buttonText: '#5A4636'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
+     <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+        background: #f3f1ed;
+        color: #553b2b;
+        font-family: 'Poppins', sans-serif;
+        padding: 0;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        min-height: 100vh;
+        margin: 0;
+        background: #fdfbf8;
+        overflow: hidden;
+    }
+
+    /* HEADER */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5.5%;
+      min-height: 76px;
+    }
+
+    .brand {
+      color: #68452f;
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      line-height: 1.1;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 3px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 6px;
+      letter-spacing: 2px;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 35px;
+        margin-left: auto;
+    }
+
+    .nav-menu a {
+        text-decoration: none;
+        font-size: 12px;
+        color: #92745e;
+    }
+
+    .nav-menu a.active {
+      background: #70472d;
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 30px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 35px;
+      padding: 40px;
+    }
+
+    .hero-text p {
+      color: #a58c76;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      color: #4d382b;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .hero-text span {
+      max-width: 390px;
+      color: #806e5e;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    /* CATEGORY NAVIGATION */
+    .category-bar {
+      min-height: 50px;
+      padding: 9px 5.5%;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      border-top: 1px solid #f5f0e9;
+      border-bottom: 1px solid #f5f0e9;
+    }
+
+    .category-bar a {
+      color: #8a715c;
+      text-decoration: none;
+      font-size: 12px;
+      white-space: nowrap;
+      padding: 9px 15px;
+      border-radius: 20px;
+    }
+
+    .category-bar a.active {
+      background: #806044;
+      color: #fff;
+    }
+
+    .category-note {
+      margin-left: auto;
+      color: #9a8a7a;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    /* MAIN COURSE */
+    .menu-section {
+      padding: 30px 5.5% 40px;
+      background: #fdfbf8;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 17px;
+    }
+
+    .section-subtitle {
+      color: #a58c76;
+      font-size: 13px;
+      letter-spacing: 1.4px;
+      margin-bottom: 3px;
+    }
+
+    .section-title {
+      color: #4d382b;
+      font-family: 'Playfair Display', serif;
+      font-size: 27px;
+      font-weight: 400;
+    }
+
+    .section-hint {
+      color: #9a8a7a;
+      font-size: 10px;
+      padding-bottom: 5px;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    /* MENU CARD */
+    .menu-card {
+      min-height: 116px;
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr) 25px;
+      align-items: center;
+      gap: 15px;
+      padding: 8px 10px 8px 9px;
+      background: #fff;
+      border: 1px solid #eee7df;
+      border-radius: 9px;
+      box-shadow: 0 2px 7px rgba(91, 63, 42, .025);
+    }
+
+    .menu-card img {
+      display: block;
+      width: 100%;
+      height: 98px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .menu-info h3 {
+      color: #554033;
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .price {
+      color: #8a6244;
+      font-family: 'Poppins', serif;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .menu-info p {
+      color: #8b8177;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .add-button {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 60%;
+      background: #f5f0e8;
+      color: #9a785b;
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .add-button:hover {
+      background: #806044;
+      color: #fff;
+    }
+
+    /* FOOTER */
+    footer {
+      min-height: 72px;
+      padding: 25px 5.5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      background: #f2eadc;
+      color: #9b8068;
+      font-size: 10px;
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* DESKTOP */
+    @media (min-width: 1100px) {
+      .hero img {
+        height: 235px;
+      }
+
+      .menu-card {
+        grid-template-columns: 170px minmax(0, 1fr) 25px;
+        min-height: 126px;
+      }
+
+      .menu-card img {
+        height: 108px;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      body {
+        padding: 15;
+      }
+
+      /* FULL WIDTH DESKTOP */
+
+    @media (min-width: 701px) {
+
+        .navbar {
+            width: 100%;
+            padding: 25px 5%;
         }
-    </script>
+
+        .hero {
+            width: 100%;
+            padding: 20px 5% 40px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 270px;
+        }
+
+        .category-bar {
+            width: 100%;
+            padding: 12px 5%;
+        }
+
+        .menu-section {
+            width: 100%;
+            padding: 35px 5% 45px;
+        }
+
+        .menu-list {
+            width: 100%;
+            gap: 14px;
+        }
+
+        .menu-card {
+            width: 100%;
+            min-height: 135px;
+            grid-template-columns: 190px minmax(0, 1fr) 30px;
+            padding: 10px;
+            gap: 18px;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 115px;
+        }
+
+        .menu-info h3 {
+            font-size: 17px;
+        }
+
+        .menu-info p {
+            font-size: 9px;
+            line-height: 1.8;
+        }
+
+        .price {
+            font-size: 10px;
+        }
+
+        footer {
+            width: 100%;
+            padding: 30px 5%;
+        }
+    }
+  </style>
 </head>
-<body class="bg-cream-bg text-brand-text font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-brand-accent selection:text-white">
 
-    <div>
-        <!-- 1. HEADER / NAVBAR -->
-        <header class="max-w-6xl mx-auto px-6 pt-8 pb-6 flex justify-between items-center">
-            <!-- Logo Daily Crave dengan Sun Icon -->
-            <div class="flex items-center gap-3">
-                <svg class="w-7 h-7 text-brand-dark" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"></path>
-                </svg>
-                <div>
-                    <h1 class="text-2xl tracking-[0.18em] font-serif font-bold uppercase text-brand-dark leading-none">daily crave</h1>
-                    <span class="text-[9px] tracking-[0.25em] font-medium text-brand-muted uppercase block mt-1">DAPUR & RUANG TEMU</span>
-                </div>
-            </div>
-            
-            <!-- Navigation Links -->
-            <nav class="flex items-center gap-9 text-sm font-medium text-brand-muted">
-                <a href="#" class="hover:text-brand-dark transition-colors">Menu Kami</a>
-                <a href="#" class="bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-medium shadow-sm">Makanan</a>
-                <a href="#" class="hover:text-brand-dark transition-colors">Minuman</a>
-                <a href="#" class="hover:text-brand-dark transition-colors">Dessert</a>
-            </nav>
-        </header>
+<body>
 
-        <!-- 2. HERO SECTION -->
-        <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div class="md:col-span-7 pr-4">
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="w-6 h-[1px] bg-brand-subtle"></span>
-                    <span class="text-[11px] tracking-[0.2em] uppercase text-brand-subtle font-semibold">MENU DI MEJA ANDA</span>
-                </div>
-                <h2 class="text-5xl md:text-6xl font-serif font-normal text-brand-dark leading-[1.15] mb-6">
-                    Rasa yang akrab.<br>Momen yang hangat.
-                </h2>
-                <p class="text-brand-muted text-sm leading-relaxed max-w-md font-light">
-                    Jelajahi pilihan makanan, minuman, dan penutup. Luangkan waktu, temukan yang ingin Anda nikmati.
-                </p>
-            </div>
-            <div class="md:col-span-5 flex justify-end">
-                <div class="relative overflow-hidden rounded-[24px] shadow-sm w-full h-[320px]">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" alt="Hero Image Daily Crave" class="w-full h-full object-cover">
-                </div>
-            </div>
-        </section>
+<main class="container">
 
-        <!-- 3. FILTER CATEGORY BAR -->
-        <section class="max-w-6xl mx-auto px-6 border-t border-b border-[#EBE4D8] py-4 mb-10 flex justify-between items-center text-xs">
-            <div class="flex items-center gap-6">
-                <button class="text-brand-muted hover:text-brand-dark font-medium transition-colors">Main Course</button>
-                <button class="text-brand-muted hover:text-brand-dark font-medium transition-colors">Nusantara</button>
-                
-                <!-- Active Category Pill -->
-                <button class="bg-[#7A6451] text-white px-5 py-2 rounded-full font-medium flex items-center gap-1.5 shadow-sm">
-                    <span>Comfort</span>
-                    <span class="text-[10px] opacity-75">09</span>
-                </button>
-                
-                <button class="text-brand-muted hover:text-brand-dark font-medium transition-colors">Extra</button>
-            </div>
-            <span class="text-brand-subtle tracking-[0.18em] text-[10px] font-semibold uppercase">DAFTAR MAKANAN DAILY CRAVE</span>
-        </section>
+    <!-- NAVBAR -->
+    <nav class="navbar">
 
-        <!-- 4. MENU LIST CONTAINER -->
-        <main class="max-w-6xl mx-auto px-6 pb-24">
-            <div class="mb-8 flex justify-between items-end">
-                <div>
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-brand-subtle font-semibold">MAKANAN</span>
-                        <span class="w-4 h-[1px] bg-brand-subtle"></span>
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-brand-subtle font-semibold">09 PILIHAN</span>
-                    </div>
-                    <h3 class="text-4xl font-serif font-normal text-brand-dark">Comfort</h3>
-                </div>
-                <p class="text-xs text-brand-muted font-light">Temukan pilihan untuk waktu bersantap Anda.</p>
-            </div>
-
-            <!-- List Cards Menu -->
-            <div class="space-y-5">
-                @php
-                    $menus = [
-                        [
-                            'nama' => 'Mendoan',
-                            'harga' => 'Rp30.000',
-                            'deskripsi' => 'Tempe pilihan diiris tipis dan dibalut adonan tepung berbumbu dengan irisan daun bawang, kemudian digoreng hingga renyah di bagian pinggir. Disajikan bersama sambal kecap berisi cabai rawit, bawang merah, dan tomat segar.',
-                            'gambar' => 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500'
-                        ],
-                        [
-                            'nama' => 'Tahu Crispy',
-                            'harga' => 'Rp30.000',
-                            'deskripsi' => 'Potongan tahu pilihan dibalut tepung berbumbu dan digoreng hingga menghasilkan lapisan luar yang renyah dengan bagian dalam lembut. Disajikan dengan taburan bumbu serta saos.',
-                            'gambar' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500'
-                        ],
-                        [
-                            'nama' => 'Bakwan Jagung',
-                            'harga' => 'Rp30.000',
-                            'deskripsi' => 'Jagung manis pipil dicampur tepung berbumbu, irisan daun bawang, wortel, bawang putih, dan sedikit ketumbar. Digoreng hingga keemasan dan disajikan bersama cabai rawit serta saus sambal sebagai pelengkap.',
-                            'gambar' => 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500'
-                        ],
-                        [
-                            'nama' => 'Singkong Crispy',
-                            'harga' => 'Rp30.000',
-                            'deskripsi' => 'Singkong pilihan dipotong memanjang, direbus hingga empuk, kemudian digoreng dengan balutan tepung berbumbu hingga bagian luarnya renyah. Dilengkapi taburan bubuk balado atau parutan keju serta saus sambal untuk cocolan.',
-                            'gambar' => 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500'
-                        ],
-                        [
-                            'nama' => 'Cireng Crispy',
-                            'harga' => 'Rp32.000',
-                            'deskripsi' => 'Cireng dibuat dari tepung tapioka dengan campuran bawang putih, daun bawang, dan bumbu pilihan yang menghasilkan tekstur kenyal di dalam serta renyah di luar. Disajikan dengan saus cuko dan taburan daun bawang sebagai pelengkap.',
-                            'gambar' => 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500'
-                        ],
-                        [
-                            'nama' => 'French Fries',
-                            'harga' => 'Rp25.000',
-                            'deskripsi' => 'Kentang pilihan dipotong memanjang dan digoreng hingga berwarna keemasan dengan tekstur renyah di luar dan lembut di dalam. Disajikan dengan taburan garam dan parsley serta saus sambal, saus tomat, dan mayonnaise.',
-                            'gambar' => 'https://images.unsplash.com/photo-1576107232684-1279f3908594?w=500'
-                        ],
-                        [
-                            'nama' => 'Roti Bakar Coklat Keju',
-                            'harga' => 'Rp35.000',
-                            'deskripsi' => 'Roti tawar tebal dipanggang dengan olesan margarin hingga berwarna kecokelatan dan renyah di bagian luar. Diberi topping meises cokelat, parutan keju cheddar, susu kental manis, serta tambahan saus cokelat sebagai pelengkap.',
-                            'gambar' => 'https://images.unsplash.com/photo-1584776296944-ab6fb57b0bdd?w=500'
-                        ],
-                        [
-                            'nama' => 'Pisang Goreng Crispy',
-                            'harga' => 'Rp32.000',
-                            'deskripsi' => 'Pisang pilihan dibalut adonan tepung renyah dan digoreng hingga keemasan dengan bagian dalam yang lembut. Disajikan dengan topping keju parut, meises cokelat, susu kental manis, dan saus cokelat.',
-                            'gambar' => 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500'
-                        ],
-                        [
-                            'nama' => 'Mix Platter',
-                            'harga' => 'Rp45.000',
-                            'deskripsi' => 'Sajian aneka camilan dalam satu piring yang terdiri dari french fries, chicken nuggets, sosis goreng, onion rings, dan chicken popcorn. Dilengkapi saus sambal, saus tomat, dan mayonnaise sebagai pilihan cocolan untuk dinikmati bersama.',
-                            'gambar' => 'https://images.unsplash.com/photo-1544025162-d76694265947?w=500'
-                        ]
-                    ];
-                @endphp
-
-                @foreach ($menus as $item)
-                    <div class="bg-cream-card rounded-[20px] p-4 border border-[#F0EAE1] flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] transition-all">
-                        <div class="flex items-center gap-6">
-                            <!-- Image Thumbnail -->
-                            <img src="{{ $item['gambar'] }}" alt="{{ $item['nama'] }}" class="w-44 h-32 object-cover rounded-[14px] shrink-0">
-                            
-                            <!-- Menu Content -->
-                            <div class="py-1">
-                                <h4 class="text-2xl font-serif font-semibold text-brand-dark mb-1">{{ $item['nama'] }}</h4>
-                                <span class="text-xs font-semibold text-brand-accent tracking-wide block mb-2">{{ $item['harga'] }}</span>
-                                <p class="text-[12px] text-brand-muted max-w-2xl leading-relaxed font-light">{{ $item['deskripsi'] }}</p>
-                            </div>
-                        </div>
-
-                        <!-- Plus Round Button -->
-                        <button class="w-9 h-9 rounded-full bg-brand-buttonBg hover:bg-[#EBE2D5] flex items-center justify-center text-brand-buttonText text-base font-light shrink-0 ml-4 transition-colors">
-                            +
-                        </button>
-                    </div>
-                @endforeach
-            </div>
-        </main>
-    </div>
-
-    <!-- 5. FOOTER SECTION -->
-    <footer class="bg-cream-footer border-t border-[#EBE4D8] py-8">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center text-[11px] text-brand-muted">
-            <p>© 2026 Daily Crave. Diracik dengan sepenuh hati.</p>
-            <div class="flex gap-8">
-                <a href="#" class="hover:text-brand-dark transition-colors">Kebijakan privasi</a>
-                <a href="#" class="hover:text-brand-dark transition-colors">Syarat & ketentuan</a>
-            </div>
+        <div class="brand">
+            ☼ daily crave
+            <small>FOOD & DRINK</small>
         </div>
+
+        <div class="nav-menu">
+            <a href="{{ route('dashboard') }}">Menu Kami</a>
+            <a href="{{ route('maincourse') }}" class="active">Makanan</a>
+            <a href="{{ url('/minuman') }}">Minuman</a>
+            <a href="{{ url('/dessert') }}">Dessert</a>
+        </div>
+
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <p>──── MENU DI MEJA ANDA ────</p>
+
+            <h1>
+                Rasa yang akrab.<br>
+                Momen yang hangat.
+            </h1>
+
+            <p class="description">
+                 Jelajahi pilihan makanan, minuman, dan dessert.
+          Pilihan rasa yang pas untuk menemani harimu
+          dengan cita rasa yang istimewa..
+            </p>
+
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
+            alt="Hidangan Daily Crave">
+
+    </section>
+
+    <!-- CATEGORY -->
+    <nav class="category-bar">
+
+        <a href="{{ route('maincourse') }}">Main Course</a>
+        <a href="{{ route('nusantara') }}">Nusantara</a>
+        <a href="{{ route('comfort') }}" class="active">Comfort</a>
+        <a href="{{ route('extra') }}">Extra</a>
+
+        <span class="category-note">
+            DAFTAR MAKANAN DAILY CRAVE
+        </span>
+
+    </nav>
+
+    <!-- COMFORT MENU -->
+    <section class="menu-section">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="section-subtitle">
+                    MAKANAN &nbsp;—&nbsp; 09 PILIHAN
+                </p>
+
+                <h2 class="section-title">Comfort</h2>
+            </div>
+
+            <p class="section-hint">
+                Temukan pilihan untuk waktu bersantap Anda.
+            </p>
+
+        </div>
+
+        <div class="menu-list">
+
+            <!-- MENDOAN -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/mendoan.png') }}"
+                     alt="Mendoan">
+
+                <div class="menu-info">
+                    <h3>Mendoan</h3>
+                    <div class="price">Rp30.000</div>
+
+                    <p>
+                        Tempe pilihan dilapisi adonan tepung berbumbu
+                        dengan irisan daun bawang, kemudian digoreng
+                        hingga bagian luar renyah. Disajikan bersama
+                        sambal kecap manis dan cabai rawit.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- TAHU CRISPY -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/tahu.png') }}"
+                     alt="Tahu Crispy">
+
+                <div class="menu-info">
+                    <h3>Tahu Crispy</h3>
+                    <div class="price">Rp30.000</div>
+
+                    <p>
+                        Potongan tahu pilihan dibalut tepung berbumbu
+                        dan digoreng hingga menghasilkan lapisan luar
+                        yang renyah dengan bagian dalam lembut.
+                        Disajikan dengan taburan bumbu serta saus.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- BAKWAN JAGUNG -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/bakwajagung.png') }}"
+                     alt="Bakwan Jagung">
+
+                <div class="menu-info">
+                    <h3>Bakwan Jagung</h3>
+                    <div class="price">Rp30.000</div>
+
+                    <p>
+                        Jagung manis dipadukan dengan tepung,
+                        irisan daun bawang, wortel, bawang putih,
+                        dan bumbu pilihan. Digoreng hingga keemasan
+                        dan disajikan bersama cabai rawit.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- SINGKONG CRISPY -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/singkong.png') }}"
+                     alt="Singkong Crispy">
+
+                <div class="menu-info">
+                    <h3>Singkong Crispy</h3>
+                    <div class="price">Rp30.000</div>
+
+                    <p>
+                        Singkong pilihan dipotong memanjang,
+                        direbus hingga empuk, kemudian digoreng
+                        dengan balutan tepung berbumbu hingga
+                        bagian luarnya renyah. Disajikan dengan
+                        saus sambal sebagai pelengkap.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- CIRENG CRISPY -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/cireng.png') }}"
+                     alt="Cireng Crispy">
+
+                <div class="menu-info">
+                    <h3>Cireng Crispy</h3>
+                    <div class="price">Rp32.000</div>
+
+                    <p>
+                        Cireng dibuat dari tepung tapioka dengan
+                        campuran bawang putih, daun bawang,
+                        dan bumbu pilihan yang menghasilkan
+                        tekstur kenyal di dalam serta renyah
+                        di luar. Disajikan dengan saus cocolan.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- FRENCH FRIES -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/frenchfries.png') }}"
+                     alt="French Fries">
+
+                <div class="menu-info">
+                    <h3>French Fries</h3>
+                    <div class="price">Rp25.000</div>
+
+                    <p>
+                        Kentang pilihan dipotong memanjang
+                        dan digoreng hingga berwarna keemasan
+                        dengan tekstur renyah di luar dan lembut
+                        di dalam. Disajikan dengan taburan
+                        garam dan saus sambal.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- ROTI BAKAR -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/rotibakar.png') }}"
+                     alt="Roti Bakar Coklat Keju">
+
+                <div class="menu-info">
+                    <h3>Roti Bakar Coklat Keju</h3>
+                    <div class="price">Rp35.000</div>
+
+                    <p>
+                        Roti tawar tebal dipanggang dengan
+                        olesan margarin hingga berwarna
+                        kecokelatan dan renyah di bagian luar.
+                        Diberi topping meses cokelat, parutan
+                        keju cheddar, serta susu kental manis.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- PISANG GORENG -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/pisanggoreng.png') }}"
+                     alt="Pisang Goreng Crispy">
+
+                <div class="menu-info">
+                    <h3>Pisang Goreng Crispy</h3>
+                    <div class="price">Rp32.000</div>
+
+                    <p>
+                        Pisang pilihan dibalut adonan tepung
+                        renyah dan digoreng hingga keemasan
+                        dengan bagian dalam yang lembut.
+                        Disajikan dengan topping keju,
+                        meses cokelat, atau susu kental manis.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+            <!-- MIX PLATTER -->
+            <article class="menu-card">
+
+                <img src="{{ asset('gambar/comfort/mixplatter.png') }}"
+                     alt="Mix Platter">
+
+                <div class="menu-info">
+                    <h3>Mix Platter</h3>
+                    <div class="price">Rp45.000</div>
+
+                    <p>
+                        Sajian aneka camilan dalam satu piring
+                        yang terdiri dari french fries,
+                        chicken nuggets, sosis goreng,
+                        onion rings, dan chicken wings.
+                        Dilengkapi saus sambal, saus tomat,
+                        dan mayonnaise sebagai pelengkap.
+                    </p>
+                </div>
+
+                <button class="add-button" type="button">+</button>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <span>
+            © 2026 Daily Crave. Good Food, Good Mood.
+        </span>
+
+        <div class="footer-links">
+            <a href="#">Kebijakan Privasi</a>
+            <a href="#">Syarat &amp; Ketentuan</a>
+        </div>
+
     </footer>
+
+</main>
 
 </body>
 </html>
