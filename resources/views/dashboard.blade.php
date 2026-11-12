@@ -416,7 +416,7 @@
 
                 <a href="{{ route('maincourse') }}">Makanan</a>
 
-                <a href="{{ route('coffeandtea') }}">Minuman</a>
+                <a href="{{ route('coffeeandtea') }}">Minuman</a>
 
                 <a href="#desert">Desert</a>
 
