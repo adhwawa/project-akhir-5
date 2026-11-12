@@ -42,9 +42,7 @@ Route::get('/maincourse', function () {
     return view('auth.maincourse');
 })->name('maincourse');
 
-<<<<<<< HEAD
+
 Route::get('/nusantara', function () {
     return view('auth.nusantara');
 })->name('nusantara');
-=======
->>>>>>> c2f3bd0c273391d1044f2609d26b4c2f95c02956
