@@ -67,25 +67,18 @@
         }
 
         .brand {
-
             font-family: 'Playfair Display', serif;
-
-            font-size: 24px;
-
+            font-size: 21px;
+            line-height: 1.1;
             color: #68452f;
-
         }
 
         .brand small {
-
             display: block;
-
+            margin-top: 3px;
             font-family: 'Poppins', sans-serif;
-
-            font-size: 9px;
-
-            letter-spacing: 3px;
-
+            font-size: 6px;
+            letter-spacing: 2px;
         }
 
         .nav-menu {
@@ -113,9 +106,9 @@
 
             color: white;
 
-            padding: 9px 18px;
+            padding: 9px 20px;
 
-            border-radius: 20px;
+            border-radius: 30px;
 
         }
 
