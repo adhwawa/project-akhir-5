@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -5,9 +6,20 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
+<<<<<<< HEAD
 use App\Http\Controllers\CoffeandTeaController;
 
 
+=======
+use App\Http\Controllers\ComfortController;
+use App\Http\Controllers\ExtraController;
+use App\Http\Controllers\CoffeeandTeaController;
+use App\Http\Controllers\FreshJuiceController;
+use App\Http\Controllers\SoftDrinkController;
+use App\Http\Controllers\DessertController;
+
+// HALAMAN AWAL
+>>>>>>> dc7dbe34dd418fc52fe1bbc25185eb3598613777
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -30,17 +42,39 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
-//dashbord
+// DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
-//menu utama
-Route::get('/maincourse', [MaincourseController::class, 'index'])
+// MENU MAKANAN
+Route::get('/maincourse', [MainCourseController::class, 'index'])
     ->name('maincourse');
 
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
+<<<<<<< HEAD
 // MINUMAN
 Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
     ->name('coffeandtea');
+=======
+Route::get('/comfort', [ComfortController::class, 'index'])
+    ->name('comfort');
+
+Route::get('/extra', [ExtraController::class, 'index'])
+    ->name('extra');
+
+// MENU MINUMAN
+Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
+    ->name('coffeeandtea');
+
+Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
+    ->name('freshjuice');
+
+Route::get('/softdrink', [SoftDrinkController::class, 'index'])
+    ->name('softdrink');
+
+// MENU DESSERT
+Route::get('/dessert', [DessertController::class, 'index'])
+    ->name('dessert');
+>>>>>>> dc7dbe34dd418fc52fe1bbc25185eb3598613777
