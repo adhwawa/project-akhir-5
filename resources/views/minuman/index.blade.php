@@ -1,745 +1,653 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Minuman - Daily Crave</title>
-<style>
- {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f8f5ef;
-    color: #5d4635;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-nav {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
-    background: #faf8f4;
-}
-
-.logo {
-    font-family: Georgia, serif;
-    font-size: 25px;
-    color: #68452f;
-}
-
-.logo small {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-    letter-spacing: 4px;
-    color: #9a7459;
-    margin-top: 2px;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 38px;
-    align-items: center;
-}
 
-.nav-menu a {
-    text-decoration: none;
-    color: #8c6b55;
-    font-size: 13px;
-}
-
-.nav-menu a.active {
-    background: #71482d;
-    color: white;
-    padding: 13px 25px;
-    border-radius: 25px;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 55px 7% 40px;
-
-    background: #faf8f4;
-}
-
-.hero-text {
-    width: 50%;
-}
-
-.small-title {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #a0785b;
-    margin-bottom: 18px;
-}
-
-.small-title::before {
-    content: "";
-    display: inline-block;
-
-    width: 35px;
-
-    border-top: 1px solid #a0785b;
-
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-.hero h1 {
-    font-family: Georgia, serif;
-    font-weight: normal;
-
-    font-size: 43px;
-    line-height: 1.1;
-
-    color: #684b37;
-}
-
-.hero p {
-    margin-top: 20px;
-
-    color: #8c7768;
-
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-.hero-image {
-    width: 39%;
-    height: 245px;
-
-    object-fit: cover;
-
-    border-radius: 13px;
-}
-
-
-.hero-buttons {
-    padding: 0 7% 25px;
-
-    background: #faf8f4;
-}
-
-.hero-buttons a {
-    display: inline-block;
-
-    text-decoration: none;
-
-    color: #71482d;
-    background: #f0e5d7;
-
-    padding: 8px 18px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    margin-right: 8px;
-
-    transition: 0.2s;
-}
-
-.hero-buttons a:first-child {
-    background: #71482d;
-    color: white;
-}
-
-.hero-buttons a:hover {
-    background: #71482d;
-    color: white;
-}
-
-.content {
-    padding: 25px 7% 70px;
-
-    background: #faf8f4;
-}
-
-.section-header {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 15px;
-}
-
-.category {
-    font-family: Georgia, serif;
-
-    font-size: 25px;
-
-    font-weight: normal;
-
-    color: #624633;
-}
-
-.section-description {
-    font-size: 9px;
-
-    color: #a08a7b;
-}
-
-/* =========================
-   DRINK CARD
-========================= */
-
-/* =========================
-   DRINK CARD
-========================= */
-
-.drink-card {
-    background: white;
-    border: 1px solid #e7ddd2;
-    border-radius: 7px;
-
-    min-height: 110px;
-    margin-bottom: 9px;
-    padding: 9px;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-
-    position: relative;
-    transition: 0.2s;
-}
-
-.drink-card:hover {
-    box-shadow: 0 5px 15px rgba(100, 70, 45, 0.10);
-    transform: translateY(-1px);
-}
-
-/* GAMBAR DI SEBELAH KIRI */
-.drink-image {
-    display: block;
-
-    width: 120px;
-    height: 92px;
-
-    object-fit: cover;
-    border-radius: 5px;
-
-    flex: 0 0 120px;
-}
-
-/* TULISAN DI SEBELAH KANAN */
-.drink-info {
-    flex: 1;
-    min-width: 0;
-
-    padding-left: 15px;
-    padding-right: 45px;
-}
-
-
-
-.drink-name {
-    font-family: Georgia, serif;
-
-    font-size: 15px;
-
-    color: #523b2c;
-
-    margin-bottom: 3px;
-}
-
-.price {
-    font-size: 10px;
-
-    color: #704c35;
-
-    margin-bottom: 9px;
-}
-
-.description {
-    font-size: 9px;
-
-    line-height: 1.5;
-
-    color: #927e70;
-
-    max-width: 800px;
-}
-
-/* =========================
-   PLUS BUTTON
-========================= */
-
-.plus {
-    position: absolute;
-
-    right: 15px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 21px;
-    height: 21px;
-
-    border: 1px solid #e2d8ce;
-
-    border-radius: 50%;
-
-    background: white;
-
-    color: #8c6a53;
-
-    cursor: pointer;
-}
-
-.plus:hover {
-    background: #71482d;
-    color: white;
-}
-
-
-
-footer {
-    background: #f0e9dc;
-
-    padding: 30px 7%;
-
-    font-size: 8px;
-
-    color: #9c8879;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-    nav {
-        height: auto;
-        min-height: 80px;
-        padding: 20px 5%;
-
-        flex-direction: column;
-        align-items: flex-start;
-
-        gap: 18px;
-    }
-
-    .nav-menu {
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .nav-menu a {
-        font-size: 11px;
-    }
-
-    .nav-menu a.active {
-        padding: 9px 15px;
-    }
-
-    .hero {
-        flex-direction: column;
-
-        gap: 30px;
-
-        padding: 40px 5%;
-    }
-
-    .hero-text {
-        width: 100%;
-    }
-
-    .hero h1 {
-        font-size: 35px;
-    }
-
-    .hero-image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .hero-buttons {
-        padding: 0 5% 25px;
-    }
-
-    .content {
-        padding: 25px 5% 50px;
-    }
-
-    .section-header {
-        display: block;
-    }
-
-    .section-description {
-        margin-top: 7px;
-    }
-
-    .drink-image {
-        width: 100px;
-        height: 82px;
-    }
-
-    .drink-info {
-        padding-left: 12px;
-        padding-right: 35px;
-    }
-
-    .drink-name {
-        font-size: 14px;
-    }
-
-    .description {
-        font-size: 8px;
-    }
-}
-</style>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: #f3f1ed;
+            color: #553b2b;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #fdfbf8;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            min-height: 76px;
+            padding: 20px 5.5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            color: #68452f;
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        .brand small {
+            display: block;
+            margin-top: 3px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 6px;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 30px;
+            margin-left: auto;
+        }
+
+        .nav-menu a {
+            color: #92745e;
+            text-decoration: none;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .nav-menu a.active {
+            background: #70472d;
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 30px;
+        }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            align-items: center;
+            gap: 35px;
+            padding: 35px 5.5% 40px;
+        }
+
+        .small-title {
+            color: #a58c76;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            color: #4d382b;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            max-width: 440px;
+            color: #806e5e;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            display: block;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        /* CATEGORY BAR */
+        .category-bar {
+            min-height: 58px;
+            width: 100%;
+            padding: 8px 5.5%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            border-top: 1px solid #f5f0e9;
+            border-bottom: 1px solid #f5f0e9;
+        }
+
+        .category-bar a {
+            color: #8a715c;
+            text-decoration: none;
+            font-size: 12px;
+            white-space: nowrap;
+            padding: 9px 15px;
+            border-radius: 20px;
+        }
+
+        .category-bar a.active {
+            background: #806044;
+            color: #fff;
+        }
+
+        .category-note {
+            margin-left: auto;
+            color: #9a8a7a;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+        }
+
+        /* MENU */
+        .menu-section {
+            padding: 30px 5.5% 40px;
+            background: #fdfbf8;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 17px;
+        }
+
+        .section-subtitle {
+            color: #a58c76;
+            font-size: 11px;
+            letter-spacing: 1.4px;
+            margin-bottom: 3px;
+        }
+
+        .section-title {
+            color: #4d382b;
+            font-family: 'Playfair Display', serif;
+            font-size: 27px;
+            font-weight: 400;
+        }
+
+        .section-hint {
+            color: #9a8a7a;
+            font-size: 10px;
+            padding-bottom: 5px;
+        }
+
+        .menu-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        /* DRINK CARD */
+        .drink-card {
+            min-height: 116px;
+            display: grid;
+            grid-template-columns: 155px minmax(0, 1fr) 28px;
+            align-items: center;
+            gap: 15px;
+            padding: 8px 10px 8px 9px;
+            background: #fff;
+            border: 1px solid #eee7df;
+            border-radius: 9px;
+            box-shadow: 0 2px 7px rgba(91, 63, 42, .025);
+            transition: .2s;
+        }
+
+        .drink-card:hover {
+            box-shadow: 0 5px 15px rgba(100, 70, 45, .10);
+            transform: translateY(-1px);
+        }
+
+        .drink-image {
+            display: block;
+            width: 100%;
+            height: 98px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .drink-info {
+            min-width: 0;
+        }
+
+        .drink-name {
+            color: #554033;
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            margin-bottom: 4px;
+        }
+
+        .price {
+            color: #8a6244;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .description {
+            color: #8b8177;
+            font-size: 11px;
+            line-height: 1.65;
+        }
+
+        .plus {
+            width: 28px;
+            height: 28px;
+            border: 0;
+            border-radius: 50%;
+            background: #f5f0e8;
+            color: #9a785b;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .plus:hover {
+            background: #806044;
+            color: #fff;
+        }
+
+        /* FOOTER */
+        footer {
+            min-height: 72px;
+            padding: 25px 5.5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: #f2eadc;
+            color: #9b8068;
+            font-size: 10px;
+        }
+
+        /* DESKTOP */
+        @media (min-width: 1100px) {
+            .hero-image {
+                height: 250px;
+            }
+
+            .drink-card {
+                grid-template-columns: 180px minmax(0, 1fr) 30px;
+                min-height: 126px;
+            }
+
+            .drink-image {
+                height: 108px;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 17px 5%;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 17px;
+                flex-wrap: wrap;
+                margin: 5px 0 0;
+            }
+
+            .nav-menu a {
+                font-size: 11px;
+            }
+
+            .nav-menu a.active {
+                padding: 7px 13px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 25px 5% 30px;
+            }
+
+            .hero-image {
+                height: 190px;
+            }
+
+            .category-bar {
+                min-height: 54px;
+                padding: 7px 4%;
+                gap: 3px;
+                overflow-x: auto;
+            }
+
+            .category-bar a {
+                padding: 8px 10px;
+                font-size: 10px;
+            }
+
+            .category-note {
+                font-size: 7px;
+                letter-spacing: .7px;
+            }
+
+            .menu-section {
+                padding: 25px 5% 35px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .drink-card {
+                grid-template-columns: 100px minmax(0, 1fr) 25px;
+                gap: 10px;
+                min-height: 100px;
+                padding: 8px;
+            }
+
+            .drink-image {
+                width: 100px;
+                height: 82px;
+            }
+
+            .drink-name {
+                font-size: 15px;
+            }
+
+            .price {
+                font-size: 11px;
+            }
+
+            .description {
+                font-size: 9px;
+                line-height: 1.5;
+            }
+
+            .plus {
+                width: 25px;
+                height: 25px;
+                font-size: 18px;
+            }
+
+            footer {
+                padding: 22px 5%;
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .category-note {
+                display: none;
+            }
+
+            .drink-card {
+                grid-template-columns: 85px minmax(0, 1fr) 23px;
+                gap: 8px;
+            }
+
+            .drink-image {
+                width: 85px;
+                height: 75px;
+            }
+
+            .drink-name {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+<div class="container">
 
-<!-- NAVBAR -->
-<nav>
-
-    <div class="logo">
-        daily crave
-        <small>FOOD & DRINK</small>
-    </div>
-
-    <div class="nav-menu">
-        <a href="{{ route('dashboard') }}">Menu Kami</a>
-
-        <a href="{{ route('dashboard') }}#makanan">
-            Makanan
-        </a>
-
-        <a href="{{ route('minuman.index') }}" class="active">
-            Minuman
-        </a>
-
-        <a href="{{ route('dashboard') }}#dessert">
-            Desert
-        </a>
-    </div>
-
-</nav>
-
-
-<!-- HERO -->
-<section class="hero">
-
-    <div class="hero-text">
-
-        <div class="small-title">
-            MENU DIMEJA ANDA
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="brand">
+            daily crave
+            <small>FOOD &amp; DRINK</small>
         </div>
 
-        <h1>
-            Rasa yang akrab.<br>
-            Momen yang hangat.
-        </h1>
+        <div class="nav-menu">
+            <a href="{{ route('dashboard') }}">Menu Kami</a>
+            <a href="{{ route('dashboard') }}#makanan">Makanan</a>
+            <a href="{{ route('minuman.index') }}" class="active">Minuman</a>
+            <a href="{{ route('dashboard') }}#dessert">Dessert</a>
+        </div>
+    </nav>
 
-        <p>
-            Jelajahi pilihan makanan, minuman, dan dessert.
-            Pilihan rasa yang pas untuk menemani harimu.
-        </p>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="small-title">MENU DI MEJA ANDA</div>
 
+            <h1>
+                Rasa yang akrab.<br>
+                Momen yang hangat.
+            </h1>
+
+            <p>
+                Jelajahi pilihan makanan, minuman, dan dessert.
+                Pilihan rasa yang pas untuk menemani harimu.
+            </p>
+        </div>
+
+        <img
+            src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
+            class="hero-image"
+            alt="Pilihan minuman Daily Crave">
+    </section>
+
+    <!-- CATEGORY BAR -->
+    <div class="category-bar">
+        <a href="{{ route('minuman.index') }}" class="active">
+            Coffee &amp; Tea
+            <span style="font-size:7px; margin-left:6px;">07</span>
+        </a>
+
+        <a href="#fresh-juice">Fresh Juice</a>
+        <a href="#soft-drink">Soft Drink</a>
+
+        <span class="category-note">
+            DAFTAR MINUMAN DAILY CRAVE
+        </span>
     </div>
 
-    <img
-        src="{{ asset('https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg') }}"
-        class="hero-image"
-        alt="Daily Crave">
-</section>
+    <!-- DAFTAR MINUMAN -->
+    <section class="menu-section">
 
+        <div class="section-heading">
+            <div>
+                <div class="section-subtitle">
+                    MINUMAN 07 PILIHAN
+                </div>
 
-<!-- BUTTON -->
-<div class="hero-buttons">
+                <h2 class="section-title">
+                    Coffee &amp; Tea
+                </h2>
+            </div>
 
-    <a href="{{ route('minuman.index') }}">
-        Coffee & Tea
-        <span style="font-size: 7px; margin-left: 6px;">
-            07
-        </span>
-    </a>
+            <div class="section-hint">
+                Temukan pilihan minuman hangat dan menyegarkan.
+            </div>
+        </div>
 
+        <div class="menu-list">
 
-    <a href="#">
-        Fresh Juice
-    </a>
+            <!-- JASMINE TEA -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/jasmine-tea.jpg') }}"
+                    class="drink-image"
+                    alt="Jasmine Tea">
 
+                <div class="drink-info">
+                    <div class="drink-name">Jasmine Tea [Ice/Hot]</div>
+                    <div class="price">Rp8.000</div>
+                    <div class="description">
+                        Teh melati yang diseduh dari daun teh pilihan
+                        dengan aroma bunga yang lembut. Disajikan dingin
+                        dengan es batu atau hangat.
+                    </div>
+                </div>
 
-    <a href="#">
-        Soft Drink
-    </a>
+                <button class="plus" type="button"
+                    aria-label="Tambah Jasmine Tea">+</button>
+            </div>
 
+            <!-- TEH JERUK NIPIS -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/teh-jeruk-nipis.jpg') }}"
+                    class="drink-image"
+                    alt="Teh Jeruk Nipis">
 
-    <span style="
-        margin-left: auto;
-        font-size: 7px;
-        letter-spacing: 2px;
-        color: #9b8879;
-    ">
-        DAFTAR MINUMAN DAILY CRAVE
-    </span>
+                <div class="drink-info">
+                    <div class="drink-name">Teh Jeruk Nipis [Ice/Hot]</div>
+                    <div class="price">Rp9.000</div>
+                    <div class="description">
+                        Teh dengan rasa segar jeruk nipis yang memberikan
+                        sensasi menyegarkan dan cocok dinikmati kapan saja.
+                    </div>
+                </div>
+
+                <button class="plus" type="button"
+                    aria-label="Tambah Teh Jeruk Nipis">+</button>
+            </div>
+
+            <!-- LYCHEE TEA -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/lychee-tea.jpg') }}"
+                    class="drink-image"
+                    alt="Lychee Tea">
+
+                <div class="drink-info">
+                    <div class="drink-name">Lychee Tea [Ice/Hot]</div>
+                    <div class="price">Rp10.000</div>
+                    <div class="description">
+                        Teh yang dipadukan dengan lychee dan sirup buah
+                        yang lembut, menghasilkan rasa manis dan segar.
+                    </div>
+                </div>
+
+                <button class="plus" type="button"
+                    aria-label="Tambah Lychee Tea">+</button>
+            </div>
+
+            <!-- AMERICANO -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/americano.jpg') }}"
+                    class="drink-image"
+                    alt="Americano">
+
+                <div class="drink-info">
+                    <div class="drink-name">Americano [Ice/Hot]</div>
+                    <div class="price">Rp15.000</div>
+                    <div class="description">
+                        Espresso dengan air yang memberikan cita rasa
+                        kopi lebih ringan namun tetap memiliki rasa
+                        khas kopi.
+                    </div>
+                </div>
+
+                <button class="plus" type="button"
+                    aria-label="Tambah Americano">+</button>
+            </div>
+
+            <!-- COFFEE LATTE -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/coffee-latte.jpg') }}"
+                    class="drink-image"
+                    alt="Coffee Latte">
+
+                <div class="drink-info">
+                    <div class="drink-name">Coffee Latte [Ice/Hot]</div>
+                    <div class="price">Rp15.000</div>
+                    <div class="description">
+                        Perpaduan espresso dengan susu steamed yang
+                        menghasilkan rasa lembut dan creamy dengan
+                        aroma kopi yang khas.
+                    </div>
+                </div>
+
+                <button class="plus" type="button"
+                    aria-label="Tambah Coffee Latte">+</button>
+            </div>
+
+            <!-- CAPPUCCINO -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/cappuccino.jpg') }}"
+                    class="drink-image"
+                    alt="Cappuccino">
+
+                <div class="drink-info">
+                    <div class="drink-name">Cappuccino [Ice/Hot]</div>
+                    <div class="price">Rp16.000</div>
+                    <div class="description">
+                        Minuman kopi dengan perpaduan espresso, susu,
+                        dan foam lembut yang menghasilkan rasa creamy
+                        dan nikmat.
+                    </div>
+                </div>
+
+                <button class="plus" type="button"
+                    aria-label="Tambah Cappuccino">+</button>
+            </div>
+
+            <!-- MOCACCINO -->
+            <div class="drink-card">
+                <img
+                    src="{{ asset('images/mocaccino.jpg') }}"
+                    class="drink-image"
+                    alt="Mocaccino">
+
+                <div class="drink-info">
+                    <div class="drink-name">Mocaccino [Ice/Hot]</div>
+                    <div class="price">Rp17.000</div>
+                    <div class="description">
+                        Perpaduan espresso, cokelat, dan susu dengan
+                        rasa manis dan aroma kopi yang nikmat.
+                    </div>
+                </div>
+
+                <button class="plus" type="button"
+                    aria-label="Tambah Mocaccino">+</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>© 2026 Daily Crave — Food &amp; Drink</span>
+    </footer>
 
 </div>
-
-
-<!-- DAFTAR MINUMAN -->
-<section class="content">
-
-    <div class="section-header">
-
-        <div>
-            
-            <div class="small-title">
-                MINUMAN 05 PILIHAN
-            </div>
-
-            <h2 class="category">
-                Coffee & Tea
-            </h2>
-        </div>
-
-        <div class="section-description">
-            Temukan pilihan minuman hangat dan menyegarkan.
-        </div>
-
-    </div>
-
-
-    <!-- Jasmine Tea -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/jasmine-tea.jpg') }}"
-            class="drink-image"
-            alt="Jasmine Tea">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Jasmine Tea [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp8.000
-            </div>
-
-            <div class="description">
-                Teh melati yang diseduh dari daun teh pilihan dengan aroma bunga
-                yang lembut. Disajikan dingin dengan es batu atau hangat.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-
-    <!-- Teh Jeruk Nipis -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/teh-jeruk-nipis.jpg') }}"
-            class="drink-image"
-            alt="Teh Jeruk Nipis">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Teh Jeruk Nipis [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp9.000
-            </div>
-
-            <div class="description">
-                Teh dengan rasa segar jeruk nipis yang memberikan sensasi
-                menyegarkan dan cocok dinikmati kapan saja.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-
-    <!-- Lychee Tea -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/lychee-tea.jpg') }}"
-            class="drink-image"
-            alt="Lychee Tea">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Lychee Tea [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp10.000
-            </div>
-
-            <div class="description">
-                Teh yang dipadukan dengan lychee dan sirup buah yang lembut,
-                menghasilkan rasa manis dan segar.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-
-    <!-- Americano -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/americano.jpg') }}"
-            class="drink-image"
-            alt="Americano">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Americano [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp15.000
-            </div>
-
-            <div class="description">
-                Espresso dengan air yang memberikan cita rasa kopi yang
-                lebih ringan namun tetap memiliki rasa khas kopi.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-
-    <!-- Coffee Latte -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/coffee-latte.jpg') }}"
-            class="drink-image"
-            alt="Coffee Latte">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Coffee Latte [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp15.000
-            </div>
-
-            <div class="description">
-                Perpaduan espresso dengan susu steamed yang menghasilkan
-                rasa lembut dan creamy dengan aroma kopi yang khas.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-
-    <!-- Cappuccino -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/cappuccino.jpg') }}"
-            class="drink-image"
-            alt="Cappuccino">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Cappuccino [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp16.000
-            </div>
-
-            <div class="description">
-                Minuman kopi dengan perpaduan espresso, susu dan foam
-                lembut yang menghasilkan rasa creamy dan nikmat.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-
-    <!-- Mocaccino -->
-    <div class="drink-card">
-
-        <img
-            src="{{ asset('images/mocaccino.jpg') }}"
-            class="drink-image"
-            alt="Mocaccino">
-
-        <div class="drink-info">
-
-            <div class="drink-name">
-                Mocaccino [Ice/Hot]
-            </div>
-
-            <div class="price">
-                Rp17.000
-            </div>
-
-            <div class="description">
-                Perpaduan espresso, cokelat dan susu dengan rasa manis
-                dan aroma kopi yang nikmat.
-            </div>
-
-        </div>
-
-        <button class="plus">+</button>
-
-    </div>
-
-</section>
-
-
-<footer>
-    © 2026 Daily Crave — Food & Drink
-</footer>
-
 </body>
 </html>
