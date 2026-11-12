@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MinumanController;
 use App\Http\Controllers\NusantaraController;
+
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -31,11 +33,18 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// MINUMAN
+Route::get('/minuman', [MinumanController::class, 'index'])
+    ->name('minuman.index');
+
 //menu utama
 Route::get('/maincourse', function () {
     return view('auth.maincourse');
 })->name('maincourse');
 
+<<<<<<< HEAD
 Route::get('/nusantara', function () {
     return view('auth.nusantara');
 })->name('nusantara');
+=======
+>>>>>>> c2f3bd0c273391d1044f2609d26b4c2f95c02956
