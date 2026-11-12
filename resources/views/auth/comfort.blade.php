@@ -386,7 +386,7 @@
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}">Menu Kami</a>
             <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="{{ url('/minuman') }}">Minuman</a>
+            <a href="{{ route('coffeeandtea') }}">Minuman</a>
             <a href="{{ url('/dessert') }}">Dessert</a>
         </div>
 

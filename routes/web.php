@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
-use App\Http\Controllers\CoffeandTeaController;
+use App\Http\Controllers\ComfortController;
+use App\Http\Controllers\ExtraController;
+use App\Http\Controllers\CoffeeandTeaController;
 
 
 
@@ -36,26 +38,50 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
-//menu utama
-Route::get('/maincourse', [MaincourseController::class, 'index'])
+// MENU MAKANAN
+Route::get('/maincourse', [MainCourseController::class, 'index'])
     ->name('maincourse');
 
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
-// MINUMAN
-Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
-    ->name('coffeandtea');
+Route::get('/comfort', [ComfortController::class, 'index'])
+    ->name('comfort');
 
+Route::get('/extra', [ExtraController::class, 'index'])
+    ->name('extra');
 
-Route::get('/nusantara', function () {
-    return view('auth.nusantara');
-})->name('nusantara');
+// MENU MINUMAN
+Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
+    ->name('coffeeandtea');
 
+// MENU COMFORT
+Route::get('/maincourse', function () {
+    return view('auth.maincourse');
+})->name('maincourse');
+
+// MENU COMFORT
+Route::get('/comfort', function () {
+    return view('auth.comfort');
+})->name('comfort');
+
+// MENU EXTRA
 Route::get('/extra', function () {
     return view('auth.extra');
 })->name('extra');
 
-Route::get('/comfort', function () {
-    return view('auth.comfort');
-})->name('comfort');
+// MENU NUSANTARA
+Route::get('/nusantara', function () {
+    return view('auth.nusantara');
+})->name('nusantara');
+
+//MENU EXTRA
+Route::get('/extra', function () {
+    return view('auth.extra');
+})->name('extra');
+
+
+
+Route::get('/coffeeandtea', function () {
+    return view('auth.coffeeandtea');
+})->name('coffeeandtea');
