@@ -50,18 +50,16 @@
     .brand {
       color: #68452f;
       font-family: 'Playfair Display', serif;
-      font-size: 23px;
-      line-height: 1;
+      font-size: 21px;
+      line-height: 1.1;
     }
 
     .brand small {
       display: block;
-      margin-top: 6px;
-      padding-left: 22px;
+      margin-top: 3px;
       font-family: 'Poppins', sans-serif;
-      font-size: 7px;
-      letter-spacing: 2.2px;
-      color: #a28b75;
+      font-size: 6px;
+      letter-spacing: 2px;
     }
 
     .nav-menu {
@@ -89,46 +87,44 @@
     /* HERO */
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.2fr 0.8fr;
       align-items: center;
-      gap: 45px;
-      padding: 12px 5.5% 34px;
+      gap: 35px;
+      padding: 40px;
     }
 
-    .hero-text .eyebrow {
+    .hero-text p {
       color: #a58c76;
-      font-size: 9px;
-      letter-spacing: 1.4px;
-      margin-bottom: 12px;
+      font-size: 11px;
+      margin-bottom: 10px;
     }
 
     .hero h1 {
       color: #4d382b;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 3.1vw, 43px);
+      font-size: clamp(30px, 4vw, 48px);
       font-weight: 400;
-      line-height: 1.12;
-      margin-bottom: 12px;
+      line-height: 1.1;
+      margin-bottom: 15px;
     }
 
-    .hero-text .description {
+    .hero-text span {
       max-width: 390px;
       color: #806e5e;
-      font-size: 9px;
-      line-height: 1.9;
+      font-size: 11px;
+      line-height: 1.8;
     }
 
     .hero img {
-      display: block;
       width: 100%;
-      height: 205px;
+      height: 220px;
       object-fit: cover;
-      border-radius: 9px;
+      border-radius: 18px;
     }
 
     /* CATEGORY NAVIGATION */
     .category-bar {
-      min-height: 48px;
+      min-height: 50px;
       padding: 9px 5.5%;
       display: flex;
       align-items: center;
@@ -141,9 +137,9 @@
     .category-bar a {
       color: #8a715c;
       text-decoration: none;
-      font-size: 9px;
+      font-size: 12px;
       white-space: nowrap;
-      padding: 6px 14px;
+      padding: 9px 15px;
       border-radius: 20px;
     }
 
@@ -155,13 +151,13 @@
     .category-note {
       margin-left: auto;
       color: #9a8a7a;
-      font-size: 8px;
+      font-size: 10px;
       white-space: nowrap;
     }
 
     /* MAIN COURSE */
     .menu-section {
-      padding: 28px 5.5% 38px;
+      padding: 30px 5.5% 40px;
       background: #fdfbf8;
     }
 
@@ -175,7 +171,7 @@
 
     .section-subtitle {
       color: #a58c76;
-      font-size: 8px;
+      font-size: 13px;
       letter-spacing: 1.4px;
       margin-bottom: 3px;
     }
@@ -183,19 +179,19 @@
     .section-title {
       color: #4d382b;
       font-family: 'Playfair Display', serif;
-      font-size: 25px;
+      font-size: 27px;
       font-weight: 400;
     }
 
     .section-hint {
       color: #9a8a7a;
-      font-size: 8px;
+      font-size: 10px;
       padding-bottom: 5px;
     }
 
     .menu-list {
       display: grid;
-      gap: 13px;
+      gap: 10px;
     }
 
     /* MENU CARD */
@@ -223,33 +219,34 @@
     .menu-info h3 {
       color: #554033;
       font-family: 'Playfair Display', serif;
-      font-size: 15px;
+      font-size: 19px;
       font-weight: 400;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .price {
       color: #8a6244;
-      font-size: 9px;
+      font-family: 'Poppins', serif;
+      font-size: 13px;
       font-weight: 500;
       margin-bottom: 5px;
     }
 
     .menu-info p {
       color: #8b8177;
-      font-size: 8px;
+      font-size: 11px;
       line-height: 1.65;
     }
 
     .add-button {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       border: 0;
-      border-radius: 50%;
+      border-radius: 60%;
       background: #f5f0e8;
       color: #9a785b;
       font-family: 'Poppins', sans-serif;
-      font-size: 15px;
+      font-size: 20px;
       line-height: 1;
       cursor: pointer;
     }
@@ -269,7 +266,7 @@
       gap: 15px;
       background: #f2eadc;
       color: #9b8068;
-      font-size: 7px;
+      font-size: 10px;
     }
 
     footer .footer-links {
@@ -301,7 +298,7 @@
     /* RESPONSIVE */
     @media (max-width: 700px) {
       body {
-        padding: 0;
+        padding: 15;
       }
 
       /* FULL WIDTH DESKTOP */
@@ -383,12 +380,12 @@
 
         <div class="brand">
             ☼ daily crave
-            <small>FOOD &amp; DRINK</small>
+            <small>FOOD & DRINK</small>
         </div>
 
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}   ">Menu Kami</a>
-            <a href="#main-course" class="active">Makanan</a>
+            <a href="{{ route('maincourse') }}" class="active">Makanan</a>
             <a href="minuman.html">Minuman</a>
             <a href="dessert.html">Dessert</a>
         </div>
@@ -424,8 +421,8 @@
     <!-- CATEGORY NAVIGATION -->
     <nav class="category-bar">
 
-      <a href="#main-course" class="active">Main Course</a>
-      <a href="#main-course">Nusantara</a>
+      <a href="{{ route('maincourse') }}" class="active">Main Course</a>
+      <a href="{{ route('nusantara') }}">Nusantara</a>
       <a href="#main-course">Comfort</a>
       <a href="#main-course">Extra</a>
 
