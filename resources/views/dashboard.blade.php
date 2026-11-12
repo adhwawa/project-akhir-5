@@ -404,22 +404,17 @@
     <div class="container">
 
         <!-- HEADER -->
-
         <nav class="navbar">
-
             <div class="brand">
-
                 ☼ daily crave
-
                 <small>FOOD & DRINK</small>
-
             </div>
 
             <div class="nav-menu">
 
-                <a href="#makanan">Menu Kami</a>
+                <a href="{{ route('dashboard') }}">Menu Kami</a>
 
-                <a href="#makanan">Makanan</a>
+                <a href="{{ route('maincourse') }}">Makanan</a>
 
                 <a href="#minuman">Minuman</a>
 

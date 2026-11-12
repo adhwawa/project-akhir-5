@@ -385,7 +385,7 @@
 
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}   ">Menu Kami</a>
-            <a href="#main-course" class="active">Makanan</a>
+            <a href="{{ route('maincourse') }}" class="active">Makanan</a>
             <a href="minuman.html">Minuman</a>
             <a href="dessert.html">Dessert</a>
         </div>
@@ -421,8 +421,8 @@
     <!-- CATEGORY NAVIGATION -->
     <nav class="category-bar">
 
-      <a href="#main-course" class="active">Main Course</a>
-      <a href="#main-course">Nusantara</a>
+      <a href="{{ route('maincourse') }}" class="active">Main Course</a>
+      <a href="{{ route('nusantara') }}">Nusantara</a>
       <a href="#main-course">Comfort</a>
       <a href="#main-course">Extra</a>
 

@@ -35,3 +35,7 @@ Route::get('/dashboard', function () {
 Route::get('/maincourse', function () {
     return view('auth.maincourse');
 })->name('maincourse');
+
+Route::get('/nusantara', function () {
+    return view('auth.nusantara');
+})->name('nusantara');
