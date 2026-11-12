@@ -386,7 +386,7 @@
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}   ">Menu Kami</a>
             <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="minuman.html">Minuman</a>
+            <a href="{{ route('coffeandtea') }}">Minuman</a>
             <a href="dessert.html">Dessert</a>
         </div>
 
@@ -424,7 +424,7 @@
       <a href="{{ route('maincourse') }}">Main Course</a>
       <a href="{{ route('nusantara') }}" class="active">Nusantara</a>
       <a href="#nusantara">Comfort</a>
-      <a href="#nusantara">Extra</a>
+      <a href="{{ route('extra') }}">Extra</a>
 
       <span class="category-note">
         DAPAT DITAMBAHKAN KE DAFTAR PESANAN

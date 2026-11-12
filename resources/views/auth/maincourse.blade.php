@@ -370,7 +370,7 @@
     }
   </style>
 </head>
-    
+
 <body>
 
   <main class="container">
@@ -386,7 +386,7 @@
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}   ">Menu Kami</a>
             <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="minuman.html">Minuman</a>
+            <a href="{{ route('coffeandtea') }}">Minuman</a>
             <a href="dessert.html">Dessert</a>
         </div>
 
@@ -424,7 +424,7 @@
       <a href="{{ route('maincourse') }}" class="active">Main Course</a>
       <a href="{{ route('nusantara') }}">Nusantara</a>
       <a href="#main-course">Comfort</a>
-      <a href="#main-course">Extra</a>
+      <a href="{{ route('extra') }}">Extra</a>
 
       <span class="category-note">
         DAPAT DITAMBAHKAN KE DAFTAR PESANAN

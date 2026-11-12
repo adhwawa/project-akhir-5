@@ -426,14 +426,15 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="brand">
-            daily crave
-            <small>FOOD &amp; DRINK</small>
+            ☼ daily crave
+            <small>FOOD & DRINK</small>
         </div>
+
 
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}">Menu Kami</a>
-            <a href="{{ route('dashboard') }}#makanan">Makanan</a>
-            <a href="{{ route('minuman.index') }}" class="active">Minuman</a>
+            <a href="{{ route('maincourse') }}">Makanan</a>
+            <a href="{{ route('coffeandtea') }}" class="active">Minuman</a>
             <a href="{{ route('dashboard') }}#dessert">Dessert</a>
         </div>
     </nav>
@@ -462,11 +463,7 @@
 
     <!-- CATEGORY BAR -->
     <div class="category-bar">
-        <a href="{{ route('minuman.index') }}" class="active">
-            Coffee &amp; Tea
-            <span style="font-size:7px; margin-left:6px;">07</span>
-        </a>
-
+        <a href="{{ route('coffeandtea') }}" class="active">Coffee & Tea</a>
         <a href="#fresh-juice">Fresh Juice</a>
         <a href="#soft-drink">Soft Drink</a>
 
@@ -485,7 +482,7 @@
                 </div>
 
                 <h2 class="section-title">
-                    Coffee &amp; Tea
+                    Coffee & Tea
                 </h2>
             </div>
 
@@ -499,18 +496,18 @@
             <!-- JASMINE TEA -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/jasmine-tea.jpg') }}"
+                    src="{{ ('public/gambar/coffe tea/estea.png') }}"
                     class="drink-image"
                     alt="Jasmine Tea">
 
                 <div class="drink-info">
                     <div class="drink-name">Jasmine Tea [Ice/Hot]</div>
                     <div class="price">Rp8.000</div>
-                    <div class="description">
+                    <p>
                         Teh melati yang diseduh dari daun teh pilihan
                         dengan aroma bunga yang lembut. Disajikan dingin
                         dengan es batu atau hangat.
-                    </div>
+                    </p>
                 </div>
 
                 <button class="plus" type="button"
@@ -520,7 +517,7 @@
             <!-- TEH JERUK NIPIS -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/teh-jeruk-nipis.jpg') }}"
+                    src="{{ asset('public/gambar/coffe tea/tehjeruknipis.png') }}"
                     class="drink-image"
                     alt="Teh Jeruk Nipis">
 
@@ -540,7 +537,7 @@
             <!-- LYCHEE TEA -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/lychee-tea.jpg') }}"
+                    src="{{ asset('public/gambar/coffe tea/lecitea.png') }}"
                     class="drink-image"
                     alt="Lychee Tea">
 
@@ -560,7 +557,7 @@
             <!-- AMERICANO -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/americano.jpg') }}"
+                    src="{{ asset('public/gambar/coffe tea/americano.png') }}"
                     class="drink-image"
                     alt="Americano">
 
@@ -581,7 +578,7 @@
             <!-- COFFEE LATTE -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/coffee-latte.jpg') }}"
+                    src="{{ asset('public/gambar/coffe tea/latte.png') }}"
                     class="drink-image"
                     alt="Coffee Latte">
 
@@ -602,7 +599,7 @@
             <!-- CAPPUCCINO -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/cappuccino.jpg') }}"
+                    src="{{ asset('public/gambar/coffe tea/cappuccino.png') }}"
                     class="drink-image"
                     alt="Cappuccino">
 
@@ -623,7 +620,7 @@
             <!-- MOCACCINO -->
             <div class="drink-card">
                 <img
-                    src="{{ asset('images/mocaccino.jpg') }}"
+                    src="{{ asset('public/gambar/coffe tea/mocaccino.png') }}"
                     class="drink-image"
                     alt="Mocaccino">
 
@@ -645,7 +642,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <span>© 2026 Daily Crave — Food &amp; Drink</span>
+        <span>© 2026 Daily Crave — Food & Drink</span>
     </footer>
 
 </div>
