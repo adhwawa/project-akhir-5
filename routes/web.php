@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MinumanController;
+use App\Http\Controllers\NusantaraController;
+
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -34,3 +36,9 @@ Route::get('/dashboard', function () {
 // MINUMAN
 Route::get('/minuman', [MinumanController::class, 'index'])
     ->name('minuman.index');
+
+//menu utama
+Route::get('/maincourse', function () {
+    return view('auth.maincourse');
+})->name('maincourse');
+
