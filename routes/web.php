@@ -55,7 +55,7 @@ Route::get('/extra', [ExtraController::class, 'index'])
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
 
-// MENU COMFORT
+// MENU MAINCOURSE
 Route::get('/maincourse', function () {
     return view('auth.maincourse');
 })->name('maincourse');
@@ -80,8 +80,7 @@ Route::get('/extra', function () {
     return view('auth.extra');
 })->name('extra');
 
-
-
+//menu coffeeandtea
 Route::get('/coffeeandtea', function () {
     return view('auth.coffeeandtea');
 })->name('coffeeandtea');
