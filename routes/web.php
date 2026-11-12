@@ -40,9 +40,16 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 Route::get('/maincourse', [MaincourseController::class, 'index'])
     ->name('maincourse');
 
+<<<<<<< HEAD
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
 // MINUMAN
 Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
     ->name('coffeandtea');
+=======
+
+Route::get('/nusantara', function () {
+    return view('auth.nusantara');
+})->name('nusantara');
+>>>>>>> d5bfb3783bc181acdef4626752c8fc44bc6a3952
