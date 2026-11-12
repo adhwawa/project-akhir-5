@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -384,7 +383,7 @@
             <a href="{{ route('dashboard') }}">Menu Kami</a>
             <a href="{{ route('maincourse') }}">Makanan</a>
             <a href="{{ route('coffeeandtea') }}" class="active">Minuman</a>
-            <a href="#">Dessert</a>
+            <a href='{{ route('dessert') }}'>Dessert</a>
         </div>
     </nav>
 

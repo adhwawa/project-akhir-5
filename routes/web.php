@@ -11,7 +11,7 @@ use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-
+use App\Http\Controllers\DessertController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -62,3 +62,7 @@ Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
 
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
+
+// MENU DESSERT
+Route::get('/dessert', [DessertController::class, 'index'])
+    ->name('dessert');
