@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -8,10 +9,11 @@ use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\CoffeeandTeaController;
+use App\Http\Controllers\FreshJuiceController;
+use App\Http\Controllers\SoftDrinkController;
 
 
-
-
+// HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -34,8 +36,9 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
-//dashbord
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// DASHBOARD
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
 // MENU MAKANAN
 Route::get('/maincourse', [MainCourseController::class, 'index'])
@@ -54,32 +57,8 @@ Route::get('/extra', [ExtraController::class, 'index'])
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
 
-// MENU MAINCOURSE
-Route::get('/maincourse', function () {
-    return view('auth.maincourse');
-})->name('maincourse');
+Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
+    ->name('freshjuice');
 
-// MENU COMFORT
-Route::get('/comfort', function () {
-    return view('auth.comfort');
-})->name('comfort');
-
-// MENU EXTRA
-Route::get('/extra', function () {
-    return view('auth.extra');
-})->name('extra');
-
-// MENU NUSANTARA
-Route::get('/nusantara', function () {
-    return view('auth.nusantara');
-})->name('nusantara');
-
-//MENU EXTRA
-Route::get('/extra', function () {
-    return view('auth.extra');
-})->name('extra');
-
-//menu coffeeandtea
-Route::get('/coffeeandtea', function () {
-    return view('auth.coffeeandtea');
-})->name('coffeeandtea');
+Route::get('/softdrink', [SoftDrinkController::class, 'index'])
+    ->name('softdrink');

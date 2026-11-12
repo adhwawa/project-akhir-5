@@ -427,7 +427,7 @@
         <a href="{{ route('extra') }}">Extra</a>
 
         <span class="category-note">
-            DAFTAR MAKANAN DAILY CRAVE
+        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
         </span>
 
     </nav>
