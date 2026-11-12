@@ -503,11 +503,11 @@
                 <div class="drink-info">
                     <div class="drink-name">Jasmine Tea [Ice/Hot]</div>
                     <div class="price">Rp8.000</div>
-                    <p>
+                    <div>
                         Teh melati yang diseduh dari daun teh pilihan
                         dengan aroma bunga yang lembut. Disajikan dingin
                         dengan es batu atau hangat.
-                    </p>
+                    </div>
                 </div>
 
                 <button class="plus" type="button"
