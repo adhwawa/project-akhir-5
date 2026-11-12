@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MinumanController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -29,3 +30,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// MINUMAN
+Route::get('/minuman', [MinumanController::class, 'index'])
+    ->name('minuman.index');

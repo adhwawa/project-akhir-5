@@ -428,7 +428,7 @@
 
                 <a href="#makanan">Makanan</a>
 
-                <a href="#minuman">Minuman</a>
+                <a href="{{ route('minuman.index') }}">Minuman</a>
 
                 <a href="#desert">Desert</a>
 
