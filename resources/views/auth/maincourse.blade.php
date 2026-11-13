@@ -285,8 +285,8 @@
       }
 
       .menu-card {
-        grid-template-columns: 170px minmax(0, 1fr) 25px;
-        min-height: 126px;
+        grid-template-columns: 170px minmax(0, 1fr) 45px !important;
+        align-items: center;
       }
 
       .menu-card img {
@@ -366,6 +366,50 @@
             width: 100%;
             padding: 30px 5%;
         }
+       
+.add-button {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: #f5f0e8;
+    background-image:
+        linear-gradient(#9a785b, #9a785b),
+        linear-gradient(#9a785b, #9a785b);
+
+    background-size: 17px 2px, 2px 17px;
+    background-position: center center, center center;
+    background-repeat: no-repeat;
+
+    font-size: 0;
+    color: transparent;
+    text-decoration: none;
+
+    cursor: pointer;
+    justify-self: center;
+    flex-shrink: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.add-button::before,
+.add-button::after {
+    content: none !important;
+}
+
+.add-button:hover {
+    background-color: #806044;
+    background-image:
+        linear-gradient(white, white),
+        linear-gradient(white, white);
+}
+
     }
   </style>
 </head>
@@ -475,7 +519,8 @@
             </p>
           </div>
 
-          <button class="add-button">+</button>
+          <a href="{{ route('detailmenu', 'grill-chicken-steak') }}"
+            class="add-button">+</a>
 
         </article>
 
@@ -501,7 +546,8 @@
             </p>
           </div>
 
-          <button class="add-button">+</button>
+          <a href="{{ route('detailmenu', 'spaghetti-bolognese-katsu') }}"
+          class="add-button">+</a>
 
         </article>
 
@@ -527,7 +573,8 @@
             </p>
           </div>
 
-          <button class="add-button">+</button>
+          <a href="{{ route('detailmenu', 'sop-iga') }}"
+          class="add-button">+</a>
 
         </article>
 
@@ -553,7 +600,8 @@
             </p>
           </div>
 
-          <button class="add-button">+</button>
+          <a href="{{ route('detailmenu', 'nasi-goreng-katsu') }}"
+          class="add-button">+</a>
 
         </article>
 
@@ -579,7 +627,7 @@
               pelengkap hidangan tradisional.
             </p>
           </div>
-
+          
           <button class="add-button">+</button>
 
         </article>
