@@ -8,15 +8,12 @@ use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\CoffeandTeaController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\AdminControllers\MenuController;
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
 use App\Http\Controllers\DessertController;
->>>>>>> 48187e022e1946a919f904c909dbf46b3a4a72b1
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -65,26 +62,9 @@ Route::get('/comfort', [ComfortController::class, 'index'])
 Route::get('/extra', [ExtraController::class, 'index'])
     ->name('extra');
 
-<<<<<<< HEAD
-// MENU MINUMAN
-Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
-    ->name('coffeeandtea');
 Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
     ->name('freshjuice');
 
-Route::get('/comfort', function () {
-    return view('auth.comfort');
-})->name('comfort');
-
-//Admin Dashboard
-Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
-
-=======
-Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
-    ->name('freshjuice');
-
->>>>>>> 48187e022e1946a919f904c909dbf46b3a4a72b1
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
 
@@ -148,33 +128,6 @@ Route::get('/detail-menu/{slug}', function ($slug) {
     ]);
 })->name('detailmenu');
 
-<<<<<<< HEAD
-
-Route::post('/keranjang/tambah', function (Request $request) {
-    $request->validate([
-        'menu' => 'required|string',
-        'jumlah' => 'required|integer|min:1',
-        'catatan' => 'nullable|string|max:500',
-    ]);
-    $cart = session()->get('cart', []);
-    $slug = $request->menu;
-    if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += $request->jumlah;
-        $cart[$slug]['catatan'] = $request->catatan;
-    } else {
-        $cart[$slug] = [
-            'jumlah' => $request->jumlah,
-            'catatan' => $request->catatan,
-        ];
-    }
-    session()->put('cart', $cart);
-    return redirect()
-        ->route('maincourse')
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang');
-
-=======
->>>>>>> 48187e022e1946a919f904c909dbf46b3a4a72b1
 // DETAIL NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
     $menus = [
@@ -232,10 +185,8 @@ Route::post('/keranjang/tambah', function (Request $request) {
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
     ]);
-
     $cart = session()->get('cart', []);
     $slug = $request->menu;
-
     if (isset($cart[$slug])) {
         $cart[$slug]['jumlah'] += $request->jumlah;
         $cart[$slug]['catatan'] = $request->catatan;
@@ -245,42 +196,8 @@ Route::post('/keranjang/tambah', function (Request $request) {
             'catatan' => $request->catatan,
         ];
     }
-<<<<<<< HEAD
-
-    session()->put('cart', $cart);
-
-    return redirect()->back()
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang.add');
-
-// TAMBAH PESANAN
-Route::post('/keranjang/tambah', function (Request $request) {
-    // Isi proses tambah pesanan kamu
-})->name('keranjang.add');
-
-// HAPUS PESANAN
-Route::post('/keranjang/hapus/{slug}', function ($slug) {
-    $cart = session()->get('cart', []);
-
-    if (isset($cart[$slug])) {
-        unset($cart[$slug]);
-        session()->put('cart', $cart);
-    }
-
-    return redirect()->route('keranjang')
-        ->with('success', 'Pesanan berhasil dihapus!');
-})->name('keranjang.hapus');
-
-// HALAMAN KERANJANG
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
-
-
-=======
     session()->put('cart', $cart);
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
->>>>>>> 48187e022e1946a919f904c909dbf46b3a4a72b1
