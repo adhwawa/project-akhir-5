@@ -127,6 +127,7 @@ Route::get('/detail-menu/{slug}', function ($slug) {
     ]);
 })->name('detailmenu');
 
+
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
         'menu' => 'required|string',
@@ -150,6 +151,86 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
 
+<<<<<<< HEAD
+// DETAIL NUSANTARA
+Route::get('/detail-nusantara/{slug}', function ($slug) {
+    $menus = [
+        'nasi-iga-bakar' => [
+            'nama' => 'Nasi Iga Bakar',
+            'kategori' => 'NUSANTARA',
+            'harga' => 72000,
+            'gambar' => 'gambar/nusantara/n.igabakar.png',
+            'deskripsi' => 'Iga sapi pilihan dibakar dengan bumbu kecap manis,
+                        berpadu dengan kentang dan sayuran. Disajikan bersama
+                        nasi putih hangat, tumis buncis dan wortel.'
+        ],
+        'nasi-campur-taliwang' => [
+            'nama' => 'Nasi Campur Taliwang',
+            'kategori' => 'NUSANTARA',
+            'harga' => 66000,
+            'gambar' => 'gambar/nusantara/taliwang.png',
+            'deskripsi' => 'Nasi putih hangat disajikan bersama ayam bakar
+                        taliwang berbumbu cabai, bawang putih, tomat,
+                        dan rempah khas Lombok. Dilengkapi lauk pilihan.'
+        ],
+        'nasi-goreng-jawa' => [
+            'nama' => 'Nasi Goreng Jawa',
+            'kategori' => 'NUSANTARA',
+            'harga' => 64000,
+            'gambar' => 'gambar/nusantara/nasgorjawa.png',
+            'deskripsi' => 'Nasi putih dimasak dengan bumbu tradisional
+                        berupa bawang merah, bawang putih, cabai,
+                        kecap, dan rempah pilihan.'
+        ],
+        'mie-goreng-jawa' => [
+            'nama' => 'Mie Goreng Jawa',
+            'kategori' => 'NUSANTARA',
+            'harga' => 60000,
+            'gambar' => 'gambar/nusantara/miegoreng.png',
+            'deskripsi' => 'Mie telur dimasak dengan racikan bumbu khas Jawa,
+                        kecap manis, bawang merah, bawang putih,
+                        dan sayuran segar.'
+        ],
+        'mie-nyemek-kampung-jawa' => [
+            'nama' => 'Mie Nyemek Kampung Jawa',
+            'kategori' => 'NUSANTARA',
+            'harga' => 60000,
+            'gambar' => 'gambar/nusantara/mienyemek.png',
+            'deskripsi' => 'Mie telur dimasak dengan sedikit kuah kental
+                        berbumbu bawang putih, kemiri, cabai,
+                        dan kecap manis khas Jawa.'
+        ],
+    ];
+    abort_unless(isset($menus[$slug]), 404);
+    return view('detailmenu',[
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailnusantara');
+
+Route::post('/keranjang/tambah', function (Request $request) {
+    $request->validate([
+        'menu' => 'required|string',
+        'jumlah' => 'required|integer|min:1',
+        'catatan' => 'nullable|string|max:500',
+    ]);
+    $cart = session()->get('cart', []);
+    $slug = $request->menu;
+    if (isset($cart[$slug])) {
+        $cart[$slug]['jumlah'] += $request->jumlah;
+        $cart[$slug]['catatan'] = $request->catatan;
+    } else {
+        $cart[$slug] = [
+            'jumlah' => $request->jumlah,
+            'catatan' => $request->catatan,
+        ];
+    }
+    session()->put('cart', $cart);
+    return redirect()
+        ->route('nusantara')
+        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
+})->name('keranjang.add');
+=======
 // Halaman Keranjang
 Route::get('/keranjang', function () {
     return view('keranjang');
