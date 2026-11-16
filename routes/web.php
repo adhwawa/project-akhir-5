@@ -7,21 +7,12 @@ use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\CoffeandTeaController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
-<<<<<<< HEAD
 use App\Http\Controllers\AdminControllers\MenuController;
-=======
->>>>>>> 864437b7e4ce307ed561e8ace5c5a514be538601
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-<<<<<<< HEAD
 use App\Http\Controllers\DessertController;
-=======
-use App\Http\Controllers\CoffeandTeaController;
-use App\Http\Controllers\CoffeeandTeaController;
-use App\Http\Controllers\AdminControllers\DashboardAdmin;
->>>>>>> 864437b7e4ce307ed561e8ace5c5a514be538601
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -70,7 +61,6 @@ Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
 
-<<<<<<< HEAD
 Route::get('/comfort', [ComfortController::class, 'index'])
     ->name('comfort');
 
@@ -80,22 +70,6 @@ Route::get('/extra', [ExtraController::class, 'index'])
 Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
     ->name('freshjuice');
 
-=======
-// MENU MINUMAN
-Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
-    ->name('coffeeandtea');
-Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
-    ->name('freshjuice');
-
-Route::get('/comfort', function () {
-    return view('auth.comfort');
-})->name('comfort');
-
-//Admin Dashboard
-Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
-
->>>>>>> 864437b7e4ce307ed561e8ace5c5a514be538601
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
 
@@ -159,35 +133,7 @@ Route::get('/detail-menu/{slug}', function ($slug) {
     ]);
 })->name('detailmenu');
 
-<<<<<<< HEAD
 // DETAIL NUSANTARA
-=======
-//DETAIL MAINCOURSE
-Route::post('/keranjang/tambah', function (Request $request) {
-    $request->validate([
-        'menu' => 'required|string',
-        'jumlah' => 'required|integer|min:1',
-        'catatan' => 'nullable|string|max:500',
-    ]);
-    $cart = session()->get('cart', []);
-    $slug = $request->menu;
-    if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += $request->jumlah;
-        $cart[$slug]['catatan'] = $request->catatan;
-    } else {
-        $cart[$slug] = [
-            'jumlah' => $request->jumlah,
-            'catatan' => $request->catatan,
-        ];
-    }
-    session()->put('cart', $cart);
-    return redirect()
-        ->route('maincourse')
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang');
-
-// DATA NUSANTARA
->>>>>>> 864437b7e4ce307ed561e8ace5c5a514be538601
 Route::get('/detail-nusantara/{slug}', function ($slug) {
     $menus = [
         'nasi-iga-bakar' => [
@@ -258,37 +204,10 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ];
     }
     session()->put('cart', $cart);
-<<<<<<< HEAD
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
-=======
-
-    return redirect()->back()
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang.add');
-
-// TAMBAH PESANAN
-Route::post('/keranjang/tambah', function (Request $request) {
-    // Isi proses tambah pesanan kamu
-})->name('keranjang.add');
-
-// HAPUS PESANAN
-Route::post('/keranjang/hapus/{slug}', function ($slug) {
-    $cart = session()->get('cart', []);
-
-    if (isset($cart[$slug])) {
-        unset($cart[$slug]);
-        session()->put('cart', $cart);
-    }
-
-    return redirect()->route('keranjang')
-        ->with('success', 'Pesanan berhasil dihapus!');
-})->name('keranjang.hapus');
-
-// HALAMAN KERANJANG
->>>>>>> 2ab8f7922f980746712a3be05fc4de8dd4abb4f9
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
@@ -389,6 +308,5 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     return view('detailextra', [
         'menu' => $menus[$slug],
         'slug' => $slug
-    ]);
+    ]);     
 })->name('detailextra');
->>>>>>> 864437b7e4ce307ed561e8ace5c5a514be538601
