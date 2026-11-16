@@ -71,9 +71,10 @@ Route::get('/softdrink', [SoftDrinkController::class, 'index'])
 Route::get('/dessert', [DessertController::class, 'index'])
     ->name('dessert');
 
-// ADMIN DASHBOARD
+// ADMIN DASHBOARD & LOGOUT
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
+Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])->name('admin.logout');
 
 // DETAIL MAINCOURSE
 Route::get('/detail-menu/{slug}', function ($slug) {
@@ -194,8 +195,3 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
-
-// ADMIN DASHBOARD & LOGOUT
-Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
-Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])->name('admin.logout');
