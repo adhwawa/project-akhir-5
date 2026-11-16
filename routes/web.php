@@ -72,9 +72,10 @@ Route::get('/softdrink', [SoftDrinkController::class, 'index'])
 Route::get('/dessert', [DessertController::class, 'index'])
     ->name('dessert');
 
-// ADMIN DASHBOARD
+// ADMIN DASHBOARD & LOGOUT
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
+Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])->name('admin.logout');
 
 //ADMIN MENU
 Route::prefix('admin')->name('admin.')->group(function () {

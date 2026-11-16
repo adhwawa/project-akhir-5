@@ -333,7 +333,7 @@
             <small>FOOD & DRINK</small>
         </div>
 
-        <a href="#" class="cart-button">
+        <a href="{{ route('keranjang') }}" class="cart-button">
             ♧ &nbsp; Keranjang &nbsp; 0
         </a>
 
@@ -368,7 +368,7 @@
 
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('keranjang.add') }}" method="POST" id="orderForm">
+    <form action="{{ route('keranjang') }}" method="POST" id="orderForm">
 
         @csrf
 
