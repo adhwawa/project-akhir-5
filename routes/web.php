@@ -5,18 +5,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
-use App\Http\Controllers\CoffeandTeaController;
-use App\Http\Controllers\CoffeeandTeaController;
-use App\Http\Controllers\AdminControllers\DashboardAdmin;
-<<<<<<< HEAD
-
-=======
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-use App\Http\Controllers\DessertController;
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
+use App\Http\Controllers\CoffeandTeaController;
+use App\Http\Controllers\CoffeeandTeaController;
+use App\Http\Controllers\AdminControllers\DashboardAdmin;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -52,6 +47,12 @@ Route::get('/maincourse', [MainCourseController::class, 'index'])
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
+Route::get('/comfort', [ComfortController::class, 'index'])
+    ->name('comfort');
+
+Route::get('/extra', [ExtraController::class, 'index'])
+    ->name('extra');
+
 // MENU MINUMAN
 Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
     ->name('coffeandtea');
@@ -59,13 +60,6 @@ Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
 
-Route::get('/comfort', [ComfortController::class, 'index'])
-    ->name('comfort');
-
-Route::get('/extra', [ExtraController::class, 'index'])
-    ->name('extra');
-
-<<<<<<< HEAD
 // MENU MINUMAN
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
@@ -80,11 +74,6 @@ Route::get('/comfort', function () {
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
 
-=======
-Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
-    ->name('freshjuice');
-
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
 
@@ -96,7 +85,7 @@ Route::get('/dessert', [DessertController::class, 'index'])
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
 
-// DETAIL MAINCOURSE
+// DATA MAINCOURSE
 Route::get('/detail-menu/{slug}', function ($slug) {
     $menus = [
         'grill-chicken-steak' => [
@@ -142,8 +131,7 @@ Route::get('/detail-menu/{slug}', function ($slug) {
     ]);
 })->name('detailmenu');
 
-<<<<<<< HEAD
-
+//DETAIL MAINCOURSE
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
         'menu' => 'required|string',
@@ -167,9 +155,7 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang');
 
-=======
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
-// DETAIL NUSANTARA
+// DATA NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
     $menus = [
         'nasi-iga-bakar' => [
@@ -220,34 +206,106 @@ Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
 
-Route::post('/keranjang/tambah', function (Request $request) {
-    $request->validate([
-        'menu' => 'required|string',
-        'jumlah' => 'required|integer|min:1',
-        'catatan' => 'nullable|string|max:500',
-    ]);
-    $cart = session()->get('cart', []);
-    $slug = $request->menu;
-    if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += $request->jumlah;
-        $cart[$slug]['catatan'] = $request->catatan;
-    } else {
-        $cart[$slug] = [
-            'jumlah' => $request->jumlah,
-            'catatan' => $request->catatan,
-        ];
-    }
-    session()->put('cart', $cart);
-    return redirect()
-        ->back()
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-<<<<<<< HEAD
-})->name('keranjang');
-
 // Halaman Keranjang
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
-=======
-})->name('keranjang.add');
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
+
+// DATA COMFORT
+Route::get('/detail-comfort/{slug}', function ($slug) {
+    $menus = [
+        'mendoan' => [
+            'nama' => 'Mendoan',
+            'kategori' => 'COMFORT',
+            'harga' => 30000,
+            'gambar' => 'gambar/comfort/mendoan.png',
+            'deskripsi' => 'Tempe pilihan dilapisi adonan tepung berbumbu dengan irisan daun bawang, kemudian digoreng hingga bagian luar renyah. Disajikan bersama sambal kecap manis dan cabai rawit.'
+        ],
+        'tahu-crispy' => [
+            'nama' => 'Tahu Crispy',
+            'kategori' => 'COMFORT',
+            'harga' => 30000,
+            'gambar' => 'gambar/comfort/tahu.png',
+            'deskripsi' => 'Potongan tahu pilihan dibalut tepung berbumbu dan digoreng hingga menghasilkan lapisan luar yang renyah dengan bagian dalam lembut. Disajikan dengan taburan bumbu serta saus.'
+        ],
+        'bakwan-jagung' => [
+            'nama' => 'Bakwan Jagung',
+            'kategori' => 'COMFORT',
+            'harga' => 30000,
+            'gambar' => 'gambar/comfort/bakwajagung.png',
+            'deskripsi' => 'Jagung manis dipadukan dengan tepung, irisan daun bawang, wortel, bawang putih, dan bumbu pilihan. Digoreng hingga keemasan dan disajikan bersama cabai rawit.'
+        ],
+        'singkong-crispy' => [
+            'nama' => 'Singkong Crispy',
+            'kategori' => 'COMFORT',
+            'harga' => 30000,
+            'gambar' => 'gambar/comfort/singkong.png',
+            'deskripsi' => 'Singkong pilihan dipotong memanjang, direbus hingga empuk, kemudian digoreng dengan balutan tepung berbumbu hingga bagian luarnya renyah. Disajikan dengan saus sambal sebagai pelengkap.'
+        ],
+        'cireng-crispy' => [
+            'nama' => 'Cireng Crispy',
+            'kategori' => 'COMFORT',
+            'harga' => 32000,
+            'gambar' => 'gambar/comfort/cireng.png',
+            'deskripsi' => 'Cireng dibuat dari tepung tapioka dengan campuran bawang putih, daun bawang, dan bumbu pilihan yang menghasilkan tekstur kenyal di dalam serta renyah di luar. Disajikan dengan saus cocolan.'
+        ],
+        'french-fries' => [
+            'nama' => 'French Fries',
+            'kategori' => 'COMFORT',
+            'harga' => 25000,
+            'gambar' => 'gambar/comfort/frenchfries.png',
+            'deskripsi' => 'Kentang dipotong menjadi bentuk batang dan digoreng hingga keemasan. Disajikan dengan saus ketchup atau mayonnaise.'
+        ],
+        'roti-bakar-coklat-keju' => [
+            'nama' => 'Roti Bakar Coklat Keju',
+            'kategori' => 'COMFORT',
+            'harga' => 35000,
+            'gambar' => 'gambar/comfort/rotibakar.png',
+            'deskripsi' => 'Roti tawar tebal dipanggang dengan olesan margarin hingga berwarna kecokelatan dan renyah di bagian luar. Diberi topping meses cokelat, parutan keju cheddar, serta susu kental manis.'
+        ],
+        'pisang-goreng-crispy' => [
+            'nama' => 'Pisang Goreng Crispy',
+            'kategori' => 'COMFORT',
+            'harga' => 32000,
+            'gambar' => 'gambar/comfort/pisanggoreng.png',
+            'deskripsi' => 'Pisang pilihan dibalut adonan tepung renyah dan digoreng hingga keemasan dengan bagian dalam yang lembut. Disajikan dengan topping keju, meses cokelat, atau susu kental manis.'
+        ],
+        'mix-platter' => [
+            'nama' => 'Mix Platter',
+            'kategori' => 'COMFORT',
+            'harga' => 45000,
+            'gambar' => 'gambar/comfort/mixplatter.png',
+            'deskripsi' => 'Sajian aneka camilan dalam satu piring yang terdiri dari french fries, chicken nuggets, sosis goreng, onion rings, dan chicken wings. Dilengkapi saus sambal, saus tomat, dan mayonnaise sebagai pelengkap.'
+        ],
+    ];
+    abort_unless(isset($menus[$slug]), 404);
+    return view('detailcomfort', [
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailcomfort');
+
+// DATA EXTRA
+Route::get('/detail-extra/{slug}', function ($slug) {
+    $menus = [
+        'nasi-putih' => [
+            'nama' => 'Nasi Putih',
+            'kategori' => 'EXTRA',
+            'harga' => 12000,
+            'gambar' => 'gambar/extra/nasiputih.png',
+            'deskripsi' => 'Nasi putih pilihan dimasak hingga pulen dengan tekstur lembut dan aroma yang harum. Disajikan hangat dalam mangkuk khusus sebagai pelengkap berbagai hidangan utama.'
+        ],
+        'telur' => [
+            'nama' => 'Telur',
+            'kategori' => 'EXTRA',
+            'harga' => 11000,
+            'gambar' => 'gambar/extra/telur.png',
+            'deskripsi' => 'Pilihan olahan telur meliputi omelet, telur ceplok, dan telur dadar yang dimasak menggunakan mentega atau minyak dengan tambahan bumbu pilihan. Tersedia tingkat kematangan sesuai permintaan, mulai dari setengah matang, ¾ matang, hingga matang sempurna.'
+        ],
+    ];
+    abort_unless(isset($menus[$slug]), 404);
+    return view('detailextra', [
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailextra');
