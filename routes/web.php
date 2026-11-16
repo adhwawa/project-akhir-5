@@ -8,6 +8,7 @@ use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\CoffeandTeaController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
+use App\Http\Controllers\AdminControllers\MenuController;
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
@@ -75,6 +76,11 @@ Route::get('/dessert', [DessertController::class, 'index'])
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
 Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])->name('admin.logout');
+
+//ADMIN MENU
+Route::prefix('admin')->name('admin.')->group(function () {
+Route::resource('menu', MenuController::class)->except(['show']);
+});
 
 // DETAIL MAINCOURSE
 Route::get('/detail-menu/{slug}', function ($slug) {
