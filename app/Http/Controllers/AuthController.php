@@ -24,9 +24,15 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
-
             $request->session()->regenerate();
 
+            // Jika email admin yang login, arahkan ke Dashboard Admin
+            if (Auth::user()->email === 'admin@dailycrave.id') {
+                return redirect()->route('admin.dashboard')
+                    ->with('status', 'Selamat datang kembali, Admin!');
+            }
+
+            // Jika pelanggan biasa, arahkan ke Dashboard Pelanggan
             return redirect()->route('dashboard')
                 ->with('status', 'Berhasil login!');
         }

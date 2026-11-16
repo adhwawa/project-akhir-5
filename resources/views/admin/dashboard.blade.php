@@ -156,13 +156,20 @@
             border: none;
             color: #c93b3b;
             cursor: pointer;
-            padding: 6px;
-            border-radius: 8px;
-            transition: background 0.2s;
+            padding: 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.1s;
         }
 
         .logout-btn:hover {
             background-color: #fae6e6;
+        }
+
+        .logout-btn:active {
+            transform: scale(0.95);
         }
 
         .system-status {
@@ -517,6 +524,108 @@
             font-weight: 600;
         }
 
+        /* ================= MODAL LOGOUT ================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(44, 30, 20, 0.35);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: #ffffff;
+            border: 1px solid #f0e8de;
+            border-radius: 20px;
+            padding: 32px 28px 26px;
+            width: 100%;
+            max-width: 390px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(44, 30, 20, 0.15);
+            animation: modalPop 0.2s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon-box {
+            width: 46px;
+            height: 46px;
+            background-color: #fde8e8;
+            color: #dc2626;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+
+        .modal-box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c1e14;
+            margin-bottom: 8px;
+        }
+
+        .modal-box p {
+            font-size: 12px;
+            color: #8c735f;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-batal {
+            background-color: #ffffff;
+            border: 1px solid #e2d7c8;
+            color: #4a3525;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-batal:hover {
+            background-color: #f8f4ef;
+        }
+
+        .btn-keluar-confirm {
+            width: 100%;
+            background-color: #b91c1c;
+            border: none;
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-keluar-confirm:hover {
+            background-color: #991b1b;
+        }
+
         /* ================= RESPONSIVE ================= */
         @media (max-width: 1100px) {
             .stats-grid {
@@ -631,7 +740,7 @@
                         <p>Administrator</p>
                     </div>
                 </div>
-                <button class="logout-btn" title="Keluar">
+                <button type="button" class="logout-btn" title="Keluar" onclick="openLogoutModal()">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                         <polyline points="16 17 21 12 16 7"></polyline>
@@ -823,7 +932,40 @@
         </section>
     </main>
 
+    <!-- MODAL KONFIRMASI KELUAR -->
+    <div class="modal-overlay" id="logoutModal" onclick="if(event.target === this) closeLogoutModal()">
+        <div class="modal-box">
+            <div class="modal-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+            </div>
+            <h3>Yakin ingin keluar dari akun admin?</h3>
+            <p>Sesi Anda saat ini akan diakhiri dan Anda perlu login kembali untuk mengakses panel admin Daily Crave.</p>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-batal" onclick="closeLogoutModal()">Batal</button>
+                <form action="{{ route('admin.logout') }}" method="POST" style="margin: 0;">
+                    @csrf
+                    <button type="submit" class="btn-keluar-confirm">Keluar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal Logout
+        function openLogoutModal() {
+            document.getElementById('logoutModal').classList.add('show');
+        }
+
+        function closeLogoutModal() {
+            document.getElementById('logoutModal').classList.remove('show');
+        }
+
+        // Filter Grafik
         let currentPeriod = 'week';
 
         function changePeriod(button, period) {

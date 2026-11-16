@@ -194,3 +194,8 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
+
+// ADMIN DASHBOARD & LOGOUT
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
+Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])->name('admin.logout');
