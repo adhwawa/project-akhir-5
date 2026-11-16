@@ -683,7 +683,7 @@
                     Dashboard
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.menu.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
                         <path d="M7 2v20"></path>
