@@ -141,6 +141,7 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
 
+<<<<<<< HEAD
 // DETAIL NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
     $menus = [
@@ -219,3 +220,9 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->route('nusantara')
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
+=======
+// Halaman Keranjang
+Route::get('/keranjang', function () {
+    return view('keranjang');
+})->name('keranjang');
+>>>>>>> 754a3041f5854b374f8d1ffc124cd6d76dbfa773
