@@ -6,8 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\CoffeandTeaController;
-
-
+use App\Http\Controllers\AdminControllers\DashboardAdmin;
 
 
 Route::get('/', function () {
@@ -58,3 +57,8 @@ Route::get('/extra', function () {
 Route::get('/comfort', function () {
     return view('auth.comfort');
 })->name('comfort');
+
+
+//Admin Dashboard
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
