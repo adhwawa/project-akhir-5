@@ -368,7 +368,7 @@
 
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('keranjang.add') }}" method="POST" id="orderForm">
+    <form action="{{ route('keranjang') }}" method="POST" id="orderForm">
 
         @csrf
 
