@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Http\Request;
@@ -7,8 +6,17 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\CoffeandTeaController;
+use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
+<<<<<<< HEAD
 
+=======
+use App\Http\Controllers\ComfortController;
+use App\Http\Controllers\ExtraController;
+use App\Http\Controllers\FreshJuiceController;
+use App\Http\Controllers\SoftDrinkController;
+use App\Http\Controllers\DessertController;
+>>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -44,16 +52,20 @@ Route::get('/maincourse', [MainCourseController::class, 'index'])
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
-// MINUMAN
+// MENU MINUMAN
 Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
     ->name('coffeandtea');
-    
+
+Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
+    ->name('coffeeandtea');
+
 Route::get('/comfort', [ComfortController::class, 'index'])
     ->name('comfort');
 
 Route::get('/extra', [ExtraController::class, 'index'])
     ->name('extra');
 
+<<<<<<< HEAD
 // MENU MINUMAN
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
@@ -68,12 +80,21 @@ Route::get('/comfort', function () {
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
 
+=======
+Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
+    ->name('freshjuice');
+
+>>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
 
 // MENU DESSERT
 Route::get('/dessert', [DessertController::class, 'index'])
     ->name('dessert');
+
+// ADMIN DASHBOARD
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
 
 // DETAIL MAINCOURSE
 Route::get('/detail-menu/{slug}', function ($slug) {
@@ -121,6 +142,7 @@ Route::get('/detail-menu/{slug}', function ($slug) {
     ]);
 })->name('detailmenu');
 
+<<<<<<< HEAD
 
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
@@ -145,6 +167,8 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang');
 
+=======
+>>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 // DETAIL NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
     $menus = [
@@ -153,53 +177,48 @@ Route::get('/detail-nusantara/{slug}', function ($slug) {
             'kategori' => 'NUSANTARA',
             'harga' => 72000,
             'gambar' => 'gambar/nusantara/n.igabakar.png',
-            'deskripsi' => 'Iga sapi pilihan dibakar dengan bumbu kecap manis,
-                        berpadu dengan kentang dan sayuran. Disajikan bersama
-                        nasi putih hangat, tumis buncis dan wortel.'
+            'deskripsi' => 'Iga sapi pilihan dibakar dengan bumbu kecap manis, berpadu dengan kentang dan sayuran. Disajikan bersama nasi putih hangat, tumis buncis dan wortel.'
         ],
         'nasi-campur-taliwang' => [
             'nama' => 'Nasi Campur Taliwang',
             'kategori' => 'NUSANTARA',
             'harga' => 66000,
             'gambar' => 'gambar/nusantara/taliwang.png',
-            'deskripsi' => 'Nasi putih hangat disajikan bersama ayam bakar
-                        taliwang berbumbu cabai, bawang putih, tomat,
-                        dan rempah khas Lombok. Dilengkapi lauk pilihan.'
+            'deskripsi' => 'Nasi putih hangat disajikan bersama ayam bakar taliwang berbumbu cabai, bawang putih, tomat, dan rempah khas Lombok. Dilengkapi lauk pilihan.'
         ],
         'nasi-goreng-jawa' => [
             'nama' => 'Nasi Goreng Jawa',
             'kategori' => 'NUSANTARA',
             'harga' => 64000,
             'gambar' => 'gambar/nusantara/nasgorjawa.png',
-            'deskripsi' => 'Nasi putih dimasak dengan bumbu tradisional
-                        berupa bawang merah, bawang putih, cabai,
-                        kecap, dan rempah pilihan.'
+            'deskripsi' => 'Nasi putih dimasak dengan bumbu tradisional berupa bawang merah, bawang putih, cabai, kecap, dan rempah pilihan.'
         ],
         'mie-goreng-jawa' => [
             'nama' => 'Mie Goreng Jawa',
             'kategori' => 'NUSANTARA',
             'harga' => 60000,
             'gambar' => 'gambar/nusantara/miegoreng.png',
-            'deskripsi' => 'Mie telur dimasak dengan racikan bumbu khas Jawa,
-                        kecap manis, bawang merah, bawang putih,
-                        dan sayuran segar.'
+            'deskripsi' => 'Mie telur dimasak dengan racikan bumbu khas Jawa, kecap manis, bawang merah, bawang putih, dan sayuran segar.'
         ],
         'mie-nyemek-kampung-jawa' => [
             'nama' => 'Mie Nyemek Kampung Jawa',
             'kategori' => 'NUSANTARA',
             'harga' => 60000,
             'gambar' => 'gambar/nusantara/mienyemek.png',
-            'deskripsi' => 'Mie telur dimasak dengan sedikit kuah kental
-                        berbumbu bawang putih, kemiri, cabai,
-                        dan kecap manis khas Jawa.'
+            'deskripsi' => 'Mie telur dimasak dengan sedikit kuah kental berbumbu bawang putih, kemiri, cabai, dan kecap manis khas Jawa.'
         ],
     ];
     abort_unless(isset($menus[$slug]), 404);
-    return view('detailmenu',[
+    return view('detailmenu', [
         'menu' => $menus[$slug],
         'slug' => $slug
     ]);
 })->name('detailnusantara');
+
+// HALAMAN & PROSES KERANJANG
+Route::get('/keranjang', function () {
+    return view('keranjang');
+})->name('keranjang');
 
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
@@ -220,11 +239,15 @@ Route::post('/keranjang/tambah', function (Request $request) {
     }
     session()->put('cart', $cart);
     return redirect()
-        ->route('nusantara')
+        ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
+<<<<<<< HEAD
 })->name('keranjang');
 
 // Halaman Keranjang
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
+=======
+})->name('keranjang.add');
+>>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
