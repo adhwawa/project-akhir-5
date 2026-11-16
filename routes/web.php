@@ -139,3 +139,8 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->route('maincourse')
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
+
+// Halaman Keranjang
+Route::get('/keranjang', function () {
+    return view('keranjang');
+})->name('keranjang');
