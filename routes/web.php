@@ -6,12 +6,18 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
+<<<<<<< HEAD
+use App\Http\Controllers\CoffeandTeaController;
+use App\Http\Controllers\AdminControllers\DashboardAdmin;
+
+=======
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
 use App\Http\Controllers\DessertController;
+>>>>>>> 754a3041f5854b374f8d1ffc124cd6d76dbfa773
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -64,6 +70,16 @@ Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
 Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
     ->name('freshjuice');
 
+<<<<<<< HEAD
+Route::get('/comfort', function () {
+    return view('auth.comfort');
+})->name('comfort');
+
+
+//Admin Dashboard
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
+=======
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
 
