@@ -333,7 +333,7 @@
             <small>FOOD & DRINK</small>
         </div>
 
-        <a href="#" class="cart-button">
+        <a href="{{ route('keranjang') }}" class="cart-button">
             ♧ &nbsp; Keranjang &nbsp; 0
         </a>
 
