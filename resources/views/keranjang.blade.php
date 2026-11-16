@@ -1,759 +1,778 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang | Daily Crave</title>
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Keranjang | Daily Crave</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #f8f5ef;
+                color: #403329;
+                font-family: 'Poppins', sans-serif;
+            }
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #f8f5ef;
-            color: #403329;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container {
-            width: 84%;
-            max-width: 1400px;
-            margin: auto;
-        }
-
-        /* NAVBAR */
-
-        header {
-            height: 95px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: #403329;
-        }
-
-        .logo small {
-            display: block;
-            font-family: 'Poppins', sans-serif;
-            font-size: 7px;
-            letter-spacing: 3px;
-            text-align: center;
-        }
-
-        .cart-button {
-            text-decoration: none;
-            color: #704c36;
-            background: white;
-            border: 1px solid #eadfd2;
-            padding: 10px 18px;
-            border-radius: 30px;
-            font-size: 12px;
-        }
-
-        #cart-count {
-            background: #f0e9df;
-            padding: 3px 7px;
-            border-radius: 50%;
-            margin-left: 5px;
-        }
-
-        /* JUDUL */
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            font-size: 10px;
-            color: #967f6d;
-        }
-
-        .navigation a {
-            text-decoration: none;
-            color: #79563f;
-        }
-
-        .heading {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .heading p {
-            font-size: 9px;
-            letter-spacing: 2px;
-            color: #926d50;
-            margin-bottom: 5px;
-        }
-
-        .heading h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 400;
-        }
-
-        /* NOTIFIKASI */
-
-        .notification {
-            background: #f0e9df;
-            padding: 15px;
-            border-radius: 7px;
-            font-size: 11px;
-            margin-bottom: 20px;
-        }
-
-        .notification span {
-            background: #79563f;
-            color: white;
-            padding: 3px 7px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        /* CONTENT */
-
-        .content {
-            display: grid;
-            grid-template-columns: 2fr 0.95fr;
-            gap: 23px;
-            align-items: start;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid #eadfd2;
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 21px;
-            font-weight: 400;
-            padding-bottom: 17px;
-            border-bottom: 1px solid #eee5dc;
-        }
-
-        .title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .add-more {
-            color: #79563f;
-            text-decoration: none;
-            font-size: 10px;
-        }
-
-        /* ITEM KERANJANG */
-
-        .cart-item {
-            display: grid;
-            grid-template-columns: 105px 1fr auto;
-            align-items: center;
-            gap: 16px;
-            padding-top: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid #f0e9df;
-        }
-
-        .cart-item img {
-            width: 105px;
-            height: 105px;
-            object-fit: cover;
-            border-radius: 9px;
-        }
-
-        .item-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
-
-        .item-info p {
-            color: #896448;
-            font-size: 10px;
-        }
-
-        .item-info small {
-            display: block;
-            margin-top: 13px;
-            color: #9a8a7d;
-            font-size: 9px;
-        }
-
-        .item-action {
-            text-align: right;
-        }
-
-        .item-price {
-            color: #79563f;
-            font-weight: 600;
-            font-size: 12px;
-            margin-bottom: 25px;
-        }
-
-        .quantity {
-            display: flex;
-            align-items: center;
-            border: 1px solid #eee3d8;
-            border-radius: 30px;
-            padding: 4px;
-            gap: 12px;
-        }
-
-        .quantity button {
-            border: none;
-            background: #f0e9df;
-            color: #79563f;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .quantity span {
-            font-size: 11px;
-        }
-
-        .remove {
-            display: block;
-            background: none;
-            border: none;
-            color: #a47b62;
-            font-size: 10px;
-            margin-top: 8px;
-            cursor: pointer;
-            width: 100%;
-            text-align: right;
-        }
-
-        /* PEMBAYARAN */
-
-        .payment {
-            position: sticky;
-            top: 20px;
-        }
-
-        .payment-row {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 18px;
-            font-size: 10px;
-            color: #897b70;
-        }
-
-        .payment-row strong {
-            color: #403329;
-            font-weight: 400;
-        }
-
-        .payment-total {
-            border-top: 1px solid #eee5dc;
-            margin-top: 20px;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .payment-total span {
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .payment-total strong {
-            font-family: 'Playfair Display', serif;
-            font-size: 25px;
-            color: #79563f;
-            font-weight: 400;
-        }
-
-        .checkout {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            background: #79563f;
-            color: white;
-            border-radius: 30px;
-            margin-top: 20px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
-        }
-
-        .checkout:hover {
-            background: #5d402e;
-        }
-
-        .payment-note {
-            text-align: center;
-            color: #97887d;
-            font-size: 9px;
-            line-height: 1.8;
-            margin-top: 18px;
-        }
-
-        /* REKOMENDASI */
-
-        .recommend {
-            margin-top: 25px;
-        }
-
-        .recommend h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 21px;
-            font-weight: 400;
-        }
-
-        .recommend > p {
-            font-size: 10px;
-            color: #97887d;
-            margin-top: 5px;
-        }
-
-        .recommend-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .recommend-item {
-            background: white;
-            border: 1px solid #eadfd2;
-            border-radius: 11px;
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .recommend-item img {
-            width: 72px;
-            height: 76px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .recommend-info {
-            flex: 1;
-        }
-
-        .recommend-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        .recommend-info p {
-            font-size: 10px;
-            color: #79563f;
-            margin-top: 8px;
-        }
-
-        .recommend-item button {
-            border: none;
-            background: #f0e9df;
-            color: #79563f;
-            width: 23px;
-            height: 23px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* KOSONG */
-
-        .empty {
-            text-align: center;
-            padding: 50px 10px;
-            color: #897b70;
-            font-size: 12px;
-        }
-
-        .empty h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-
-        .empty a {
-            display: inline-block;
-            margin-top: 15px;
-            background: #79563f;
-            color: white;
-            padding: 10px 22px;
-            text-decoration: none;
-            border-radius: 30px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            margin-top: 100px;
-            padding: 30px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        footer .tagline {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: #a18d7d;
-            font-size: 13px;
-        }
-
-        footer small {
-            font-size: 9px;
-            color: #97887d;
-        }
-
-        @media(max-width: 768px) {
             .container {
-                width: 92%;
+                width: 84%;
+                max-width: 1400px;
+                margin: auto;
             }
 
+            /* NAVBAR */
+            header {
+                height: 95px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo {
+                font-family: 'Playfair Display', serif;
+                font-size: 28px;
+                color: #403329;
+            }
+
+            .logo small {
+                display: block;
+                font-family: 'Poppins', sans-serif;
+                font-size: 7px;
+                letter-spacing: 3px;
+                text-align: center;
+            }
+
+            .cart-button {
+                text-decoration: none;
+                color: #704c36;
+                background: white;
+                border: 1px solid #eadfd2;
+                padding: 10px 18px;
+                border-radius: 30px;
+                font-size: 12px;
+            }
+
+            .cart-count {
+                background: #f0e9df;
+                padding: 3px 7px;
+                border-radius: 50%;
+                margin-left: 5px;
+            }
+
+            /* NAVIGASI */
+            .navigation {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 15px;
+                font-size: 10px;
+                color: #967f6d;
+            }
+
+            .navigation a {
+                text-decoration: none;
+                color: #79563f;
+            }
+
+            /* JUDUL */
+            .heading {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .heading p {
+                font-size: 9px;
+                letter-spacing: 2px;
+                color: #926d50;
+                margin-bottom: 5px;
+            }
+
+            .heading h1 {
+                font-family: 'Playfair Display', serif;
+                font-size: 34px;
+                font-weight: 400;
+            }
+
+            /* NOTIFIKASI */
+            .notification {
+                background: #f0e9df;
+                padding: 15px;
+                border-radius: 7px;
+                font-size: 11px;
+                margin-bottom: 20px;
+            }
+
+            .notification span {
+                background: #79563f;
+                color: white;
+                padding: 3px 7px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            /* LAYOUT */
             .content {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: 2fr 0.95fr;
+                gap: 23px;
+                align-items: start;
             }
 
-            .payment {
-                position: static;
+            .card {
+                background: white;
+                border: 1px solid #eadfd2;
+                border-radius: 12px;
+                padding: 20px;
             }
 
-            .recommend-list {
-                grid-template-columns: 1fr;
+            .card-title {
+                font-family: 'Playfair Display', serif;
+                font-size: 21px;
+                font-weight: 400;
+                padding-bottom: 17px;
+                border-bottom: 1px solid #eee5dc;
             }
 
-            .cart-item {
-                grid-template-columns: 75px 1fr;
-            }
-
-            .cart-item img {
-                width: 75px;
-                height: 85px;
-            }
-
-            .item-action {
-                grid-column: 2;
+            .title-row {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
 
+            .add-more {
+                color: #79563f;
+                text-decoration: none;
+                font-size: 10px;
+            }
+
+            /* ITEM PESANAN */
+            .cart-item {
+                display: grid;
+                grid-template-columns: 105px 1fr auto;
+                align-items: center;
+                gap: 16px;
+                padding: 18px 0;
+                border-bottom: 1px solid #f0e9df;
+            }
+
+            .cart-item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .cart-item img {
+                width: 105px;
+                height: 105px;
+                object-fit: cover;
+                border-radius: 9px;
+            }
+
+            .item-info h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 18px;
+                font-weight: 400;
+                margin-bottom: 8px;
+            }
+
+            .item-info p {
+                color: #896448;
+                font-size: 11px;
+            }
+
+            .item-info small {
+                display: block;
+                margin-top: 13px;
+                color: #9a8a7d;
+                font-size: 9px;
+            }
+
+            .item-action {
+                text-align: right;
+            }
+
             .item-price {
-                margin-bottom: 0;
+                color: #79563f;
+                font-weight: 600;
+                font-size: 12px;
+                margin-bottom: 25px;
             }
 
-            footer {
-                flex-wrap: wrap;
+            .quantity {
+                display: inline-flex;
+                align-items: center;
+                border: 1px solid #eee3d8;
+                border-radius: 30px;
+                padding: 7px 15px;
                 gap: 15px;
+                font-size: 11px;
             }
-        }
-    </style>
-</head>
 
-<body>
+            /* PEMBAYARAN */
+            .payment {
+                position: sticky;
+                top: 20px;
+            }
 
-<div class="container">
+            .payment-row {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+                font-size: 10px;
+                color: #897b70;
+            }
 
-    <!-- NAVBAR -->
-    <header>
-        <div class="logo">
-            ☼ daily crave
-            <small>DAPUR & RUANG TEMU</small>
-        </div>
+            .payment-row strong {
+                color: #403329;
+                font-weight: 400;
+            }
 
-        <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ Keranjang
-            <span id="cart-count">0</span>
-        </a>
-    </header>
+            .payment-total {
+                border-top: 1px solid #eee5dc;
+                margin-top: 20px;
+                padding-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-    <!-- NAVIGASI -->
-    <div class="navigation">
-        <a href="{{ route('detailmenu', ['slug' => 'grill-chicken-steak']) }}">← Kembali ke menu</a>
-        <span>Menu / Keranjang</span>
-    </div>
+            .payment-total span {
+                font-size: 11px;
+                font-weight: 500;
+            }
 
-    <!-- JUDUL -->
-    <div class="heading">
-        <p>PESANAN ANDA</p>
-        <h1>Satu langkah menuju rasa.</h1>
-    </div>
+            .payment-total strong {
+                font-family: 'Playfair Display', serif;
+                font-size: 25px;
+                color: #79563f;
+                font-weight: 400;
+            }
 
-    <!-- NOTIFIKASI -->
-    <div class="notification" id="notification">
-        <span>✓</span>
-        Pesanan berhasil ditambahkan ke keranjang.
-    </div>
+            .checkout {
+                display: block;
+                width: 100%;
+                padding: 14px;
+                border: none;
+                background: #79563f;
+                color: white;
+                border-radius: 30px;
+                margin-top: 20px;
+                cursor: pointer;
+                font-family: 'Poppins', sans-serif;
+                font-size: 11px;
+                text-align: center;
+                text-decoration: none;
+            }
 
-    <!-- CONTENT -->
-    <div class="content">
+            .checkout:hover {
+                background: #5d402e;
+            }
 
-        <div class="left-content">
+            .payment-note {
+                text-align: center;
+                color: #97887d;
+                font-size: 9px;
+                line-height: 1.8;
+                margin-top: 18px;
+            }
 
-            <!-- RINGKASAN PESANAN -->
-            <div class="card">
-                <div class="title-row">
-                    <h2 class="card-title">Ringkasan pesanan</h2>
-                    <a href="{{ url('/menu') }}" class="add-more">
-                        + Tambah pesanan
-                    </a>
-                </div>
+            /* REKOMENDASI */
+            .recommend {
+                margin-top: 25px;
+            }
 
-                <div id="cart-items"></div>
+            .recommend h2 {
+                font-family: 'Playfair Display', serif;
+                font-size: 21px;
+                font-weight: 400;
+            }
+
+            .recommend > p {
+                font-size: 10px;
+                color: #97887d;
+                margin-top: 5px;
+            }
+
+            .recommend-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                margin-top: 12px;
+            }
+
+            .recommend-item {
+                background: white;
+                border: 1px solid #eadfd2;
+                border-radius: 11px;
+                padding: 8px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .recommend-item img {
+                width: 72px;
+                height: 76px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .recommend-info {
+                flex: 1;
+            }
+
+            .recommend-info h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 14px;
+                font-weight: 400;
+            }
+
+            .recommend-info p {
+                font-size: 10px;
+                color: #79563f;
+                margin-top: 8px;
+            }
+
+            .recommend-item a {
+                text-decoration: none;
+                background: #f0e9df;
+                color: #79563f;
+                width: 23px;
+                height: 23px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
+
+            /* KERANJANG KOSONG */
+            .empty {
+                text-align: center;
+                padding: 50px 10px;
+                color: #897b70;
+                font-size: 12px;
+            }
+
+            .empty h3 {
+                font-family: 'Playfair Display', serif;
+                font-size: 22px;
+                font-weight: 400;
+                margin-bottom: 10px;
+            }
+
+            .empty a {
+                display: inline-block;
+                margin-top: 15px;
+                background: #79563f;
+                color: white;
+                padding: 10px 22px;
+                text-decoration: none;
+                border-radius: 30px;
+            }
+
+            /* FOOTER */
+            footer {
+                margin-top: 100px;
+                padding: 30px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            footer .tagline {
+                font-family: 'Playfair Display', serif;
+                font-style: italic;
+                color: #a18d7d;
+                font-size: 13px;
+            }
+
+            footer small {
+                font-size: 9px;
+                color: #97887d;
+            }
+
+            /* TOMBOL HAPUS - BERLAKU DI LAPTOP DAN HP */
+            .remove-button {
+                display: inline-block;
+                margin-top: 10px;
+                padding: 7px 14px;
+                border: 1px solid #eadfd2;
+                background: white;
+                color: #a15e4d;
+                border-radius: 20px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 10px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .remove-button:hover {
+                background: #a15e4d;
+                color: white;
+            }
+
+            @media(max-width: 768px) {
+                .container {
+                    width: 92%;
+                }
+
+                .content {
+                    grid-template-columns: 1fr;
+                }
+
+                .payment {
+                    position: static;
+                }
+
+                .recommend-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .cart-item {
+                    grid-template-columns: 75px 1fr;
+                }
+
+                .cart-item img {
+                    width: 75px;
+                    height: 85px;
+                }
+
+                .item-action {
+                    grid-column: 2;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .item-price {
+                    margin-bottom: 0;
+                }
+
+                footer {
+                    flex-wrap: wrap;
+                    gap: 15px;
+                }
+
+            }
+        </style>
+    </head>
+
+    <body>
+
+    @php
+        // Mengambil data keranjang dari session Laravel
+        $cart = session()->get('cart', []);
+
+        // Data informasi menu berdasarkan slug
+        $menuData = [
+            'grill-chicken-steak' => [
+                'nama' => 'Grill Chicken Steak',
+                'harga' => 85000,
+                'gambar' => 'gambar/maincourse/grillchikensteak.png'
+            ],
+
+            'spaghetti-bolognese-katsu' => [
+                'nama' => 'Spaghetti Bolognese Katsu',
+                'harga' => 58000,
+                'gambar' => 'gambar/maincourse/speagetibolokatsu.png'
+            ],
+
+            'sop-iga' => [
+                'nama' => 'Sop Iga',
+                'harga' => 74000,
+                'gambar' => 'gambar/maincourse/supiga.png'
+            ],
+
+            'nasi-goreng-katsu' => [
+                'nama' => 'Nasi Goreng Katsu',
+                'harga' => 64000,
+                'gambar' => 'gambar/maincourse/nasgorkatsu.png'
+            ],
+
+            'nasi-timbel-ayam-goreng' => [
+                'nama' => 'Nasi Timbel Ayam Goreng',
+                'harga' => 58000,
+                'gambar' => 'gambar/maincourse/nTimbel.png'
+            ],
+        ];
+
+        $subtotal = 0;
+        $totalJumlah = 0;
+    @endphp
+
+    <div class="container">
+
+        <!-- NAVBAR -->
+        <header>
+            <div class="logo">
+                ☼ daily crave
+                <small>DAPUR & RUANG TEMU</small>
             </div>
 
-            <!-- REKOMENDASI -->
-            <div class="recommend">
+            <a href="{{ route('keranjang') }}" class="cart-button">
+                ♧ Keranjang
+                <span class="cart-count">
+                    {{ collect($cart)->sum('jumlah') }}
+                </span>
+            </a>
+        </header>
 
-                <h2>Teman untuk hidangan Anda</h2>
-                <p>Jelajahi rasa lainnya dari dapur Serambi.</p>
+        <!-- NAVIGASI -->
+        <div class="navigation">
+            <a href="{{ route('maincourse') }}">
+                ← Kembali ke menu
+            </a>
 
-                <div class="recommend-list">
+            <span>Menu / Keranjang</span>
+        </div>
 
-                    <div class="recommend-item">
-                        <img src="{{ asset('images/spaghetti.jpg') }}" alt="Spaghetti Bolognese Katsu">
+        <!-- JUDUL -->
+        <div class="heading">
+            <p>PESANAN ANDA</p>
+            <h1>Satu langkah menuju rasa.</h1>
+        </div>
 
-                        <div class="recommend-info">
-                            <h3>Spaghetti Bolognese Katsu</h3>
-                            <p>Rp58.000</p>
-                        </div>
+        @if(session('success'))
+            <div class="notification">
+                <span>✓</span>
+                {{ session('success') }}
+            </div>
+        @else
+            <div class="notification">
+                <span>✓</span>
+                Periksa kembali pesanan Anda.
+            </div>
+        @endif
 
-                        <button onclick="addRecommendation('Spaghetti Bolognese Katsu',58000,'{{ asset('images/spaghetti.jpg') }}')">
-                            +
-                        </button>
+        <!-- CONTENT -->
+        <div class="content">
+
+            <div class="left-content">
+
+                <!-- RINGKASAN PESANAN -->
+                <div class="card">
+
+                    <div class="title-row">
+                        <h2 class="card-title">
+                            Ringkasan pesanan
+                        </h2>
+
+                        <a href="{{ route('maincourse') }}"
+                        class="add-more">
+                            + Tambah pesanan
+                        </a>
                     </div>
 
-                    <div class="recommend-item">
-                        <img src="{{ asset('images/sop-iga.jpg') }}" alt="Sop Iga">
+                    @if(count($cart) > 0)
 
-                        <div class="recommend-info">
-                            <h3>Sop Iga</h3>
-                            <p>Rp74.000</p>
+                        @foreach($cart as $slug => $item)
+
+                            @php
+                                $menu = $menuData[$slug] ?? null;
+
+                                if ($menu) {
+                                    $subtotal += $menu['harga'] * $item['jumlah'];
+                                    $totalJumlah += $item['jumlah'];
+                                }
+                            @endphp
+
+                            @if($menu)
+                                <div class="cart-item">
+
+                                    <img
+                                        src="{{ asset($menu['gambar']) }}"
+                                        alt="{{ $menu['nama'] }}"
+                                    >
+
+                                    <div class="item-info">
+
+                                        <h3>{{ $menu['nama'] }}</h3>
+
+                                        <p>
+                                            {{ 'Rp' . number_format($menu['harga'], 0, ',', '.') }}
+                                        </p>
+
+                                        <small>
+                                            {{ $item['catatan'] ?: $item['jumlah'] . ' porsi' }}
+                                        </small>
+
+                                    </div>
+
+                                    <div class="item-action">
+
+                                        <p class="item-price">
+                                            Rp{{ number_format($menu['harga'] * $item['jumlah'], 0, ',', '.') }}
+                                        </p>
+
+                                        <div class="quantity">
+                                            <span>{{ $item['jumlah'] }}</span>
+                                            <span>porsi</span>
+                                        </div>
+
+                                        <form action="{{ route('keranjang.hapus', $slug) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Apakah kamu yakin ingin menghapus pesanan ini?')">
+                                            @csrf
+                                            <button type="submit" class="remove-button">
+                                                Hapus Pesanan
+                                            </button>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            @endif
+
+                        @endforeach
+
+                    @else
+
+                        <div class="empty">
+                            <h3>Keranjang Anda masih kosong.</h3>
+
+                            <p>
+                                Yuk, pilih hidangan favorit Anda!
+                            </p>
+
+                            <a href="{{ route('maincourse') }}">
+                                Jelajahi Menu
+                            </a>
                         </div>
 
-                        <button onclick="addRecommendation('Sop Iga',74000,'{{ asset('images/sop-iga.jpg') }}')">
-                            +
-                        </button>
-                    </div>
+                    @endif
 
                 </div>
-            </div>
 
-        </div>
+                <!-- REKOMENDASI MENU -->
+                <div class="recommend">
 
-        <!-- RINGKASAN PEMBAYARAN -->
-        <div class="card payment">
+                    <h2>Teman untuk hidangan Anda</h2>
 
-            <h2 class="card-title">Ringkasan pembayaran</h2>
-
-            <div class="payment-row">
-                <span id="subtotal-label">Subtotal · 0 menu</span>
-                <strong id="subtotal">Rp0</strong>
-            </div>
-
-            <div class="payment-row">
-                <span>Pajak Resto (PB1 10%)</span>
-                <strong>Termasuk</strong>
-            </div>
-
-            <div class="payment-row">
-                <span>Biaya Layanan Meja</span>
-                <strong style="color:green">GRATIS</strong>
-            </div>
-
-            <div class="payment-total">
-                <span>Total</span>
-                <strong id="total">Rp0</strong>
-            </div>
-
-            <button class="checkout" onclick="checkout()">
-                Lanjutkan Pesanan &nbsp; →
-            </button>
-
-            <p class="payment-note">
-                Periksa menu dan catatan Anda sebelum
-                melanjutkan ke konfirmasi pesanan.
-            </p>
-
-        </div>
-
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="logo">
-            ☼ daily crave
-            <small>DAPUR & RUANG TEMU</small>
-        </div>
-
-        <p class="tagline">
-            Rasa yang dekat, cerita yang hangat.
-        </p>
-
-        <small>© 2026 Daily Crave</small>
-    </footer>
-
-</div>
-
-<script>
-
-let cart = JSON.parse(localStorage.getItem('dailyCraveCart')) || [];
-
-function formatRupiah(number) {
-    return 'Rp' + number.toLocaleString('id-ID');
-}
-
-function saveCart() {
-    localStorage.setItem('dailyCraveCart', JSON.stringify(cart));
-}
-
-function renderCart() {
-
-    const container = document.getElementById('cart-items');
-
-    container.innerHTML = '';
-
-    let subtotal = 0;
-    let totalQty = 0;
-
-    if (cart.length === 0) {
-
-        container.innerHTML = `
-            <div class="empty">
-                <h3>Keranjang Anda masih kosong.</h3>
-                <p>Silakan pilih hidangan favorit Anda.</p>
-                <a href="{{ url('/menu') }}">Jelajahi Menu</a>
-            </div>
-        `;
-
-    }
-
-    cart.forEach((item, index) => {
-
-        subtotal += item.price * item.qty;
-        totalQty += item.qty;
-
-        container.innerHTML += `
-            <div class="cart-item">
-
-                <img src="${item.image}" alt="${item.name}">
-
-                <div class="item-info">
-                    <h3>${item.name}</h3>
-                    <p>${formatRupiah(item.price)}</p>
-
-                    <small>
-                        ${item.note ? 'Catatan: ' + item.note : '1 porsi'}
-                    </small>
-                </div>
-
-                <div class="item-action">
-
-                    <p class="item-price">
-                        ${formatRupiah(item.price * item.qty)}
+                    <p>
+                        Jelajahi rasa lainnya dari dapur Serambi.
                     </p>
 
-                    <div class="quantity">
+                    <div class="recommend-list">
 
-                        <button onclick="changeQty(${index},-1)">−</button>
+                        <div class="recommend-item">
 
-                        <span>${item.qty}</span>
+                            <img
+                                src="{{ asset('gambar/maincourse/speagetibolokatsu.png') }}"
+                                alt="Spaghetti Bolognese Katsu"
+                            >
 
-                        <button onclick="changeQty(${index},1)">+</button>
+                            <div class="recommend-info">
+                                <h3>Spaghetti Bolognese Katsu</h3>
+                                <p>Rp58.000</p>
+                            </div>
+
+                            <a href="{{ route('detailmenu', ['slug' => 'spaghetti-bolognese-katsu']) }}">
+                                +
+                            </a>
+
+                        </div>
+
+                        <div class="recommend-item">
+
+                            <img
+                                src="{{ asset('gambar/maincourse/supiga.png') }}"
+                                alt="Sop Iga"
+                            >
+
+                            <div class="recommend-info">
+                                <h3>Sop Iga</h3>
+                                <p>Rp74.000</p>
+                            </div>
+
+                            <a href="{{ route('detailmenu', ['slug' => 'sop-iga']) }}">
+                                +
+                            </a>
+
+                        </div>
 
                     </div>
-
-                    <button class="remove"
-                        onclick="removeItem(${index})">
-                        Hapus
-                    </button>
 
                 </div>
 
             </div>
-        `;
-    });
 
-    document.getElementById('cart-count').textContent = totalQty;
+            <!-- RINGKASAN PEMBAYARAN -->
+            <div class="card payment">
 
-    document.getElementById('subtotal-label').textContent =
-        'Subtotal · ' + totalQty + ' menu';
+                <h2 class="card-title">
+                    Ringkasan pembayaran
+                </h2>
 
-    document.getElementById('subtotal').textContent =
-        formatRupiah(subtotal);
+                <div class="payment-row">
 
-    document.getElementById('total').textContent =
-        formatRupiah(subtotal);
+                    <span>
+                        Subtotal · {{ collect($cart)->sum('jumlah') }} menu
+                    </span>
 
-    saveCart();
-}
+                    <strong>
+                        Rp{{ number_format($subtotal, 0, ',', '.') }}
+                    </strong>
 
-function changeQty(index, amount) {
+                </div>
 
-    cart[index].qty += amount;
+                <div class="payment-row">
+                    <span>Pajak Resto (PB1 10%)</span>
+                    <strong>Termasuk</strong>
+                </div>
 
-    if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-    }
+                <div class="payment-row">
+                    <span>Biaya Layanan Meja</span>
+                    <strong style="color: green;">GRATIS</strong>
+                </div>
 
-    renderCart();
-}
+                <div class="payment-total">
 
-function removeItem(index) {
+                    <span>Total</span>
 
-    cart.splice(index, 1);
+                    <strong>
+                        Rp{{ number_format($subtotal, 0, ',', '.') }}
+                    </strong>
 
-    renderCart();
-}
+                </div>
 
-function addRecommendation(name, price, image) {
+                <button
+                    class="checkout"
+                    onclick="alert('Silakan lanjutkan ke proses konfirmasi pesanan.')"
+                    @if(count($cart) == 0) disabled @endif
+                >
+                    Lanjutkan Pesanan &nbsp; →
+                </button>
 
-    const existing = cart.find(item => item.name === name);
+                <p class="payment-note">
+                    Periksa menu dan catatan Anda sebelum
+                    melanjutkan ke konfirmasi pesanan.
+                </p>
 
-    if (existing) {
-        existing.qty++;
-    } else {
-        cart.push({
-            name: name,
-            price: price,
-            image: image,
-            qty: 1,
-            note: ''
-        });
-    }
+            </div>
 
-    renderCart();
+        </div>
 
-    document.getElementById('notification').style.display = 'block';
-}
+        <!-- FOOTER -->
+        <footer>
 
-function checkout() {
+            <div class="logo">
+                ☼ daily crave
+                <small>DAPUR & RUANG TEMU</small>
+            </div>
 
-    if (cart.length === 0) {
-        alert('Keranjang Anda masih kosong!');
-        return;
-    }
+            <p class="tagline">
+                Rasa yang dekat, cerita yang hangat.
+            </p>
 
-    alert('Pesanan Anda siap dilanjutkan ke konfirmasi!');
-}
+            <small>© 2026 Daily Crave</small>
 
-renderCart();
+        </footer>
 
-</script>
+    </div>
 
-</body>
-</html>
+    </body>
+    </html>     
