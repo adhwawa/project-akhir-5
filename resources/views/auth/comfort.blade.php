@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -386,8 +385,8 @@
         <div class="nav-menu">
             <a href="{{ route('dashboard') }}">Menu Kami</a>
             <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="{{ url('/minuman') }}">Minuman</a>
-            <a href="{{ url('/dessert') }}">Dessert</a>
+            <a href="{{ route('coffeeandtea') }}">Minuman</a>
+            <a href='{{ route('dessert') }}'>Dessert</a>
         </div>
 
     </nav>
@@ -427,7 +426,7 @@
         <a href="{{ route('extra') }}">Extra</a>
 
         <span class="category-note">
-            DAFTAR MAKANAN DAILY CRAVE
+        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
         </span>
 
     </nav>
