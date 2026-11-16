@@ -8,15 +8,6 @@ use App\Http\Controllers\NusantaraController;
 use App\Http\Controllers\CoffeandTeaController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
-<<<<<<< HEAD
-
-=======
-use App\Http\Controllers\ComfortController;
-use App\Http\Controllers\ExtraController;
-use App\Http\Controllers\FreshJuiceController;
-use App\Http\Controllers\SoftDrinkController;
-use App\Http\Controllers\DessertController;
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -65,7 +56,6 @@ Route::get('/comfort', [ComfortController::class, 'index'])
 Route::get('/extra', [ExtraController::class, 'index'])
     ->name('extra');
 
-<<<<<<< HEAD
 // MENU MINUMAN
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
@@ -80,11 +70,6 @@ Route::get('/comfort', function () {
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
 
-=======
-Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
-    ->name('freshjuice');
-
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
 
@@ -142,7 +127,6 @@ Route::get('/detail-menu/{slug}', function ($slug) {
     ]);
 })->name('detailmenu');
 
-<<<<<<< HEAD
 
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
@@ -167,8 +151,6 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang');
 
-=======
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
 // DETAIL NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
     $menus = [
@@ -226,8 +208,10 @@ Route::post('/keranjang/tambah', function (Request $request) {
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
     ]);
+
     $cart = session()->get('cart', []);
     $slug = $request->menu;
+
     if (isset($cart[$slug])) {
         $cart[$slug]['jumlah'] += $request->jumlah;
         $cart[$slug]['catatan'] = $request->catatan;
@@ -237,17 +221,34 @@ Route::post('/keranjang/tambah', function (Request $request) {
             'catatan' => $request->catatan,
         ];
     }
-    session()->put('cart', $cart);
-    return redirect()
-        ->back()
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-<<<<<<< HEAD
-})->name('keranjang');
 
-// Halaman Keranjang
+    session()->put('cart', $cart);
+
+    return redirect()->back()
+        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
+})->name('keranjang.add');
+
+// TAMBAH PESANAN
+Route::post('/keranjang/tambah', function (Request $request) {
+    // Isi proses tambah pesanan kamu
+})->name('keranjang.add');
+
+// HAPUS PESANAN
+Route::post('/keranjang/hapus/{slug}', function ($slug) {
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$slug])) {
+        unset($cart[$slug]);
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->route('keranjang')
+        ->with('success', 'Pesanan berhasil dihapus!');
+})->name('keranjang.hapus');
+
+// HALAMAN KERANJANG
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
-=======
-})->name('keranjang.add');
->>>>>>> 3f4a025a577abf874e4b4401f7ecedfefcfcd4ad
+
+
