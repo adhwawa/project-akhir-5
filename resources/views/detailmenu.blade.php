@@ -63,6 +63,12 @@
             color: #76543d;
             font-size: 11px;
             text-decoration: none;
+            transition: .3s;
+        }
+
+        .cart-button:hover {
+            background: #79543b;
+            color: white;
         }
 
         /* BREADCRUMB */
@@ -179,7 +185,7 @@
             font-size: 10px;
         }
 
-        .note-heading span:last-child {
+        .note-heading span {
             color: #a89a8c;
             font-size: 9px;
         }
@@ -230,19 +236,25 @@
         }
 
         .quantity button {
-            width: 18px;
-            height: 18px;
+            width: 25px;
+            height: 25px;
             border: none;
             border-radius: 50%;
             background: #f5f0e8;
             color: #806044;
-            font-size: 13px;
+            font-size: 15px;
             cursor: pointer;
+            transition: .3s;
+        }
+
+        .quantity button:hover {
+            background: #79543b;
+            color: white;
         }
 
         .quantity span {
-            font-size: 11px;
-            min-width: 10px;
+            font-size: 12px;
+            min-width: 15px;
             text-align: center;
         }
 
@@ -334,7 +346,8 @@
         </div>
 
         <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ &nbsp; Keranjang &nbsp; 0
+            ♧ &nbsp; Keranjang &nbsp;
+            {{ collect(session('cart', []))->sum('jumlah') }}
         </a>
 
     </nav>
@@ -344,12 +357,22 @@
 
     <div class="breadcrumb">
 
-        <a href="{{ route('maincourse') }}">
-            ← &nbsp; Kembali ke menu
-        </a>
+        @if($menu['kategori'] == 'NUSANTARA')
+
+            <a href="{{ route('nusantara') }}">
+                ← &nbsp; Kembali ke menu
+            </a>
+
+        @else
+
+            <a href="{{ route('maincourse') }}">
+                ← &nbsp; Kembali ke menu
+            </a>
+
+        @endif
 
         <span>
-            Menu / Hidangan Utama / {{ $menu['nama'] }}
+            Menu / {{ $menu['kategori'] }} / {{ $menu['nama'] }}
         </span>
 
     </div>
@@ -366,14 +389,49 @@
     </div>
 
 
+    <!-- NOTIFICATION -->
+
+    @if(session('success'))
+        <div style="
+            padding: 12px 16px;
+            background: #edf5e9;
+            color: #496c40;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-bottom: 15px;
+        ">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div style="
+            padding: 12px 16px;
+            background: #fff0ed;
+            color: #a34737;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-bottom: 15px;
+        ">
+            {{ $errors->first() }}
+        </div>
+    @endif
+
+
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('keranjang') }}" method="POST" id="orderForm">
+    <form action="{{ route('keranjang') }}" method="POST">
 
         @csrf
 
         <input type="hidden" name="menu" value="{{ $slug }}">
-        <input type="hidden" name="jumlah" id="quantityInput" value="1">
+
+        <input
+            type="hidden"
+            name="jumlah"
+            id="quantityInput"
+            value="1"
+        >
 
         <div class="detail-card">
 
@@ -414,7 +472,7 @@
                     <div class="note-heading">
 
                         <label for="catatan">
-                            **Catatan untuk dapur
+                            Catatan untuk dapur
                         </label>
 
                         <span>Opsional</span>
@@ -438,13 +496,19 @@
 
                     <div class="quantity">
 
-                        <button type="button" onclick="changeQty(-1)">
+                        <button
+                            type="button"
+                            onclick="changeQty(-1)"
+                        >
                             −
                         </button>
 
                         <span id="quantity">1</span>
 
-                        <button type="button" onclick="changeQty(1)">
+                        <button
+                            type="button"
+                            onclick="changeQty(1)"
+                        >
                             +
                         </button>
 
