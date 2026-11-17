@@ -4,17 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
-use App\Http\Controllers\CoffeandTeaController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
 use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-use App\Http\Controllers\CoffeandTeaController;
-use App\Http\Controllers\CoffeeandTeaController;
-use App\Http\Controllers\AdminControllers\DashboardAdmin;
-
 // HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
@@ -260,7 +255,6 @@ Route::post('/keranjang/hapus/{slug}', function ($slug) {
 })->name('keranjang.hapus');
 
 // HALAMAN KERANJANG
->>>>>>> 2ab8f7922f980746712a3be05fc4de8dd4abb4f9
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
