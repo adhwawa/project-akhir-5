@@ -14,6 +14,7 @@ use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
 use App\Http\Controllers\DessertController;
+use App\Http\Controllers\QrisController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -201,3 +202,7 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
+
+//Payment
+Route::get('/Qris', [QrisController::class, 'index'])
+    ->name('Qris');
