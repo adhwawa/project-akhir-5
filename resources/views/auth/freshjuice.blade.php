@@ -501,7 +501,7 @@
                         </p>
                     </div>
 
-                    <button class="add-button" type="button">+</button>
+                    <a href="{{ route('detailfreshjuice', 'fresh-orange') }}" class="add-button">+</a>
                 </article>
 
                 <!-- WATERMELON -->
@@ -521,7 +521,7 @@
                         </p>
                     </div>
 
-                    <button class="add-button" type="button">+</button>
+                    <a href="{{ route('detailfreshjuice', 'watermelon') }}" class="add-button">+</a>
                 </article>
 
                 <!-- STRAWBERRY -->
@@ -541,7 +541,7 @@
                         </p>
                     </div>
 
-                    <button class="add-button" type="button">+</button>
+                    <a href="{{ route('detailfreshjuice', 'strawberry') }}" class="add-button">+</a>
                 </article>
 
                 <!-- APPLE -->
@@ -561,7 +561,7 @@
                         </p>
                     </div>
 
-                    <button class="add-button" type="button">+</button>
+                    <a href="{{ route('detailfreshjuice', 'apple') }}" class="add-button">+</a>
                 </article>
 
             </div>

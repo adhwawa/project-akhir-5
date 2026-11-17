@@ -332,9 +332,7 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     ]);
 })->name('detailextra');
 
-<<<<<<< HEAD
 
-=======
 // DATA COFFEE AND TEA
 Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
     $menus = [
@@ -394,4 +392,42 @@ Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailcoffeeandtea');
->>>>>>> 6fe8676a8da9b48a799d56af46770317dc6dea38
+
+// DATA FRESH JUICE
+Route::get('/detail-freshjuice/{slug}', function ($slug) {
+    $menus = [
+        'fresh-orange' => [
+            'nama' => 'Fresh Orange',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/orange.png',
+            'deskripsi' => 'Jus jeruk segar yang dibuat dari perasan buah jeruk pilihan tanpa tambahan perasa buatan. Disajikan dingin dengan es batu dan irisan jeruk sebagai garnish.'
+        ],
+        'watermelon' => [
+            'nama' => 'Watermelon',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/watermelon.png',
+            'deskripsi' => 'Jus buah semangka segar yang diblender dengan tambahan sedikit air dan gula sesuai kebutuhan. Disajikan dingin dengan es batu serta potongan kecil buah semangka sebagai topping.'
+        ],
+        'strawberry' => [
+            'nama' => 'Strawberry',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/strawberry.png',
+            'deskripsi' => 'Jus buah strawberry segar yang diblender hingga halus dengan tambahan sedikit air dan gula. Disajikan dingin dengan es batu serta potongan buah stroberi sebagai topping.'
+        ],
+        'apple' => [
+            'nama' => 'Apple',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/apple.png',
+            'deskripsi' => 'Jus buah apel segar yang diblender hingga halus dengan tambahan sedikit air dan gula. Disajikan dingin dengan es batu serta potongan buah apel sebagai topping.'
+        ],
+    ];
+    abort_unless(isset($menus[$slug]), 404);
+    return view('detailfreshjuice', [
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailfreshjuice');
