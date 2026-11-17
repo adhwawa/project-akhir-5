@@ -332,9 +332,6 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     ]);
 })->name('detailextra');
 
-<<<<<<< HEAD
-
-=======
 // DATA COFFEE AND TEA
 Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
     $menus = [
@@ -394,4 +391,3 @@ Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailcoffeeandtea');
->>>>>>> 6fe8676a8da9b48a799d56af46770317dc6dea38
