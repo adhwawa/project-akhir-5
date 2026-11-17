@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $menu['nama'] }} - Daily Crave</title>
+    <title>Daily Crave - Nusantara</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -63,6 +65,12 @@
             color: #76543d;
             font-size: 11px;
             text-decoration: none;
+            transition: .3s;
+        }
+
+        .cart-button:hover {
+            background: #79543b;
+            color: white;
         }
 
         /* BREADCRUMB */
@@ -123,7 +131,13 @@
             padding: 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+        }
+
+        /* INFORMASI MENU BAGIAN ATAS */
+
+        .detail-top {
+            width: 100%;
         }
 
         .category {
@@ -166,6 +180,15 @@
             border-bottom: 1px solid #eee6dd;
         }
 
+        /* BAGIAN BAWAH */
+
+        .detail-bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
         /* NOTES */
 
         .note-section {
@@ -179,7 +202,7 @@
             font-size: 10px;
         }
 
-        .note-heading span:last-child {
+        .note-heading span {
             color: #a89a8c;
             font-size: 9px;
         }
@@ -230,19 +253,25 @@
         }
 
         .quantity button {
-            width: 18px;
-            height: 18px;
+            width: 25px;
+            height: 25px;
             border: none;
             border-radius: 50%;
             background: #f5f0e8;
             color: #806044;
-            font-size: 13px;
+            font-size: 15px;
             cursor: pointer;
+            transition: .3s;
+        }
+
+        .quantity button:hover {
+            background: #79543b;
+            color: white;
         }
 
         .quantity span {
-            font-size: 11px;
-            min-width: 10px;
+            font-size: 12px;
+            min-width: 15px;
             text-align: center;
         }
 
@@ -307,6 +336,7 @@
 
             .detail-content {
                 padding: 22px;
+                gap: 25px;
             }
 
             .food-name {
@@ -317,6 +347,7 @@
                 font-size: 11px;
             }
         }
+
     </style>
 </head>
 
@@ -333,10 +364,6 @@
             <small>FOOD & DRINK</small>
         </div>
 
-        <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ &nbsp; Keranjang &nbsp; 0
-        </a>
-
     </nav>
 
 
@@ -344,12 +371,12 @@
 
     <div class="breadcrumb">
 
-        <a href="{{ route('maincourse') }}">
-            ← &nbsp; Kembali ke menu
+        <a href="{{ route('nusantara') }}">
+            ← &nbsp; Kembali ke menu Nusantara
         </a>
 
         <span>
-            Menu / Hidangan Utama / {{ $menu['nama'] }}
+            Menu / NUSANTARA / {{ $menu['nama'] }}
         </span>
 
     </div>
@@ -366,14 +393,54 @@
     </div>
 
 
+    <!-- NOTIFICATION -->
+
+    @if(session('success'))
+
+        <div style="
+            padding: 12px 16px;
+            background: #edf5e9;
+            color: #496c40;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-bottom: 15px;
+        ">
+            {{ session('success') }}
+        </div>
+
+    @endif
+
+
+    @if($errors->any())
+
+        <div style="
+            padding: 12px 16px;
+            background: #fff0ed;
+            color: #a34737;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-bottom: 15px;
+        ">
+            {{ $errors->first() }}
+        </div>
+
+    @endif
+
+
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('keranjang') }}" method="POST" id="orderForm">
+    <form action="{{ route('keranjang') }}" method="POST">
 
         @csrf
 
         <input type="hidden" name="menu" value="{{ $slug }}">
-        <input type="hidden" name="jumlah" id="quantityInput" value="1">
+
+        <input
+            type="hidden"
+            name="jumlah"
+            id="quantityInput"
+            value="1"
+        >
 
         <div class="detail-card">
 
@@ -390,80 +457,98 @@
 
             <div class="detail-content">
 
-                <div class="category">
-                    {{ $menu['kategori'] }}
-                </div>
+                <!-- BAGIAN ATAS -->
 
-                <h2 class="food-name">
-                    {{ $menu['nama'] }}
-                </h2>
+                <div class="detail-top">
 
-                <div class="food-price">
-                    Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                </div>
-
-                <p class="description">
-                    {{ $menu['deskripsi'] }}
-                </p>
-
-
-                <!-- NOTES -->
-
-                <div class="note-section">
-
-                    <div class="note-heading">
-
-                        <label for="catatan">
-                            **Catatan untuk dapur
-                        </label>
-
-                        <span>Opsional</span>
-
+                    <div class="category">
+                        {{ $menu['kategori'] }}
                     </div>
 
-                    <textarea
-                        name="catatan"
-                        id="catatan"
-                        placeholder="Contoh: saus dipisah, ya."
-                    ></textarea>
+                    <h2 class="food-name">
+                        {{ $menu['nama'] }}
+                    </h2>
 
-                </div>
-
-
-                <!-- QUANTITY -->
-
-                <div class="order-section">
-
-                    <label>Jumlah pesanan</label>
-
-                    <div class="quantity">
-
-                        <button type="button" onclick="changeQty(-1)">
-                            −
-                        </button>
-
-                        <span id="quantity">1</span>
-
-                        <button type="button" onclick="changeQty(1)">
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ADD TO CART -->
-
-                <button type="submit" class="add-cart">
-
-                    <span>＋ &nbsp; Tambah ke Keranjang</span>
-
-                    <strong id="totalPrice">
+                    <div class="food-price">
                         Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                    </strong>
+                    </div>
 
-                </button>
+                    <p class="description">
+                        {{ $menu['deskripsi'] }}
+                    </p>
+
+                </div>
+
+
+                <!-- BAGIAN BAWAH -->
+
+                <div class="detail-bottom">
+
+                    <!-- CATATAN DAPUR -->
+
+                    <div class="note-section">
+
+                        <div class="note-heading">
+
+                            <label for="catatan">
+                                Catatan untuk dapur
+                            </label>
+
+                            <span>Opsional</span>
+
+                        </div>
+
+                        <textarea
+                            name="catatan"
+                            id="catatan"
+                            placeholder="Contoh: saus dipisah, ya."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- JUMLAH PESANAN -->
+
+                    <div class="order-section">
+
+                        <label>Jumlah pesanan</label>
+
+                        <div class="quantity">
+
+                            <button
+                                type="button"
+                                onclick="changeQty(-1)"
+                            >
+                                −
+                            </button>
+
+                            <span id="quantity">1</span>
+
+                            <button
+                                type="button"
+                                onclick="changeQty(1)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TAMBAH KE KERANJANG -->
+
+                    <button type="submit" class="add-cart">
+
+                        <span>＋ &nbsp; Tambah ke Keranjang</span>
+
+                        <strong id="totalPrice">
+                            Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                        </strong>
+
+                    </button>
+
+                </div>
 
             </div>
 
@@ -485,7 +570,8 @@
 
 <script>
 
-    const price = {{ $menu['harga'] }};
+    const price = {{ (int) $menu['harga'] }};
+
     let qty = 1;
 
     function changeQty(value) {
