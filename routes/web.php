@@ -11,6 +11,9 @@ use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
+use App\Http\Controllers\DessertController;
+use App\Http\Controllers\AdminControllers\SubKategoriController;
+
 // HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
@@ -181,9 +184,14 @@ Route::get('/detailmenu', function () {
     return view('detailmenu');
 })->name('detailmenu');
 
+<<<<<<< HEAD
 
 // TAMBAH PESANAN
 Route::post('/detailmenu/tambah', function (Request $request) {
+=======
+// Halaman Keranjang
+Route::post('/keranjang/tambah', function (Request $request) {
+>>>>>>> 6e7cdb671d3594da36e84c23e5519a7accb07bf8
     $request->validate([
         'menu' => 'required|string',
         'jumlah' => 'required|integer|min:1',
@@ -222,6 +230,10 @@ Route::post('/detailmenu/hapus/{slug}', function ($slug) {
     return redirect()->route('detailmenu')
         ->with('success', 'Pesanan berhasil dihapus!');
 })->name('detailmenu.hapus');   
+
+// RINGKASAN PELANGGAN
+Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
+    ->name('ringkasanpelanggan');
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
@@ -319,59 +331,67 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     return view('detailextra', [
         'menu' => $menus[$slug],
         'slug' => $slug
-    ]);     
+    ]);
 })->name('detailextra');
 
+
+// ADMIN SUB KATEGORI
+Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
+Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])->name('admin.subkategori.create');
+Route::post('/admin/sub-kategori', [SubKategoriController::class, 'store'])->name('admin.subkategori.store');
+Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit'])->name('admin.subkategori.edit');
+Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
+Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 // DATA COFFEE AND TEA
 Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
     $menus = [
-        'jasmine-tea-[ice/hot]' => [
+        'jasmine-tea' => [
             'nama' => 'Jasmine Tea',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 18000,
-            'gambar' => 'gambar/coffeetea/estea.png',
+            'gambar' => 'gambar/coffee tea/estea.png',
             'deskripsi' => 'Teh melati yang diseduh dari daun teh pilihan dengan aroma bunga melati. Disajikan dingin dengan es batu atau hangat tanpa es, cocok dinikmati sebagai minuman pendamping makanan.'
         ],
-        'teh-jeruk-nipis-[ice/hot]' => [
+        'teh-jeruk-nipis' => [
             'nama' => 'Teh Jeruk Nipis',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 20000,
-            'gambar' => 'gambar/coffeetea/tehjeruknipis.png',
+            'gambar' => 'gambar/coffee tea/tehjeruknipis.png',
             'deskripsi' => 'Teh yang dipadukan dengan perasan jeruk nipis segar dan tambahan irisan jeruk nipis. Disajikan dingin dengan es batu atau hangat untuk memberikan sensasi segar.'
         ],
-        'lychee-tea-[ice/hot]' => [
+        'lychee-tea' => [
             'nama' => 'Lychee Tea',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 20000,
-            'gambar' => 'gambar/coffeetea/lecitea.png',
+            'gambar' => 'gambar/coffee tea/lecitea.png',
             'deskripsi' => 'Teh yang dicampur dengan sirup leci dan potongan buah leci, dilengkapi es batu serta irisan buah leci sebagai topping.'
         ],
-        'americano-[ice/hot]' => [
+        'americano' => [
             'nama' => 'Americano',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 25000,
-            'gambar' => 'gambar/coffeetea/americano.png',
+            'gambar' => 'gambar/coffee tea/americano.png',
             'deskripsi' => 'Minuman kopi yang diseduh dari satu atau dua shot espresso yang dicampur dengan air panas. Untuk versi dingin, disajikan dengan es batu dan air tanpa tambahan susu.'
         ],
-        'coffee-latte-[ice/hot]' => [
+        'coffee-latte' => [
             'nama' => 'Coffee Latte',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 32000,
-            'gambar' => 'gambar/coffeetea/latte.png',
+            'gambar' => 'gambar/coffee tea/latte.png',
             'deskripsi' => 'Perpaduan espresso dengan susu steamed yang menghasilkan tekstur lembut dan creamy. Pada versi dingin, menggunakan susu dingin dan es batu dengan lapisan foam susu sebagai pelengkap.'
         ],
-        'cappuccino-[ice/hot]' => [
+        'cappuccino' => [
             'nama' => 'Cappuccino',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 32000,
-            'gambar' => 'gambar/coffeetea/cappuccino.png',
+            'gambar' => 'gambar/coffee tea/cappuccino.png',
             'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan steamed milk dan lapisan foam susu tebal di bagian atas. Dapat dinikmati dengan taburan bubuk cokelat sebagai topping.'
         ],
-        'mocaccino-[ice/hot]' => [
+        'mocaccino' => [
             'nama' => 'Mocaccino',
             'kategori' => 'COFFEE AND TEA',
             'harga' => 32000,
-            'gambar' => 'gambar/coffeetea/mocaccino.png',
+            'gambar' => 'gambar/coffee tea/mocaccino.png',
             'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan susu panas dan cokelat. Disajikan dingin atau panas sesuai pilihan.'
         ],
     ];

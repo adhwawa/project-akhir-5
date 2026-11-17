@@ -558,7 +558,7 @@
                 </div>
 
                 <a
-                    href="{{ route('detailmenu', 'grill-chicken-steak') }}"
+                    href="{{ route('detailmaincourse', 'grill-chicken-steak') }}"
                     class="add-button"
                     aria-label="Detail Grill Chicken Steak"
                 >+</a>
@@ -593,7 +593,7 @@
                 </div>
 
                 <a
-                    href="{{ route('detailmenu', 'spaghetti-bolognese-katsu') }}"
+                    href="{{ route('detailmaincourse', 'spaghetti-bolognese-katsu') }}"
                     class="add-button"
                     aria-label="Detail Spaghetti Bolognese Katsu"
                 >+</a>
@@ -628,7 +628,7 @@
                 </div>
 
                 <a
-                    href="{{ route('detailmenu', 'sop-iga') }}"
+                    href="{{ route('detailmaincourse', 'sop-iga') }}"
                     class="add-button"
                     aria-label="Detail Sop Iga"
                 >+</a>
@@ -663,7 +663,7 @@
                 </div>
 
                 <a
-                    href="{{ route('detailmenu', 'nasi-goreng-katsu') }}"
+                    href="{{ route('detailmaincourse', 'nasi-goreng-katsu') }}"
                     class="add-button"
                     aria-label="Detail Nasi Goreng Katsu"
                 >+</a>
@@ -699,7 +699,7 @@
                 </div>
 
                 <a
-                    href="{{ route('detailmenu', 'nasi-timbel-ayam-goreng') }}"
+                    href="{{ route('detailmaincourse', 'nasi-timbel-ayam-goreng') }}"
                     class="add-button"
                     aria-label="Detail Nasi Timbel Ayam Goreng"
                 >+</a>

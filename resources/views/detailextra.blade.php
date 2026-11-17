@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $menu['nama'] }} - Daily Crave</title>
+    <title>Daily Crave - Extra</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -130,7 +131,13 @@
             padding: 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+        }
+
+        /* INFORMASI MENU BAGIAN ATAS */
+
+        .detail-top {
+            width: 100%;
         }
 
         .category {
@@ -171,6 +178,15 @@
             color: #81756a;
             padding-bottom: 16px;
             border-bottom: 1px solid #eee6dd;
+        }
+
+        /* BAGIAN BAWAH */
+
+        .detail-bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
         /* NOTES */
@@ -320,6 +336,7 @@
 
             .detail-content {
                 padding: 22px;
+                gap: 25px;
             }
 
             .food-name {
@@ -354,12 +371,12 @@
 
     <div class="breadcrumb">
 
-        <a href="{{ route('comfort') }}">
-            ← &nbsp; Kembali ke menu Comfort
+        <a href="{{ route('extra') }}">
+            ← &nbsp; Kembali ke menu Extra
         </a>
 
         <span>
-            Menu / COMFORT / {{ $menu['nama'] }}
+            Menu / EXTRA / {{ $menu['nama'] }}
         </span>
 
     </div>
@@ -440,86 +457,98 @@
 
             <div class="detail-content">
 
-                <div class="category">
-                    {{ $menu['kategori'] }}
-                </div>
+                <!-- BAGIAN ATAS -->
 
-                <h2 class="food-name">
-                    {{ $menu['nama'] }}
-                </h2>
+                <div class="detail-top">
 
-                <div class="food-price">
-                    Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                </div>
-
-                <p class="description">
-                    {{ $menu['deskripsi'] }}
-                </p>
-
-
-                <!-- NOTES -->
-
-                <div class="note-section">
-
-                    <div class="note-heading">
-
-                        <label for="catatan">
-                            Catatan untuk dapur
-                        </label>
-
-                        <span>Opsional</span>
-
+                    <div class="category">
+                        {{ $menu['kategori'] }}
                     </div>
 
-                    <textarea
-                        name="catatan"
-                        id="catatan"
-                        placeholder="Contoh: saus dipisah, ya."
-                    ></textarea>
+                    <h2 class="food-name">
+                        {{ $menu['nama'] }}
+                    </h2>
 
-                </div>
-
-
-                <!-- QUANTITY -->
-
-                <div class="order-section">
-
-                    <label>Jumlah pesanan</label>
-
-                    <div class="quantity">
-
-                        <button
-                            type="button"
-                            onclick="changeQty(-1)"
-                        >
-                            −
-                        </button>
-
-                        <span id="quantity">1</span>
-
-                        <button
-                            type="button"
-                            onclick="changeQty(1)"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ADD TO CART -->
-
-                <button type="submit" class="add-cart">
-
-                    <span>＋ &nbsp; Tambah ke Keranjang</span>
-
-                    <strong id="totalPrice">
+                    <div class="food-price">
                         Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                    </strong>
+                    </div>
 
-                </button>
+                    <p class="description">
+                        {{ $menu['deskripsi'] }}
+                    </p>
+
+                </div>
+
+
+                <!-- BAGIAN BAWAH -->
+
+                <div class="detail-bottom">
+
+                    <!-- CATATAN DAPUR -->
+
+                    <div class="note-section">
+
+                        <div class="note-heading">
+
+                            <label for="catatan">
+                                Catatan untuk dapur
+                            </label>
+
+                            <span>Opsional</span>
+
+                        </div>
+
+                        <textarea
+                            name="catatan"
+                            id="catatan"
+                            placeholder="Contoh: saus dipisah, ya."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- JUMLAH PESANAN -->
+
+                    <div class="order-section">
+
+                        <label>Jumlah pesanan</label>
+
+                        <div class="quantity">
+
+                            <button
+                                type="button"
+                                onclick="changeQty(-1)"
+                            >
+                                −
+                            </button>
+
+                            <span id="quantity">1</span>
+
+                            <button
+                                type="button"
+                                onclick="changeQty(1)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TAMBAH KE KERANJANG -->
+
+                    <button type="submit" class="add-cart">
+
+                        <span>＋ &nbsp; Tambah ke Keranjang</span>
+
+                        <strong id="totalPrice">
+                            Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                        </strong>
+
+                    </button>
+
+                </div>
 
             </div>
 
