@@ -176,21 +176,23 @@ Route::get('/detail-nusantara/{slug}', function ($slug) {
     ]);
 })->name('detailnusantara');
 
-// HALAMAN & PROSES KERANJANG
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
+// HALAMAN DETAILMENU (KERANJANG)
+Route::get('/detailmenu', function () {
+    return view('detailmenu');
+})->name('detailmenu');
 
 
-// Halaman Keranjang
-Route::post('/keranjang/tambah', function (Request $request) {
+// TAMBAH PESANAN
+Route::post('/detailmenu/tambah', function (Request $request) {
     $request->validate([
         'menu' => 'required|string',
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
     ]);
+
     $cart = session()->get('cart', []);
     $slug = $request->menu;
+
     if (isset($cart[$slug])) {
         $cart[$slug]['jumlah'] += $request->jumlah;
         $cart[$slug]['catatan'] = $request->catatan;
@@ -200,19 +202,16 @@ Route::post('/keranjang/tambah', function (Request $request) {
             'catatan' => $request->catatan,
         ];
     }
-    session()->put('cart', $cart);
-    return redirect()
-        ->back()
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang.add');
 
-// TAMBAH PESANAN
-Route::post('/keranjang/tambah', function (Request $request) {
-    // Isi proses tambah pesanan kamu
-})->name('keranjang.add');
+    session()->put('cart', $cart);
+
+    return redirect()->back()
+        ->with('success', 'Menu berhasil ditambahkan!');
+})->name('detailmenu.add');
+
 
 // HAPUS PESANAN
-Route::post('/keranjang/hapus/{slug}', function ($slug) {
+Route::post('/detailmenu/hapus/{slug}', function ($slug) {
     $cart = session()->get('cart', []);
 
     if (isset($cart[$slug])) {
@@ -220,14 +219,9 @@ Route::post('/keranjang/hapus/{slug}', function ($slug) {
         session()->put('cart', $cart);
     }
 
-    return redirect()->route('keranjang')
+    return redirect()->route('detailmenu')
         ->with('success', 'Pesanan berhasil dihapus!');
-})->name('keranjang.hapus');
-
-// HALAMAN KERANJANG
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
+})->name('detailmenu.hapus');   
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
