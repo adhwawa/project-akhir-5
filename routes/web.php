@@ -11,11 +11,6 @@ use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\DessertController;
-
->>>>>>> 36a06a1e70fabef118013c6ff392f62e34fbe5e7
 // HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
