@@ -11,6 +11,8 @@ use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
+use App\Http\Controllers\RingkasanPelangganController;
+
 // HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
@@ -229,9 +231,8 @@ Route::get('/keranjang', function () {
 })->name('keranjang');
 
 // RINGKASAN PELANGGAN
-Route::get('/ringkasanpelanggan', function () {
-    return view('ringkasanpelanggan');
-})->name('ringkasanpelanggan');
+Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
+    ->name('ringkasanpelanggan');
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
