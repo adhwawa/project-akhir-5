@@ -11,9 +11,6 @@ use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-use App\Http\Controllers\DessertController;
-
-
 // HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
@@ -88,7 +85,7 @@ Route::resource('menu', MenuController::class)->except(['show']);
 });
 
 // DATA MAINCOURSE
-Route::get('/detail-menu/{slug}', function ($slug) {
+Route::get('/detail-maincourse/{slug}', function ($slug) {
     $menus = [
         'grill-chicken-steak' => [
             'nama' => 'Grill Chicken Steak',
@@ -127,11 +124,11 @@ Route::get('/detail-menu/{slug}', function ($slug) {
         ],
     ];
     abort_unless(isset($menus[$slug]), 404);
-    return view('detailmenu', [
+    return view('detailmaincourse', [
         'menu' => $menus[$slug],
         'slug' => $slug
     ]);
-})->name('detailmenu');
+})->name('detailmaincourse');
 
 // DETAIL NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
@@ -173,7 +170,7 @@ Route::get('/detail-nusantara/{slug}', function ($slug) {
         ],
     ];
     abort_unless(isset($menus[$slug]), 404);
-    return view('detailmenu', [
+    return view('detailnusantara', [
         'menu' => $menus[$slug],
         'slug' => $slug
     ]);
@@ -227,7 +224,6 @@ Route::post('/keranjang/hapus/{slug}', function ($slug) {
 })->name('keranjang.hapus');
 
 // HALAMAN KERANJANG
-
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
@@ -336,4 +332,66 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     ]);
 })->name('detailextra');
 
+<<<<<<< HEAD
 
+=======
+// DATA COFFEE AND TEA
+Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
+    $menus = [
+        'jasmine-tea-[ice/hot]' => [
+            'nama' => 'Jasmine Tea',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 18000,
+            'gambar' => 'gambar/coffeetea/estea.png',
+            'deskripsi' => 'Teh melati yang diseduh dari daun teh pilihan dengan aroma bunga melati. Disajikan dingin dengan es batu atau hangat tanpa es, cocok dinikmati sebagai minuman pendamping makanan.'
+        ],
+        'teh-jeruk-nipis-[ice/hot]' => [
+            'nama' => 'Teh Jeruk Nipis',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 20000,
+            'gambar' => 'gambar/coffeetea/tehjeruknipis.png',
+            'deskripsi' => 'Teh yang dipadukan dengan perasan jeruk nipis segar dan tambahan irisan jeruk nipis. Disajikan dingin dengan es batu atau hangat untuk memberikan sensasi segar.'
+        ],
+        'lychee-tea-[ice/hot]' => [
+            'nama' => 'Lychee Tea',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 20000,
+            'gambar' => 'gambar/coffeetea/lecitea.png',
+            'deskripsi' => 'Teh yang dicampur dengan sirup leci dan potongan buah leci, dilengkapi es batu serta irisan buah leci sebagai topping.'
+        ],
+        'americano-[ice/hot]' => [
+            'nama' => 'Americano',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 25000,
+            'gambar' => 'gambar/coffeetea/americano.png',
+            'deskripsi' => 'Minuman kopi yang diseduh dari satu atau dua shot espresso yang dicampur dengan air panas. Untuk versi dingin, disajikan dengan es batu dan air tanpa tambahan susu.'
+        ],
+        'coffee-latte-[ice/hot]' => [
+            'nama' => 'Coffee Latte',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 32000,
+            'gambar' => 'gambar/coffeetea/latte.png',
+            'deskripsi' => 'Perpaduan espresso dengan susu steamed yang menghasilkan tekstur lembut dan creamy. Pada versi dingin, menggunakan susu dingin dan es batu dengan lapisan foam susu sebagai pelengkap.'
+        ],
+        'cappuccino-[ice/hot]' => [
+            'nama' => 'Cappuccino',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 32000,
+            'gambar' => 'gambar/coffeetea/cappuccino.png',
+            'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan steamed milk dan lapisan foam susu tebal di bagian atas. Dapat dinikmati dengan taburan bubuk cokelat sebagai topping.'
+        ],
+        'mocaccino-[ice/hot]' => [
+            'nama' => 'Mocaccino',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 32000,
+            'gambar' => 'gambar/coffeetea/mocaccino.png',
+            'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan susu panas dan cokelat. Disajikan dingin atau panas sesuai pilihan.'
+        ],
+    ];
+    abort_unless(isset($menus[$slug]), 404);
+    return view('detailcoffeeandtea', [
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailcoffeeandtea');
+>>>>>>> 6fe8676a8da9b48a799d56af46770317dc6dea38

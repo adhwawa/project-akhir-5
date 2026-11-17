@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $menu['nama'] }} - Daily Crave</title>
+    <title>Daily Crave - Coffee & Tea</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -329,6 +330,7 @@
                 font-size: 11px;
             }
         }
+
     </style>
 </head>
 
@@ -345,11 +347,6 @@
             <small>FOOD & DRINK</small>
         </div>
 
-        <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ &nbsp; Keranjang &nbsp;
-            {{ collect(session('cart', []))->sum('jumlah') }}
-        </a>
-
     </nav>
 
 
@@ -357,22 +354,12 @@
 
     <div class="breadcrumb">
 
-        @if($menu['kategori'] == 'NUSANTARA')
-
-            <a href="{{ route('nusantara') }}">
-                ← &nbsp; Kembali ke menu
-            </a>
-
-        @else
-
-            <a href="{{ route('maincourse') }}">
-                ← &nbsp; Kembali ke menu
-            </a>
-
-        @endif
+        <a href="{{ route('coffeeandtea') }}">
+            ← &nbsp; Kembali ke menu Coffee and Tea
+        </a>
 
         <span>
-            Menu / {{ $menu['kategori'] }} / {{ $menu['nama'] }}
+            Menu / COFFEE AND TEA / {{ $menu['nama'] }}
         </span>
 
     </div>
@@ -392,6 +379,7 @@
     <!-- NOTIFICATION -->
 
     @if(session('success'))
+
         <div style="
             padding: 12px 16px;
             background: #edf5e9;
@@ -402,9 +390,12 @@
         ">
             {{ session('success') }}
         </div>
+
     @endif
 
+
     @if($errors->any())
+
         <div style="
             padding: 12px 16px;
             background: #fff0ed;
@@ -415,6 +406,7 @@
         ">
             {{ $errors->first() }}
         </div>
+
     @endif
 
 
@@ -549,7 +541,8 @@
 
 <script>
 
-    const price = {{ $menu['harga'] }};
+    const price = {{ (int) $menu['harga'] }};
+
     let qty = 1;
 
     function changeQty(value) {
