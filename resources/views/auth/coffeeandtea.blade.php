@@ -439,7 +439,7 @@
 
         <div class="hero-text">
 
-            <p>──── MENU DAILY CRAVE ────</p>
+            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
             <h1>
                 Rasa yang akrab.<br>
@@ -512,7 +512,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'jasmine-tea-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 
@@ -534,7 +534,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'teh-jeruk-nipis-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 
@@ -555,7 +555,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'lychee-tea-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 
@@ -577,7 +577,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'americano-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 
@@ -600,7 +600,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'coffee-latte-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 
@@ -623,7 +623,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'cappuccino-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 
@@ -646,7 +646,7 @@
                     </p>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailcoffeeandtea', 'mocaccino-[ice/hot]') }}" class="add-button">+</a>
 
             </article>
 

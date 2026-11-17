@@ -346,12 +346,6 @@
             ☼ daily crave
             <small>FOOD & DRINK</small>
         </div>
-
-        <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ &nbsp; Keranjang &nbsp;
-            {{ collect(session('cart', []))->sum('jumlah') }}
-        </a>
-
     </nav>
 
 
