@@ -12,6 +12,7 @@ use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
 use App\Http\Controllers\DessertController;
+use App\Http\Controllers\AdminControllers\SubKategoriController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -329,3 +330,12 @@ Route::get('/detail-extra/{slug}', function ($slug) {
         'slug' => $slug
     ]);     
 })->name('detailextra');
+
+
+// ADMIN SUB KATEGORI
+Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
+Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])->name('admin.subkategori.create');
+Route::post('/admin/sub-kategori', [SubKategoriController::class, 'store'])->name('admin.subkategori.store');
+Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit'])->name('admin.subkategori.edit');
+Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
+Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
