@@ -11,11 +11,9 @@ use App\Http\Controllers\ComfortController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\DessertController;
 
->>>>>>> 37d32be8fc48f2e1cbc7a72502dfd28b391a7b32
+
 // HALAMAN AWAL
 Route::get('/', function () {
     return redirect()->route('login');
@@ -186,7 +184,6 @@ Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
 
-
 // Halaman Keranjang
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
@@ -210,7 +207,6 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
-<<<<<<< HEAD
 
 // TAMBAH PESANAN
 Route::post('/keranjang/tambah', function (Request $request) {
@@ -231,11 +227,15 @@ Route::post('/keranjang/hapus/{slug}', function ($slug) {
 })->name('keranjang.hapus');
 
 // HALAMAN KERANJANG
-=======
->>>>>>> 37d32be8fc48f2e1cbc7a72502dfd28b391a7b32
+
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
+
+// RINGKASAN PELANGGAN
+Route::get('/ringkasanpelanggan', function () {
+    return view('ringkasanpelanggan');
+})->name('ringkasanpelanggan');
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
@@ -333,5 +333,7 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     return view('detailextra', [
         'menu' => $menus[$slug],
         'slug' => $slug
-    ]);     
+    ]);
 })->name('detailextra');
+
+
