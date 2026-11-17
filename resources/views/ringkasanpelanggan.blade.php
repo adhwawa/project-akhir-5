@@ -548,7 +548,8 @@
 @php
     $cart = session()->get('cart', []);
 
-    $menuData = [
+     $menuData = [
+        //MAINCOURSE
         'grill-chicken-steak' => [
             'nama' => 'Grill Chicken Steak',
             'harga' => 85000,
@@ -574,6 +575,210 @@
             'harga' => 58000,
             'gambar' => 'gambar/maincourse/nTimbel.png'
         ],
+//NUSANTARA
+'nasi-iga-bakar' => [
+    'nama' => 'Nasi Iga Bakar',
+    'harga' => 72000,
+    'gambar' => 'gambar/nusantara/n.igabakar.png'
+],
+
+'nasi-campur-taliwang' => [
+    'nama' => 'Nasi Campur Taliwang',
+    'harga' => 66000,
+    'gambar' => 'gambar/nusantara/taliwang.png'
+],
+
+'nasi-goreng-jawa' => [
+    'nama' => 'Nasi Goreng Jawa',
+    'harga' => 64000,
+    'gambar' => 'gambar/nusantara/nasgorjawa.jpeg'
+],
+
+'mie-goreng-jawa' => [
+    'nama' => 'Mie Goreng Jawa',
+    'harga' => 60000,
+    'gambar' => 'gambar/nusantara/miegoreng.png'
+],
+
+'mie-nyemek-kampung-jawa' => [
+    'nama' => 'Mie Nyemek Kampung Jawa',
+    'harga' => 60000,
+    'gambar' => 'gambar/nusantara/mienyemek.png'
+],
+//COMFORT
+'mendoan' => [
+    'nama' => 'Mendoan',
+    'harga' => 30000,
+    'gambar' => 'gambar/comfort/mendoan.png'
+],
+
+'tahu-crispy' => [
+    'nama' => 'Tahu Crispy',
+    'harga' => 30000,
+    'gambar' => 'gambar/comfort/tahu.png'
+],
+
+'bakwan-jagung' => [
+    'nama' => 'Bakwan Jagung',
+    'harga' => 30000,
+    'gambar' => 'gambar/comfort/bakwajagung.png'
+],
+
+'singkong-crispy' => [
+    'nama' => 'Singkong Crispy',
+    'harga' => 30000,
+    'gambar' => 'gambar/comfort/singkong.png'
+],
+
+'cireng-crispy' => [
+    'nama' => 'Cireng Crispy',
+    'harga' => 32000,
+    'gambar' => 'gambar/comfort/cireng.png'
+],
+
+'french-fries' => [
+    'nama' => 'French Fries',
+    'harga' => 25000,
+    'gambar' => 'gambar/comfort/frenchfries.png'
+],
+
+'roti-bakar-coklat-keju' => [
+    'nama' => 'Roti Bakar Coklat Keju',
+    'harga' => 35000,
+    'gambar' => 'gambar/comfort/rotibakar.png'
+],
+
+'pisang-goreng-crispy' => [
+    'nama' => 'Pisang Goreng Crispy',
+    'harga' => 32000,
+    'gambar' => 'gambar/comfort/pisanggoreng.png'
+],
+
+'mix-platter' => [
+    'nama' => 'Mix Platter',
+    'harga' => 45000,
+    'gambar' => 'gambar/comfort/mixplatter.png'
+],
+//EXTRA
+'nasi-putih' => [
+    'nama' => 'Nasi Putih',
+    'harga' => 12000,
+    'gambar' => 'gambar/extra/nasiputih.png'
+],
+
+'telur' => [
+    'nama' => 'Telur',
+    'harga' => 11000,
+    'gambar' => 'gambar/extra/telur.png'
+],
+//COFFE AND TEA
+'jasmine-tea' => [
+    'nama' => 'Jasmine Tea',
+    'harga' => 18000,
+    'gambar' => 'gambar/coffee tea/estea.png'
+],
+
+'teh-jeruk-nipis' => [
+    'nama' => 'Teh Jeruk Nipis',
+    'harga' => 20000,
+    'gambar' => 'gambar/coffee tea/tehjeruknipis.png'
+],
+
+'lychee-tea' => [
+    'nama' => 'Lychee Tea',
+    'harga' => 20000,
+    'gambar' => 'gambar/coffee tea/lecitea.png'
+],
+
+'americano' => [
+    'nama' => 'Americano',
+    'harga' => 25000,
+    'gambar' => 'gambar/coffee tea/americano.png'
+],
+
+'coffee-latte' => [
+    'nama' => 'Coffee Latte',
+    'harga' => 32000,
+    'gambar' => 'gambar/coffee tea/latte.png'
+],
+
+'cappuccino' => [
+    'nama' => 'Cappuccino',
+    'harga' => 32000,
+    'gambar' => 'gambar/coffee tea/cappucino.png'
+],
+
+'mocaccino' => [
+    'nama' => 'Mocaccino',
+    'harga' => 32000,
+    'gambar' => 'gambar/coffee tea/mocacinno.png'
+],
+//FRESH JUICE
+'fresh-orange' => [
+    'nama' => 'Fresh Orange',
+    'harga' => 28000,
+    'gambar' => 'gambar/fresh juice/orange.png'
+],
+
+'watermelon' => [
+    'nama' => 'Watermelon',
+    'harga' => 28000,
+    'gambar' => 'gambar/fresh juice/watermelon.png'
+],
+
+'strawberry' => [
+    'nama' => 'Strawberry',
+    'harga' => 28000,
+    'gambar' => 'gambar/fresh juice/strawberry.png'
+],
+
+'apple' => [
+    'nama' => 'Apple',
+    'harga' => 28000,
+    'gambar' => 'gambar/fresh juice/apple.png'
+],
+//SOFT DRINK
+'mineral-water' => [
+    'nama' => 'Mineral Water',
+    'harga' => 8000,
+    'gambar' => 'gambar/soft drink/mineralwater.png'
+],
+
+'coke' => [
+    'nama' => 'Coke',
+    'harga' => 25000,
+    'gambar' => 'gambar/soft drink/coke.png'
+],
+
+'sprite' => [
+    'nama' => 'Sprite',
+    'harga' => 25000,
+    'gambar' => 'gambar/soft drink/sprite.png'
+],
+
+'fanta' => [
+    'nama' => 'Fanta',
+    'harga' => 25000,
+    'gambar' => 'gambar/soft drink/fanta.png'
+],
+//DESERT
+'buah-potong' => [
+    'nama' => 'Buah Potong',
+    'harga' => 48000,
+    'gambar' => 'gambar/dessert/buahpotong.png'
+],
+
+'ice-buah' => [
+    'nama' => 'Ice Buah',
+    'harga' => 38000,
+    'gambar' => 'gambar/dessert/icebuah.png'
+],
+
+'slice-cake' => [
+    'nama' => 'Slice Cake',
+    'harga' => 38000,
+    'gambar' => 'gambar/dessert/slicecake.png'
+],
     ];
 
     $subtotal = 0;
@@ -603,7 +808,7 @@
 
     <!-- NAVIGASI -->
     <div class="navigation">
-        <a href="{{ route('maincourse') }}">← Kembali ke menu</a>
+        <a href="{{ route('detailmenu') }}">← Kembali ke pesanan</a>
         <span>Menu/Pesanan/Ringkasan</span>
     </div>
 
@@ -689,7 +894,7 @@
                         <div class="check-icon">✓</div>
                     </div>
                     <p class="helper-text">ⓘ Kode QRIS dinamis akan langsung ditampilkan sesaat setelah pesanan dilanjutkan.</p>
-                    <input type="hidden" name="metode_pembayaran" value="QRIS">
+                    <input type="hidden" name="metode_pembayaran" value="QRIuS">
                 </div>
             </form>
         </div>
@@ -753,7 +958,7 @@
                 class="checkout"
                 {{ count($cart) == 0 ? 'disabled' : '' }}
             >
-                Lanjutkan Pesanan &nbsp; →
+                Lanjutkan Pembayaran &nbsp; →
             </button>
 
             <p class="payment-note">
