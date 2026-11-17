@@ -184,14 +184,8 @@ Route::get('/detailmenu', function () {
     return view('detailmenu');
 })->name('detailmenu');
 
-<<<<<<< HEAD
-
-// TAMBAH PESANAN
-Route::post('/detailmenu/tambah', function (Request $request) {
-=======
 // Halaman Keranjang
 Route::post('/keranjang/tambah', function (Request $request) {
->>>>>>> 6e7cdb671d3594da36e84c23e5519a7accb07bf8
     $request->validate([
         'menu' => 'required|string',
         'jumlah' => 'required|integer|min:1',
@@ -229,7 +223,7 @@ Route::post('/detailmenu/hapus/{slug}', function ($slug) {
 
     return redirect()->route('detailmenu')
         ->with('success', 'Pesanan berhasil dihapus!');
-})->name('detailmenu.hapus');   
+})->name('detailmenu.hapus');
 
 // RINGKASAN PELANGGAN
 Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])

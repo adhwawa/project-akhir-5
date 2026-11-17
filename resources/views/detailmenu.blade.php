@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -26,7 +27,7 @@
             margin: auto;
         }
 
-        /* NAVBAR */
+        /* HEADER */
         header {
             height: 95px;
             display: flex;
@@ -48,23 +49,6 @@
             text-align: center;
         }
 
-        .cart-button {
-            text-decoration: none;
-            color: #704c36;
-            background: white;
-            border: 1px solid #eadfd2;
-            padding: 10px 18px;
-            border-radius: 30px;
-            font-size: 12px;
-        }
-
-        .cart-count {
-            background: #f0e9df;
-            padding: 3px 7px;
-            border-radius: 50%;
-            margin-left: 5px;
-        }
-
         /* NAVIGASI */
         .navigation {
             display: flex;
@@ -81,7 +65,7 @@
 
         /* JUDUL */
         .heading {
-            margin-top: 20px;
+            margin-top: 25px;
             margin-bottom: 20px;
         }
 
@@ -115,12 +99,16 @@
             margin-right: 10px;
         }
 
-        /* LAYOUT */
+        /* LAYOUT UTAMA */
         .content {
             display: grid;
-            grid-template-columns: 2fr 0.95fr;
+            grid-template-columns: minmax(0, 2fr) minmax(300px, 0.95fr);
             gap: 23px;
             align-items: start;
+        }
+
+        .left-content {
+            min-width: 0;
         }
 
         .card {
@@ -128,6 +116,7 @@
             border: 1px solid #eadfd2;
             border-radius: 12px;
             padding: 20px;
+            min-width: 0;
         }
 
         .card-title {
@@ -142,18 +131,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
 
         .add-more {
             color: #79563f;
             text-decoration: none;
             font-size: 10px;
+            white-space: nowrap;
         }
 
         /* ITEM PESANAN */
         .cart-item {
             display: grid;
-            grid-template-columns: 105px 1fr auto;
+            grid-template-columns: 105px minmax(0, 1fr) auto;
             align-items: center;
             gap: 16px;
             padding: 18px 0;
@@ -199,7 +190,7 @@
             color: #79563f;
             font-weight: 600;
             font-size: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .quantity {
@@ -208,8 +199,52 @@
             border: 1px solid #eee3d8;
             border-radius: 30px;
             padding: 7px 15px;
-            gap: 15px;
+            gap: 10px;
             font-size: 11px;
+        }
+
+        /* TOMBOL HAPUS */
+        .remove-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 7px 14px;
+            border: 1px solid #eadfd2;
+            background: white;
+            color: #a15e4d;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .remove-button:hover {
+            background: #a15e4d;
+            color: white;
+        }
+
+        /* KERANJANG KOSONG */
+        .empty {
+            text-align: center;
+            padding: 50px 10px;
+            color: #897b70;
+            font-size: 12px;
+        }
+
+        .empty h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .empty a {
+            display: inline-block;
+            margin-top: 15px;
+            background: #79563f;
+            color: white;
+            padding: 10px 22px;
+            text-decoration: none;
+            border-radius: 30px;
         }
 
         /* PEMBAYARAN */
@@ -221,6 +256,7 @@
         .payment-row {
             display: flex;
             justify-content: space-between;
+            gap: 10px;
             margin-top: 20px;
             font-size: 10px;
             color: #897b70;
@@ -229,6 +265,7 @@
         .payment-row strong {
             color: #403329;
             font-weight: 400;
+            white-space: nowrap;
         }
 
         .payment-total {
@@ -272,6 +309,11 @@
             background: #5d402e;
         }
 
+        .checkout:disabled {
+            background: #b9a99b;
+            cursor: not-allowed;
+        }
+
         .payment-note {
             text-align: center;
             color: #97887d;
@@ -299,7 +341,7 @@
 
         .recommend-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
             margin-top: 12px;
         }
@@ -312,17 +354,20 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            min-width: 0;
         }
 
         .recommend-item img {
-            width: 72px;
+            width: 76px;
             height: 76px;
             object-fit: cover;
             border-radius: 8px;
+            flex-shrink: 0;
         }
 
         .recommend-info {
             flex: 1;
+            min-width: 0;
         }
 
         .recommend-info h3 {
@@ -337,41 +382,28 @@
             margin-top: 8px;
         }
 
-        .recommend-item a {
+        .recommend-item form {
+            flex-shrink: 0;
+        }
+
+        .recommend-item button {
+            border: none;
             text-decoration: none;
             background: #f0e9df;
             color: #79563f;
-            width: 23px;
-            height: 23px;
+            width: 25px;
+            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            font-size: 17px;
+            cursor: pointer;
         }
 
-        /* KERANJANG KOSONG */
-        .empty {
-            text-align: center;
-            padding: 50px 10px;
-            color: #897b70;
-            font-size: 12px;
-        }
-
-        .empty h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
-
-        .empty a {
-            display: inline-block;
-            margin-top: 15px;
+        .recommend-item button:hover {
             background: #79563f;
             color: white;
-            padding: 10px 22px;
-            text-decoration: none;
-            border-radius: 30px;
         }
 
         /* FOOTER */
@@ -381,6 +413,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
         }
 
         footer .tagline {
@@ -395,27 +428,8 @@
             color: #97887d;
         }
 
-        /* TOMBOL HAPUS */
-        .remove-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 7px 14px;
-            border: 1px solid #eadfd2;
-            background: white;
-            color: #a15e4d;
-            border-radius: 20px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .remove-button:hover {
-            background: #a15e4d;
-            color: white;
-        }
-
-        @media(max-width: 768px) {
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
             .container {
                 width: 92%;
             }
@@ -427,13 +441,15 @@
             .payment {
                 position: static;
             }
+        }
 
+        @media(max-width: 600px) {
             .recommend-list {
                 grid-template-columns: 1fr;
             }
 
             .cart-item {
-                grid-template-columns: 75px 1fr;
+                grid-template-columns: 75px minmax(0, 1fr);
             }
 
             .cart-item img {
@@ -446,6 +462,8 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                flex-wrap: wrap;
+                gap: 8px;
             }
 
             .item-price {
@@ -454,7 +472,6 @@
 
             footer {
                 flex-wrap: wrap;
-                gap: 15px;
             }
         }
     </style>
@@ -463,10 +480,8 @@
 <body>
 
 @php
-    // Mengambil data pesanan dari session
     $cart = session()->get('cart', []);
 
-    // Data informasi menu berdasarkan slug
     $menuData = [
         'grill-chicken-steak' => [
             'nama' => 'Grill Chicken Steak',
@@ -502,7 +517,6 @@
     $subtotal = 0;
     $totalJumlah = 0;
 
-    // Menghitung total pesanan
     foreach ($cart as $slug => $item) {
         $menu = $menuData[$slug] ?? null;
 
@@ -515,28 +529,18 @@
 
 <div class="container">
 
-    <!-- NAVBAR -->
+    <!-- HEADER -->
     <header>
         <div class="logo">
             ☼ daily crave
             <small>DAPUR & RUANG TEMU</small>
         </div>
-
-        <a href="{{ route('detailmenu') }}" class="cart-button">
-            ♧ Keranjang
-            <span class="cart-count">
-                {{ $totalJumlah }}
-            </span>
-        </a>
     </header>
 
     <!-- NAVIGASI -->
     <div class="navigation">
-        <a href="{{ route('maincourse') }}">
-            ← Kembali ke menu
-        </a>
-
-        <span>Menu / Detail Menu</span>
+        <a href="{{ route('maincourse') }}">← Kembali ke menu</a>
+        <span>Menu/Pesanan</span>
     </div>
 
     <!-- JUDUL -->
@@ -545,6 +549,7 @@
         <h1>Satu langkah menuju rasa.</h1>
     </div>
 
+    <!-- NOTIFIKASI -->
     @if(session('success'))
         <div class="notification">
             <span>✓</span>
@@ -584,6 +589,7 @@
                         @endphp
 
                         @if($menu)
+
                             <div class="cart-item">
 
                                 <img
@@ -600,7 +606,7 @@
                                     </p>
 
                                     <small>
-                                        {{ $item['catatan'] ?: $item['jumlah'] . ' porsi' }}
+                                        {{ !empty($item['catatan']) ? $item['catatan'] : $item['jumlah'] . ' porsi' }}
                                     </small>
 
                                 </div>
@@ -631,6 +637,7 @@
                                 </div>
 
                             </div>
+
                         @endif
 
                     @endforeach
@@ -638,6 +645,7 @@
                 @else
 
                     <div class="empty">
+
                         <h3>Keranjang Anda masih kosong.</h3>
 
                         <p>
@@ -647,6 +655,7 @@
                         <a href="{{ route('maincourse') }}">
                             Jelajahi Menu
                         </a>
+
                     </div>
 
                 @endif
@@ -664,6 +673,7 @@
 
                 <div class="recommend-list">
 
+                    <!-- SPAGHETTI -->
                     <div class="recommend-item">
 
                         <img
@@ -672,14 +682,43 @@
                         >
 
                         <div class="recommend-info">
+
                             <h3>Spaghetti Bolognese Katsu</h3>
+
                             <p>Rp58.000</p>
+
                         </div>
 
-                        <a href="{{ route('detailmenu') }}">+</a>
+                        <form action="{{ route('detailmenu.add') }}" method="POST">
+                            @csrf
+
+                            <input
+                                type="hidden"
+                                name="menu"
+                                value="spaghetti-bolognese-katsu"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="jumlah"
+                                value="1"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="catatan"
+                                value=""
+                            >
+
+                            <button type="submit" title="Tambah Spaghetti">
+                                +
+                            </button>
+
+                        </form>
 
                     </div>
 
+                    <!-- SOP IGA -->
                     <div class="recommend-item">
 
                         <img
@@ -688,11 +727,39 @@
                         >
 
                         <div class="recommend-info">
+
                             <h3>Sop Iga</h3>
+
                             <p>Rp74.000</p>
+
                         </div>
 
-                        <a href="{{ route('detailmenu') }}">+</a>
+                        <form action="{{ route('detailmenu.add') }}" method="POST">
+                            @csrf
+
+                            <input
+                                type="hidden"
+                                name="menu"
+                                value="sop-iga"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="jumlah"
+                                value="1"
+                            >
+
+                            <input
+                                type="hidden"
+                                name="catatan"
+                                value=""
+                            >
+
+                            <button type="submit" title="Tambah Sop Iga">
+                                +
+                            </button>
+
+                        </form>
 
                     </div>
 
@@ -702,7 +769,7 @@
 
         </div>
 
-        <!-- RINGKASAN PESANAN -->
+        <!-- RINGKASAN PEMBAYARAN -->
         <div class="card payment">
 
             <h2 class="card-title">
@@ -722,13 +789,19 @@
             </div>
 
             <div class="payment-row">
+
                 <span>Pajak Resto (PB1 10%)</span>
+
                 <strong>Termasuk</strong>
+
             </div>
 
             <div class="payment-row">
+
                 <span>Biaya Layanan Meja</span>
+
                 <strong style="color: green;">GRATIS</strong>
+
             </div>
 
             <div class="payment-total">
