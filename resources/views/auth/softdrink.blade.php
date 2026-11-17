@@ -436,7 +436,7 @@
 
         <div class="hero-text">
 
-            <p>──── MENU DAILY CRAVE ────</p>
+            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
             <h1>
                 Rasa yang akrab.<br>
@@ -497,7 +497,7 @@
                     <div class="price">Rp8.000</div>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailsoftdrink', 'mineral-water') }}" class="add-button">+</a>
             </article>
 
             <!-- COKE -->
@@ -511,7 +511,7 @@
                     <div class="price">Rp25.000</div>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailsoftdrink', 'coke') }}" class="add-button">+</a>
             </article>
 
             <!-- SPRITE -->
@@ -525,7 +525,7 @@
                     <div class="price">Rp25.000</div>
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailsoftdrink', 'sprite') }}" class="add-button">+</a>
             </article>
 
             <!-- FANTA -->
@@ -540,7 +540,7 @@
 
                 </div>
 
-                <button class="add-button" type="button">+</button>
+                <a href="{{ route('detailsoftdrink', 'fanta') }}" class="add-button">+</a>
             </article>
 
         </div>
