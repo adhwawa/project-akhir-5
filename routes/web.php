@@ -181,7 +181,6 @@ Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
 
-
 // Halaman Keranjang
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
@@ -228,6 +227,11 @@ Route::post('/keranjang/hapus/{slug}', function ($slug) {
 Route::get('/keranjang', function () {
     return view('keranjang');
 })->name('keranjang');
+
+// RINGKASAN PELANGGAN
+Route::get('/ringkasanpelanggan', function () {
+    return view('ringkasanpelanggan');
+})->name('ringkasanpelanggan');
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
@@ -325,9 +329,12 @@ Route::get('/detail-extra/{slug}', function ($slug) {
     return view('detailextra', [
         'menu' => $menus[$slug],
         'slug' => $slug
-    ]);     
+    ]);
 })->name('detailextra');
 
+<<<<<<< HEAD
+
+=======
 // DATA COFFEE AND TEA
 Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
     $menus = [
@@ -387,3 +394,4 @@ Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailcoffeeandtea');
+>>>>>>> 6fe8676a8da9b48a799d56af46770317dc6dea38
