@@ -540,6 +540,7 @@
                 text-align: center;
             }
         }
+        
     </style>
 </head>
 
@@ -598,13 +599,12 @@
             ☼ daily crave
             <small>DAPUR & RUANG TEMU</small>
         </div>
-        <div class="header-pill"></div>
     </header>
 
     <!-- NAVIGASI -->
     <div class="navigation">
         <a href="{{ route('maincourse') }}">← Kembali ke menu</a>
-        <span>/ /</span>
+        <span>Menu/Pesanan/Ringkasan</span>
     </div>
 
     <!-- JUDUL -->
@@ -616,11 +616,10 @@
     <!-- NOTIFIKASI -->
     <div class="notification">
         <div class="notification-icon">✓</div>
-        <div class="notification-text">
+        <div class="notifica tion-text">
             <strong>Pesanan Siap Diproses</strong>
             <small>Silakan verifikasi data diri dan meja Anda sebelum konfirmasi akhir.</small>
         </div>
-        <div class="order-id">ID : #{{ $kodePesanan }}</div>
     </div>
 
     <!-- CONTENT -->
