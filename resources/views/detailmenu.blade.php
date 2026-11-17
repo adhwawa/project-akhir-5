@@ -938,7 +938,7 @@
 
                     <h2>Teman untuk hidangan Anda</h2>
 
-                    <p>Jelajahi rasa lainnya dari dapur Serambi.</p>
+                    <p>Jelajahi rasa lainnya dari dapur daily crave.</p>
 
                     <div class="recommend-list">
 
