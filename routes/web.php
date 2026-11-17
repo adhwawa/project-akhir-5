@@ -178,6 +178,27 @@ Route::post('/detailmenu/kurang', function (Request $request) {
 
 })->name('detailmenu.kurang');
 
+//CATATAN MENU
+Route::post('/detailmenu/catatan', function (Request $request) {
+
+    $request->validate([
+        'menu' => 'required|string',
+        'catatan' => 'nullable|string|max:500',
+    ]);
+
+    $cart = session()->get('cart', []);
+    $key = $request->menu;
+
+    if (isset($cart[$key])) {
+        $cart[$key]['catatan'] = $request->input('catatan', '');
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->route('detailmenu')
+        ->with('success', 'Catatan pesanan berhasil disimpan!');
+
+})->name('detailmenu.catatan');
+
 // HAPUS PESANAN
 Route::post('/detailmenu/hapus/{slug}', function ($slug) {
     $cart = session()->get('cart', []);
