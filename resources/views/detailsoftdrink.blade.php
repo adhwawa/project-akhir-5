@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Daily Crave - Fresh Juice</title>
+    <title>Daily Crave - Soft Drink</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -371,7 +371,7 @@
     <div class="breadcrumb">
 
         <a href="{{ route('softdrink') }}">
-            ← &nbsp; Kembali ke menu Soft Drink
+            ← &nbsp; Kembali ke menu 
         </a>
 
         <span>
@@ -385,7 +385,7 @@
 
     <div class="page-heading">
 
-        <p>DARI DAPUR SERAMBI</p>
+        <p>DARI DAPUR DAILY CRAVE</p>
 
         <h1>Pilihan yang menggugah selera.</h1>
 
@@ -434,12 +434,7 @@
     <input type="hidden" name="menu" value="{{ $slug }}">
     <input type="hidden" name="jumlah" id="quantityInput" value="1">
 
-        <input
-            type="hidden"
-            name="jumlah"
-            id="quantityInput"
-            value="1"
-        >
+
 
         <div class="detail-card">
 

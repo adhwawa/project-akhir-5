@@ -222,9 +222,11 @@
         .menu-card img {
             display: block;
             width: 100%;
-            height: 108px;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
             border-radius: 7px;
+
         }
 
         .menu-info h3 {

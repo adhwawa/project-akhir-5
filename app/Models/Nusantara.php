@@ -25,7 +25,7 @@ class Nusantara
                 'nama' => 'Nasi Goreng Jawa',
                 'kategori' => 'NUSANTARA',
                 'harga' => 64000,
-                'gambar' => 'gambar/nusantara/nasgorjawa.png',
+                'gambar' => 'gambar/nusantara/nasgorjawa.jpeg',
                 'deskripsi' => 'Nasi putih dimasak dengan bumbu tradisional berupa bawang merah, bawang putih, cabai, kecap, dan rempah pilihan.'
             ],
             'mie-goreng-jawa' => [

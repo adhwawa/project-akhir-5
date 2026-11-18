@@ -122,99 +122,73 @@ Route::get('/detailmenu', function () {
     return view('detailmenu');
 })->name('detailmenu');
 
-// TAMBAH MENU
-// TAMBAH MENU
 Route::post('/keranjang/tambah', function (Request $request) {
-    $request->validate([
+    $data = $request->validate([
         'menu' => 'required|string',
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
     ]);
 
     $cart = session()->get('cart', []);
-    $slug = $request->menu;
-    $jumlah = (int) $request->jumlah;
+    $slug = $data['menu'];
+    $jumlah = (int) $data['jumlah'];
 
     if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += $jumlah;
-
+        $cart[$slug]['jumlah'] = (int) ($cart[$slug]['jumlah'] ?? 0) + $jumlah;
         if ($request->filled('catatan')) {
-            $cart[$slug]['catatan'] = $request->catatan;
+            $cart[$slug]['catatan'] = $data['catatan'];
         }
     } else {
         $cart[$slug] = [
             'jumlah' => $jumlah,
-            'catatan' => $request->input('catatan', ''),
+            'catatan' => $data['catatan'] ?? '',
         ];
     }
 
     session()->put('cart', $cart);
-
     return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Menu berhasil ditambahkan!');
 })->name('detailmenu.add');
 
 Route::post('/detailmenu/kurang', function (Request $request) {
-
-    $request->validate([
-        'menu' => 'required|string',
-    ]);
-
+    $data = $request->validate(['menu' => 'required|string']);
     $cart = session()->get('cart', []);
-    $slug = $request->menu;
+    $slug = $data['menu'];
 
     if (isset($cart[$slug])) {
-
-        $cart[$slug]['jumlah']--;
-
+        $cart[$slug]['jumlah'] = (int) $cart[$slug]['jumlah'] - 1;
         if ($cart[$slug]['jumlah'] <= 0) {
             unset($cart[$slug]);
         }
-
         session()->put('cart', $cart);
     }
 
-    return redirect()->route('detailmenu', [
-    '#' => 'daftar-pesanan'
-])->with('success', 'Jumlah pesanan berhasil diperbarui!');
-
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
+        ->with('success', 'Jumlah pesanan berhasil diperbarui!');
 })->name('detailmenu.kurang');
 
-//CATATAN MENU
 Route::post('/detailmenu/catatan', function (Request $request) {
-
-    $request->validate([
+    $data = $request->validate([
         'menu' => 'required|string',
         'catatan' => 'nullable|string|max:500',
     ]);
-
     $cart = session()->get('cart', []);
-    $key = $request->menu;
-
-    if (isset($cart[$key])) {
-        $cart[$key]['catatan'] = $request->input('catatan', '');
+    $slug = $data['menu'];
+    if (isset($cart[$slug])) {
+        $cart[$slug]['catatan'] = $data['catatan'] ?? '';
         session()->put('cart', $cart);
     }
-
-    return redirect()->route('detailmenu', [
-    '#' => 'daftar-pesanan'
-])->with('success', 'Catatan pesanan berhasil!');
-
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
+        ->with('success', 'Catatan pesanan berhasil disimpan!');
 })->name('detailmenu.catatan');
 
-// HAPUS PESANAN
 Route::post('/detailmenu/hapus/{slug}', function ($slug) {
     $cart = session()->get('cart', []);
-
-    if (isset($cart[$slug])) {
-        unset($cart[$slug]);
-        session()->put('cart', $cart);
-    }
-
-    return redirect()->route('detailmenu')
+    unset($cart[$slug]);
+    session()->put('cart', $cart);
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Pesanan berhasil dihapus!');
 })->name('detailmenu.hapus');
-
 // RINGKASAN PELANGGAN
 Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
     ->name('ringkasanpelanggan');
