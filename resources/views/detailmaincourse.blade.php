@@ -429,11 +429,16 @@
 
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('detailmenu') }}" method="POST">
+<form action="{{ route('detailmenu.add') }}" method="POST" id="formPesanan">
+    @csrf
 
-        @csrf
+    <input type="hidden" name="menu" value="{{ $slug }}">
+    <input type="hidden" name="jumlah" id="quantityInput" value="1">
 
-        <input type="hidden" name="menu" value="{{ $slug }}">
+    <p style="font-size:12px">
+    Jumlah yang akan dikirim:
+    <span id="cekJumlah">1</span>
+</p>
 
         <input
             type="hidden"
@@ -567,30 +572,28 @@
 
 
 <!-- QUANTITY SCRIPT -->
-
 <script>
-
     const price = {{ (int) $menu['harga'] }};
-
     let qty = 1;
 
     function changeQty(value) {
+        qty = Math.max(1, qty + value);
 
-        qty += value;
-
-        if (qty < 1) {
-            qty = 1;
-        }
-
-        document.getElementById('quantity').innerText = qty;
-
+        document.getElementById('quantity').textContent = qty;
         document.getElementById('quantityInput').value = qty;
 
-        document.getElementById('totalPrice').innerText =
+        document.getElementById('totalPrice').textContent =
             'Rp' + (price * qty).toLocaleString('id-ID');
-
     }
 
+    document.getElementById('formPesanan')
+        .addEventListener('submit', function (event) {
+            document.getElementById('quantityInput').value = qty;
+
+            // Sementara untuk mengecek jumlah yang dikirim
+            alert('Jumlah porsi yang dikirim: ' +
+                document.getElementById('quantityInput').value);
+        });
 </script>
 
 </body>

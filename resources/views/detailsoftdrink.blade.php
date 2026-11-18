@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -429,11 +428,11 @@
 
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('detailmenu') }}" method="POST">
+   <form action="{{ route('detailmenu.add') }}" method="POST">
+    @csrf
 
-        @csrf
-
-        <input type="hidden" name="menu" value="{{ $slug }}">
+    <input type="hidden" name="menu" value="{{ $slug }}">
+    <input type="hidden" name="jumlah" id="quantityInput" value="1">
 
         <input
             type="hidden"

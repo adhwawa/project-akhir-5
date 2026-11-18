@@ -123,6 +123,7 @@ Route::get('/detailmenu', function () {
 })->name('detailmenu');
 
 // TAMBAH MENU
+// TAMBAH MENU
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
         'menu' => 'required|string',
@@ -132,26 +133,26 @@ Route::post('/keranjang/tambah', function (Request $request) {
 
     $cart = session()->get('cart', []);
     $slug = $request->menu;
+    $jumlah = (int) $request->jumlah;
 
     if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += (int) $request->jumlah;
+        $cart[$slug]['jumlah'] += $jumlah;
 
         if ($request->filled('catatan')) {
             $cart[$slug]['catatan'] = $request->catatan;
         }
     } else {
         $cart[$slug] = [
-            'jumlah' => (int) $request->jumlah,
+            'jumlah' => $jumlah,
             'catatan' => $request->input('catatan', ''),
         ];
     }
 
     session()->put('cart', $cart);
 
-    return redirect()->route('detailmenu')
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Menu berhasil ditambahkan!');
 })->name('detailmenu.add');
-
 
 Route::post('/detailmenu/kurang', function (Request $request) {
 
@@ -173,8 +174,9 @@ Route::post('/detailmenu/kurang', function (Request $request) {
         session()->put('cart', $cart);
     }
 
-    return redirect()->route('detailmenu')
-        ->with('success', 'Jumlah pesanan berhasil diperbarui!');
+    return redirect()->route('detailmenu', [
+    '#' => 'daftar-pesanan'
+])->with('success', 'Jumlah pesanan berhasil diperbarui!');
 
 })->name('detailmenu.kurang');
 
@@ -194,8 +196,9 @@ Route::post('/detailmenu/catatan', function (Request $request) {
         session()->put('cart', $cart);
     }
 
-    return redirect()->route('detailmenu')
-        ->with('success', 'Catatan pesanan berhasil disimpan!');
+    return redirect()->route('detailmenu', [
+    '#' => 'daftar-pesanan'
+])->with('success', 'Catatan pesanan berhasil!');
 
 })->name('detailmenu.catatan');
 
