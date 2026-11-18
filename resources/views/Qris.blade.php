@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>QRIS - Daily Crave</title>
 
     <style>
@@ -16,43 +16,26 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             color: #403a35;
-
             background-color: #252525;
-
-            /* titik-titik seperti screenshot */
-            background-image:
-                radial-gradient(#777 1px, transparent 1px);
+            background-image: radial-gradient(#777 1px, transparent 1px);
             background-size: 18px 18px;
-
             min-height: 100vh;
         }
 
         .wrapper {
             width: 90%;
-            max-width: 1180px;
-            margin: 35px auto;
+            max-width: 1400px;
+            margin: 0 auto;
             background: #faf8f3;
-
-            border-radius: 8px;
-
-            min-height: 92vh;
-
+            min-height: 100vh;
             padding: 30px 55px 25px;
-
-            box-shadow:
-                0 15px 45px rgba(0, 0, 0, 0.35);
         }
 
-
-        /* =========================
-           HEADER
-        ========================= */
-
+        /* HEADER */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             margin-bottom: 35px;
         }
 
@@ -63,90 +46,65 @@
         }
 
         .logo-symbol {
-            font-size: 20px;
+            font-size: 25px;
             color: #856348;
         }
 
         .logo-text {
             font-family: Georgia, serif;
-            font-size: 20px;
+            font-size: 25px;
             color: #403a35;
             line-height: 1;
         }
 
         .logo-sub {
-            font-size: 6px;
+            font-size: 7px;
             letter-spacing: 2px;
             color: #81776f;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         .back {
             color: #82786f;
             font-family: Georgia, serif;
-            font-size: 10px;
+            font-size: 12px;
             text-decoration: none;
         }
 
-        .back:hover {
-            color: #604936;
-        }
-
-
-        /* =========================
-           STATUS ATAS
-        ========================= */
-
+        /* TOP STATUS */
         .top-status {
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-            padding: 16px 25px;
-
+            padding: 20px 30px;
             border-top: 1px solid #eee9df;
             border-bottom: 1px solid #eee9df;
-
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .status-title {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .status-description {
-            font-size: 9px;
+            font-size: 11px;
             color: #817a73;
             line-height: 1.5;
         }
 
         .expired {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: bold;
-            color: #625b55;
         }
 
-        .expired span {
-            margin-left: 5px;
-        }
-
-
-        /* =========================
-           MAIN GRID
-        ========================= */
-
+        /* MAIN */
         .main {
             display: grid;
             grid-template-columns: 1.15fr .85fr;
-            gap: 20px;
+            gap: 35px;
         }
-
-
-        /* =========================
-           LEFT
-        ========================= */
 
         .left {
             padding: 5px 20px;
@@ -156,137 +114,94 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-            padding: 10px 0 15px;
-
+            padding: 15px 0;
             border-bottom: 1px solid #eee9df;
         }
 
         .table-title {
-            font-size: 10px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .table-number {
-            font-size: 9px;
+            font-size: 11px;
             color: #817a73;
             margin-top: 6px;
         }
 
         .nmid {
-            font-size: 9px;
+            font-size: 10px;
             color: #756c65;
         }
 
-        .nmid strong {
-            color: #4b443e;
-        }
-
-
-        /* =========================
-           QRIS BOX
-        ========================= */
-
+        /* QRIS */
         .qris-box {
-            width: 350px;
+            width: 440px;
             max-width: 100%;
-            margin: 25px auto 15px;
-
+            margin: 30px auto 18px;
             border: 1px solid #eee9df;
-            border-radius: 8px;
-
-            padding: 20px 25px 18px;
-
+            border-radius: 9px;
+            padding: 25px 30px;
             text-align: center;
-
             background: #fcfaf6;
         }
 
         .qris-header {
             display: flex;
             justify-content: center;
-            gap: 25px;
-
-            font-size: 9px;
+            gap: 30px;
+            font-size: 11px;
             font-weight: bold;
-
-            margin-bottom: 20px;
-        }
-
-        .qris-header span:last-child {
-            font-weight: normal;
+            margin-bottom: 25px;
         }
 
         .qr-image {
-            width: 185px;
-            height: 185px;
-
-            margin: auto;
-
-            object-fit: contain;
-
-            display: block;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        display: block;
+        margin: 15px auto;
+        object-fit: contain;
         }
-
         .merchant {
-            margin-top: 13px;
-
-            font-size: 8px;
+            margin-top: 15px;
+            font-size: 10px;
             color: #8b827a;
-
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .merchant strong {
             color: #403a35;
-            font-size: 9px;
-        }
-
-        .merchant-id {
-            color: #625b55;
+            font-size: 11px;
         }
 
         .amount {
             display: flex;
             justify-content: space-between;
-
             border-top: 1px solid #eee9df;
-
-            margin-top: 15px;
-            padding-top: 15px;
-
-            font-size: 9px;
+            margin-top: 18px;
+            padding-top: 18px;
+            font-size: 11px;
         }
 
         .amount strong {
-            font-size: 10px;
+            font-size: 13px;
         }
-
-
-        /* =========================
-           BUTTON QR
-        ========================= */
 
         .qris-buttons {
             display: flex;
             justify-content: center;
-            gap: 8px;
-
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .qris-btn {
             border: 1px solid #e8e0d5;
             background: #fffdf9;
-
             border-radius: 5px;
-
-            padding: 8px 13px;
-
+            padding: 10px 15px;
             color: #665c54;
-
-            font-size: 8px;
-
+            font-size: 10px;
             cursor: pointer;
         }
 
@@ -294,17 +209,11 @@
             background: #f1e9df;
         }
 
-
-        /* =========================
-           BANK
-        ========================= */
-
+        /* BANK */
         .support {
             text-align: center;
-
-            margin: 25px 0;
-
-            font-size: 8px;
+            margin: 30px 0;
+            font-size: 10px;
             color: #817a73;
         }
 
@@ -312,234 +221,173 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-
-            gap: 20px;
-
-            margin-top: 13px;
-
-            font-size: 8px;
+            gap: 22px;
+            margin-top: 15px;
+            font-size: 10px;
             color: #514a44;
         }
 
-
-        /* =========================
-           RIGHT
-        ========================= */
-
+        /* RIGHT */
         .right {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 20px;
         }
-
-
-        /* STATUS TRANSAKSI */
 
         .transaction-status {
             border: 1px solid #a9c1dc;
-
-            border-radius: 7px;
-
-            padding: 20px;
-
+            border-radius: 8px;
+            padding: 22px;
             background: #fffefa;
         }
 
         .status-heading {
             display: flex;
             justify-content: space-between;
-
-            font-size: 9px;
+            font-size: 11px;
             font-weight: bold;
-
-            padding-bottom: 17px;
+            padding-bottom: 18px;
             border-bottom: 1px solid #eee9df;
-        }
-
-        .success {
-            color: #4d4a43;
         }
 
         .success-content {
             display: flex;
-            gap: 12px;
-
-            padding-top: 18px;
+            gap: 15px;
+            padding-top: 20px;
         }
 
         .success-icon {
-            width: 20px;
-            height: 20px;
-
-            border: 1.5px solid #514a44;
-
+            width: 23px;
+            height: 23px;
+            border: 1px solid #514a44;
             border-radius: 50%;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
-            font-size: 10px;
+            font-size: 12px;
+            flex-shrink: 0;
         }
 
         .success-title {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: bold;
-
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .success-text {
-            font-size: 8px;
+            font-size: 10px;
             color: #766e67;
-            line-height: 1.55;
+            line-height: 1.6;
         }
 
-        .manual {
-            margin-top: 20px;
-
-            font-size: 8px;
+        .manual, .help {
+            margin-top: 18px;
+            font-size: 10px;
             color: #716961;
         }
 
-        .help {
-            margin-top: 12px;
-
-            font-size: 8px;
-            color: #817970;
-        }
-
-        .help strong {
-            color: #544b44;
-        }
-
-
-        /* =========================
-           TICKET
-        ========================= */
-
+        /* TICKET */
         .ticket {
             border: 1px solid #eee8df;
-
-            border-radius: 7px;
-
+            border-radius: 8px;
             background: #fffefa;
-
-            padding: 20px;
+            padding: 22px;
         }
 
         .ticket-header {
             display: flex;
             justify-content: space-between;
-
             border-bottom: 1px solid #eee9df;
-
-            padding-bottom: 15px;
-
-            margin-bottom: 17px;
+            padding-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .ticket-title {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .ticket-sub {
-            font-size: 7px;
+            font-size: 9px;
             color: #9a928a;
-
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         .order-id {
-            font-size: 8px;
+            font-size: 10px;
             color: #625951;
         }
 
-
         /* CUSTOMER */
-
         .customer {
             display: grid;
             grid-template-columns: 1fr 1fr;
-
             gap: 20px;
-
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .customer-label {
-            font-size: 7px;
+            font-size: 9px;
             color: #9a928a;
-
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .customer-value {
-            font-size: 8px;
+            font-size: 10px;
             font-weight: bold;
         }
 
-
         /* MENU */
-
         .menu {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
-
-            padding-bottom: 16px;
-
+            padding: 15px 0;
             border-bottom: 1px solid #eee9df;
         }
 
         .menu-image {
-            width: 42px;
-            height: 42px;
-
+            width: 65px;
+            height: 65px;
+            flex-shrink: 0;
             object-fit: cover;
-
-            border-radius: 4px;
-
+            border-radius: 5px;
             background: #e8ded1;
         }
 
         .menu-info {
             flex: 1;
+            min-width: 0;
         }
 
         .menu-name {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: bold;
         }
 
         .menu-note {
-            font-size: 7px;
+            font-size: 9px;
             color: #9a928a;
-
             margin-top: 5px;
         }
 
         .menu-price {
-            font-size: 9px;
+            font-size: 11px;
             font-weight: bold;
+            white-space: nowrap;
         }
 
-
-        /* TOTAL */
-
+        /* SUMMARY */
         .summary {
-            padding-top: 15px;
+            padding-top: 18px;
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-
-            margin-bottom: 10px;
-
-            font-size: 8px;
-
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 10px;
             color: #756d65;
         }
 
@@ -549,148 +397,103 @@
 
         .total-row {
             border-top: 1px solid #eee9df;
-
-            margin-top: 12px;
-
-            padding-top: 15px;
-
+            margin-top: 15px;
+            padding-top: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .total-label {
-            font-size: 8px;
+            font-size: 10px;
             font-weight: bold;
         }
 
         .total-sub {
-            font-size: 7px;
+            font-size: 9px;
             color: #9b938b;
-
             margin-top: 5px;
         }
 
         .total-price {
             font-family: Georgia, serif;
-
-            font-size: 17px;
+            font-size: 23px;
         }
-
-
-        /* SAFE */
 
         .safe {
             display: flex;
-            gap: 8px;
-
-            margin-top: 20px;
-
-            padding-top: 15px;
-
+            gap: 10px;
+            margin-top: 22px;
+            padding-top: 18px;
             border-top: 1px solid #eee9df;
-
-            font-size: 7px;
-
+            font-size: 9px;
             color: #837b74;
-
             line-height: 1.5;
         }
 
-
-        /* =========================
-           GUIDE
-        ========================= */
-
+        /* GUIDE */
         .guide {
-            margin-top: 20px;
-
+            margin-top: 25px;
             border-top: 1px solid #eee9df;
-
-            padding: 20px;
+            padding: 22px;
         }
 
         .guide-title {
             font-family: Georgia, serif;
-
-            font-size: 10px;
-
+            font-size: 13px;
             color: #766c64;
-
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-
             gap: 25px;
         }
 
         .step-number {
             font-family: Georgia, serif;
-
-            font-size: 12px;
-
+            font-size: 15px;
             margin-bottom: 10px;
         }
 
         .step-title {
-            font-size: 8px;
+            font-size: 10px;
             font-weight: bold;
-
             margin-bottom: 7px;
         }
 
         .step-text {
-            font-size: 7px;
+            font-size: 9px;
             line-height: 1.5;
-
             color: #817971;
         }
 
-
-        /* =========================
-           FOOTER
-        ========================= */
-
+        /* FOOTER */
         footer {
             border-top: 1px solid #eee9df;
-
             margin-top: 25px;
-
             padding-top: 20px;
-
             display: flex;
             justify-content: space-between;
             align-items: center;
-
             color: #9a928a;
-
-            font-size: 7px;
+            font-size: 9px;
         }
 
         .footer-logo {
             font-family: Georgia, serif;
-
-            font-size: 12px;
-
+            font-size: 15px;
             color: #514a44;
         }
 
         .quote {
             font-family: Georgia, serif;
-
             font-style: italic;
         }
 
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
+        /* RESPONSIVE */
         @media (max-width: 900px) {
-
             .wrapper {
                 width: 95%;
                 padding: 25px;
@@ -706,12 +509,13 @@
         }
 
         @media (max-width: 600px) {
-
             .wrapper {
                 width: 100%;
-                margin: 0;
-                border-radius: 0;
                 padding: 20px 15px;
+            }
+
+            .header {
+                margin-bottom: 20px;
             }
 
             .top-status {
@@ -720,20 +524,29 @@
                 gap: 15px;
             }
 
+            .table-info {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
             .customer {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .header {
-                margin-bottom: 20px;
+                grid-template-columns: 1fr 1fr;
             }
 
             .qris-box {
                 width: 100%;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+            }
+
+            .menu-price {
+                margin-left: auto;
             }
 
             footer {
@@ -745,28 +558,103 @@
     </style>
 </head>
 
-
 <body>
+
+@php
+    $data = $data ?? [];
+
+    /*
+    |--------------------------------------------------------------------------
+    | DATA MENU
+    |--------------------------------------------------------------------------
+    | Sesuaikan slug dan nama gambar dengan Ringkasan Pelanggan.
+    */
+
+    $cart = session()->get('cart', []);
+
+    $menuData = [
+        'grill-chicken-steak' => [
+            'nama' => 'Grill Chicken Steak',
+            'harga' => 85000,
+            'gambar' => 'gambar/maincourse/grillchikensteak.png'
+        ],
+
+        'spaghetti-bolognese-katsu' => [
+            'nama' => 'Spaghetti Bolognese Katsu',
+            'harga' => 58000,
+            'gambar' => 'gambar/maincourse/speagetibolokatsu.png'
+        ],
+
+        'sop-iga' => [
+            'nama' => 'Sop Iga',
+            'harga' => 74000,
+            'gambar' => 'gambar/maincourse/supiga.png'
+        ],
+
+        'nasi-goreng-katsu' => [
+            'nama' => 'Nasi Goreng Katsu',
+            'harga' => 64000,
+            'gambar' => 'gambar/maincourse/nasgorkatsu.png'
+        ],
+
+        'nasi-timbel-ayam-goreng' => [
+            'nama' => 'Nasi Timbel Ayam Goreng',
+            'harga' => 58000,
+            'gambar' => 'gambar/maincourse/nTimbel.png'
+        ],
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | HITUNG TOTAL PESANAN
+    |--------------------------------------------------------------------------
+    */
+
+    $subtotal = 0;
+    $totalJumlah = 0;
+
+    foreach ($cart as $slug => $item) {
+        if (isset($menuData[$slug])) {
+            $jumlahItem = $item['jumlah'] ?? 1;
+
+            $subtotal += $menuData[$slug]['harga'] * $jumlahItem;
+            $totalJumlah += $jumlahItem;
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | DATA PELANGGAN
+    |--------------------------------------------------------------------------
+    */
+
+    $namaPelanggan = $data['nama_pemesan']
+        ?? session('nama_pelanggan', '');
+
+    $nomorMeja = $data['nomor_meja']
+        ?? session('nomor_meja', '03');
+
+    $kodePesanan = $data['nomor_order']
+        ?? session('kode_pesanan', 'DC-8842');
+
+    $nmid = $data['nmid']
+        ?? 'ID10200492817';
+
+@endphp
+
 
 <div class="wrapper">
 
-
-    <!-- =========================
-         HEADER
-    ========================= -->
+    <!-- HEADER -->
 
     <div class="header">
 
         <div class="logo">
 
-            <div class="logo-symbol">
-                ☼
-            </div>
+            <div class="logo-symbol">☼</div>
 
             <div>
-                <div class="logo-text">
-                    daily crave
-                </div>
+                <div class="logo-text">daily crave</div>
 
                 <div class="logo-sub">
                     DAPUR & RUANG TEMU
@@ -775,75 +663,59 @@
 
         </div>
 
-        <a href="{{ route('Payment') }}" class="back">
+        <a href="{{ route('ringkasanpelanggan') }}" class="back">
             ← Kembali ke Konfirmasi Pesanan
         </a>
 
     </div>
 
 
-    <!-- =========================
-         TOP STATUS
-    ========================= -->
+    <!-- STATUS PEMBAYARAN -->
 
     <div class="top-status">
 
         <div>
-
             <div class="status-title">
                 Menunggu Pembayaran QRIS
             </div>
 
             <div class="status-description">
-                Buka aplikasi e-wallet atau mobile-banking Anda untuk memindai kode QRIS di bawah ini.
+                Buka aplikasi e-wallet atau mobile-banking Anda
+                untuk memindai kode QRIS di bawah ini.
             </div>
-
         </div>
 
-
         <div class="expired">
-            ◷ Kedaluwarsa dalam <span id="countdown">02:48</span>
+            ◷ Kedaluwarsa dalam
+            <span id="countdown">02:48</span>
         </div>
 
     </div>
 
 
-    <!-- =========================
-         MAIN
-    ========================= -->
+    <!-- MAIN -->
 
     <div class="main">
 
-
-        <!-- =====================
-             LEFT
-        ====================== -->
+        <!-- BAGIAN KIRI -->
 
         <div class="left">
-
-
-            <!-- TABLE INFO -->
 
             <div class="table-info">
 
                 <div>
-
                     <div class="table-title">
                         MEJA PELANGGAN
                     </div>
 
                     <div class="table-number">
-                        Meja {{ $data['nomor_meja'] ?? '03' }} · Dine-in
+                        Meja {{ $nomorMeja }} · Dine-in
                     </div>
-
                 </div>
-
 
                 <div class="nmid">
                     🔒 NMID:
-                    <strong>
-                        {{ $data['nmid'] ?? 'ID10200492817' }}
-                    </strong>
+                    <strong>{{ $nmid }}</strong>
                 </div>
 
             </div>
@@ -858,18 +730,11 @@
                     <span>ASPI / BI</span>
                 </div>
 
-
-                <!--
-                    Letakkan gambar QRIS di:
-                    public/images/qris.png
-                -->
-
                 <img
-                    src="{{ asset('images/qris.png') }}"
-                    alt="QRIS Daily Crave"
-                    class="qr-image"
-                >
-
+                src="{{ asset('qris_pembayaran.png') }}"
+                alt="QRIS Daily Crave"
+                class="qr-image"
+            >
 
                 <div class="merchant">
 
@@ -877,9 +742,7 @@
 
                     <br>
 
-                    <strong>
-                        DAILY CRAVE INDONESIA
-                    </strong>
+                    <strong>DAILY CRAVE INDONESIA</strong>
 
                     <br>
 
@@ -889,15 +752,12 @@
 
                 </div>
 
-
                 <div class="amount">
 
-                    <span>
-                        Nominal Transaksi
-                    </span>
+                    <span>Nominal Transaksi</span>
 
                     <strong>
-                        Rp{{ number_format($data['total'] ?? 85000, 0, ',', '.') }}
+                        Rp{{ number_format($subtotal, 0, ',', '.') }}
                     </strong>
 
                 </div>
@@ -905,17 +765,15 @@
             </div>
 
 
-            <!-- QR BUTTON -->
+            <!-- TOMBOL QRIS -->
 
             <div class="qris-buttons">
 
-                <button class="qris-btn"
-                        onclick="downloadQR()">
+                <button class="qris-btn" onclick="downloadQR()">
                     ↓ &nbsp; Unduh QRIS
                 </button>
 
-                <button class="qris-btn"
-                        onclick="copyNMID()">
+                <button class="qris-btn" onclick="copyNMID()">
                     □ &nbsp; Salin NMID / Kode
                 </button>
 
@@ -929,7 +787,6 @@
                 MENDUKUNG SELURUH APLIKASI PEMBAYARAN
 
                 <div class="banks">
-
                     <span>BCA</span>
                     <span>Livin' Mandiri</span>
                     <span>BRImo</span>
@@ -938,45 +795,37 @@
                     <span>ShopeePay</span>
                     <span>DANA</span>
                     <span>LinkAja</span>
-
                 </div>
 
             </div>
 
-
         </div>
 
 
-        <!-- =====================
-             RIGHT
-        ====================== -->
+        <!-- BAGIAN KANAN -->
 
         <div class="right">
 
 
-            <!-- TRANSACTION STATUS -->
+            <!-- STATUS TRANSAKSI -->
 
             <div class="transaction-status">
 
                 <div class="status-heading">
 
-                    <span>
-                        STATUS TRANSAKSI
-                    </span>
+                    <span>STATUS TRANSAKSI</span>
 
-                    <span class="success">
+                    <span>
                         Lunas Terverifikasi
                     </span>
 
                 </div>
-
 
                 <div class="success-content">
 
                     <div class="success-icon">
                         ✓
                     </div>
-
 
                     <div>
 
@@ -987,11 +836,16 @@
                         <div class="success-text">
 
                             Transaksi
-                            Rp{{ number_format($data['total'] ?? 85000, 0, ',', '.') }}
-                            oleh {{ $data['nama_pemesan'] ?? 'Riska' }}
+                            Rp{{ number_format($subtotal, 0, ',', '.') }}
+                            oleh {{ $namaPelanggan ?: 'Pelanggan' }}
                             telah terverifikasi via QRIS.
+
                             Dapur Daily Crave sedang menyiapkan
-                            Grill Chicken Steak Anda.
+                            pesanan Anda.
+
+                            @if($totalJumlah > 0)
+                                Total {{ $totalJumlah }} porsi menu.
+                            @endif
 
                         </div>
 
@@ -999,11 +853,9 @@
 
                 </div>
 
-
                 <div class="manual">
                     ♧ &nbsp; Cek Status Pembayaran Manual
                 </div>
-
 
                 <div class="help">
                     Ada kendala saat memindai?
@@ -1013,14 +865,13 @@
             </div>
 
 
-            <!-- TICKET -->
+            <!-- RINCIAN TIKET -->
 
             <div class="ticket">
 
                 <div class="ticket-header">
 
                     <div>
-
                         <div class="ticket-title">
                             RINCIAN TIKET
                         </div>
@@ -1028,121 +879,133 @@
                         <div class="ticket-sub">
                             Ringkasan Pesanan
                         </div>
-
                     </div>
 
                     <div class="order-id">
-                        #{{ $data['nomor_order'] ?? 'DC-8842' }}
+                        #{{ $kodePesanan }}
                     </div>
 
                 </div>
 
 
-                <!-- CUSTOMER -->
+                <!-- DATA PELANGGAN -->
 
                 <div class="customer">
 
                     <div>
-
                         <div class="customer-label">
                             NAMA PEMESAN
                         </div>
 
                         <div class="customer-value">
-                            {{ $data['nama_pemesan'] ?? 'Riska' }}
+                            {{ $namaPelanggan ?: 'Pelanggan' }}
                         </div>
-
                     </div>
 
-
                     <div>
-
                         <div class="customer-label">
                             NOMOR MEJA
                         </div>
 
                         <div class="customer-value">
-                            Meja {{ $data['nomor_meja'] ?? '03' }} (Dine-in)
+                            Meja {{ $nomorMeja }} (Dine-in)
                         </div>
-
                     </div>
 
                 </div>
 
 
-                <!-- MENU -->
+                <!-- DAFTAR MENU -->
 
-                <div class="menu">
+                @forelse($cart as $slug => $item)
 
-                    <img
-                        src="{{ asset('images/chicken-steak.jpg') }}"
-                        alt="Grill Chicken Steak"
-                        class="menu-image"
-                    >
+                    @if(isset($menuData[$slug]))
 
+                        @php
+                            $menu = $menuData[$slug];
+                            $jumlah = $item['jumlah'] ?? 1;
+                            $catatan = $item['catatan'] ?? '';
+                        @endphp
 
-                    <div class="menu-info">
+                        <div class="menu">
 
-                        <div class="menu-name">
-                            {{ $data['menu'] ?? 'Grill Chicken Steak' }}
+                            <img
+                                src="{{ asset($menu['gambar']) }}"
+                                alt="{{ $menu['nama'] }}"
+                                class="menu-image"
+                                onerror="this.style.display='none'"
+                            >
+
+                            <div class="menu-info">
+
+                                <div class="menu-name">
+                                    {{ $menu['nama'] }}
+                                </div>
+
+                                <div class="menu-note">
+                                    {{ $catatan ?: 'TIDAK ADA CATATAN' }}
+                                </div>
+
+                                <div class="menu-note">
+                                    {{ $jumlah }} porsi
+                                </div>
+
+                            </div>
+
+                            <div class="menu-price">
+                                Rp{{ number_format(
+                                    $menu['harga'] * $jumlah,
+                                    0,
+                                    ',',
+                                    '.'
+                                ) }}
+                            </div>
+
                         </div>
 
-                        <div class="menu-note">
-                            TIDAK ADA CATATAN
-                        </div>
+                    @endif
 
+                @empty
+
+                    <div class="menu-note" style="padding:15px 0;">
+                        Belum ada menu dalam pesanan.
                     </div>
 
-
-                    <div class="menu-price">
-                        Rp{{ number_format($data['total'] ?? 85000, 0, ',', '.') }}
-                    </div>
-
-                </div>
+                @endforelse
 
 
-                <!-- SUMMARY -->
+                <!-- RINGKASAN PEMBAYARAN -->
 
                 <div class="summary">
 
                     <div class="summary-row">
 
-                        <span>
-                            Subtotal Menu
-                        </span>
+                        <span>Subtotal Menu</span>
 
                         <strong>
-                            Rp{{ number_format($data['total'] ?? 85000, 0, ',', '.') }}
+                            Rp{{ number_format($subtotal, 0, ',', '.') }}
                         </strong>
 
                     </div>
-
 
                     <div class="summary-row">
 
-                        <span>
-                            Pajak Restoran PB1 (10%)
-                        </span>
+                        <span>Pajak Restoran PB1 (10%)</span>
 
-                        <strong>
-                            Termasuk
-                        </strong>
+                        <strong>Termasuk</strong>
 
                     </div>
-
 
                     <div class="summary-row">
 
-                        <span>
-                            Biaya Layanan & Transaksi QRIS
-                        </span>
+                        <span>Biaya Layanan & Transaksi QRIS</span>
 
-                        <strong>
-                            Gratis (Rp0)
-                        </strong>
+                        <strong>Gratis (Rp0)</strong>
 
                     </div>
 
+
+                    <!-- TOTAL -->
 
                     <div class="total-row">
 
@@ -1158,9 +1021,8 @@
 
                         </div>
 
-
                         <div class="total-price">
-                            Rp{{ number_format($data['total'] ?? 85000, 0, ',', '.') }}
+                            Rp{{ number_format($subtotal, 0, ',', '.') }}
                         </div>
 
                     </div>
@@ -1168,9 +1030,7 @@
 
                     <div class="safe">
 
-                        <span>
-                            ♧
-                        </span>
+                        <span>♧</span>
 
                         <span>
                             Transaksi aman terverifikasi otomatis oleh
@@ -1189,9 +1049,7 @@
     </div>
 
 
-    <!-- =========================
-         GUIDE
-    ========================= -->
+    <!-- PANDUAN PEMBAYARAN -->
 
     <div class="guide">
 
@@ -1199,14 +1057,10 @@
             Panduan Cepat Membayar
         </div>
 
-
         <div class="steps">
 
             <div class="step">
-
-                <div class="step-number">
-                    1
-                </div>
+                <div class="step-number">1</div>
 
                 <div class="step-title">
                     Buka Aplikasi
@@ -1215,15 +1069,10 @@
                 <div class="step-text">
                     Buka e-wallet atau mobile-banking favorit Anda.
                 </div>
-
             </div>
 
-
             <div class="step">
-
-                <div class="step-number">
-                    2
-                </div>
+                <div class="step-number">2</div>
 
                 <div class="step-title">
                     Pindai QRIS
@@ -1232,41 +1081,32 @@
                 <div class="step-text">
                     Arahkan kamera ke kode QRIS di layar meja Anda.
                 </div>
-
             </div>
 
-
             <div class="step">
-
-                <div class="step-number">
-                    3
-                </div>
+                <div class="step-number">3</div>
 
                 <div class="step-title">
                     Cek Nominal
                 </div>
 
                 <div class="step-text">
-                    Pastikan nominal sesuai yaitu Rp{{ number_format($data['total'] ?? 85000, 0, ',', '.') }}.
+                    Pastikan nominal sesuai yaitu
+                    Rp{{ number_format($subtotal, 0, ',', '.') }}.
                 </div>
-
             </div>
 
-
             <div class="step">
-
-                <div class="step-number">
-                    4
-                </div>
+                <div class="step-number">4</div>
 
                 <div class="step-title">
                     Konfirmasi PIN
                 </div>
 
                 <div class="step-text">
-                    Masukkan PIN transaksi Anda untuk menyelesaikan pembayaran.
+                    Masukkan PIN transaksi Anda untuk
+                    menyelesaikan pembayaran.
                 </div>
-
             </div>
 
         </div>
@@ -1274,9 +1114,7 @@
     </div>
 
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -1292,11 +1130,9 @@
 
         </div>
 
-
         <div class="quote">
             "Rasa yang dekat, cerita yang hangat."
         </div>
-
 
         <div>
             © 2026 Daily Crave
@@ -1307,8 +1143,12 @@
 </div>
 
 
+<!-- JAVASCRIPT -->
+
 <script>
-    // Countdown 2 menit 48 detik
+
+    // COUNTDOWN
+
     let seconds = 168;
 
     const countdown = document.getElementById('countdown');
@@ -1333,18 +1173,25 @@
     }, 1000);
 
 
-    // Salin NMID
+    // SALIN NMID
+
     function copyNMID() {
 
-        const nmid = @json($data['nmid'] ?? 'ID10200492817');
+        const nmid = @json($nmid);
 
-        navigator.clipboard.writeText(nmid);
+        navigator.clipboard.writeText(nmid)
+            .then(function () {
+                alert('NMID berhasil disalin.');
+            })
+            .catch(function () {
+                alert('Gagal menyalin NMID.');
+            });
 
-        alert('NMID berhasil disalin.');
     }
 
 
-    // Download QRIS
+    // DOWNLOAD QRIS
+
     function downloadQR() {
 
         const image = document.querySelector('.qr-image');
@@ -1356,9 +1203,10 @@
         link.download = 'QRIS-Daily-Crave.png';
 
         link.click();
+
     }
+
 </script>
 
 </body>
-
 </html>
