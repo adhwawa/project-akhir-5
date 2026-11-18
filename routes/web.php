@@ -16,6 +16,7 @@ use App\Http\Controllers\DessertController;
 use App\Http\Controllers\QrisController;
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
+use App\Http\Controllers\RingkasanPelangganController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -44,41 +45,69 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
-// MENU MAKANAN
+// MAIN COURSE
 Route::get('/maincourse', [MainCourseController::class, 'index'])
     ->name('maincourse');
 
+// DETAIL MAIN COURSE
+Route::get('/detail-maincourse/{slug}', [MainCourseController::class, 'detail'])
+    ->name('detailmaincourse');
+
+// NUSANTARA
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
+//DETAIL NUSANTARA
+Route::get('/detail-nusantara/{slug}', [NusantaraController::class, 'detail'])
+    ->name('detailnusantara');
+
+// COMFORT
 Route::get('/comfort', [ComfortController::class, 'index'])
     ->name('comfort');
 
+//DETAIL COMFORT
+Route::get('/detail-comfort/{slug}', [ComfortController::class, 'detail'])
+    ->name('detailcomfort');
+
+// EXTRA
 Route::get('/extra', [ExtraController::class, 'index'])
     ->name('extra');
 
-// MENU MINUMAN
-Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
-    ->name('coffeandtea');
+//DETAIL EXTRA
+Route::get('/detail-extra/{slug}', [ExtraController::class, 'detail'])
+    ->name('detailextra');
 
+// COFFEE AND TEA
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
 
-Route::get('/comfort', [ComfortController::class, 'index'])
-    ->name('comfort');
+//DETAIL COFFEE AND TEA
+Route::get('/detail-coffeeandtea/{slug}', [CoffeeandTeaController::class, 'detail'])
+    ->name('detailcoffeeandtea');
 
-Route::get('/extra', [ExtraController::class, 'index'])
-    ->name('extra');
-
+// FRESH JUICE
 Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
     ->name('freshjuice');
 
+//DETAIL FRESH JUICE
+Route::get('/detail-freshjuice/{slug}', [FreshJuiceController::class, 'detail'])
+    ->name('detailfreshjuice');
+
+// SOFT DRINK
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
+
+//DETAIL SOFT DRINK
+Route::get('/detail-softdrink/{slug}', [SoftDrinkController::class, 'detail'])
+    ->name('detailsoftdrink');
 
 // MENU DESSERT
 Route::get('/dessert', [DessertController::class, 'index'])
     ->name('dessert');
+
+//DETAIL DESSERT
+Route::get('/detail-dessert/{slug}', [DessertController::class, 'detail'])
+    ->name('detaildessert');
 
 // ADMIN DASHBOARD & LOGOUT
 Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
@@ -95,6 +124,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('menu', MenuController::class)->except(['show']);
 });
 
+<<<<<<< HEAD
 // DATA MAINCOURSE
 Route::get('/detail-maincourse/{slug}', function ($slug) {
     $menus = [
@@ -190,13 +220,19 @@ Route::get('/detail-nusantara/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailnusantara');
+=======
+>>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574
 
 // HALAMAN DETAILMENU (KERANJANG)
 Route::get('/detailmenu', function () {
     return view('detailmenu');
 })->name('detailmenu');
 
+<<<<<<< HEAD
 // HALAMAN KERANJANG
+=======
+// TAMBAH MENU
+>>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574
 Route::post('/keranjang/tambah', function (Request $request) {
     $request->validate([
         'menu' => 'required|string',
@@ -208,25 +244,80 @@ Route::post('/keranjang/tambah', function (Request $request) {
     $slug = $request->menu;
 
     if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += $request->jumlah;
-        $cart[$slug]['catatan'] = $request->catatan;
+        $cart[$slug]['jumlah'] += (int) $request->jumlah;
+
+        if ($request->filled('catatan')) {
+            $cart[$slug]['catatan'] = $request->catatan;
+        }
     } else {
         $cart[$slug] = [
-            'jumlah' => $request->jumlah,
-            'catatan' => $request->catatan,
+            'jumlah' => (int) $request->jumlah,
+            'catatan' => $request->input('catatan', ''),
         ];
     }
 
     session()->put('cart', $cart);
 
+<<<<<<< HEAD
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
+=======
+    return redirect()->route('detailmenu')
+        ->with('success', 'Menu berhasil ditambahkan!');
+})->name('detailmenu.add');
+>>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574
 
 // PAYMENT
 Route::get('/Qris', [QrisController::class, 'index'])
     ->name('Qris');
+
+Route::post('/detailmenu/kurang', function (Request $request) {
+
+    $request->validate([
+        'menu' => 'required|string',
+    ]);
+
+    $cart = session()->get('cart', []);
+    $slug = $request->menu;
+
+    if (isset($cart[$slug])) {
+
+        $cart[$slug]['jumlah']--;
+
+        if ($cart[$slug]['jumlah'] <= 0) {
+            unset($cart[$slug]);
+        }
+
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->route('detailmenu')
+        ->with('success', 'Jumlah pesanan berhasil diperbarui!');
+
+})->name('detailmenu.kurang');
+
+//CATATAN MENU
+Route::post('/detailmenu/catatan', function (Request $request) {
+
+    $request->validate([
+        'menu' => 'required|string',
+        'catatan' => 'nullable|string|max:500',
+    ]);
+
+    $cart = session()->get('cart', []);
+    $key = $request->menu;
+
+    if (isset($cart[$key])) {
+        $cart[$key]['catatan'] = $request->input('catatan', '');
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->route('detailmenu')
+        ->with('success', 'Catatan pesanan berhasil disimpan!');
+
+})->name('detailmenu.catatan');
 
 // HAPUS PESANAN
 Route::post('/detailmenu/hapus/{slug}', function ($slug) {
@@ -245,6 +336,7 @@ Route::post('/detailmenu/hapus/{slug}', function ($slug) {
 Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
     ->name('ringkasanpelanggan');
 
+<<<<<<< HEAD
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
     $menus = [
@@ -469,3 +561,13 @@ Route::get('/detail-freshjuice/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailfreshjuice');
+=======
+// ADMIN SUB KATEGORI
+Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
+Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])->name('admin.subkategori.create');
+Route::post('/admin/sub-kategori', [SubKategoriController::class, 'store'])->name('admin.subkategori.store');
+Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit'])->name('admin.subkategori.edit');
+Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
+Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
+
+>>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574

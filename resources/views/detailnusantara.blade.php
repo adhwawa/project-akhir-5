@@ -429,7 +429,7 @@
 
     <!-- DETAIL MENU -->
 
-    <form action="{{ route('keranjang') }}" method="POST">
+    <form action="{{ route('detailmenu') }}" method="POST">
 
         @csrf
 

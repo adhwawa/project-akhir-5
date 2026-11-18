@@ -547,7 +547,7 @@
               musiman lainnya. Disajikan dalam keadaan dingin sebagai hidangan penutup.
             </p>
           </div>
-          <button class="add-button">+</button>
+          <a href="{{ route('detaildessert', 'buah-potong') }}" class="add-button">+</a>
         </article>
 
         <!-- MENU 2 -->
@@ -562,7 +562,7 @@
               nata de coco, sirup, susu kental manis, dan es batu.
             </p>
           </div>
-          <button class="add-button">+</button>
+          <a href="{{ route('detaildessert', 'ice-buah') }}" class="add-button">+</a>
         </article>
 
         <!-- MENU 3 -->
@@ -577,7 +577,7 @@
               lapisan krim atau filling di bagian tengah serta topping sesuai jenis kue.
             </p>
           </div>
-          <button class="add-button">+</button>
+          <a href="{{ route('detaildessert', 'slice-cake') }}" class="add-button">+</a>
         </article>
 
       </div>

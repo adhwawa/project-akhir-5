@@ -436,7 +436,7 @@
 
         <div class="hero-text">
 
-            <p>──── MENU DAILY CRAVE ────</p>
+            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
             <h1>
                 Rasa yang akrab.<br>

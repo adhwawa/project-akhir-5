@@ -2,12 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Comfort;
 
 class ComfortController extends Controller
 {
+    // Menampilkan halaman daftar Comfort
     public function index()
     {
-        return view('auth.comfort');
+        $menus = Comfort::all();
+
+        return view('auth.comfort', compact('menus'));
+    }
+
+    // Menampilkan detail menu
+    public function detail($slug)
+    {
+        $menu = Comfort::find($slug);
+
+        abort_unless($menu, 404);
+
+        return view('detailcomfort', [
+            'menu' => $menu,
+            'slug' => $slug
+        ]);
     }
 }
