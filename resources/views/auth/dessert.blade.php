@@ -496,7 +496,7 @@
 
 
 
-            <img src="{{ asset('gambar/dessert.png') }}" alt="dessert">
+            <img src="{{ asset('gambar/dessert.png') }}" alt="dessert"
 
             alt="Hidangan Daily Crave">
 
