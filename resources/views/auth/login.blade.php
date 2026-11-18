@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -7,19 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login - Daily Crave</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             min-height: 100%;
         }
@@ -428,7 +430,6 @@
                 font-size: 9px;
             }
         }
-
     </style>
 </head>
 
@@ -482,13 +483,8 @@
                             Alamat surel
                         </label>
 
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Masukkan alamat surel Anda"
-                            value="{{ old('email') }}"
-                            required>
+                        <input type="email" id="email" name="email" placeholder="Masukkan alamat surel Anda"
+                            value="{{ old('email') }}" required>
 
                     </div>
 
@@ -502,17 +498,10 @@
 
                         <div class="password-wrapper">
 
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Masukkan kata sandi Anda"
+                            <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda"
                                 required>
 
-                            <button
-                                type="button"
-                                class="toggle-password"
-                                id="togglePassword"
+                            <button type="button" class="toggle-password" id="togglePassword"
                                 aria-label="Tampilkan kata sandi">
 
                                 <span id="eyeIcon">◉</span>
@@ -529,9 +518,7 @@
 
                         <label class="remember">
 
-                            <input
-                                type="checkbox"
-                                name="remember">
+                            <input type="checkbox" name="remember">
 
                             Ingat saya
 
@@ -544,10 +531,7 @@
                     </div>
 
                     <!-- LOGIN PELANGGAN -->
-                    <button type="submit"
-                        name="role"
-                        value="user"
-                        class="login-button">
+                    <button type="submit" name="role" value="user" class="login-button">
 
                         <span>Login sebagai Pelanggan</span>
                         <span>→</span>
@@ -557,10 +541,7 @@
 
                     <!-- LOGIN ADMIN -->
 
-                    <button type="submit"
-                        name="role"
-                        value="admin"
-                        class="admin-button">
+                    <button type="submit" name="role" value="admin" class="admin-button">
 
                         <span>Login sebagai Admin</span>
                         <span>→</span>
@@ -612,8 +593,7 @@
     <!-- JAVASCRIPT -->
 
     <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
             const password = document.getElementById('password');
             const toggleButton = document.getElementById('togglePassword');
@@ -623,7 +603,7 @@
                 return;
             }
 
-            toggleButton.addEventListener('click', function () {
+            toggleButton.addEventListener('click', function() {
 
                 if (password.type === 'password') {
 
@@ -654,8 +634,8 @@
             });
 
         });
-
     </script>
 
 </body>
+
 </html>
