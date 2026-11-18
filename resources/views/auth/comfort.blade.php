@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -409,325 +414,306 @@
             }
 
         }
-
     </style>
 </head>
 
 <body>
 
-<main class="container">
+    <main class="container">
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+        <!-- NAVBAR -->
+        <nav class="navbar">
 
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
-        </div>
-
-        <div class="nav-menu">
-            <a href="{{ route('dashboard') }}">Menu Kami</a>
-            <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="{{ route('coffeeandtea') }}">Minuman</a>
-            <a href='{{ route('dessert') }}'>Dessert</a>
-        </div>
-
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
-
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
-
-            <p class="description">
-                 Jelajahi pilihan makanan, minuman, dan dessert.
-          Pilihan rasa yang pas untuk menemani harimu
-          dengan cita rasa yang istimewa..
-            </p>
-
-        </div>
-
-        <img
-            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
-            alt="Hidangan Daily Crave">
-
-    </section>
-
-    <!-- CATEGORY -->
-    <nav class="category-bar">
-
-        <a href="{{ route('maincourse') }}">Main Course</a>
-        <a href="{{ route('nusantara') }}">Nusantara</a>
-        <a href="{{ route('comfort') }}" class="active">Comfort</a>
-        <a href="{{ route('extra') }}">Extra</a>
-
-        <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-        </span>
-
-    </nav>
-
-    <!-- COMFORT MENU -->
-    <section class="menu-section">
-
-        <div class="section-heading">
-
-            <div>
-                <p class="section-subtitle">
-                    MAKANAN &nbsp;—&nbsp; 09 PILIHAN
-                </p>
-
-                <h2 class="section-title">Comfort</h2>
+            <div class="brand">
+                ☼ daily crave
+                <small>FOOD & DRINK</small>
             </div>
 
-            <p class="section-hint">
-                Temukan pilihan untuk waktu bersantap Anda.
-            </p>
+            <div class="nav-menu">
+                <a href="{{ route('dashboard') }}">Menu Kami</a>
+                <a href="{{ route('maincourse') }}" class="active">Makanan</a>
+                <a href="{{ route('coffeeandtea') }}">Minuman</a>
+                <a href='{{ route('dessert') }}'>Dessert</a>
+            </div>
 
-        </div>
+        </nav>
 
-        <div class="menu-list">
+        <!-- HERO -->
+        <section class="hero">
 
-            <!-- MENDOAN -->
-            <article class="menu-card">
+            <div class="hero-text">
 
-                <img src="{{ asset('gambar/comfort/mendoan.png') }}"
-                     alt="Mendoan">
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-                <div class="menu-info">
-                    <h3>Mendoan</h3>
-                    <div class="price">Rp30.000</div>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-                    <p>
-                        Tempe pilihan dilapisi adonan tepung berbumbu
-                        dengan irisan daun bawang, kemudian digoreng
-                        hingga bagian luar renyah. Disajikan bersama
-                        sambal kecap manis dan cabai rawit.
+                <p class="description">
+                    Jelajahi pilihan makanan, minuman, dan dessert.
+                    Pilihan rasa yang pas untuk menemani harimu
+                    dengan cita rasa yang istimewa..
+                </p>
+
+            </div>
+
+            <img src="{{ asset('gambar/makanan.png') }}" alt="Hidangan Daily Crave">
+
+
+        </section>
+
+        <!-- CATEGORY -->
+        <nav class="category-bar">
+
+            <a href="{{ route('maincourse') }}">Main Course</a>
+            <a href="{{ route('nusantara') }}">Nusantara</a>
+            <a href="{{ route('comfort') }}" class="active">Comfort</a>
+            <a href="{{ route('extra') }}">Extra</a>
+
+            <span class="category-note">
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+            </span>
+
+        </nav>
+
+        <!-- COMFORT MENU -->
+        <section class="menu-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-subtitle">
+                        MAKANAN &nbsp;—&nbsp; 09 PILIHAN
                     </p>
+
+                    <h2 class="section-title">Comfort</h2>
                 </div>
 
-                <a href="{{ route('detailcomfort', 'mendoan') }}"
-                class="add-button">+</a>
+                <p class="section-hint">
+                    Temukan pilihan untuk waktu bersantap Anda.
+                </p>
 
-            </article>
+            </div>
 
-            <!-- TAHU CRISPY -->
-            <article class="menu-card">
+            <div class="menu-list">
 
-                <img src="{{ asset('gambar/comfort/tahu.png') }}"
-                     alt="Tahu Crispy">
+                <!-- MENDOAN -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Tahu Crispy</h3>
-                    <div class="price">Rp30.000</div>
+                    <img src="{{ asset('gambar/comfort/mendoan.png') }}" alt="Mendoan">
 
-                    <p>
-                        Potongan tahu pilihan dibalut tepung berbumbu
-                        dan digoreng hingga menghasilkan lapisan luar
-                        yang renyah dengan bagian dalam lembut.
-                        Disajikan dengan taburan bumbu serta saus.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Mendoan</h3>
+                        <div class="price">Rp30.000</div>
 
-                <a href="{{ route('detailcomfort', 'tahu-crispy') }}"
-                class="add-button">+</a>
+                        <p>
+                            Tempe pilihan dilapisi adonan tepung berbumbu
+                            dengan irisan daun bawang, kemudian digoreng
+                            hingga bagian luar renyah. Disajikan bersama
+                            sambal kecap manis dan cabai rawit.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'mendoan') }}" class="add-button">+</a>
 
-            <!-- BAKWAN JAGUNG -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/bakwajagung.png') }}"
-                     alt="Bakwan Jagung">
+                <!-- TAHU CRISPY -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Bakwan Jagung</h3>
-                    <div class="price">Rp30.000</div>
+                    <img src="{{ asset('gambar/comfort/tahu.png') }}" alt="Tahu Crispy">
 
-                    <p>
-                        Jagung manis dipadukan dengan tepung,
-                        irisan daun bawang, wortel, bawang putih,
-                        dan bumbu pilihan. Digoreng hingga keemasan
-                        dan disajikan bersama cabai rawit.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Tahu Crispy</h3>
+                        <div class="price">Rp30.000</div>
 
-                <a href="{{ route('detailcomfort', 'bakwan-jagung') }}"
-                class="add-button">+</a>
+                        <p>
+                            Potongan tahu pilihan dibalut tepung berbumbu
+                            dan digoreng hingga menghasilkan lapisan luar
+                            yang renyah dengan bagian dalam lembut.
+                            Disajikan dengan taburan bumbu serta saus.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'tahu-crispy') }}" class="add-button">+</a>
 
-            <!-- SINGKONG CRISPY -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/singkong.png') }}"
-                     alt="Singkong Crispy">
+                <!-- BAKWAN JAGUNG -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Singkong Crispy</h3>
-                    <div class="price">Rp30.000</div>
+                    <img src="{{ asset('gambar/comfort/bakwajagung.png') }}" alt="Bakwan Jagung">
 
-                    <p>
-                        Singkong pilihan dipotong memanjang,
-                        direbus hingga empuk, kemudian digoreng
-                        dengan balutan tepung berbumbu hingga
-                        bagian luarnya renyah. Disajikan dengan
-                        saus sambal sebagai pelengkap.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Bakwan Jagung</h3>
+                        <div class="price">Rp30.000</div>
 
-                <a href="{{ route('detailcomfort', 'singkong-crispy') }}"
-                class="add-button">+</a>
+                        <p>
+                            Jagung manis dipadukan dengan tepung,
+                            irisan daun bawang, wortel, bawang putih,
+                            dan bumbu pilihan. Digoreng hingga keemasan
+                            dan disajikan bersama cabai rawit.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'bakwan-jagung') }}" class="add-button">+</a>
 
-            <!-- CIRENG CRISPY -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/cireng.png') }}"
-                     alt="Cireng Crispy">
+                <!-- SINGKONG CRISPY -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Cireng Crispy</h3>
-                    <div class="price">Rp32.000</div>
+                    <img src="{{ asset('gambar/comfort/singkong.png') }}" alt="Singkong Crispy">
 
-                    <p>
-                        Cireng dibuat dari tepung tapioka dengan
-                        campuran bawang putih, daun bawang,
-                        dan bumbu pilihan yang menghasilkan
-                        tekstur kenyal di dalam serta renyah
-                        di luar. Disajikan dengan saus cocolan.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Singkong Crispy</h3>
+                        <div class="price">Rp30.000</div>
 
-                <a href="{{ route('detailcomfort', 'cireng-crispy') }}"
-                class="add-button">+</a>
+                        <p>
+                            Singkong pilihan dipotong memanjang,
+                            direbus hingga empuk, kemudian digoreng
+                            dengan balutan tepung berbumbu hingga
+                            bagian luarnya renyah. Disajikan dengan
+                            saus sambal sebagai pelengkap.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'singkong-crispy') }}" class="add-button">+</a>
 
-            <!-- FRENCH FRIES -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/frenchfries.png') }}"
-                     alt="French Fries">
+                <!-- CIRENG CRISPY -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>French Fries</h3>
-                    <div class="price">Rp25.000</div>
+                    <img src="{{ asset('gambar/comfort/cireng.png') }}" alt="Cireng Crispy">
 
-                    <p>
-                        Kentang pilihan dipotong memanjang
-                        dan digoreng hingga berwarna keemasan
-                        dengan tekstur renyah di luar dan lembut
-                        di dalam. Disajikan dengan taburan
-                        garam dan saus sambal.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Cireng Crispy</h3>
+                        <div class="price">Rp32.000</div>
 
-                <a href="{{ route('detailcomfort', 'french-fries') }}"
-                class="add-button">+</a>
+                        <p>
+                            Cireng dibuat dari tepung tapioka dengan
+                            campuran bawang putih, daun bawang,
+                            dan bumbu pilihan yang menghasilkan
+                            tekstur kenyal di dalam serta renyah
+                            di luar. Disajikan dengan saus cocolan.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'cireng-crispy') }}" class="add-button">+</a>
 
-            <!-- ROTI BAKAR -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/rotibakar.png') }}"
-                     alt="Roti Bakar Coklat Keju">
+                <!-- FRENCH FRIES -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Roti Bakar Coklat Keju</h3>
-                    <div class="price">Rp35.000</div>
+                    <img src="{{ asset('gambar/comfort/frenchfries.png') }}" alt="French Fries">
 
-                    <p>
-                        Roti tawar tebal dipanggang dengan
-                        olesan margarin hingga berwarna
-                        kecokelatan dan renyah di bagian luar.
-                        Diberi topping meses cokelat, parutan
-                        keju cheddar, serta susu kental manis.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>French Fries</h3>
+                        <div class="price">Rp25.000</div>
 
-                <a href="{{ route('detailcomfort', 'roti-bakar-coklat-keju') }}"
-                class="add-button">+</a>
+                        <p>
+                            Kentang pilihan dipotong memanjang
+                            dan digoreng hingga berwarna keemasan
+                            dengan tekstur renyah di luar dan lembut
+                            di dalam. Disajikan dengan taburan
+                            garam dan saus sambal.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'french-fries') }}" class="add-button">+</a>
 
-            <!-- PISANG GORENG -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/pisanggoreng.png') }}"
-                     alt="Pisang Goreng Crispy">
+                <!-- ROTI BAKAR -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Pisang Goreng Crispy</h3>
-                    <div class="price">Rp32.000</div>
+                    <img src="{{ asset('gambar/comfort/rotibakar.png') }}" alt="Roti Bakar Coklat Keju">
 
-                    <p>
-                        Pisang pilihan dibalut adonan tepung
-                        renyah dan digoreng hingga keemasan
-                        dengan bagian dalam yang lembut.
-                        Disajikan dengan topping keju,
-                        meses cokelat, atau susu kental manis.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Roti Bakar Coklat Keju</h3>
+                        <div class="price">Rp35.000</div>
 
-                <a href="{{ route('detailcomfort', 'pisang-goreng-crispy') }}"
-                class="add-button">+</a>
+                        <p>
+                            Roti tawar tebal dipanggang dengan
+                            olesan margarin hingga berwarna
+                            kecokelatan dan renyah di bagian luar.
+                            Diberi topping meses cokelat, parutan
+                            keju cheddar, serta susu kental manis.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'roti-bakar-coklat-keju') }}" class="add-button">+</a>
 
-            <!-- MIX PLATTER -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/comfort/mixplatter.png') }}"
-                     alt="Mix Platter">
+                <!-- PISANG GORENG -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Mix Platter</h3>
-                    <div class="price">Rp45.000</div>
+                    <img src="{{ asset('gambar/comfort/pisanggoreng.png') }}" alt="Pisang Goreng Crispy">
 
-                    <p>
-                        Sajian aneka camilan dalam satu piring
-                        yang terdiri dari french fries,
-                        chicken nuggets, sosis goreng,
-                        onion rings, dan chicken wings.
-                        Dilengkapi saus sambal, saus tomat,
-                        dan mayonnaise sebagai pelengkap.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Pisang Goreng Crispy</h3>
+                        <div class="price">Rp32.000</div>
 
-                <a href="{{ route('detailcomfort', 'mix-platter') }}"
-                class="add-button">+</a>
+                        <p>
+                            Pisang pilihan dibalut adonan tepung
+                            renyah dan digoreng hingga keemasan
+                            dengan bagian dalam yang lembut.
+                            Disajikan dengan topping keju,
+                            meses cokelat, atau susu kental manis.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcomfort', 'pisang-goreng-crispy') }}" class="add-button">+</a>
 
-        </div>
+                </article>
 
-    </section>
+                <!-- MIX PLATTER -->
+                <article class="menu-card">
 
-    <!-- FOOTER -->
-    <footer>
+                    <img src="{{ asset('gambar/comfort/mixplatter.png') }}" alt="Mix Platter">
 
-        <span>
-            © 2026 Daily Crave. Good Food, Good Mood.
-        </span>
+                    <div class="menu-info">
+                        <h3>Mix Platter</h3>
+                        <div class="price">Rp45.000</div>
 
-        <div class="footer-links">
-            <a href="#">Kebijakan Privasi</a>
-            <a href="#">Syarat &amp; Ketentuan</a>
-        </div>
+                        <p>
+                            Sajian aneka camilan dalam satu piring
+                            yang terdiri dari french fries,
+                            chicken nuggets, sosis goreng,
+                            onion rings, dan chicken wings.
+                            Dilengkapi saus sambal, saus tomat,
+                            dan mayonnaise sebagai pelengkap.
+                        </p>
+                    </div>
 
-    </footer>
+                    <a href="{{ route('detailcomfort', 'mix-platter') }}" class="add-button">+</a>
 
-</main>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <span>
+                © 2026 Daily Crave. Good Food, Good Mood.
+            </span>
+
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat &amp; Ketentuan</a>
+            </div>
+
+        </footer>
+
+    </main>
 
 </body>
+
 </html>

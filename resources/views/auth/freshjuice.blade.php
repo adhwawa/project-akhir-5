@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -409,7 +414,6 @@
             }
 
         }
-
     </style>
 </head>
 
@@ -432,39 +436,37 @@
         </nav>
 
         <!-- HERO -->
-    <section class="hero">
+        <section class="hero">
 
-        <div class="hero-text">
+            <div class="hero-text">
 
-            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-            <p class="description">
-                Jelajahi pilihan minuman, dan temukan rasa
-                yang menyegarkan untuk menemani waktu santai Anda.
-            </p>
+                <p class="description">
+                    Jelajahi pilihan minuman, dan temukan rasa
+                    yang menyegarkan untuk menemani waktu santai Anda.
+                </p>
 
-        </div>
+            </div>
 
-        <img
-            src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
-            class="hero-image"
-            alt="Pilihan minuman Daily Crave">
+            <img src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
+                class="hero-image" alt="Pilihan minuman Daily Crave">
 
-    </section>
+        </section>
 
         <!-- CATEGORY NAVIGATION -->
         <nav class="category-bar">
             <a href="{{ route('coffeeandtea') }}">Coffee & Tea</a>
             <a href="{{ route('freshjuice') }}" class="active">Fresh Juice</a>
-        <a href="{{ route('softdrink') }}">Soft Drink</a>
+            <a href="{{ route('softdrink') }}">Soft Drink</a>
 
             <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
             </span>
         </nav>
 
@@ -487,9 +489,7 @@
 
                 <!-- FRESH ORANGE -->
                 <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/orange.png') }}"
-                        alt="Fresh Orange">
+                    <img src="{{ asset('gambar/fresh juice/orange.png') }}" alt="Fresh Orange">
 
                     <div class="menu-info">
                         <h3>Fresh Orange</h3>
@@ -506,9 +506,7 @@
 
                 <!-- WATERMELON -->
                 <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/watermelon.png') }}"
-                        alt="Watermelon">
+                    <img src="{{ asset('gambar/fresh juice/watermelon.png') }}" alt="Watermelon">
 
                     <div class="menu-info">
                         <h3>Watermelon</h3>
@@ -526,9 +524,7 @@
 
                 <!-- STRAWBERRY -->
                 <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/strawberry.png') }}"
-                        alt="Strawberry">
+                    <img src="{{ asset('gambar/fresh juice/strawberry.png') }}" alt="Strawberry">
 
                     <div class="menu-info">
                         <h3>Strawberry</h3>
@@ -546,9 +542,7 @@
 
                 <!-- APPLE -->
                 <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/apple.png') }}"
-                        alt="Apple">
+                    <img src="{{ asset('gambar/fresh juice/apple.png') }}" alt="Apple">
 
                     <div class="menu-info">
                         <h3>Apple</h3>
@@ -581,4 +575,5 @@
 
     </main>
 </body>
+
 </html>

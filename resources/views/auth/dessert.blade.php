@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -496,9 +498,7 @@
 
 
 
-            <img src="{{ asset('gambar/dessert.png') }}" alt="dessert"
-
-            alt="Hidangan Daily Crave">
+            <img src="{{ asset('gambar/dessert.png') }}" alt="dessert" alt="Hidangan Daily Crave">
 
 
 
