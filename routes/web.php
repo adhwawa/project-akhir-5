@@ -193,6 +193,11 @@ Route::post('/detailmenu/hapus/{slug}', function ($slug) {
 Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
     ->name('ringkasanpelanggan');
 
+
+Route::get('/pembayaran-berhasil', function () {
+    return view('pembayaranberhasil');
+})->name('pembayaran.berhasil');
+
 // ADMIN SUB KATEGORI
 Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
 Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])->name('admin.subkategori.create');
