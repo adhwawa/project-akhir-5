@@ -156,12 +156,11 @@
         }
 
         .qr-image {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        display: block;
-        margin: 15px auto;
-        object-fit: contain;
+            width: 220px;
+            height: 220px;
+            margin: auto;
+            object-fit: contain;
+            display: block;
         }
         .merchant {
             margin-top: 15px;
@@ -730,8 +729,8 @@
                     <span>ASPI / BI</span>
                 </div>
 
-                <img
-                src="{{ asset('qris_pembayaran.png') }}"
+             <img
+                src="{{ asset('gambar/Qris/qris_pembayaran.png') }}"
                 alt="QRIS Daily Crave"
                 class="qr-image"
             >
