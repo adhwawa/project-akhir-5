@@ -258,12 +258,10 @@ Route::post('/keranjang/tambah', function (Request $request) {
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
 
-{(
-    return redirect()->route('detailmenu'){
-
+Route::post('/detailmenu/add', function () {
     return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Menu berhasil ditambahkan!');
-})->name('detailmenu.add');}
+})->name('detailmenu.add');
 
 // PAYMENT
 Route::get('/Qris', [QrisController::class, 'index'])
@@ -311,7 +309,6 @@ Route::post('/detailmenu/hapus/{slug}', function ($slug) {
 // RINGKASAN PELANGGAN
 Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
     ->name('ringkasanpelanggan');
-
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
@@ -537,6 +534,10 @@ Route::get('/detail-freshjuice/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailfreshjuice');
+
+Route::get('/pembayaran-berhasil', function () {
+    return view('pembayaranberhasil');
+})->name('pembayaran.berhasil');
 
 // ADMIN SUB KATEGORI
 Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
