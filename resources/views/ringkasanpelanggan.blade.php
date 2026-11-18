@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ringkasan Pelanggan | Daily Crave</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -540,241 +543,429 @@
                 text-align: center;
             }
         }
-        
     </style>
 </head>
 
 <body>
-@php
-    $cart = session()->get('cart', []);
+    @php
+        $cart = session()->get('cart', []);
 
-    $menuData = [
-        'grill-chicken-steak' => [
-            'nama' => 'Grill Chicken Steak',
-            'harga' => 85000,
-            'gambar' => 'gambar/maincourse/grillchikensteak.png'
-        ],
-        'spaghetti-bolognese-katsu' => [
-            'nama' => 'Spaghetti Bolognese Katsu',
-            'harga' => 58000,
-            'gambar' => 'gambar/maincourse/speagetibolokatsu.png'
-        ],
-        'sop-iga' => [
-            'nama' => 'Sop Iga',
-            'harga' => 74000,
-            'gambar' => 'gambar/maincourse/supiga.png'
-        ],
-        'nasi-goreng-katsu' => [
-            'nama' => 'Nasi Goreng Katsu',
-            'harga' => 64000,
-            'gambar' => 'gambar/maincourse/nasgorkatsu.png'
-        ],
-        'nasi-timbel-ayam-goreng' => [
-            'nama' => 'Nasi Timbel Ayam Goreng',
-            'harga' => 58000,
-            'gambar' => 'gambar/maincourse/nTimbel.png'
-        ],
-    ];
+        $menuData = [
+            //MAINCOURSE
+            'grill-chicken-steak' => [
+                'nama' => 'Grill Chicken Steak',
+                'harga' => 85000,
+                'gambar' => 'gambar/maincourse/grillchikensteak.png',
+            ],
+            'spaghetti-bolognese-katsu' => [
+                'nama' => 'Spaghetti Bolognese Katsu',
+                'harga' => 58000,
+                'gambar' => 'gambar/maincourse/speagetibolokatsu.png',
+            ],
+            'sop-iga' => [
+                'nama' => 'Sop Iga',
+                'harga' => 74000,
+                'gambar' => 'gambar/maincourse/supiga.png',
+            ],
+            'nasi-goreng-katsu' => [
+                'nama' => 'Nasi Goreng Katsu',
+                'harga' => 64000,
+                'gambar' => 'gambar/maincourse/nasgorkatsu.png',
+            ],
+            'nasi-timbel-ayam-goreng' => [
+                'nama' => 'Nasi Timbel Ayam Goreng',
+                'harga' => 58000,
+                'gambar' => 'gambar/maincourse/nTimbel.png',
+            ],
+            //NUSANTARA
+            'nasi-iga-bakar' => [
+                'nama' => 'Nasi Iga Bakar',
+                'harga' => 72000,
+                'gambar' => 'gambar/nusantara/n.igabakar.png',
+            ],
 
-    $subtotal = 0;
-    $totalJumlah = 0;
+            'nasi-campur-taliwang' => [
+                'nama' => 'Nasi Campur Taliwang',
+                'harga' => 66000,
+                'gambar' => 'gambar/nusantara/taliwang.png',
+            ],
 
-    foreach ($cart as $slug => $item) {
-        if (isset($menuData[$slug])) {
-            $subtotal += $menuData[$slug]['harga'] * $item['jumlah'];
-            $totalJumlah += $item['jumlah'];
+            'nasi-goreng-jawa' => [
+                'nama' => 'Nasi Goreng Jawa',
+                'harga' => 64000,
+                'gambar' => 'gambar/nusantara/nasgorjawa.jpeg',
+            ],
+
+            'mie-goreng-jawa' => [
+                'nama' => 'Mie Goreng Jawa',
+                'harga' => 60000,
+                'gambar' => 'gambar/nusantara/miegoreng.png',
+            ],
+
+            'mie-nyemek-kampung-jawa' => [
+                'nama' => 'Mie Nyemek Kampung Jawa',
+                'harga' => 60000,
+                'gambar' => 'gambar/nusantara/mienyemek.png',
+            ],
+            //COMFORT
+            'mendoan' => [
+                'nama' => 'Mendoan',
+                'harga' => 30000,
+                'gambar' => 'gambar/comfort/mendoan.png',
+            ],
+
+            'tahu-crispy' => [
+                'nama' => 'Tahu Crispy',
+                'harga' => 30000,
+                'gambar' => 'gambar/comfort/tahu.png',
+            ],
+
+            'bakwan-jagung' => [
+                'nama' => 'Bakwan Jagung',
+                'harga' => 30000,
+                'gambar' => 'gambar/comfort/bakwajagung.png',
+            ],
+
+            'singkong-crispy' => [
+                'nama' => 'Singkong Crispy',
+                'harga' => 30000,
+                'gambar' => 'gambar/comfort/singkong.png',
+            ],
+
+            'cireng-crispy' => [
+                'nama' => 'Cireng Crispy',
+                'harga' => 32000,
+                'gambar' => 'gambar/comfort/cireng.png',
+            ],
+
+            'french-fries' => [
+                'nama' => 'French Fries',
+                'harga' => 25000,
+                'gambar' => 'gambar/comfort/frenchfries.png',
+            ],
+
+            'roti-bakar-coklat-keju' => [
+                'nama' => 'Roti Bakar Coklat Keju',
+                'harga' => 35000,
+                'gambar' => 'gambar/comfort/rotibakar.png',
+            ],
+
+            'pisang-goreng-crispy' => [
+                'nama' => 'Pisang Goreng Crispy',
+                'harga' => 32000,
+                'gambar' => 'gambar/comfort/pisanggoreng.png',
+            ],
+
+            'mix-platter' => [
+                'nama' => 'Mix Platter',
+                'harga' => 45000,
+                'gambar' => 'gambar/comfort/mixplatter.png',
+            ],
+            //EXTRA
+            'nasi-putih' => [
+                'nama' => 'Nasi Putih',
+                'harga' => 12000,
+                'gambar' => 'gambar/extra/nasiputih.png',
+            ],
+
+            'telur' => [
+                'nama' => 'Telur',
+                'harga' => 11000,
+                'gambar' => 'gambar/extra/telur.png',
+            ],
+            //COFFE AND TEA
+            'jasmine-tea' => [
+                'nama' => 'Jasmine Tea',
+                'harga' => 18000,
+                'gambar' => 'gambar/coffee tea/estea.png',
+            ],
+
+            'teh-jeruk-nipis' => [
+                'nama' => 'Teh Jeruk Nipis',
+                'harga' => 20000,
+                'gambar' => 'gambar/coffee tea/tehjeruknipis.png',
+            ],
+
+            'lychee-tea' => [
+                'nama' => 'Lychee Tea',
+                'harga' => 20000,
+                'gambar' => 'gambar/coffee tea/lecitea.png',
+            ],
+
+            'americano' => [
+                'nama' => 'Americano',
+                'harga' => 25000,
+                'gambar' => 'gambar/coffee tea/americano.png',
+            ],
+
+            'coffee-latte' => [
+                'nama' => 'Coffee Latte',
+                'harga' => 32000,
+                'gambar' => 'gambar/coffee tea/latte.png',
+            ],
+
+            'cappuccino' => [
+                'nama' => 'Cappuccino',
+                'harga' => 32000,
+                'gambar' => 'gambar/coffee tea/cappucino.png',
+            ],
+
+            'mocaccino' => [
+                'nama' => 'Mocaccino',
+                'harga' => 32000,
+                'gambar' => 'gambar/coffee tea/mocacinno.png',
+            ],
+            //FRESH JUICE
+            'fresh-orange' => [
+                'nama' => 'Fresh Orange',
+                'harga' => 28000,
+                'gambar' => 'gambar/fresh juice/orange.png',
+            ],
+
+            'watermelon' => [
+                'nama' => 'Watermelon',
+                'harga' => 28000,
+                'gambar' => 'gambar/fresh juice/watermelon.png',
+            ],
+
+            'strawberry' => [
+                'nama' => 'Strawberry',
+                'harga' => 28000,
+                'gambar' => 'gambar/fresh juice/strawberry.png',
+            ],
+
+            'apple' => [
+                'nama' => 'Apple',
+                'harga' => 28000,
+                'gambar' => 'gambar/fresh juice/apple.png',
+            ],
+            //SOFT DRINK
+            'mineral-water' => [
+                'nama' => 'Mineral Water',
+                'harga' => 8000,
+                'gambar' => 'gambar/soft drink/mineralwater.png',
+            ],
+
+            'coke' => [
+                'nama' => 'Coke',
+                'harga' => 25000,
+                'gambar' => 'gambar/soft drink/coke.png',
+            ],
+
+            'sprite' => [
+                'nama' => 'Sprite',
+                'harga' => 25000,
+                'gambar' => 'gambar/soft drink/sprite.png',
+            ],
+
+            'fanta' => [
+                'nama' => 'Fanta',
+                'harga' => 25000,
+                'gambar' => 'gambar/soft drink/fanta.png',
+            ],
+            //DESERT
+            'buah-potong' => [
+                'nama' => 'Buah Potong',
+                'harga' => 48000,
+                'gambar' => 'gambar/dessert/buahpotong.png',
+            ],
+
+            'ice-buah' => [
+                'nama' => 'Ice Buah',
+                'harga' => 38000,
+                'gambar' => 'gambar/dessert/icebuah.png',
+            ],
+
+            'slice-cake' => [
+                'nama' => 'Slice Cake',
+                'harga' => 38000,
+                'gambar' => 'gambar/dessert/slicecake.png',
+            ],
+        ];
+
+        $subtotal = 0;
+        $totalJumlah = 0;
+
+        foreach ($cart as $slug => $item) {
+            if (isset($menuData[$slug])) {
+                $subtotal += $menuData[$slug]['harga'] * $item['jumlah'];
+                $totalJumlah += $item['jumlah'];
+            }
         }
-    }
 
-    $namaPelanggan = old('nama_pelanggan', session('nama_pelanggan', ''));
-    $nomorMeja = old('nomor_meja', session('nomor_meja', '03'));
-    $kodePesanan = session('kode_pesanan', 'DC-8842');
-@endphp
+        $namaPelanggan = old('nama_pelanggan', session('nama_pelanggan', ''));
+        $nomorMeja = old('nomor_meja', session('nomor_meja', '03'));
+        $kodePesanan = session('kode_pesanan', 'DC-8842');
+    @endphp
 
-<div class="container">
+    <div class="container">
 
-    <!-- NAVBAR -->
-    <header>
-        <div class="logo">
-            ☼ daily crave
-            <small>DAPUR & RUANG TEMU</small>
-        </div>
-    </header>
-
-    <!-- NAVIGASI -->
-    <div class="navigation">
-        <a href="{{ route('maincourse') }}">← Kembali ke menu</a>
-        <span>Menu/Pesanan/Ringkasan</span>
-    </div>
-
-    <!-- JUDUL -->
-    <div class="heading">
-        <p>PESANAN ANDA</p>
-        <h1>Satu langkah menuju rasa.</h1>
-    </div>
-
-    <!-- NOTIFIKASI -->
-    <div class="notification">
-        <div class="notification-icon">✓</div>
-        <div class="notifica tion-text">
-            <strong>Pesanan Siap Diproses</strong>
-            <small>Silakan verifikasi data diri dan meja Anda sebelum konfirmasi akhir.</small>
-        </div>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="content">
-
-        <!-- DETAIL PELANGGAN -->
-        <div class="card">
-            <div class="section-label">DETAIL PEMESAN</div>
-
-            <div class="title-row">
-                <h2 class="card-title">Informasi &amp; Meja</h2>
-                <span class="dine-badge">♜ &nbsp; Dine In</span>
+        <!-- NAVBAR -->
+        <header>
+            <div class="logo">
+                ☼ daily crave
+                <small>DAPUR & RUANG TEMU</small>
             </div>
+        </header>
 
-            <form action="#" method="POST" id="confirmationForm">
-                @csrf
+        <!-- NAVIGASI -->
+        <div class="navigation">
+            <a href="{{ route('detailmenu') }}">← Kembali ke pesanan</a>
+            <span>Menu/Pesanan/Ringkasan</span>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="nama_pelanggan">
-                        <span>♙ &nbsp; NAMA PELANGGAN</span>
-                        <small>Wajib diisi</small>
-                    </label>
-                    <input
-                        type="text"
-                        name="nama_pelanggan"
-                        id="nama_pelanggan"
-                        class="form-control"
-                        value="{{ $namaPelanggan }}"
-                        placeholder="Masukkan nama pelanggan"
-                        required
-                    >
+        <!-- JUDUL -->
+        <div class="heading">
+            <p>PESANAN ANDA</p>
+            <h1>Satu langkah menuju rasa.</h1>
+        </div>
+
+        <!-- NOTIFIKASI -->
+        <div class="notification">
+            <div class="notification-icon">✓</div>
+            <div class="notifica tion-text">
+                <strong>Pesanan Siap Diproses</strong>
+                <small>Silakan verifikasi data diri dan meja Anda sebelum konfirmasi akhir.</small>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- DETAIL PELANGGAN -->
+            <div class="card">
+                <div class="section-label">DETAIL PEMESAN</div>
+
+                <div class="title-row">
+                    <h2 class="card-title">Informasi &amp; Meja</h2>
+                    <span class="dine-badge">♜ &nbsp; Dine In</span>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="nomor_meja">
-                        <span>♧ &nbsp; NOMOR MEJA</span>
-                    </label>
-                    <input
-                        type="text"
-                        name="nomor_meja"
-                        id="nomor_meja"
-                        class="form-control table-input"
-                        value="{{ $nomorMeja }}"
-                        placeholder="Contoh: 03"
-                        required
-                    >
-                    <p class="helper-text">ⓘ Tertera pada barcode kayu di sudut meja Anda.</p>
-                </div>
+                <form action="#" method="POST" id="confirmationForm">
+                    @csrf
 
-                <div class="form-group">
-                    <div class="payment-label-row">
-                        <label class="form-label" style="margin-bottom:0;">
-                            <span>▣ &nbsp; METODE PEMBAYARAN</span>
+                    <div class="form-group">
+                        <label class="form-label" for="nama_pelanggan">
+                            <span>♙ &nbsp; NAMA PELANGGAN</span>
+                            <small>Wajib diisi</small>
                         </label>
-                        <span class="verified">◉ Terverifikasi Otomatis</span>
+                        <input type="text" name="nama_pelanggan" id="nama_pelanggan" class="form-control"
+                            value="{{ $namaPelanggan }}" placeholder="Masukkan nama pelanggan" required>
                     </div>
 
-                    <div class="payment-method">
-                        <div class="qris-icon">▦</div>
-                        <div class="method-info">
-                            <strong>
-                                QRIS Standar Nasional
-                                <span class="active-badge">AKTIF</span>
-                            </strong>
-                            <small>GoPay, OVO, ShopeePay, BCA, Dana &amp; Bank Lainnya</small>
-                        </div>
-                        <div class="check-icon">✓</div>
+                    <div class="form-group">
+                        <label class="form-label" for="nomor_meja">
+                            <span>♧ &nbsp; NOMOR MEJA</span>
+                        </label>
+                        <input type="text" name="nomor_meja" id="nomor_meja" class="form-control table-input"
+                            value="{{ $nomorMeja }}" placeholder="Contoh: 03" required>
+                        <p class="helper-text">ⓘ Tertera pada barcode kayu di sudut meja Anda.</p>
                     </div>
-                    <p class="helper-text">ⓘ Kode QRIS dinamis akan langsung ditampilkan sesaat setelah pesanan dilanjutkan.</p>
-                    <input type="hidden" name="metode_pembayaran" value="QRIS">
+
+                    <div class="form-group">
+                        <div class="payment-label-row">
+                            <label class="form-label" style="margin-bottom:0;">
+                                <span>▣ &nbsp; METODE PEMBAYARAN</span>
+                            </label>
+                            <span class="verified">◉ Terverifikasi Otomatis</span>
+                        </div>
+
+                        <div class="payment-method">
+                            <div class="qris-icon">▦</div>
+                            <div class="method-info">
+                                <strong>
+                                    QRIS Standar Nasional
+                                    <span class="active-badge">AKTIF</span>
+                                </strong>
+                                <small>GoPay, OVO, ShopeePay, BCA, Dana &amp; Bank Lainnya</small>
+                            </div>
+                            <div class="check-icon">✓</div>
+                        </div>
+                        <p class="helper-text">ⓘ Kode QRIS dinamis akan langsung ditampilkan sesaat setelah pesanan
+                            dilanjutkan.</p>
+                        <input type="hidden" name="metode_pembayaran" value="QRIuS">
+                    </div>
+                </form>
+            </div>
+
+            <!-- RINGKASAN PEMBAYARAN -->
+            <div class="card payment-card">
+                <div class="payment-heading">
+                    <h2>Ringkasan pembayaran</h2>
+                    <span class="menu-count">{{ $totalJumlah }} Menu</span>
                 </div>
-            </form>
+
+                @forelse($cart as $slug => $item)
+                    @if (isset($menuData[$slug]))
+                        @php
+                            $menu = $menuData[$slug];
+                            $jumlah = $item['jumlah'] ?? 1;
+                            $catatan = $item['catatan'] ?? '';
+                        @endphp
+
+                        <div class="order-item">
+                            <div class="item-icon">♜</div>
+                            <div class="item-info">
+                                <strong>{{ $menu['nama'] }}</strong>
+                                <small>{{ $catatan ? $catatan : 'TIDAK ADA CATATAN' }}</small>
+                                @if ($jumlah > 1)
+                                    <small>{{ $jumlah }} porsi</small>
+                                @endif
+                            </div>
+                            <div class="item-price">
+                                Rp{{ number_format($menu['harga'] * $jumlah, 0, ',', '.') }}
+                            </div>
+                        </div>
+                    @endif
+                @empty
+                    <div style="padding:25px 0; color:#96897e; font-size:11px;">
+                        Keranjang Anda masih kosong.
+                    </div>
+                @endforelse
+
+                <div class="payment-row">
+                    <span>Subtotal menu</span>
+                    <strong>Rp{{ number_format($subtotal, 0, ',', '.') }}</strong>
+                </div>
+
+                <div class="payment-row">
+                    <span>Pajak Resto (PB1 10%)</span>
+                    <strong>Termasuk</strong>
+                </div>
+
+                <div class="payment-total">
+                    <div>
+                        <span>TOTAL TAGIHAN</span>
+                        <p class="total-note">Sudah termasuk pajak &amp; servis</p>
+                    </div>
+                    <strong>Rp{{ number_format($subtotal, 0, ',', '.') }}</strong>
+                </div>
+
+                <button type="submit" form="confirmationForm" class="checkout"
+                    {{ count($cart) == 0 ? 'disabled' : '' }}>
+                    Lanjutkan Pembayaran &nbsp; →
+                </button>
+
+                <p class="payment-note">
+                    ♧ &nbsp; Pembayaran aman &amp; terverifikasi langsung di meja
+                </p>
+            </div>
+
         </div>
 
-        <!-- RINGKASAN PEMBAYARAN -->
-        <div class="card payment-card">
-            <div class="payment-heading">
-                <h2>Ringkasan pembayaran</h2>
-                <span class="menu-count">{{ $totalJumlah }} Menu</span>
+        <!-- FOOTER -->
+        <footer>
+            <div class="logo">
+                ☼ daily crave
+                <small>DAPUR & RUANG TEMU</small>
             </div>
 
-            @forelse($cart as $slug => $item)
-                @if(isset($menuData[$slug]))
-                    @php
-                        $menu = $menuData[$slug];
-                        $jumlah = $item['jumlah'] ?? 1;
-                        $catatan = $item['catatan'] ?? '';
-                    @endphp
+            <p class="tagline">"Rasa yang dekat, cerita yang hangat."</p>
 
-                    <div class="order-item">
-                        <div class="item-icon">♜</div>
-                        <div class="item-info">
-                            <strong>{{ $menu['nama'] }}</strong>
-                            <small>{{ $catatan ? $catatan : 'TIDAK ADA CATATAN' }}</small>
-                            @if($jumlah > 1)
-                                <small>{{ $jumlah }} porsi</small>
-                            @endif
-                        </div>
-                        <div class="item-price">
-                            Rp{{ number_format($menu['harga'] * $jumlah, 0, ',', '.') }}
-                        </div>
-                    </div>
-                @endif
-            @empty
-                <div style="padding:25px 0; color:#96897e; font-size:11px;">
-                    Keranjang Anda masih kosong.
-                </div>
-            @endforelse
-
-            <div class="payment-row">
-                <span>Subtotal menu</span>
-                <strong>Rp{{ number_format($subtotal, 0, ',', '.') }}</strong>
-            </div>
-
-            <div class="payment-row">
-                <span>Pajak Resto (PB1 10%)</span>
-                <strong>Termasuk</strong>
-            </div>
-
-            <div class="payment-total">
-                <div>
-                    <span>TOTAL TAGIHAN</span>
-                    <p class="total-note">Sudah termasuk pajak &amp; servis</p>
-                </div>
-                <strong>Rp{{ number_format($subtotal, 0, ',', '.') }}</strong>
-            </div>
-
-            <button
-                type="submit"
-                form="confirmationForm"
-                class="checkout"
-                {{ count($cart) == 0 ? 'disabled' : '' }}
-            >
-                Lanjutkan Pesanan &nbsp; →
-            </button>
-
-            <p class="payment-note">
-                ♧ &nbsp; Pembayaran aman &amp; terverifikasi langsung di meja
-            </p>
-        </div>
+            <small>© 2026 Daily Crave</small>
+        </footer>
 
     </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="logo">
-            ☼ daily crave
-            <small>DAPUR & RUANG TEMU</small>
-        </div>
-
-        <p class="tagline">"Rasa yang dekat, cerita yang hangat."</p>
-
-        <small>© 2026 Daily Crave</small>
-    </footer>
-
-</div>
 </body>
+
 </html>
