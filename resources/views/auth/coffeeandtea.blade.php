@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -73,6 +76,7 @@
             font-size: 12px;
             color: #92745e;
             transition: .3s;
+            white-space: nowrap;
         }
 
         .nav-menu a:hover {
@@ -409,266 +413,257 @@
             }
 
         }
-
     </style>
 </head>
 
 <body>
 
-<main class="container">
+    <main class="container">
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+        <!-- NAVBAR -->
+        <nav class="navbar">
 
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
-        </div>
-
-        <div class="nav-menu">
-    <a href="{{ route('dashboard') }}">Menu Kami</a>
-    <a href="{{ route('maincourse') }}">Makanan</a>
-    <a href="{{ route('coffeeandtea') }}" class="active">Minuman</a>
-    <a href='{{ route('dessert') }}'>Dessert</a>
-</div>
-
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
-
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
-
-            <p class="description">
-                Jelajahi pilihan minuman, dan temukan rasa
-                yang menyegarkan untuk menemani waktu santai Anda.
-            </p>
-
-        </div>
-
-        <img
-            src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
-            class="hero-image"
-            alt="Pilihan minuman Daily Crave">
-
-    </section>
-
-    <!-- CATEGORY -->
-    <nav class="category-bar">
-
-        <a href="{{ route('coffeeandtea') }}" class="active">Coffee & Tea</a>
-        <a href="{{ route('freshjuice') }}">Fresh Juice</a>
-        <a href="{{ route('softdrink') }}">Soft Drink</a>
-
-        <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-        </span>
-
-    </nav>
-
-    <!-- COFFEE & TEA -->
-    <section class="menu-section" id="coffee-tea">
-
-        <div class="section-heading">
-
-            <div>
-                <p class="section-subtitle">
-                    MINUMAN &nbsp;—&nbsp; 07 PILIHAN
-                </p>
-
-                <h2 class="section-title">Coffee & Tea</h2>
+            <div class="brand">
+                ☼ daily crave
+                <small>FOOD & DRINK</small>
             </div>
 
-            <p class="section-hint">
-                Temukan pilihan untuk waktu bersantai Anda.
-            </p>
+            <div class="nav-menu">
+                <a href="{{ route('dashboard') }}">Menu Kami</a>
+                <a href="{{ route('maincourse') }}">Makanan</a>
+                <a href="{{ route('coffeeandtea') }}" class="active">Minuman</a>
+                <a href='{{ route('dessert') }}'>Dessert</a>
+            </div>
 
-        </div>
+        </nav>
 
-        <div class="menu-list">
+        <!-- HERO -->
+        <section class="hero">
 
-            <!-- 1 JASMINE TEA -->
-            <article class="menu-card">
+            <div class="hero-text">
 
-                <img src="{{ asset('gambar/coffee tea/estea.png') }}"
-                     alt="Jasmine Tea">
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-                <div class="menu-info">
-                    <h3>Jasmine Tea [Ice/Hot]</h3>
-                    <div class="price">Rp18.000</div>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-                    <p>
-                        Teh melati yang diseduh dari daun teh pilihan
-                        dengan aroma bunga melati. Disajikan dingin
-                        dengan es batu atau hangat tanpa es,
-                        cocok dinikmati sebagai minuman pendamping makanan.
+                <p class="description">
+                    Jelajahi pilihan minuman, dan temukan rasa
+                    yang menyegarkan untuk menemani waktu santai Anda.
+                </p>
+
+            </div>
+
+            <img src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
+                class="hero-image" alt="Pilihan minuman Daily Crave">
+
+        </section>
+
+        <!-- CATEGORY -->
+        <nav class="category-bar">
+
+            <a href="{{ route('coffeeandtea') }}" class="active">Coffee & Tea</a>
+            <a href="{{ route('freshjuice') }}">Fresh Juice</a>
+            <a href="{{ route('softdrink') }}">Soft Drink</a>
+
+            <span class="category-note">
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+            </span>
+
+        </nav>
+
+        <!-- COFFEE & TEA -->
+        <section class="menu-section" id="coffee-tea">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-subtitle">
+                        MINUMAN &nbsp;—&nbsp; 07 PILIHAN
                     </p>
+
+                    <h2 class="section-title">Coffee & Tea</h2>
                 </div>
 
-                <a href="{{ route('detailcoffeeandtea', 'jasmine-tea') }}" class="add-button">+</a>
+                <p class="section-hint">
+                    Temukan pilihan untuk waktu bersantai Anda.
+                </p>
 
-            </article>
+            </div>
 
-            <!-- 2 TEH JERUK NIPIS -->
-            <article class="menu-card">
+            <div class="menu-list">
 
-                <img src="{{ asset('gambar/coffee tea/tehjeruknipis.png') }}"
-                     alt="Teh Jeruk Nipis">
+                <!-- 1 JASMINE TEA -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Teh Jeruk Nipis [Ice/Hot]</h3>
-                    <div class="price">Rp20.000</div>
+                    <img src="{{ asset('gambar/coffee tea/estea.png') }}" alt="Jasmine Tea">
 
-                    <p>
-                        Teh yang dipadukan dengan perasan jeruk nipis
-                        segar dan tambahan irisan jeruk nipis.
-                        Disajikan dingin dengan es batu atau hangat
-                        untuk memberikan sensasi segar.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Jasmine Tea [Ice/Hot]</h3>
+                        <div class="price">Rp18.000</div>
 
-                <a href="{{ route('detailcoffeeandtea', 'teh-jeruk-nipis') }}" class="add-button">+</a>
+                        <p>
+                            Teh melati yang diseduh dari daun teh pilihan
+                            dengan aroma bunga melati. Disajikan dingin
+                            dengan es batu atau hangat tanpa es,
+                            cocok dinikmati sebagai minuman pendamping makanan.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcoffeeandtea', 'jasmine-tea') }}" class="add-button">+</a>
 
-            <!-- 3 LYCHEE TEA -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/coffee tea/lecitea.png') }}"
-                     alt="Lychee Tea">
+                <!-- 2 TEH JERUK NIPIS -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Lychee Tea [Ice/Hot]</h3>
-                    <div class="price">Rp20.000</div>
+                    <img src="{{ asset('gambar/coffee tea/tehjeruknipis.png') }}" alt="Teh Jeruk Nipis">
 
-                    <p>
-                        Teh yang dicampur dengan sirup leci dan
-                        potongan buah leci, dilengkapi es batu
-                        serta irisan buah leci sebagai topping.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Teh Jeruk Nipis [Ice/Hot]</h3>
+                        <div class="price">Rp20.000</div>
 
-                <a href="{{ route('detailcoffeeandtea', 'lychee-tea') }}" class="add-button">+</a>
+                        <p>
+                            Teh yang dipadukan dengan perasan jeruk nipis
+                            segar dan tambahan irisan jeruk nipis.
+                            Disajikan dingin dengan es batu atau hangat
+                            untuk memberikan sensasi segar.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcoffeeandtea', 'teh-jeruk-nipis') }}" class="add-button">+</a>
 
-            <!-- 4 AMERICANO -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/coffee tea/americano.png') }}"
-                     alt="Americano">
+                <!-- 3 LYCHEE TEA -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Americano [Ice/Hot]</h3>
-                    <div class="price">Rp25.000</div>
+                    <img src="{{ asset('gambar/coffee tea/lecitea.png') }}" alt="Lychee Tea">
 
-                    <p>
-                        Minuman kopi yang diseduh dari satu atau
-                        dua shot espresso yang dicampur dengan air
-                        panas. Untuk versi dingin, disajikan dengan
-                        es batu dan air tanpa tambahan susu.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Lychee Tea [Ice/Hot]</h3>
+                        <div class="price">Rp20.000</div>
 
-                <a href="{{ route('detailcoffeeandtea', 'americano') }}" class="add-button">+</a>
+                        <p>
+                            Teh yang dicampur dengan sirup leci dan
+                            potongan buah leci, dilengkapi es batu
+                            serta irisan buah leci sebagai topping.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcoffeeandtea', 'lychee-tea') }}" class="add-button">+</a>
 
-            <!-- 5 COFFEE LATTE -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/coffee tea/latte.png') }}"
-                     alt="Coffee Latte">
+                <!-- 4 AMERICANO -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Coffee Latte [Ice/Hot]</h3>
-                    <div class="price">Rp32.000</div>
+                    <img src="{{ asset('gambar/coffee tea/americano.png') }}" alt="Americano">
 
-                    <p>
-                        Perpaduan espresso dengan susu steamed
-                        yang menghasilkan tekstur lembut dan creamy.
-                        Pada versi dingin, menggunakan susu dingin
-                        dan es batu dengan lapisan foam susu
-                        sebagai pelengkap.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Americano [Ice/Hot]</h3>
+                        <div class="price">Rp25.000</div>
 
-                <a href="{{ route('detailcoffeeandtea', 'coffee-latte') }}" class="add-button">+</a>
+                        <p>
+                            Minuman kopi yang diseduh dari satu atau
+                            dua shot espresso yang dicampur dengan air
+                            panas. Untuk versi dingin, disajikan dengan
+                            es batu dan air tanpa tambahan susu.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcoffeeandtea', 'americano') }}" class="add-button">+</a>
 
-            <!-- 6 CAPPUCCINO -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/coffee tea/cappucino.png') }}"
-                     alt="Cappuccino">
+                <!-- 5 COFFEE LATTE -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Cappuccino [Ice/Hot]</h3>
-                    <div class="price">Rp32.000</div>
+                    <img src="{{ asset('gambar/coffee tea/latte.png') }}" alt="Coffee Latte">
 
-                    <p>
-                        Minuman kopi berbahan dasar espresso
-                        yang dipadukan dengan steamed milk
-                        dan lapisan foam susu tebal di bagian atas.
-                        Dapat dinikmati dengan taburan bubuk cokelat
-                        sebagai topping.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Coffee Latte [Ice/Hot]</h3>
+                        <div class="price">Rp32.000</div>
 
-                <a href="{{ route('detailcoffeeandtea', 'cappuccino') }}" class="add-button">+</a>
+                        <p>
+                            Perpaduan espresso dengan susu steamed
+                            yang menghasilkan tekstur lembut dan creamy.
+                            Pada versi dingin, menggunakan susu dingin
+                            dan es batu dengan lapisan foam susu
+                            sebagai pelengkap.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcoffeeandtea', 'coffee-latte') }}" class="add-button">+</a>
 
-            <!-- 7 MOCCACCINO -->
-            <article class="menu-card">
+                </article>
 
-                <img src="{{ asset('gambar/coffee tea/mocacinno.png') }}"
-                     alt="Mocaccino">
+                <!-- 6 CAPPUCCINO -->
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Mocaccino [Ice/Hot]</h3>
-                    <div class="price">Rp32.000</div>
+                    <img src="{{ asset('gambar/coffee tea/cappucino.png') }}" alt="Cappuccino">
 
-                    <p>
-                        Perpaduan espresso, susu, dan cokelat
-                        yang menghasilkan rasa kopi dan cokelat.
-                        Disajikan dengan kombinasi foam susu
-                        serta taburan bubuk cokelat
-                        atau saus cokelat sebagai topping.
-                    </p>
-                </div>
+                    <div class="menu-info">
+                        <h3>Cappuccino [Ice/Hot]</h3>
+                        <div class="price">Rp32.000</div>
 
-                <a href="{{ route('detailcoffeeandtea', 'mocaccino') }}" class="add-button">+</a>
+                        <p>
+                            Minuman kopi berbahan dasar espresso
+                            yang dipadukan dengan steamed milk
+                            dan lapisan foam susu tebal di bagian atas.
+                            Dapat dinikmati dengan taburan bubuk cokelat
+                            sebagai topping.
+                        </p>
+                    </div>
 
-            </article>
+                    <a href="{{ route('detailcoffeeandtea', 'cappuccino') }}" class="add-button">+</a>
 
-        </div>
+                </article>
 
-    </section>
+                <!-- 7 MOCCACCINO -->
+                <article class="menu-card">
 
-    <!-- FOOTER -->
-    <footer>
+                    <img src="{{ asset('gambar/coffee tea/mocacinno.png') }}" alt="Mocaccino">
 
-        <span>
-            © 2026 Daily Crave. Good Food, Good Mood.
-        </span>
+                    <div class="menu-info">
+                        <h3>Mocaccino [Ice/Hot]</h3>
+                        <div class="price">Rp32.000</div>
 
-        <div class="footer-links">
-            <a href="#">Kebijakan Privasi</a>
-            <a href="#">Syarat & Ketentuan</a>
-        </div>
+                        <p>
+                            Perpaduan espresso, susu, dan cokelat
+                            yang menghasilkan rasa kopi dan cokelat.
+                            Disajikan dengan kombinasi foam susu
+                            serta taburan bubuk cokelat
+                            atau saus cokelat sebagai topping.
+                        </p>
+                    </div>
 
-    </footer>
+                    <a href="{{ route('detailcoffeeandtea', 'mocaccino') }}" class="add-button">+</a>
 
-</main>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <span>
+                © 2026 Daily Crave. Good Food, Good Mood.
+            </span>
+
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+
+        </footer>
+
+    </main>
 
 </body>
+
 </html>

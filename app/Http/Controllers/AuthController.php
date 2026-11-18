@@ -18,32 +18,63 @@ class AuthController extends Controller
     // Proses login
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+            // Validasi input
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'role' => 'required|in:user,admin',
         ]);
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
+        $email = strtolower(trim($request->email));
+        $role = $request->role;
 
-            // Jika email admin yang login, arahkan ke Dashboard Admin
-            if (Auth::user()->email === 'admin@dailycrave.id') {
-                return redirect()->route('admin.dashboard')
-                    ->with('status', 'Selamat datang kembali, Admin!');
-            }
-
-            // Jika pelanggan biasa, arahkan ke Dashboard Pelanggan
-            return redirect()->route('dashboard')
-                ->with('status', 'Berhasil login!');
+        // Pemeriksaan email admin
+        if (
+            $role == 'admin' &&
+            !str_ends_with($email, '@dailycrave.com')
+        ) {
+            return back()->withErrors([
+                'email' => 'Admin harus menggunakan email @dailycrave.com.'
+            ])->withInput($request->only('email', 'role'));
         }
 
-        return back()
-            ->withErrors([
-                'email' => 'Email atau password salah.',
-            ])
-            ->onlyInput('email');
-    }
+        // Pelanggan tidak boleh menggunakan email admin
+        if (
+            $role == 'user' &&
+            str_ends_with($email, '@dailycrave.com')
+        ) {
+            return back()->withErrors([
+                'email' => 'Silakan login melalui pilihan Admin.'
+            ])->withInput($request->only('email', 'role'));
+        }
 
+        // Data login
+        $credentials = [
+            'email' => $email,
+            'password' => $request->password,
+            'role' => $role,
+        ];
+
+        // Proses login
+        if (Auth::attempt($credentials)) {
+
+            $request->session()->regenerate();
+
+            // Jika admin
+            if (Auth::user()->role == 'admin') {
+
+                return redirect()->route('admin.dashboard');
+            }
+
+            // Jika pelanggan
+            return redirect()->route('dashboard');
+        }
+
+        // Jika login gagal
+        return back()->withErrors([
+            'email' => 'Email atau password salah.'
+        ])->withInput($request->only('email', 'role'));
+    }
     // Menampilkan halaman register
     public function showRegister()
     {

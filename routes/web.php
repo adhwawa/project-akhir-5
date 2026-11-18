@@ -16,7 +16,6 @@ use App\Http\Controllers\DessertController;
 use App\Http\Controllers\QrisController;
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
-use App\Http\Controllers\RingkasanPelangganController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -124,7 +123,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('menu', MenuController::class)->except(['show']);
 });
 
-<<<<<<< HEAD
 // DATA MAINCOURSE
 Route::get('/detail-maincourse/{slug}', function ($slug) {
     $menus = [
@@ -220,123 +218,101 @@ Route::get('/detail-nusantara/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailnusantara');
-=======
->>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574
+
 
 // HALAMAN DETAILMENU (KERANJANG)
 Route::get('/detailmenu', function () {
     return view('detailmenu');
 })->name('detailmenu');
 
-<<<<<<< HEAD
+
 // HALAMAN KERANJANG
-=======
 // TAMBAH MENU
->>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574
 Route::post('/keranjang/tambah', function (Request $request) {
-    $request->validate([
+    $data = $request->validate([
         'menu' => 'required|string',
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
     ]);
 
     $cart = session()->get('cart', []);
-    $slug = $request->menu;
+    $slug = $data['menu'];
+    $jumlah = (int) $data['jumlah'];
 
     if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += (int) $request->jumlah;
-
+        $cart[$slug]['jumlah'] = (int) ($cart[$slug]['jumlah'] ?? 0) + $jumlah;
         if ($request->filled('catatan')) {
-            $cart[$slug]['catatan'] = $request->catatan;
+            $cart[$slug]['catatan'] = $data['catatan'];
         }
     } else {
         $cart[$slug] = [
-            'jumlah' => (int) $request->jumlah,
-            'catatan' => $request->input('catatan', ''),
+            'jumlah' => $jumlah,
+            'catatan' => $data['catatan'] ?? '',
         ];
     }
 
     session()->put('cart', $cart);
 
-<<<<<<< HEAD
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
-=======
-    return redirect()->route('detailmenu')
+
+{(
+    return redirect()->route('detailmenu'){
+
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Menu berhasil ditambahkan!');
-})->name('detailmenu.add');
->>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574
+})->name('detailmenu.add');}
 
 // PAYMENT
 Route::get('/Qris', [QrisController::class, 'index'])
     ->name('Qris');
 
 Route::post('/detailmenu/kurang', function (Request $request) {
-
-    $request->validate([
-        'menu' => 'required|string',
-    ]);
-
+    $data = $request->validate(['menu' => 'required|string']);
     $cart = session()->get('cart', []);
-    $slug = $request->menu;
+    $slug = $data['menu'];
 
     if (isset($cart[$slug])) {
-
-        $cart[$slug]['jumlah']--;
-
+        $cart[$slug]['jumlah'] = (int) $cart[$slug]['jumlah'] - 1;
         if ($cart[$slug]['jumlah'] <= 0) {
             unset($cart[$slug]);
         }
-
         session()->put('cart', $cart);
     }
 
-    return redirect()->route('detailmenu')
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Jumlah pesanan berhasil diperbarui!');
-
 })->name('detailmenu.kurang');
 
-//CATATAN MENU
 Route::post('/detailmenu/catatan', function (Request $request) {
-
-    $request->validate([
+    $data = $request->validate([
         'menu' => 'required|string',
         'catatan' => 'nullable|string|max:500',
     ]);
-
     $cart = session()->get('cart', []);
-    $key = $request->menu;
-
-    if (isset($cart[$key])) {
-        $cart[$key]['catatan'] = $request->input('catatan', '');
+    $slug = $data['menu'];
+    if (isset($cart[$slug])) {
+        $cart[$slug]['catatan'] = $data['catatan'] ?? '';
         session()->put('cart', $cart);
     }
-
-    return redirect()->route('detailmenu')
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Catatan pesanan berhasil disimpan!');
-
 })->name('detailmenu.catatan');
 
-// HAPUS PESANAN
 Route::post('/detailmenu/hapus/{slug}', function ($slug) {
     $cart = session()->get('cart', []);
-
-    if (isset($cart[$slug])) {
-        unset($cart[$slug]);
-        session()->put('cart', $cart);
-    }
-
-    return redirect()->route('detailmenu')
+    unset($cart[$slug]);
+    session()->put('cart', $cart);
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
         ->with('success', 'Pesanan berhasil dihapus!');
 })->name('detailmenu.hapus');
-
 // RINGKASAN PELANGGAN
 Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
     ->name('ringkasanpelanggan');
 
-<<<<<<< HEAD
+
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
     $menus = [
@@ -561,7 +537,7 @@ Route::get('/detail-freshjuice/{slug}', function ($slug) {
         'slug' => $slug
     ]);
 })->name('detailfreshjuice');
-=======
+
 // ADMIN SUB KATEGORI
 Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
 Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])->name('admin.subkategori.create');
@@ -570,4 +546,3 @@ Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit
 Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 
->>>>>>> c06cb6cb2a49939b9c3f6b50978f601423888574

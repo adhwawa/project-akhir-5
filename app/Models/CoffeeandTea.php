@@ -53,7 +53,7 @@ class CoffeeandTea
                 'nama' => 'Mocaccino',
                 'kategori' => 'COFFEE AND TEA',
                 'harga' => 32000,
-                'gambar' => 'gambar/coffee tea/mocaccino.png',
+                'gambar' => 'gambar/coffee tea/mocacinno.png',
                 'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan susu panas dan cokelat. Disajikan dingin atau panas sesuai pilihan.'
             ],
         ];

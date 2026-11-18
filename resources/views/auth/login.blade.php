@@ -283,6 +283,38 @@
             box-shadow: 0 5px 12px rgba(74, 48, 29, 0.15);
         }
 
+        /* LOGIN ADMIN */
+        .admin-button {
+            width: 100%;
+            height: 44px;
+            margin-top: 10px;
+
+            border: 1px solid #846044;
+            border-radius: 7px;
+
+            background: transparent;
+            color: #846044;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+
+            padding: 0 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .admin-button:hover {
+            background: #684a34;
+            color: white;
+            box-shadow: 0 5px 12px rgba(74, 48, 29, 0.15);
+        }
+
         /* DIVIDER */
 
         .divider {
@@ -511,12 +543,26 @@
 
                     </div>
 
-                    <!-- BUTTON -->
+                    <!-- LOGIN PELANGGAN -->
+                    <button type="submit"
+                        name="role"
+                        value="user"
+                        class="login-button">
 
-                    <button type="submit" class="login-button">
+                        <span>Login sebagai Pelanggan</span>
+                        <span>→</span>
 
-                        <span>Masuk & lihat menu</span>
+                    </button>
 
+
+                    <!-- LOGIN ADMIN -->
+
+                    <button type="submit"
+                        name="role"
+                        value="admin"
+                        class="admin-button">
+
+                        <span>Login sebagai Admin</span>
                         <span>→</span>
 
                     </button>

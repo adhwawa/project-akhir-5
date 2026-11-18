@@ -81,35 +81,31 @@
             letter-spacing: 2px;
         }
 
+
         .nav-menu {
             display: flex;
-            flex-direction: row;
             align-items: center;
             justify-content: flex-end;
             gap: 35px;
-            margin-left: auto;
         }
 
         .nav-menu a {
-
             text-decoration: none;
-
             font-size: 12px;
-
             color: #92745e;
-
+            transition: .3s;
+            white-space: nowrap;
         }
 
-        .nav-menu a:first-child {
+        .nav-menu a:hover {
+            color: #49372b;
+        }
 
+        .nav-menu a.active {
             background: #70472d;
-
-            color: white;
-
+            color: #fff;
             padding: 9px 20px;
-
             border-radius: 30px;
-
         }
 
         /* HERO */
@@ -412,8 +408,7 @@
 
             <div class="nav-menu">
 
-                <a href="{{ route('dashboard') }}">Menu Kami</a>
-
+                <a href="{{ route('dashboard') }}" class="active">Menu Kami</a>
                 <a href="{{ route('maincourse') }}">Makanan</a>
 
                 <a href="{{ route('coffeeandtea') }}">Minuman</a>

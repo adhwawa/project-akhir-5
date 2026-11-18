@@ -823,7 +823,7 @@
 
             <div class="left-content">
 
-                <div class="card">
+                <div class="card" id="daftar-pesanan">
 
                     <div class="section-label">DETAIL PESANAN</div>
                     <div class="title-row">
