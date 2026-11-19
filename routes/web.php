@@ -547,3 +547,17 @@ Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit
 Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 
+// ADMIN PESANAN
+Route::get('/admin/pesanan', function () {
+    return view('admin.pesanan.index');
+})->name('admin.pesanan');
+
+// MELIHAT DETAIL PESANAN ADMIN
+Route::get('/admin/pesanan/{id}', function ($id) {
+    return view('admin.pesanan.form');
+})->name('admin.pesanan.form');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
+        ->name('admin.dashboard');
+});
