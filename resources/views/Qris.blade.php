@@ -14,21 +14,23 @@
 
         body {
             margin: 0;
+            padding: 0;
             font-family: Arial, Helvetica, sans-serif;
             color: #403a35;
-            background-color: #252525;
-            background-image: radial-gradient(#777 1px, transparent 1px);
-            background-size: 18px 18px;
+            background-color: #faf8f3;
+            background-image: none;
+            width: 100%;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .wrapper {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: none;
+            margin: 0;
             background: #faf8f3;
             min-height: 100vh;
-            padding: 30px 55px 25px;
+            padding: 30px clamp(20px, 4vw, 65px) 25px;
         }
 
         /* HEADER */
@@ -494,7 +496,7 @@
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .wrapper {
-                width: 95%;
+                width: 100%;
                 padding: 25px;
             }
 
