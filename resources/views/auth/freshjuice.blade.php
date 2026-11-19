@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -409,7 +414,6 @@
             }
 
         }
-
     </style>
 </head>
 
@@ -432,39 +436,37 @@
         </nav>
 
         <!-- HERO -->
-    <section class="hero">
+        <section class="hero">
 
-        <div class="hero-text">
+            <div class="hero-text">
 
-            <p>──── MENU DAILY CRAVE ────</p>
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-            <p class="description">
-                Jelajahi pilihan minuman, dan temukan rasa
-                yang menyegarkan untuk menemani waktu santai Anda.
-            </p>
+                <p class="description">
+                    Jelajahi pilihan minuman, dan temukan rasa
+                    yang menyegarkan untuk menemani waktu santai Anda.
+                </p>
 
-        </div>
+            </div>
 
-        <img
-            src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
-            class="hero-image"
-            alt="Pilihan minuman Daily Crave">
+            <img src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
+                class="hero-image" alt="Pilihan minuman Daily Crave">
 
-    </section>
+        </section>
 
         <!-- CATEGORY NAVIGATION -->
         <nav class="category-bar">
             <a href="{{ route('coffeeandtea') }}">Coffee & Tea</a>
             <a href="{{ route('freshjuice') }}" class="active">Fresh Juice</a>
-        <a href="{{ route('softdrink') }}">Soft Drink</a>
+            <a href="{{ route('softdrink') }}">Soft Drink</a>
 
             <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
             </span>
         </nav>
 
@@ -507,11 +509,15 @@
                 @endphp
 
                 <article class="menu-card">
+<<<<<<< HEAD
 
                     <img
                         src="{{ $fotoUrl }}"
                         alt="{{ $menu->nama_menu }}"
                     >
+=======
+                    <img src="{{ asset('gambar/fresh juice/orange.png') }}" alt="Fresh Orange">
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                     <div class="menu-info">
 
@@ -523,12 +529,70 @@
 
                     </div>
 
+<<<<<<< HEAD
                     <a
                         href="{{ route('detailmenu', $menu->id) }}"
                         class="add-button"
                         aria-label="Detail {{ $menu->nama_menu }}"
                     >+</a>
 
+=======
+                    <a href="{{ route('detailfreshjuice', 'fresh-orange') }}" class="add-button">+</a>
+                </article>
+
+                <!-- WATERMELON -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/fresh juice/watermelon.png') }}" alt="Watermelon">
+
+                    <div class="menu-info">
+                        <h3>Watermelon</h3>
+                        <div class="price">Rp28.000</div>
+                        <p>
+                            Jus buah semangka segar yang diblender dengan
+                            tambahan sedikit air dan gula sesuai kebutuhan.
+                            Disajikan dingin dengan es batu serta potongan
+                            kecil buah semangka sebagai topping.
+                        </p>
+                    </div>
+
+                    <a href="{{ route('detailfreshjuice', 'watermelon') }}" class="add-button">+</a>
+                </article>
+
+                <!-- STRAWBERRY -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/fresh juice/strawberry.png') }}" alt="Strawberry">
+
+                    <div class="menu-info">
+                        <h3>Strawberry</h3>
+                        <div class="price">Rp28.000</div>
+                        <p>
+                            Jus buah strawberry segar yang diblender hingga
+                            halus dengan tambahan sedikit air dan gula.
+                            Disajikan dingin dengan es batu serta potongan
+                            buah stroberi sebagai topping.
+                        </p>
+                    </div>
+
+                    <a href="{{ route('detailfreshjuice', 'strawberry') }}" class="add-button">+</a>
+                </article>
+
+                <!-- APPLE -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/fresh juice/apple.png') }}" alt="Apple">
+
+                    <div class="menu-info">
+                        <h3>Apple</h3>
+                        <div class="price">Rp28.000</div>
+                        <p>
+                            Jus buah apel segar yang diblender hingga halus
+                            dengan tambahan sedikit air dan gula.
+                            Disajikan dingin dengan es batu dan irisan
+                            buah apel sebagai garnish.
+                        </p>
+                    </div>
+
+                    <a href="{{ route('detailfreshjuice', 'apple') }}" class="add-button">+</a>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
                 </article>
             @empty
                 <p>Belum ada menu tersedia.</p>
@@ -551,4 +615,5 @@
 
     </main>
 </body>
+
 </html>

@@ -10,24 +10,21 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-    Schema::create('minuman', function (Blueprint $table) {
+{
+    Schema::create('sub_kategoris', function (Blueprint $table) {
         $table->id();
-        $table->string('nama_minuman');
-        $table->string('kategori');
-        $table->string('gambar')->nullable();
-        $table->text('deskripsi')->nullable();
-        $table->decimal('harga', 12, 2);
+        $table->string('nama');
+        $table->string('kategori'); // Makanan, Minuman, Dessert
+        $table->string('slug');
+        $table->enum('status', ['Tersedia', 'Tidak Tersedia'])->default('Tersedia');
         $table->timestamps();
     });
 }
-    
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('minumen');
+        Schema::dropIfExists('sub_kategoris');
     }
 };

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Daftar Menu</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
@@ -81,35 +82,31 @@
             letter-spacing: 2px;
         }
 
+
         .nav-menu {
             display: flex;
-            flex-direction: row;
             align-items: center;
             justify-content: flex-end;
             gap: 35px;
-            margin-left: auto;
         }
 
         .nav-menu a {
-
             text-decoration: none;
-
             font-size: 12px;
-
             color: #92745e;
-
+            transition: .3s;
+            white-space: nowrap;
         }
 
-        .nav-menu a:first-child {
+        .nav-menu a:hover {
+            color: #49372b;
+        }
 
+        .nav-menu a.active {
             background: #70472d;
-
-            color: white;
-
+            color: #fff;
             padding: 9px 20px;
-
             border-radius: 30px;
-
         }
 
         /* HERO */
@@ -412,13 +409,12 @@
 
             <div class="nav-menu">
 
-                <a href="{{ route('dashboard') }}">Menu Kami</a>
-
+                <a href="{{ route('dashboard') }}" class="active">Menu Kami</a>
                 <a href="{{ route('maincourse') }}">Makanan</a>
 
                 <a href="{{ route('coffeeandtea') }}">Minuman</a>
 
-                <a href="#desert">Desert</a>
+                <a href="{{ route('dessert') }}">Dessert</a>
 
 
             </div>

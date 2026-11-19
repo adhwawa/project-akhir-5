@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Menu | Daily Crave</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
-    <title>{{ $menu['nama'] }} - Daily Crave</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -20,556 +19,1043 @@
         }
 
         body {
-            background: #f3f1ed;
-            color: #553b2b;
+            background: #f8f5ef;
+            color: #403329;
             font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
         }
 
         .container {
-            width: 100%;
-            min-height: 100vh;
-            background: #f8f5f0;
-            padding: 0 5.5%;
+            width: 84%;
+            max-width: 1400px;
+            margin: auto;
         }
 
-        /* HEADER */
-
-        .navbar {
+        header {
             height: 75px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px solid #f1ebe3;
         }
 
-        .brand {
-            color: #68452f;
+        .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 21px;
+            font-size: 22px;
+            color: #403329;
         }
 
-        .brand small {
+        .logo small {
             display: block;
             font-family: 'Poppins', sans-serif;
-            font-size: 6px;
-            letter-spacing: 2px;
+            font-size: 7px;
+            letter-spacing: 3px;
+            text-align: center;
         }
 
-        .cart-button {
-            background: white;
-            border: 1px solid #eee5da;
-            border-radius: 30px;
-            padding: 9px 17px;
-            color: #76543d;
-            font-size: 11px;
-            text-decoration: none;
-            transition: .3s;
-        }
-
-        .cart-button:hover {
-            background: #79543b;
-            color: white;
-        }
-
-        /* BREADCRUMB */
-
-        .breadcrumb {
+        .navigation {
             display: flex;
             justify-content: space-between;
-            margin: 8px 0 30px;
+            margin-top: 25px;
             font-size: 10px;
-            color: #987d67;
+            color: #967f6d;
         }
 
-        .breadcrumb a {
-            color: #806044;
+        .navigation a {
             text-decoration: none;
+            color: #79563f;
         }
 
-        /* PAGE TITLE */
-
-        .page-heading {
-            margin-bottom: 18px;
+        .heading {
+            margin-top: 24px;
+            margin-bottom: 25px;
         }
 
-        .page-heading p {
-            color: #a58c76;
-            font-size: 10px;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-        }
-
-        .page-heading h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 27px;
-            font-weight: 400;
-            color: #4d382b;
-        }
-
-        /* DETAIL CARD */
-
-        .detail-card {
-            display: grid;
-            grid-template-columns: 45% 55%;
-            background: white;
-            border: 1px solid #eee5da;
-            border-radius: 17px;
-            overflow: hidden;
-            min-height: 395px;
-        }
-
-        .food-image {
-            width: 100%;
-            height: 100%;
-            min-height: 395px;
-            object-fit: cover;
-        }
-
-        .detail-content {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .category {
+        .heading p {
             font-size: 9px;
             letter-spacing: 2px;
-            color: #9a7658;
+            color: #926d50;
             margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        .category::before {
-            content: "";
-            display: inline-block;
-            width: 15px;
-            height: 1px;
-            background: #a98b70;
-            vertical-align: middle;
-            margin-right: 7px;
-        }
-
-        .food-name {
+        .heading h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: 42px;
             font-weight: 400;
-            color: #49372b;
+            line-height: 1.2;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1.35fr 0.95fr;
+            gap: 30px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+
+        .left-content {
+            min-width: 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #eee8e1;
+            border-radius: 16px;
+            padding: 32px 34px;
+            box-shadow: 0 10px 30px rgba(75, 55, 38, .025);
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #eee8e1;
+            margin-bottom: 22px;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: 400;
+        }
+
+        .add-more {
+            color: #79563f;
+            text-decoration: none;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .section-label {
+            color: #926d50;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            letter-spacing: 1.8px;
+            font-weight: 600;
             margin-bottom: 4px;
         }
 
-        .food-price {
-            font-size: 16px;
-            font-weight: 600;
-            color: #895d40;
-            margin-bottom: 12px;
-        }
-
-        .description {
-            font-size: 11px;
-            line-height: 1.9;
-            color: #81756a;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #eee6dd;
-        }
-
-        /* NOTES */
-
-        .note-section {
-            margin-top: 15px;
-        }
-
-        .note-heading {
+        .payment-heading {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 7px;
-            font-size: 10px;
+            align-items: center;
+            padding-bottom: 17px;
+            border-bottom: 1px solid #eee8e1;
+            gap: 10px;
         }
 
-        .note-heading span {
-            color: #a89a8c;
+        .menu-count {
+            color: #8d715b;
+            background: #faf5ef;
+            border: 1px solid #eee5db;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 9px;
+            white-space: nowrap;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 95px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0e9df;
+        }
+
+        .cart-item:last-child {
+            border-bottom: 0;
+        }
+
+        .cart-item img {
+            width: 95px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 11px;
+        }
+
+        .item-info {
+            min-width: 0;
+        }
+
+        .item-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 7px;
+        }
+
+        .item-info p {
+            color: #896448;
+            font-size: 11px;
+        }
+
+        .item-info small {
+            display: block;
+            margin-top: 8px;
+            color: #9a8a7d;
             font-size: 9px;
         }
 
-        textarea {
+        .note-form {
+            margin-top: 12px;
+        }
+
+        .note-input {
+            display: block;
             width: 100%;
-            height: 65px;
-            resize: none;
-            padding: 12px;
+            min-height: 55px;
+            padding: 10px 12px;
+            border: 1px solid #eee8e1;
+            border-radius: 12px;
+            background: #fdfcfb;
             font-family: 'Poppins', sans-serif;
             font-size: 10px;
-            color: #604733;
-            background: #fcfaf7;
-            border: 1px solid #eee4d9;
-            border-radius: 7px;
+            color: #403329;
             outline: none;
+            resize: vertical;
         }
 
-        textarea:focus {
-            border-color: #a98b70;
+        .note-input:focus {
+            border-color: #79563f;
         }
 
-        textarea::placeholder {
-            color: #b9aa9b;
-        }
-
-        /* QUANTITY */
-
-        .order-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-        }
-
-        .order-section label {
+        .save-note {
+            margin-top: 8px;
+            padding: 8px 15px;
+            border: 0;
+            border-radius: 20px;
+            background: #79563f;
+            color: white;
+            font-family: 'Poppins', sans-serif;
             font-size: 10px;
+            cursor: pointer;
+        }
+
+        .save-note:hover {
+            background: #654a37;
+        }
+
+        .item-action {
+            text-align: right;
+        }
+
+        .item-price {
+            color: #79563f;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            white-space: nowrap;
         }
 
         .quantity {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 17px;
-            background: white;
-            border: 1px solid #eee5da;
+            gap: 13px;
+            padding: 6px 12px;
+            border: 1px solid #eee8e1;
             border-radius: 30px;
-            padding: 5px 9px;
+            font-size: 11px;
         }
 
         .quantity button {
-            width: 25px;
-            height: 25px;
-            border: none;
-            border-radius: 50%;
-            background: #f5f0e8;
-            color: #806044;
-            font-size: 15px;
+            border: 0;
+            background: transparent;
+            color: #79563f;
+            font-size: 17px;
             cursor: pointer;
-            transition: .3s;
-        }
-
-        .quantity button:hover {
-            background: #79543b;
-            color: white;
         }
 
         .quantity span {
-            font-size: 12px;
             min-width: 15px;
             text-align: center;
         }
 
-        /* ADD TO CART */
-
-        .add-cart {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: none;
-            border-radius: 30px;
-            background: #79543b;
-            color: white;
-            padding: 12px 17px;
+        .remove-button {
+            margin-top: 10px;
+            padding: 7px 14px;
+            border: 1px solid #eee8e1;
+            border-radius: 20px;
+            background: white;
+            color: #a15e4d;
             font-family: 'Poppins', sans-serif;
             font-size: 10px;
             cursor: pointer;
+        }
+
+        .remove-button:hover {
+            background: #a15e4d;
+            color: white;
+        }
+
+        .recommend {
+            margin-top: 30px;
+        }
+
+        .recommend h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            font-weight: 400;
+        }
+
+        .recommend>p {
+            font-size: 10px;
+            color: #97887d;
+            margin-top: 6px;
+        }
+
+        .recommend-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 15px;
+        }
+
+        .recommend-item {
+            background: white;
+            border: 1px solid #eee8e1;
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .recommend-item img {
+            width: 72px;
+            height: 76px;
+            object-fit: cover;
+            border-radius: 9px;
+            flex-shrink: 0;
+        }
+
+        .recommend-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .recommend-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .recommend-info p {
+            color: #79563f;
+            font-size: 10px;
+            margin-top: 7px;
+        }
+
+        .recommend-item button {
+            border: 0;
+            background: #f0e9df;
+            color: #79563f;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .recommend-item button:hover {
+            background: #79563f;
+            color: white;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px 10px;
+            color: #897b70;
+            font-size: 12px;
+        }
+
+        .empty h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .empty a {
+            display: inline-block;
+            margin-top: 15px;
+            background: #79563f;
+            color: white;
+            padding: 10px 22px;
+            text-decoration: none;
+            border-radius: 30px;
+        }
+
+        .payment {
+            padding: 27px 30px;
+        }
+
+        .payment .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            padding-bottom: 0;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 13px;
+            font-size: 10px;
+            color: #96897e;
+        }
+
+        .payment-row strong {
+            color: #403329;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .payment-total {
+            border-top: 1px solid #eee8e1;
+            margin-top: 25px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-total span {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .payment-total strong {
+            font-family: 'Playfair Display', serif;
+            font-size: 31px;
+            color: #79563f;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .checkout {
+            display: block;
+            width: 100%;
+            padding: 17px 12px;
+            border: 0;
+            background: #654a37;
+            color: white;
+            border-radius: 12px;
+            margin-top: 22px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
             transition: .3s;
         }
 
-        .add-cart:hover {
-            background: #5d3d2a;
+        .checkout:hover {
+            background: #503927;
         }
 
-        /* FOOTER */
+        .checkout:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        .payment-note {
+            text-align: center;
+            color: #97887d;
+            font-size: 9px;
+            line-height: 1.8;
+            margin-top: 14px;
+        }
 
         footer {
-            text-align: center;
-            padding: 23px 0;
-            color: #a18a75;
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-style: italic;
+            border-top: 1px solid #f1ebe3;
+            padding: 28px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0;
         }
 
-        /* RESPONSIVE */
+        footer .logo {
+            font-size: 19px;
+        }
 
-        @media(max-width: 700px) {
+        footer .tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #a18d7d;
+            font-size: 13px;
+        }
 
+        footer small {
+            font-size: 9px;
+            color: #97887d;
+        }
+
+        @media(max-width:1100px) {
+            .cart-item {
+                grid-template-columns: 85px minmax(0, 1fr);
+            }
+
+            .cart-item img {
+                width: 85px;
+                height: 85px;
+            }
+
+            .item-action {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .recommend-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:900px) {
             .container {
-                padding: 0 18px;
+                width: 90%;
             }
 
-            .breadcrumb {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .page-heading h1 {
-                font-size: 23px;
-            }
-
-            .detail-card {
+            .content {
                 grid-template-columns: 1fr;
             }
 
-            .food-image {
-                height: 260px;
-                min-height: 260px;
+            .heading h1 {
+                font-size: 34px;
+            }
+        }
+
+        @media(max-width:600px) {
+            .container {
+                width: 92%;
             }
 
-            .detail-content {
-                padding: 22px;
+            .card {
+                padding: 23px 19px;
             }
 
-            .food-name {
-                font-size: 23px;
+            .payment {
+                padding: 22px 18px;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+
+            .cart-item {
+                grid-template-columns: 75px minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .cart-item img {
+                width: 75px;
+                height: 85px;
+            }
+
+            .payment-total strong {
+                font-size: 26px;
             }
 
             footer {
-                font-size: 11px;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
+        }
+
+        .notification {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background-color: #f4eee6;
+            border: 1px solid #eee5db;
+            border-radius: 15px;
+            padding: 15px 22px;
+            margin-bottom: 34px;
+            min-height: 64px;
+        }
+
+        .notification .notification-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background-color: #654a37;
+            color: #ffffff;
+            font-size: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .notification .notification-text {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #403329;
+        }
+
+        .notification .notification .notification-text strong {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .notification .notification-text span {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #403329;
+            height: auto;
+            padding: 0;
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+    @php
+        $cart = session()->get('cart', []);
 
-    <!-- HEADER -->
+        $menuData = [
+            //MAINCOURSE
+            'grill-chicken-steak' => [
+                'nama' => 'Grill Chicken Steak',
+                'harga' => 85000,
+                'gambar' => 'gambar/maincourse/grillchikensteak.png',
+            ],
+            'spaghetti-bolognese-katsu' => [
+                'nama' => 'Spaghetti Bolognese Katsu',
+                'harga' => 58000,
+                'gambar' => 'gambar/maincourse/speagetibolokatsu.png',
+            ],
+            'sop-iga' => ['nama' => 'Sop Iga', 'harga' => 74000, 'gambar' => 'gambar/maincourse/supiga.png'],
+            'nasi-goreng-katsu' => [
+                'nama' => 'Nasi Goreng Katsu',
+                'harga' => 64000,
+                'gambar' => 'gambar/maincourse/nasgorkatsu.png',
+            ],
+            'nasi-timbel-ayam-goreng' => [
+                'nama' => 'Nasi Timbel Ayam Goreng',
+                'harga' => 58000,
+                'gambar' => 'gambar/maincourse/nTimbel.png',
+            ],
+            //NUSANTARA
+            'nasi-iga-bakar' => [
+                'nama' => 'Nasi Iga Bakar',
+                'harga' => 72000,
+                'gambar' => 'gambar/nusantara/n.igabakar.png',
+            ],
 
-    <nav class="navbar">
+            'nasi-campur-taliwang' => [
+                'nama' => 'Nasi Campur Taliwang',
+                'harga' => 66000,
+                'gambar' => 'gambar/nusantara/taliwang.png',
+            ],
 
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
-        </div>
+            'nasi-goreng-jawa' => [
+                'nama' => 'Nasi Goreng Jawa',
+                'harga' => 64000,
+                'gambar' => 'gambar/nusantara/nasgorjawa.jpeg',
+            ],
 
-        <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ &nbsp; Keranjang &nbsp;
-            {{ collect(session('cart', []))->sum('jumlah') }}
-        </a>
+            'mie-goreng-jawa' => [
+                'nama' => 'Mie Goreng Jawa',
+                'harga' => 60000,
+                'gambar' => 'gambar/nusantara/miegoreng.png',
+            ],
 
-    </nav>
+            'mie-nyemek-kampung-jawa' => [
+                'nama' => 'Mie Nyemek Kampung Jawa',
+                'harga' => 60000,
+                'gambar' => 'gambar/nusantara/mienyemek.png',
+            ],
+            //COMFORT
+            'mendoan' => ['nama' => 'Mendoan', 'harga' => 30000, 'gambar' => 'gambar/comfort/mendoan.png'],
 
+            'tahu-crispy' => ['nama' => 'Tahu Crispy', 'harga' => 30000, 'gambar' => 'gambar/comfort/tahu.png'],
 
-    <!-- BREADCRUMB -->
+            'bakwan-jagung' => [
+                'nama' => 'Bakwan Jagung',
+                'harga' => 30000,
+                'gambar' => 'gambar/comfort/bakwajagung.png',
+            ],
 
-    <div class="breadcrumb">
+            'singkong-crispy' => [
+                'nama' => 'Singkong Crispy',
+                'harga' => 30000,
+                'gambar' => 'gambar/comfort/singkong.png',
+            ],
 
-        @if($menu['kategori'] == 'NUSANTARA')
+            'cireng-crispy' => ['nama' => 'Cireng Crispy', 'harga' => 32000, 'gambar' => 'gambar/comfort/cireng.png'],
 
-            <a href="{{ route('nusantara') }}">
-                ← &nbsp; Kembali ke menu
-            </a>
+            'french-fries' => [
+                'nama' => 'French Fries',
+                'harga' => 25000,
+                'gambar' => 'gambar/comfort/frenchfries.png',
+            ],
 
-        @else
+            'roti-bakar-coklat-keju' => [
+                'nama' => 'Roti Bakar Coklat Keju',
+                'harga' => 35000,
+                'gambar' => 'gambar/comfort/rotibakar.png',
+            ],
 
+            'pisang-goreng-crispy' => [
+                'nama' => 'Pisang Goreng Crispy',
+                'harga' => 32000,
+                'gambar' => 'gambar/comfort/pisanggoreng.png',
+            ],
+
+            'mix-platter' => ['nama' => 'Mix Platter', 'harga' => 45000, 'gambar' => 'gambar/comfort/mixplatter.png'],
+            //EXTRA
+            'nasi-putih' => ['nama' => 'Nasi Putih', 'harga' => 12000, 'gambar' => 'gambar/extra/nasiputih.png'],
+
+            'telur' => ['nama' => 'Telur', 'harga' => 11000, 'gambar' => 'gambar/extra/telur.png'],
+            //COFFE AND TEA
+            'jasmine-tea' => ['nama' => 'Jasmine Tea', 'harga' => 18000, 'gambar' => 'gambar/coffee tea/estea.png'],
+
+            'teh-jeruk-nipis' => [
+                'nama' => 'Teh Jeruk Nipis',
+                'harga' => 20000,
+                'gambar' => 'gambar/coffee tea/tehjeruknipis.png',
+            ],
+
+            'lychee-tea' => ['nama' => 'Lychee Tea', 'harga' => 20000, 'gambar' => 'gambar/coffee tea/lecitea.png'],
+
+            'americano' => ['nama' => 'Americano', 'harga' => 25000, 'gambar' => 'gambar/coffee tea/americano.png'],
+
+            'coffee-latte' => ['nama' => 'Coffee Latte', 'harga' => 32000, 'gambar' => 'gambar/coffee tea/latte.png'],
+
+            'cappuccino' => ['nama' => 'Cappuccino', 'harga' => 32000, 'gambar' => 'gambar/coffee tea/cappucino.png'],
+
+            'mocaccino' => ['nama' => 'Mocaccino', 'harga' => 32000, 'gambar' => 'gambar/coffee tea/mocacinno.png'],
+            //FRESH JUICE
+            'fresh-orange' => ['nama' => 'Fresh Orange', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/orange.png'],
+
+            'watermelon' => ['nama' => 'Watermelon', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/watermelon.png'],
+
+            'strawberry' => ['nama' => 'Strawberry', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/strawberry.png'],
+
+            'apple' => ['nama' => 'Apple', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/apple.png'],
+            //SOFT DRINK
+            'mineral-water' => [
+                'nama' => 'Mineral Water',
+                'harga' => 8000,
+                'gambar' => 'gambar/soft drink/mineralwater.png',
+            ],
+
+            'coke' => ['nama' => 'Coke', 'harga' => 25000, 'gambar' => 'gambar/soft drink/coke.png'],
+
+            'sprite' => ['nama' => 'Sprite', 'harga' => 25000, 'gambar' => 'gambar/soft drink/sprite.png'],
+
+            'fanta' => ['nama' => 'Fanta', 'harga' => 25000, 'gambar' => 'gambar/soft drink/fanta.png'],
+            //DESERT
+            'buah-potong' => ['nama' => 'Buah Potong', 'harga' => 48000, 'gambar' => 'gambar/dessert/buahpotong.png'],
+
+            'ice-buah' => ['nama' => 'Ice Buah', 'harga' => 38000, 'gambar' => 'gambar/dessert/icebuah.png'],
+
+            'slice-cake' => ['nama' => 'Slice Cake', 'harga' => 38000, 'gambar' => 'gambar/dessert/slicecake.png'],
+        ];
+
+        $subtotal = 0;
+        $totalJumlah = 0;
+
+        foreach ($cart as $key => $item) {
+            $slug = $item['slug'] ?? $key;
+            if (isset($menuData[$slug])) {
+                $jumlah = (int) ($item['jumlah'] ?? 0);
+                $subtotal += $menuData[$slug]['harga'] * $jumlah;
+                $totalJumlah += $jumlah;
+            }
+        }
+
+        $rekomendasi = ['spaghetti-bolognese-katsu', 'sop-iga'];
+    @endphp
+
+    <div class="container">
+
+        <header>
+            <div class="logo">
+                ☼ daily crave
+                <small>DAPUR & RUANG TEMU</small>
+            </div>
+        </header>
+
+        <div class="navigation">
             <a href="{{ route('maincourse') }}">
-                ← &nbsp; Kembali ke menu
+                ← Kembali ke menu
             </a>
-
-        @endif
-
-        <span>
-            Menu / {{ $menu['kategori'] }} / {{ $menu['nama'] }}
-        </span>
-
-    </div>
-
-
-    <!-- PAGE HEADING -->
-
-    <div class="page-heading">
-
-        <p>DARI DAPUR SERAMBI</p>
-
-        <h1>Pilihan yang menggugah selera.</h1>
-
-    </div>
-
-
-    <!-- NOTIFICATION -->
-
-    @if(session('success'))
-        <div style="
-            padding: 12px 16px;
-            background: #edf5e9;
-            color: #496c40;
-            border-radius: 8px;
-            font-size: 11px;
-            margin-bottom: 15px;
-        ">
-            {{ session('success') }}
+            <span>Menu/Pesanan</span>
         </div>
-    @endif
 
-    @if($errors->any())
-        <div style="
-            padding: 12px 16px;
-            background: #fff0ed;
-            color: #a34737;
-            border-radius: 8px;
-            font-size: 11px;
-            margin-bottom: 15px;
-        ">
-            {{ $errors->first() }}
+        <div class="heading">
+            <p>PESANAN ANDA</p>
+            <h1>Satu langkah menuju rasa.</h1>
         </div>
-    @endif
 
+        <div class="notification">
+            <span class="notification-icon">✓</span>
 
-    <!-- DETAIL MENU -->
+            <div class="notification-text">
+                <strong>Periksa Kembali Pesanan Anda</strong>
+                <span>Pastikan menu, jumlah porsi, dan catatan sudah sesuai sebelum melanjutkan.</span>
+            </div>
+        </div>
 
-    <form action="{{ route('keranjang') }}" method="POST">
+        <div class="content">
 
-        @csrf
+            <div class="left-content">
 
-        <input type="hidden" name="menu" value="{{ $slug }}">
+                <div class="card" id="daftar-pesanan">
 
-        <input
-            type="hidden"
-            name="jumlah"
-            id="quantityInput"
-            value="1"
-        >
+                    <div class="section-label">DETAIL PESANAN</div>
+                    <div class="title-row">
+                        <h2 class="card-title">
+                            Ringkasan pesanan
+                        </h2>
 
-        <div class="detail-card">
+                        <a href="{{ route('maincourse') }}" class="add-more">
+                            + Tambah pesanan
+                        </a>
+                    </div>
 
-            <!-- FOOD IMAGE -->
+                    @if ($totalJumlah > 0)
 
-            <img
-                src="{{ asset($menu['gambar']) }}"
-                alt="{{ $menu['nama'] }}"
-                class="food-image"
-            >
+                        @foreach ($cart as $key => $item)
+                            @php
+                                $slug = $item['slug'] ?? $key;
+                                $menu = $menuData[$slug] ?? null;
+                                $jumlah = (int) ($item['jumlah'] ?? 0);
+                            @endphp
 
+                            @if ($menu && $jumlah > 0)
+                                <div class="cart-item">
 
-            <!-- MENU INFORMATION -->
+                                    <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}">
 
-            <div class="detail-content">
+                                    <div class="item-info">
 
-                <div class="category">
-                    {{ $menu['kategori'] }}
+                                        <h3>{{ $menu['nama'] }}</h3>
+
+                                        <p>
+                                            Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                                        </p>
+
+                                        @if (!empty($item['suhu']))
+                                            <small>Penyajian: {{ $item['suhu'] }}</small>
+                                        @endif
+
+                                        <form action="{{ route('detailmenu.catatan') }}" method="POST"
+                                            class="note-form">
+                                            @csrf
+                                            <input type="hidden" name="menu" value="{{ $key ?? $slug }}">
+                                            <textarea name="catatan" class="note-input" maxlength="500" rows="2" placeholder="Tulis catatan pesanan...">{{ $item['catatan'] ?? '' }}</textarea>
+                                            <button type="submit" class="save-note">Simpan Catatan</button>
+                                        </form>
+
+                                    </div>
+
+                                    <div class="item-action">
+
+                                        <p class="item-price">
+                                            Rp{{ number_format($menu['harga'] * $jumlah, 0, ',', '.') }}
+                                        </p>
+
+                                        <div class="quantity">
+
+                                            <form action="{{ route('detailmenu.kurang') }}" method="POST">
+                                                @csrf
+
+                                                <input type="hidden" name="menu" value="{{ $key }}">
+
+                                                <button type="submit">−</button>
+                                            </form>
+
+                                            <span>{{ $jumlah }}</span>
+
+                                            <form action="{{ route('detailmenu.add') }}" method="POST">
+                                                @csrf
+
+                                                <input type="hidden" name="menu" value="{{ $key }}">
+                                                <input type="hidden" name="jumlah" value="1">
+
+                                                <button type="submit">+</button>
+                                            </form>
+
+                                        </div>
+
+                                        <div>
+                                            <form action="{{ route('detailmenu.hapus', $key) }}" method="POST"
+                                                onsubmit="return confirm('Hapus pesanan ini?')">
+                                                @csrf
+
+                                                <button type="submit" class="remove-button">
+                                                    Hapus Pesanan
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        <div class="empty">
+
+                            <h3>Keranjang Anda masih kosong.</h3>
+
+                            <p>Yuk, pilih hidangan favorit Anda!</p>
+
+                            <a href="{{ route('maincourse') }}">
+                                Jelajahi Menu
+                            </a>
+
+                        </div>
+
+                    @endif
+
                 </div>
 
-                <h2 class="food-name">
-                    {{ $menu['nama'] }}
-                </h2>
+                <div class="recommend">
 
-                <div class="food-price">
-                    Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                </div>
+                    <h2>Teman untuk hidangan Anda</h2>
 
-                <p class="description">
-                    {{ $menu['deskripsi'] }}
-                </p>
+                    <p>Jelajahi rasa lainnya dari dapur daily crave.</p>
 
+                    <div class="recommend-list">
 
-                <!-- NOTES -->
+                        @foreach ($rekomendasi as $slug)
+                            @if (!isset($cart[$slug]) && isset($menuData[$slug]))
+                                @php
+                                    $menu = $menuData[$slug];
+                                @endphp
 
-                <div class="note-section">
+                                <div class="recommend-item">
 
-                    <div class="note-heading">
+                                    <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}">
 
-                        <label for="catatan">
-                            Catatan untuk dapur
-                        </label>
+                                    <div class="recommend-info">
 
-                        <span>Opsional</span>
+                                        <h3>{{ $menu['nama'] }}</h3>
+
+                                        <p>
+                                            Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                                        </p>
+
+                                    </div>
+
+                                    <form action="{{ route('detailmenu.add') }}" method="POST">
+                                        @csrf
+
+                                        <input type="hidden" name="menu" value="{{ $slug }}">
+                                        <input type="hidden" name="jumlah" value="1">
+
+                                        <button type="submit">+</button>
+                                    </form>
+
+                                </div>
+                            @endif
+                        @endforeach
 
                     </div>
 
-                    <textarea
-                        name="catatan"
-                        id="catatan"
-                        placeholder="Contoh: saus dipisah, ya."
-                    ></textarea>
-
                 </div>
 
+            </div>
 
-                <!-- QUANTITY -->
+            <div class="card payment">
 
-                <div class="order-section">
-
-                    <label>Jumlah pesanan</label>
-
-                    <div class="quantity">
-
-                        <button
-                            type="button"
-                            onclick="changeQty(-1)"
-                        >
-                            −
-                        </button>
-
-                        <span id="quantity">1</span>
-
-                        <button
-                            type="button"
-                            onclick="changeQty(1)"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
+                <div class="payment-heading">
+                    <h2 class="card-title">Ringkasan pembayaran</h2>
+                    <span class="menu-count">{{ $totalJumlah }} Menu</span>
                 </div>
 
+                <div class="payment-row">
 
-                <!-- ADD TO CART -->
+                    <span>
+                        Subtotal menu
+                    </span>
 
-                <button type="submit" class="add-cart">
-
-                    <span>＋ &nbsp; Tambah ke Keranjang</span>
-
-                    <strong id="totalPrice">
-                        Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                    <strong>
+                        Rp{{ number_format($subtotal, 0, ',', '.') }}
                     </strong>
 
-                </button>
+                </div>
+
+                <div class="payment-row">
+                    <span>Pajak Resto (PB1 10%)</span>
+                    <strong>Termasuk</strong>
+                </div>
+
+                <div class="payment-row">
+                    <span>Biaya Layanan Meja</span>
+                    <strong style="color: green;">GRATIS</strong>
+                </div>
+
+                <div class="payment-total">
+
+                    <span>TOTAL TAGIHAN</span>
+
+                    <strong>
+                        Rp{{ number_format($subtotal, 0, ',', '.') }}
+                    </strong>
+
+                </div>
+
+                @if ($totalJumlah > 0)
+                    <a href="{{ route('ringkasanpelanggan') }}" class="checkout">
+                        Lanjutkan Ke Ringkasan Pelanggan &nbsp; →
+                    </a>
+                @else
+                    <button class="checkout" disabled>
+                        Lanjutkan Ke Ringkasan Pelanggan &nbsp; →
+                    </button>
+                @endif
+
+                <p class="payment-note">
+                    Periksa menu dan catatan Anda sebelum melanjutkan ke konfirmasi pesanan.
+                </p>
 
             </div>
 
         </div>
 
-    </form>
+        <footer>
 
+            <div class="logo">
+                ☼ daily crave
+                <small>DAPUR & RUANG TEMU</small>
+            </div>
 
-    <!-- FOOTER -->
+            <p class="tagline">
+                Rasa yang dekat, cerita yang hangat.
+            </p>
 
-    <footer>
-        ♧ &nbsp; Disiapkan dengan sepenuh hati, untuk setiap momen di Daily Crave.
-    </footer>
+            <small>© 2026 Daily Crave</small>
 
-</div>
+        </footer>
 
-
-<!-- QUANTITY SCRIPT -->
-
-<script>
-
-    const price = {{ $menu['harga'] }};
-    let qty = 1;
-
-    function changeQty(value) {
-
-        qty += value;
-
-        if (qty < 1) {
-            qty = 1;
-        }
-
-        document.getElementById('quantity').innerText = qty;
-
-        document.getElementById('quantityInput').value = qty;
-
-        document.getElementById('totalPrice').innerText =
-            'Rp' + (price * qty).toLocaleString('id-ID');
-
-    }
-
-</script>
+    </div>
 
 </body>
+
 </html>

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -221,10 +226,12 @@
 
         .menu-card img {
             display: block;
-            width: 100%;
-            height: 108px;
-            object-fit: cover;
+            width: 70%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
             border-radius: 7px;
+
         }
 
         .menu-info h3 {
@@ -409,13 +416,13 @@
             }
 
         }
-
     </style>
 </head>
 
 <body>
-<main class="container">
+    <main class="container">
 
+<<<<<<< HEAD
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="brand">
@@ -479,15 +486,27 @@
             </p>
             
                 <h2 class="section-title">Soft Drink</h2>
+=======
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="brand">
+                ☼ daily crave
+                <small>FOOD & DRINK</small>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
             </div>
 
-            <p class="section-hint">
-                Temukan pilihan untuk waktu bersantai Anda.
-            </p>
-        </div>
+            <div class="nav-menu">
+                <a href="{{ route('dashboard') }}">Menu Kami</a>
+                <a href="{{ route('maincourse') }}">Makanan</a>
+                <a href="{{ route('coffeeandtea') }}" class="active">Minuman</a>
+                <a href='{{ route('dessert') }}'>Dessert</a>
+            </div>
+        </nav>
 
-        <div class="menu-list">
+        <!-- HERO -->
+        <section class="hero">
 
+<<<<<<< HEAD
             @php
                 $defaultFotos = [
                     'Mineral Water'  => 'gambar/minuman/mineralwater.png',
@@ -538,20 +557,121 @@
                 <p>Belum ada menu tersedia.</p>
             @endforelse
 
+=======
+            <div class="hero-text">
 
-        </div>
-    </section>
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-    <!-- FOOTER -->
-    <footer>
-        <span>© 2026 Daily Crave. Good Food, Good Mood.</span>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-        <div class="footer-links">
-            <a href="#">Kebijakan Privasi</a>
-            <a href="#">Syarat &amp; Ketentuan</a>
-        </div>
-    </footer>
+                <p class="description">
+                    Jelajahi pilihan minuman, dan temukan rasa
+                    yang menyegarkan untuk menemani waktu santai Anda.
+                </p>
 
-</main>
+            </div>
+
+            <img src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
+                class="hero-image" alt="Pilihan minuman Daily Crave">
+
+        </section>
+
+        <!-- CATEGORY -->
+        <nav class="category-bar">
+            <a href="{{ route('coffeeandtea') }}">Coffee & Tea</a>
+            <a href="{{ route('freshjuice') }}">Fresh Juice</a>
+            <a href="{{ route('softdrink') }}" class="active">Soft Drink</a>
+
+            <span class="category-note">
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+            </span>
+        </nav>
+
+        <!-- SOFT DRINK -->
+        <section class="menu-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-subtitle">
+                        MINUMAN — 04 PILIHAN
+                    </p>
+                    <h2 class="section-title">Soft Drink</h2>
+                </div>
+
+                <p class="section-hint">
+                    Temukan pilihan untuk waktu bersantai Anda.
+                </p>
+            </div>
+
+            <div class="menu-list">
+
+                <!-- MINERAL WATER -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/soft drink/mineralwater.png') }}" alt="mineralwater">
+
+                    <div class="menu-info">
+                        <h3>Mineral Water</h3>
+                        <div class="price">Rp8.000</div>
+                    </div>
+
+                    <a href="{{ route('detailsoftdrink', 'mineral-water') }}" class="add-button">+</a>
+                </article>
+
+                <!-- COKE -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/soft drink/coke.png') }}" alt="coke">
+
+                    <div class="menu-info">
+                        <h3>Coke</h3>
+                        <div class="price">Rp25.000</div>
+                    </div>
+
+                    <a href="{{ route('detailsoftdrink', 'coke') }}" class="add-button">+</a>
+                </article>
+
+                <!-- SPRITE -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/soft drink/sprite.png') }}" alt="sprite">
+
+                    <div class="menu-info">
+                        <h3>Sprite</h3>
+                        <div class="price">Rp25.000</div>
+                    </div>
+
+                    <a href="{{ route('detailsoftdrink', 'sprite') }}" class="add-button">+</a>
+                </article>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+
+                <!-- FANTA -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/soft drink/fanta.png') }}" alt="Fanta">
+
+                    <div class="menu-info">
+                        <h3>Fanta</h3>
+                        <div class="price">Rp25.000</div>
+
+                    </div>
+
+                    <a href="{{ route('detailsoftdrink', 'fanta') }}" class="add-button">+</a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <span>© 2026 Daily Crave. Good Food, Good Mood.</span>
+
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat &amp; Ketentuan</a>
+            </div>
+        </footer>
+
+    </main>
 </body>
+
 </html>

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 use App\Models\Menu;
 
-use Illuminate\Http\Request;
+use App\Models\Comfort;
 
 class ComfortController extends Controller
 {
+    // Menampilkan halaman daftar Comfort
     public function index()
     {
+<<<<<<< HEAD
         $menus = Menu::with('subCategory')
             ->where('kategori_utama', 'Makanan')
             ->where('tampilkan_katalog', true)
@@ -18,5 +20,23 @@ class ComfortController extends Controller
             ->oldest('id')
             ->get();
         return view('auth.comfort', compact('menus'));
+=======
+        $menus = Comfort::all();
+
+        return view('auth.comfort', compact('menus'));
+    }
+
+    // Menampilkan detail menu
+    public function detail($slug)
+    {
+        $menu = Comfort::find($slug);
+
+        abort_unless($menu, 404);
+
+        return view('detailcomfort', [
+            'menu' => $menu,
+            'slug' => $slug
+        ]);
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
     }
 }

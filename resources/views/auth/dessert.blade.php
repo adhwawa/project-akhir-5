@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -73,6 +78,7 @@
             font-size: 12px;
             color: #92745e;
             transition: .3s;
+            white-space: nowrap;
         }
 
         .nav-menu a:hover {
@@ -409,86 +415,204 @@
             }
 
         }
-
     </style>
 </head>
 
 <body>
 
-  <main class="container">
+    <main class="container">
 
-    <!-- HEADER -->
+        <!-- HEADER -->
 
         <nav class="navbar">
 
 
 
-        <div class="brand">
+            <div class="brand">
 
-            ☼ daily crave
+                ☼ daily crave
 
-            <small>FOOD & DRINK</small>
+                <small>FOOD & DRINK</small>
 
-        </div>
+            </div>
 
 
 
-        <div class="nav-menu">
+            <div class="nav-menu">
 
-            <a href="{{ route('dashboard') }}">Menu Kami</a>
+                <a href="{{ route('dashboard') }}">Menu Kami</a>
 
-            <a href="{{ route('maincourse') }}">Makanan</a>
+                <a href="{{ route('maincourse') }}">Makanan</a>
 
-            <a href="{{ route('coffeeandtea') }}">Minuman</a>
+                <a href="{{ route('coffeeandtea') }}">Minuman</a>
+
+                <a href="{{ route('dessert') }}" class="active">Dessert</a>
+
+            </div>
+
+
+
+
+
+        </nav>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero" id="home">
+
+
+
+            <div class="hero-text">
+
+
+
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
+
+
+
+                <h1>
+
+                    Rasa yang akrab.<br>
+
+                    Momen yang hangat.
+
+                </h1>
+
+
+
+                <p class="description">
+
+                    Jelajahi pilihan makanan, minuman, dan dessert.
+
+                    Pilihan rasa yang pas untuk menemani harimu
+
+                    dengan cita rasa yang istimewa.
+
+                </p>
+
+
+
+            </div>
+
+
+
+            <img src="{{ asset('gambar/dessert.png') }}" alt="dessert" alt="Hidangan Daily Crave">
+
+
+
+        </section>
+
+
+
+        <!-- CATEGORY NAVIGATION -->
+        <nav class="category-bar">
 
             <a href="{{ route('dessert') }}" class="active">Dessert</a>
 
-        </div>
+            <span class="category-note">
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+            </span>
+
+        </nav>
+
+        <!-- DESSERT -->
+
+        <section class="menu-section" id="dessert">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-subtitle">DESSERT &nbsp;—&nbsp; 03 PILIHAN</p>
+                    <h2 class="section-title">Dessert</h2>
+                </div>
+
+                <p class="section-hint">
+                    Temukan pilihan untuk waktu bersantap Anda.
+                </p>
+
+            </div>
+
+            <div class="menu-list">
+
+                <!-- MENU 1 -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/dessert/buahpotong.png') }}" alt="Buah Potong">
+                    <div class="menu-info">
+                        <h3>Buah Potong</h3>
+                        <div class="price">Rp48.000</div>
+                        <p>
+                            Aneka buah segar yang dipotong kecil dan disajikan dalam satu piring,
+                            terdiri dari apel, strawberry, jeruk, anggur, mangga, dan buah
+                            musiman lainnya. Disajikan dalam keadaan dingin sebagai hidangan penutup.
+                        </p>
+                    </div>
+                    <a href="{{ route('detaildessert', 'buah-potong') }}" class="add-button">+</a>
+                </article>
+
+                <!-- MENU 2 -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/dessert/icebuah.png') }}" alt="Ice Buah">
+                    <div class="menu-info">
+                        <h3>Ice Buah</h3>
+                        <div class="price">Rp38.000</div>
+                        <p>
+                            Campuran aneka buah segar seperti melon, semangka, pepaya, nanas,
+                            dan alpukat yang dipotong kecil. Dilengkapi dengan kolang-kaling,
+                            nata de coco, sirup, susu kental manis, dan es batu.
+                        </p>
+                    </div>
+                    <a href="{{ route('detaildessert', 'ice-buah') }}" class="add-button">+</a>
+                </article>
+
+                <!-- MENU 3 -->
+                <article class="menu-card">
+                    <img src="{{ asset('gambar/dessert/slicecake.png') }}" alt="Slice Cake">
+                    <div class="menu-info">
+                        <h3>Slice Cake</h3>
+                        <div class="price">Rp38.000</div>
+                        <p>
+                            Potongan kue dengan berbagai pilihan rasa dan tekstur, seperti
+                            cokelat, vanilla, atau red velvet. Disajikan per potong dengan
+                            lapisan krim atau filling di bagian tengah serta topping sesuai jenis kue.
+                        </p>
+                    </div>
+                    <a href="{{ route('detaildessert', 'slice-cake') }}" class="add-button">+</a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer>
 
 
 
+            <span>
 
+                © 2026 Daily Crave. Good Food, Good Mood.
 
-    </nav>
-
-
-
-    <!-- HERO -->
-
-    <section class="hero" id="home">
+            </span>
 
 
 
-      <div class="hero-text">
+            <div class="footer-links">
+
+                <a href="*#main-course"*>Kebijakan Privasi</a>
+
+                <a href="#dessert">Syarat &amp; Ketentuan</a>
+
+            </div>
 
 
 
-        <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
+        </footer>
 
 
 
-        <h1>
-
-          Rasa yang akrab.<br>
-
-          Momen yang hangat.
-
-        </h1>
-
-
-
-        <p class="description">
-
-          Jelajahi pilihan makanan, minuman, dan dessert.
-
-          Pilihan rasa yang pas untuk menemani harimu
-
-          dengan cita rasa yang istimewa.
-
-        </p>
-
-
-
+<<<<<<< HEAD
       </div>
 
 
@@ -616,6 +740,9 @@
 
 
   </main>
+=======
+    </main>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
 
 

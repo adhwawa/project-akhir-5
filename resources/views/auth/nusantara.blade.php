@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -409,75 +414,73 @@
             }
 
         }
-
     </style>
 </head>
 
 <body>
-<main class="container">
+    <main class="container">
 
-    <!-- HEADER -->
+        <!-- HEADER -->
         <nav class="navbar">
 
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
-        </div>
+            <div class="brand">
+                ☼ daily crave
+                <small>FOOD & DRINK</small>
+            </div>
 
-        <div class="nav-menu">
-            <a href="{{ route('dashboard') }}   ">Menu Kami</a>
-            <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="{{ route('coffeeandtea') }}">Minuman</a>
-            <a href='{{ route('dessert') }}'>Dessert</a>
-        </div>
+            <div class="nav-menu">
+                <a href="{{ route('dashboard') }}   ">Menu Kami</a>
+                <a href="{{ route('maincourse') }}" class="active">Makanan</a>
+                <a href="{{ route('coffeeandtea') }}">Minuman</a>
+                <a href='{{ route('dessert') }}'>Dessert</a>
+            </div>
 
-    </nav>
+        </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
+        <!-- HERO -->
+        <section class="hero" id="home">
 
-      <div class="hero-text">
+            <div class="hero-text">
 
-        <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-        <h1>
-          Rasa yang akrab.<br>
-          Momen yang hangat.
-        </h1>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-        <p class="description">
-          Jelajahi pilihan makanan, minuman, dan dessert.
-          Pilihan rasa yang pas untuk menemani harimu
-          dengan cita rasa yang istimewa.
-        </p>
+                <p class="description">
+                    Jelajahi pilihan makanan, minuman, dan dessert.
+                    Pilihan rasa yang pas untuk menemani harimu
+                    dengan cita rasa yang istimewa.
+                </p>
 
-      </div>
+            </div>
+            <img src="{{ asset('gambar/makanan.png') }}" alt="Hidangan Daily Crave">
 
-      <img
-        src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
-        alt="Hidangan Daily Crave">
 
-    </section>
+        </section>
 
-    <!-- CATEGORY NAVIGATION -->
-    <nav class="category-bar">
+        <!-- CATEGORY NAVIGATION -->
+        <nav class="category-bar">
 
-      <a href="{{ route('maincourse') }}">Main Course</a>
-      <a href="{{ route('nusantara') }}" class="active">Nusantara</a>
-      <a href="{{ route('comfort') }}">Comfort</a>
-      <a href="{{ route('extra') }}">Extra</a>
+            <a href="{{ route('maincourse') }}">Main Course</a>
+            <a href="{{ route('nusantara') }}" class="active">Nusantara</a>
+            <a href="{{ route('comfort') }}">Comfort</a>
+            <a href="{{ route('extra') }}">Extra</a>
 
-      <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-      </span>
+            <span class="category-note">
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+            </span>
 
-    </nav>
+        </nav>
 
-    <!-- NUSANTARA -->
-    <section class="menu-section" id="nusantara">
+        <!-- NUSANTARA -->
+        <section class="menu-section" id="nusantara">
 
-      <div class="section-heading">
+            <div class="section-heading">
 
+<<<<<<< HEAD
         <div>
             <p class="section-subtitle">
                 MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
@@ -544,27 +547,163 @@
             @empty
                 <p>Belum ada menu tersedia.</p>
             @endforelse
+=======
+                <div>
+                    <p class="section-subtitle">
+                        MAKANAN &nbsp;—&nbsp; 05 PILIHAN
+                    </p>
+
+                    <h2 class="section-title">Nusantara</h2>
+                </div>
+
+                <p class="section-hint">
+                    Temukan pilihan untuk waktu bersantap Anda.
+                </p>
 
             </div>
 
+            <div class="menu-list">
+
+                <!-- MENU 1 -->
+
+                <div class="menu-card">
+
+                    <img src="{{ asset('gambar/nusantara/n.igabakar.png') }}" alt="Nasi Iga Bakar">
+
+                    <div class="menu-info">
+
+                        <h3>Nasi Iga Bakar</h3>
+
+                        <p class="price">Rp72.000</p>
+
+                        <p class="description">
+                            Iga sapi pilihan dibakar dengan bumbu kecap manis,
+                            berpadu dengan kentang dan sayuran. Disajikan bersama
+                            nasi putih hangat, tumis buncis dan wortel.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailnusantara', 'nasi-iga-bakar') }}" class="add-button">+</a>
+
+                </div>
+
+                <!-- MENU 2 -->
+
+                <div class="menu-card">
+
+                    <img src="{{ asset('gambar/nusantara/taliwang.png') }}" alt="Nasi Campur Taliwang">
+
+                    <div class="menu-info">
+
+                        <h3>Nasi Campur Taliwang</h3>
+
+                        <p class="price">Rp66.000</p>
+
+                        <p class="description">
+                            Nasi putih hangat disajikan bersama ayam bakar
+                            taliwang berbumbu cabai, bawang putih, tomat,
+                            dan rempah khas Lombok. Dilengkapi lauk pilihan.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailnusantara', 'nasi-campur-taliwang') }}" class="add-button">+</a>
+
+                </div>
+
+                <!-- MENU 3 -->
+
+                <div class="menu-card">
+
+                    <img src="{{ asset('gambar/nusantara/nasgorjawa.jpeg') }}" alt="Nasi Goreng Jawa">
+
+                    <div class="menu-info">
+
+                        <h3>Nasi Goreng Jawa</h3>
+
+                        <p class="price">Rp64.000</p>
+
+                        <p class="description">
+                            Nasi putih dimasak dengan bumbu tradisional
+                            berupa bawang merah, bawang putih, cabai,
+                            kecap, dan rempah pilihan.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailnusantara', 'nasi-goreng-jawa') }}" class="add-button">+</a>
+
+                </div>
+
+                <!-- MENU 4 -->
+
+                <div class="menu-card">
+
+                    <img src="{{ asset('gambar/nusantara/miegoreng.png') }}" alt="Mie Goreng Jawa">
+
+                    <div class="menu-info">
+
+                        <h3>Mie Goreng Jawa</h3>
+
+                        <p class="price">Rp60.000</p>
+
+                        <p class="description">
+                            Mie telur dimasak dengan racikan bumbu khas Jawa,
+                            kecap manis, bawang merah, bawang putih,
+                            dan sayuran segar.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailnusantara', 'mie-goreng-jawa') }}" class="add-button">+</a>
+
+                </div>
+
+                <!-- MENU 5 -->
+
+                <div class="menu-card">
+
+                    <img src="{{ asset('gambar/nusantara/mienyemek.png') }}" alt="Mie Nyemek Kampung Jawa">
+
+                    <div class="menu-info">
+
+                        <h3>Mie Nyemek Kampung Jawa</h3>
+
+                        <p class="price">Rp60.000</p>
+
+                        <p class="description">
+                            Mie telur dimasak dengan sedikit kuah kental
+                            berbumbu bawang putih, kemiri, cabai,
+                            dan kecap manis khas Jawa.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailnusantara', 'mie-nyemek-kampung-jawa') }}" class="add-button">+</a>
+
+                </div>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <p>© 2026 Daily Crave. Good Food, Good Mood.</p>
+
+            <div class="footer-links">
+                <a href="#makanan">Kebijakan Privasi</a>
+                <a href="#makanan">Syarat & Ketentuan</a>
+            </div>
+
+        </footer>
+
         </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>© 2026 Daily Crave. Good Food, Good Mood.</p>
-
-        <div class="footer-links">
-            <a href="#makanan">Kebijakan Privasi</a>
-            <a href="#makanan">Syarat & Ketentuan</a>
-        </div>
-
-    </footer>
-
-</div>
 
 </body>
+
 </html>

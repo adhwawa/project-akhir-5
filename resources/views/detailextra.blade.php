@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $menu['nama'] }} - Daily Crave</title>
+    <title>Daily Crave - Extra</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -130,7 +132,13 @@
             padding: 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+        }
+
+        /* INFORMASI MENU BAGIAN ATAS */
+
+        .detail-top {
+            width: 100%;
         }
 
         .category {
@@ -171,6 +179,15 @@
             color: #81756a;
             padding-bottom: 16px;
             border-bottom: 1px solid #eee6dd;
+        }
+
+        /* BAGIAN BAWAH */
+
+        .detail-bottom {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
 
         /* NOTES */
@@ -320,6 +337,7 @@
 
             .detail-content {
                 padding: 22px;
+                gap: 25px;
             }
 
             .food-name {
@@ -330,62 +348,56 @@
                 font-size: 11px;
             }
         }
-
     </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- HEADER -->
+        <!-- HEADER -->
 
-    <nav class="navbar">
+        <nav class="navbar">
 
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
+            <div class="brand">
+                ☼ daily crave
+                <small>FOOD & DRINK</small>
+            </div>
+
+        </nav>
+
+
+        <!-- BREADCRUMB -->
+
+        <div class="breadcrumb">
+
+            <a href="{{ route('extra') }}">
+                ← &nbsp; Kembali ke menu
+            </a>
+
+            <span>
+                Menu / EXTRA / {{ $menu['nama'] }}
+            </span>
+
         </div>
 
-        <a href="{{ route('keranjang') }}" class="cart-button">
-            ♧ &nbsp; Keranjang &nbsp;
-            {{ collect(session('cart', []))->sum('jumlah') }}
-        </a>
 
-    </nav>
+        <!-- PAGE HEADING -->
 
+        <div class="page-heading">
 
-    <!-- BREADCRUMB -->
+            <p>DARI DAPUR DAILY CRAVE</p>
 
-    <div class="breadcrumb">
+            <h1>Pilihan yang menggugah selera.</h1>
 
-        <a href="{{ route('comfort') }}">
-            ← &nbsp; Kembali ke menu Comfort
-        </a>
-
-        <span>
-            Menu / COMFORT / {{ $menu['nama'] }}
-        </span>
-
-    </div>
+        </div>
 
 
-    <!-- PAGE HEADING -->
+        <!-- NOTIFICATION -->
 
-    <div class="page-heading">
-
-        <p>DARI DAPUR SERAMBI</p>
-
-        <h1>Pilihan yang menggugah selera.</h1>
-
-    </div>
-
-
-    <!-- NOTIFICATION -->
-
-    @if(session('success'))
-
-        <div style="
+        @if (session('success'))
+            <div
+                style="
             padding: 12px 16px;
             background: #edf5e9;
             color: #496c40;
@@ -393,15 +405,14 @@
             font-size: 11px;
             margin-bottom: 15px;
         ">
-            {{ session('success') }}
-        </div>
+                {{ session('success') }}
+            </div>
+        @endif
 
-    @endif
 
-
-    @if($errors->any())
-
-        <div style="
+        @if ($errors->any())
+            <div
+                style="
             padding: 12px 16px;
             background: #fff0ed;
             color: #a34737;
@@ -409,165 +420,154 @@
             font-size: 11px;
             margin-bottom: 15px;
         ">
-            {{ $errors->first() }}
-        </div>
-
-    @endif
-
-
-    <!-- DETAIL MENU -->
-
-    <form action="{{ route('keranjang') }}" method="POST">
-
-        @csrf
-
-        <input type="hidden" name="menu" value="{{ $slug }}">
-
-        <input
-            type="hidden"
-            name="jumlah"
-            id="quantityInput"
-            value="1"
-        >
-
-        <div class="detail-card">
-
-            <!-- FOOD IMAGE -->
-
-            <img
-                src="{{ asset($menu['gambar']) }}"
-                alt="{{ $menu['nama'] }}"
-                class="food-image"
-            >
+                {{ $errors->first() }}
+            </div>
+        @endif
 
 
-            <!-- MENU INFORMATION -->
+        <!-- DETAIL MENU -->
 
-            <div class="detail-content">
+        <form action="{{ route('detailmenu.add') }}" method="POST">
+            @csrf
 
-                <div class="category">
-                    {{ $menu['kategori'] }}
-                </div>
+            <input type="hidden" name="menu" value="{{ $slug }}">
+            <input type="hidden" name="jumlah" id="quantityInput" value="1">
 
-                <h2 class="food-name">
-                    {{ $menu['nama'] }}
-                </h2>
+            <div class="detail-card">
 
-                <div class="food-price">
-                    Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                </div>
+                <!-- FOOD IMAGE -->
 
-                <p class="description">
-                    {{ $menu['deskripsi'] }}
-                </p>
+                <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}" class="food-image">
 
 
-                <!-- NOTES -->
+                <!-- MENU INFORMATION -->
 
-                <div class="note-section">
+                <div class="detail-content">
 
-                    <div class="note-heading">
+                    <!-- BAGIAN ATAS -->
 
-                        <label for="catatan">
-                            Catatan untuk dapur
-                        </label>
+                    <div class="detail-top">
 
-                        <span>Opsional</span>
+                        <div class="category">
+                            {{ $menu['kategori'] }}
+                        </div>
+
+                        <h2 class="food-name">
+                            {{ $menu['nama'] }}
+                        </h2>
+
+                        <div class="food-price">
+                            Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                        </div>
+
+                        <p class="description">
+                            {{ $menu['deskripsi'] }}
+                        </p>
 
                     </div>
 
-                    <textarea
-                        name="catatan"
-                        id="catatan"
-                        placeholder="Contoh: saus dipisah, ya."
-                    ></textarea>
 
-                </div>
+                    <!-- BAGIAN BAWAH -->
+
+                    <div class="detail-bottom">
+
+                        <!-- CATATAN DAPUR -->
+
+                        <div class="note-section">
+
+                            <div class="note-heading">
+
+                                <label for="catatan">
+                                    Catatan untuk dapur
+                                </label>
+
+                                <span>Opsional</span>
+
+                            </div>
+
+                            <textarea name="catatan" id="catatan" placeholder="Contoh: saus dipisah, ya."></textarea>
+
+                        </div>
 
 
-                <!-- QUANTITY -->
+                        <!-- JUMLAH PESANAN -->
 
-                <div class="order-section">
+                        <div class="order-section">
 
-                    <label>Jumlah pesanan</label>
+                            <label>Jumlah pesanan</label>
 
-                    <div class="quantity">
+                            <div class="quantity">
 
-                        <button
-                            type="button"
-                            onclick="changeQty(-1)"
-                        >
-                            −
-                        </button>
+                                <button type="button" onclick="changeQty(-1)">
+                                    −
+                                </button>
 
-                        <span id="quantity">1</span>
+                                <span id="quantity">1</span>
 
-                        <button
-                            type="button"
-                            onclick="changeQty(1)"
-                        >
-                            +
+                                <button type="button" onclick="changeQty(1)">
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- TAMBAH KE KERANJANG -->
+
+                        <button type="submit" class="add-cart">
+
+                            <span>＋ &nbsp; Tambah ke Keranjang</span>
+
+                            <strong id="totalPrice">
+                                Rp{{ number_format($menu['harga'], 0, ',', '.') }}
+                            </strong>
+
                         </button>
 
                     </div>
 
                 </div>
-
-
-                <!-- ADD TO CART -->
-
-                <button type="submit" class="add-cart">
-
-                    <span>＋ &nbsp; Tambah ke Keranjang</span>
-
-                    <strong id="totalPrice">
-                        Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                    </strong>
-
-                </button>
 
             </div>
 
-        </div>
-
-    </form>
+        </form>
 
 
-    <!-- FOOTER -->
+        <!-- FOOTER -->
 
-    <footer>
-        ♧ &nbsp; Disiapkan dengan sepenuh hati, untuk setiap momen di Daily Crave.
-    </footer>
+        <footer>
+            ♧ &nbsp; Disiapkan dengan sepenuh hati, untuk setiap momen di Daily Crave.
+        </footer>
 
-</div>
+    </div>
 
 
-<!-- QUANTITY SCRIPT -->
+    <!-- QUANTITY SCRIPT -->
 
-<script>
+    <script>
+        const price = {{ (int) $menu['harga'] }};
 
-    const price = {{ (int) $menu['harga'] }};
+        let qty = 1;
 
-    let qty = 1;
+        function changeQty(value) {
 
-    function changeQty(value) {
+            qty += value;
 
-        qty += value;
+            if (qty < 1) {
+                qty = 1;
+            }
 
-        if (qty < 1) {
-            qty = 1;
+            document.getElementById('quantity').innerText = qty;
+
+            document.getElementById('quantityInput').value = qty;
+
+            document.getElementById('totalPrice').innerText =
+                'Rp' + (price * qty).toLocaleString('id-ID');
+
         }
-
-        document.getElementById('quantity').innerText = qty;
-
-        document.getElementById('quantityInput').value = qty;
-
-        document.getElementById('totalPrice').innerText =
-            'Rp' + (price * qty).toLocaleString('id-ID');
-
-    }
-
-</script>
+    </script>
 
 </body>
+
 </html>

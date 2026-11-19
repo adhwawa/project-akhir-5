@@ -1,10 +1,10 @@
 <?php
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
 use App\Http\Controllers\NusantaraController;
-use App\Http\Controllers\CoffeandTeaController;
 use App\Http\Controllers\CoffeeandTeaController;
 use App\Http\Controllers\AdminControllers\DashboardAdmin;
 use App\Http\Controllers\AdminControllers\MenuController;
@@ -13,6 +13,9 @@ use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
 use App\Http\Controllers\DessertController;
+use App\Http\Controllers\QrisController;
+use App\Http\Controllers\RingkasanPelangganController;
+use App\Http\Controllers\AdminControllers\SubKategoriController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -41,54 +44,87 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
-// MENU MAKANAN
+// MAIN COURSE
 Route::get('/maincourse', [MainCourseController::class, 'index'])
     ->name('maincourse');
 
+// DETAIL MAIN COURSE
+Route::get('/detail-maincourse/{slug}', [MainCourseController::class, 'detail'])
+    ->name('detailmaincourse');
+
+// NUSANTARA
 Route::get('/nusantara', [NusantaraController::class, 'index'])
     ->name('nusantara');
 
+//DETAIL NUSANTARA
+Route::get('/detail-nusantara/{slug}', [NusantaraController::class, 'detail'])
+    ->name('detailnusantara');
+
+// COMFORT
 Route::get('/comfort', [ComfortController::class, 'index'])
     ->name('comfort');
 
+//DETAIL COMFORT
+Route::get('/detail-comfort/{slug}', [ComfortController::class, 'detail'])
+    ->name('detailcomfort');
+
+// EXTRA
 Route::get('/extra', [ExtraController::class, 'index'])
     ->name('extra');
 
-// MENU MINUMAN
-Route::get('/coffeandtea', [CoffeandTeaController::class, 'index'])
-    ->name('coffeandtea');
+//DETAIL EXTRA
+Route::get('/detail-extra/{slug}', [ExtraController::class, 'detail'])
+    ->name('detailextra');
 
+// COFFEE AND TEA
 Route::get('/coffeeandtea', [CoffeeandTeaController::class, 'index'])
     ->name('coffeeandtea');
 
-Route::get('/comfort', [ComfortController::class, 'index'])
-    ->name('comfort');
+//DETAIL COFFEE AND TEA
+Route::get('/detail-coffeeandtea/{slug}', [CoffeeandTeaController::class, 'detail'])
+    ->name('detailcoffeeandtea');
 
-Route::get('/extra', [ExtraController::class, 'index'])
-    ->name('extra');
-
+// FRESH JUICE
 Route::get('/freshjuice', [FreshJuiceController::class, 'index'])
     ->name('freshjuice');
 
+//DETAIL FRESH JUICE
+Route::get('/detail-freshjuice/{slug}', [FreshJuiceController::class, 'detail'])
+    ->name('detailfreshjuice');
+
+// SOFT DRINK
 Route::get('/softdrink', [SoftDrinkController::class, 'index'])
     ->name('softdrink');
+
+//DETAIL SOFT DRINK
+Route::get('/detail-softdrink/{slug}', [SoftDrinkController::class, 'detail'])
+    ->name('detailsoftdrink');
 
 // MENU DESSERT
 Route::get('/dessert', [DessertController::class, 'index'])
     ->name('dessert');
 
-// ADMIN DASHBOARD & LOGOUT
-Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])->name('admin.dashboard.stats');
-Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])->name('admin.logout');
+//DETAIL DESSERT
+Route::get('/detail-dessert/{slug}', [DessertController::class, 'detail'])
+    ->name('detaildessert');
 
-//ADMIN MENU
+// ADMIN DASHBOARD & LOGOUT
+Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
+    ->name('admin.dashboard');
+
+Route::get('/admin/dashboard/stats', [DashboardAdmin::class, 'getStats'])
+    ->name('admin.dashboard.stats');
+
+Route::post('/admin/logout', [DashboardAdmin::class, 'logout'])
+    ->name('admin.logout');
+
+// ADMIN MENU
 Route::prefix('admin')->name('admin.')->group(function () {
-Route::resource('menu', MenuController::class)->except(['show']);
+    Route::resource('menu', MenuController::class)->except(['show']);
 });
 
 // DATA MAINCOURSE
-Route::get('/detail-menu/{slug}', function ($slug) {
+Route::get('/detail-maincourse/{slug}', function ($slug) {
     $menus = [
         'grill-chicken-steak' => [
             'nama' => 'Grill Chicken Steak',
@@ -126,12 +162,14 @@ Route::get('/detail-menu/{slug}', function ($slug) {
             'deskripsi' => 'Nasi putih hangat dibungkus daun pisang untuk menghasilkan aroma khas dan disajikan bersama ayam goreng berbumbu kuning. Dilengkapi tahu goreng, tempe goreng, lalapan segar, mentimun, kol, daun kemangi, serta sambal terasi.'
         ],
     ];
+
     abort_unless(isset($menus[$slug]), 404);
-    return view('detailmenu', [
+
+    return view('detailmaincourse', [
         'menu' => $menus[$slug],
         'slug' => $slug
     ]);
-})->name('detailmenu');
+})->name('detailmaincourse');
 
 // DETAIL NUSANTARA
 Route::get('/detail-nusantara/{slug}', function ($slug) {
@@ -172,45 +210,105 @@ Route::get('/detail-nusantara/{slug}', function ($slug) {
             'deskripsi' => 'Mie telur dimasak dengan sedikit kuah kental berbumbu bawang putih, kemiri, cabai, dan kecap manis khas Jawa.'
         ],
     ];
+
     abort_unless(isset($menus[$slug]), 404);
-    return view('detailmenu', [
+
+    return view('detailnusantara', [
         'menu' => $menus[$slug],
         'slug' => $slug
     ]);
 })->name('detailnusantara');
 
-// HALAMAN & PROSES KERANJANG
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
+
+// HALAMAN DETAILMENU (KERANJANG)
+Route::get('/detailmenu', function () {
+    return view('detailmenu');
+})->name('detailmenu');
 
 
-// Halaman Keranjang
+// HALAMAN KERANJANG
+// TAMBAH MENU
 Route::post('/keranjang/tambah', function (Request $request) {
-    $request->validate([
+    $data = $request->validate([
         'menu' => 'required|string',
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
     ]);
+
     $cart = session()->get('cart', []);
-    $slug = $request->menu;
+    $slug = $data['menu'];
+    $jumlah = (int) $data['jumlah'];
+
     if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] += $request->jumlah;
-        $cart[$slug]['catatan'] = $request->catatan;
+        $cart[$slug]['jumlah'] = (int) ($cart[$slug]['jumlah'] ?? 0) + $jumlah;
+        if ($request->filled('catatan')) {
+            $cart[$slug]['catatan'] = $data['catatan'];
+        }
     } else {
         $cart[$slug] = [
-            'jumlah' => $request->jumlah,
-            'catatan' => $request->catatan,
+            'jumlah' => $jumlah,
+            'catatan' => $data['catatan'] ?? '',
         ];
     }
+
     session()->put('cart', $cart);
+
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
 })->name('keranjang.add');
-Route::get('/keranjang', function () {
-    return view('keranjang');
-})->name('keranjang');
+
+Route::post('/detailmenu/add', function () {
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
+        ->with('success', 'Menu berhasil ditambahkan!');
+})->name('detailmenu.add');
+
+// PAYMENT
+Route::get('/Qris', [QrisController::class, 'index'])
+    ->name('Qris');
+
+Route::post('/detailmenu/kurang', function (Request $request) {
+    $data = $request->validate(['menu' => 'required|string']);
+    $cart = session()->get('cart', []);
+    $slug = $data['menu'];
+
+    if (isset($cart[$slug])) {
+        $cart[$slug]['jumlah'] = (int) $cart[$slug]['jumlah'] - 1;
+        if ($cart[$slug]['jumlah'] <= 0) {
+            unset($cart[$slug]);
+        }
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
+        ->with('success', 'Jumlah pesanan berhasil diperbarui!');
+})->name('detailmenu.kurang');
+
+Route::post('/detailmenu/catatan', function (Request $request) {
+    $data = $request->validate([
+        'menu' => 'required|string',
+        'catatan' => 'nullable|string|max:500',
+    ]);
+    $cart = session()->get('cart', []);
+    $slug = $data['menu'];
+    if (isset($cart[$slug])) {
+        $cart[$slug]['catatan'] = $data['catatan'] ?? '';
+        session()->put('cart', $cart);
+    }
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
+        ->with('success', 'Catatan pesanan berhasil disimpan!');
+})->name('detailmenu.catatan');
+
+Route::post('/detailmenu/hapus/{slug}', function ($slug) {
+    $cart = session()->get('cart', []);
+    unset($cart[$slug]);
+    session()->put('cart', $cart);
+    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
+        ->with('success', 'Pesanan berhasil dihapus!');
+})->name('detailmenu.hapus');
+// RINGKASAN PELANGGAN
+Route::get('/ringkasanpelanggan', [RingkasanPelangganController::class, 'index'])
+    ->name('ringkasanpelanggan');
 
 // DATA COMFORT
 Route::get('/detail-comfort/{slug}', function ($slug) {
@@ -279,7 +377,9 @@ Route::get('/detail-comfort/{slug}', function ($slug) {
             'deskripsi' => 'Sajian aneka camilan dalam satu piring yang terdiri dari french fries, chicken nuggets, sosis goreng, onion rings, dan chicken wings. Dilengkapi saus sambal, saus tomat, dan mayonnaise sebagai pelengkap.'
         ],
     ];
+
     abort_unless(isset($menus[$slug]), 404);
+
     return view('detailcomfort', [
         'menu' => $menus[$slug],
         'slug' => $slug
@@ -304,9 +404,146 @@ Route::get('/detail-extra/{slug}', function ($slug) {
             'deskripsi' => 'Pilihan olahan telur meliputi omelet, telur ceplok, dan telur dadar yang dimasak menggunakan mentega atau minyak dengan tambahan bumbu pilihan. Tersedia tingkat kematangan sesuai permintaan, mulai dari setengah matang, ¾ matang, hingga matang sempurna.'
         ],
     ];
+
     abort_unless(isset($menus[$slug]), 404);
+
     return view('detailextra', [
         'menu' => $menus[$slug],
         'slug' => $slug
-    ]);     
+    ]);
 })->name('detailextra');
+
+// ADMIN SUB KATEGORI
+Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])
+    ->name('admin.subkategori.index');
+
+Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])
+    ->name('admin.subkategori.create');
+
+Route::post('/admin/sub-kategori', [SubKategoriController::class, 'store'])
+    ->name('admin.subkategori.store');
+
+Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit'])
+    ->name('admin.subkategori.edit');
+
+Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])
+    ->name('admin.subkategori.update');
+
+Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])
+    ->name('admin.subkategori.destroy');
+
+// DATA COFFEE AND TEA
+Route::get('/detail-coffeeandtea/{slug}', function ($slug) {
+    $menus = [
+        'jasmine-tea' => [
+            'nama' => 'Jasmine Tea',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 18000,
+            'gambar' => 'gambar/coffee tea/estea.png',
+            'deskripsi' => 'Teh melati yang diseduh dari daun teh pilihan dengan aroma bunga melati. Disajikan dingin dengan es batu atau hangat tanpa es, cocok dinikmati sebagai minuman pendamping makanan.'
+        ],
+        'teh-jeruk-nipis' => [
+            'nama' => 'Teh Jeruk Nipis',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 20000,
+            'gambar' => 'gambar/coffee tea/tehjeruknipis.png',
+            'deskripsi' => 'Teh yang dipadukan dengan perasan jeruk nipis segar dan tambahan irisan jeruk nipis. Disajikan dingin dengan es batu atau hangat untuk memberikan sensasi segar.'
+        ],
+        'lychee-tea' => [
+            'nama' => 'Lychee Tea',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 20000,
+            'gambar' => 'gambar/coffee tea/lecitea.png',
+            'deskripsi' => 'Teh yang dicampur dengan sirup leci dan potongan buah leci, dilengkapi es batu serta irisan buah leci sebagai topping.'
+        ],
+        'americano' => [
+            'nama' => 'Americano',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 25000,
+            'gambar' => 'gambar/coffee tea/americano.png',
+            'deskripsi' => 'Minuman kopi yang diseduh dari satu atau dua shot espresso yang dicampur dengan air panas. Untuk versi dingin, disajikan dengan es batu dan air tanpa tambahan susu.'
+        ],
+        'coffee-latte' => [
+            'nama' => 'Coffee Latte',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 32000,
+            'gambar' => 'gambar/coffee tea/latte.png',
+            'deskripsi' => 'Perpaduan espresso dengan susu steamed yang menghasilkan tekstur lembut dan creamy. Pada versi dingin, menggunakan susu dingin dan es batu dengan lapisan foam susu sebagai pelengkap.'
+        ],
+        'cappuccino' => [
+            'nama' => 'Cappuccino',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 32000,
+            'gambar' => 'gambar/coffee tea/cappuccino.png',
+            'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan steamed milk dan lapisan foam susu tebal di bagian atas. Dapat dinikmati dengan taburan bubuk cokelat sebagai topping.'
+        ],
+        'mocaccino' => [
+            'nama' => 'Mocaccino',
+            'kategori' => 'COFFEE AND TEA',
+            'harga' => 32000,
+            'gambar' => 'gambar/coffee tea/mocaccino.png',
+            'deskripsi' => 'Minuman kopi berbahan dasar espresso yang dipadukan dengan susu panas dan cokelat. Disajikan dingin atau panas sesuai pilihan.'
+        ],
+    ];
+
+    abort_unless(isset($menus[$slug]), 404);
+
+    return view('detailcoffeeandtea', [
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailcoffeeandtea');
+
+// DATA FRESH JUICE
+Route::get('/detail-freshjuice/{slug}', function ($slug) {
+    $menus = [
+        'fresh-orange' => [
+            'nama' => 'Fresh Orange',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/orange.png',
+            'deskripsi' => 'Jus jeruk segar yang dibuat dari perasan buah jeruk pilihan tanpa tambahan perasa buatan. Disajikan dingin dengan es batu dan irisan jeruk sebagai garnish.'
+        ],
+        'watermelon' => [
+            'nama' => 'Watermelon',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/watermelon.png',
+            'deskripsi' => 'Jus buah semangka segar yang diblender dengan tambahan sedikit air dan gula sesuai kebutuhan. Disajikan dingin dengan es batu serta potongan kecil buah semangka sebagai topping.'
+        ],
+        'strawberry' => [
+            'nama' => 'Strawberry',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/strawberry.png',
+            'deskripsi' => 'Jus buah strawberry segar yang diblender hingga halus dengan tambahan sedikit air dan gula. Disajikan dingin dengan es batu serta potongan buah stroberi sebagai topping.'
+        ],
+        'apple' => [
+            'nama' => 'Apple',
+            'kategori' => 'FRESH JUICE',
+            'harga' => 28000,
+            'gambar' => 'gambar/fresh juice/apple.png',
+            'deskripsi' => 'Jus buah apel segar yang diblender hingga halus dengan tambahan sedikit air dan gula. Disajikan dingin dengan es batu serta potongan buah apel sebagai topping.'
+        ],
+    ];
+
+    abort_unless(isset($menus[$slug]), 404);
+
+    return view('detailfreshjuice', [
+        'menu' => $menus[$slug],
+        'slug' => $slug
+    ]);
+})->name('detailfreshjuice');
+
+Route::get('/pembayaran-berhasil', function () {
+    return view('pembayaranberhasil');
+})->name('pembayaran.berhasil');
+
+// ADMIN SUB KATEGORI
+Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
+Route::get('/admin/sub-kategori/tambah', [SubKategoriController::class, 'create'])->name('admin.subkategori.create');
+Route::post('/admin/sub-kategori', [SubKategoriController::class, 'store'])->name('admin.subkategori.store');
+Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit'])->name('admin.subkategori.edit');
+Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
+Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
+

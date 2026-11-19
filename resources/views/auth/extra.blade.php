@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Extra</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         * {
@@ -409,90 +414,94 @@
             }
 
         }
-
     </style>
 </head>
 
 <body>
 
-<main class="container">
+    <main class="container">
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+        <!-- NAVBAR -->
+        <nav class="navbar">
 
-    <div class="brand">
-      ☼ daily crave
-      <small>FOOD & DRINK</small>
-    </div>
+            <div class="brand">
+                ☼ daily crave
+                <small>FOOD & DRINK</small>
+            </div>
 
-    <div class="nav-menu">
-      <a href="{{ route('dashboard') }}">Menu Kami</a>
-      <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-      <a href="{{ route('coffeeandtea') }}">Minuman</a>
-      <a href='{{ route('dessert') }}'>Dessert</a>
-    </div>
+            <div class="nav-menu">
+                <a href="{{ route('dashboard') }}">Menu Kami</a>
+                <a href="{{ route('maincourse') }}" class="active">Makanan</a>
+                <a href="{{ route('coffeeandtea') }}">Minuman</a>
+                <a href='{{ route('dessert') }}'>Dessert</a>
+            </div>
 
-  </nav>
+        </nav>
 
-  <!-- HERO -->
-  <section class="hero">
+        <!-- HERO -->
+        <section class="hero">
 
-    <div class="hero-text">
+            <div class="hero-text">
 
-      <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
+                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
 
-      <h1>
-        Rasa yang akrab.<br>
-        Momen yang hangat.
-      </h1>
+                <h1>
+                    Rasa yang akrab.<br>
+                    Momen yang hangat.
+                </h1>
 
-      <p class="description">
-         Jelajahi pilihan makanan, minuman, dan dessert.
-          Pilihan rasa yang pas untuk menemani harimu
-          dengan cita rasa yang istimewa.
-      </p>
+                <p class="description">
+                    Jelajahi pilihan makanan, minuman, dan dessert.
+                    Pilihan rasa yang pas untuk menemani harimu
+                    dengan cita rasa yang istimewa.
+                </p>
 
-    </div>
+            </div>
 
-    <img
-      src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
-      alt="Hidangan Daily Crave">
+            <img src="{{ asset('gambar/makanan.png') }}" alt="Hidangan Daily Crave">
 
-  </section>
 
-  <!-- CATEGORY -->
-  <nav class="category-bar">
+        </section>
 
-    <a href="{{ route('maincourse') }}">Main Course</a>
-<a href="{{ route('nusantara') }}">Nusantara</a>
-      <a href="{{ route('comfort') }}">Comfort</a>
-<a href="{{ route('extra') }}" class="active">Extra</a>
+        <!-- CATEGORY -->
+        <nav class="category-bar">
 
-    <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-    </span>
+            <a href="{{ route('maincourse') }}">Main Course</a>
+            <a href="{{ route('nusantara') }}">Nusantara</a>
+            <a href="{{ route('comfort') }}">Comfort</a>
+            <a href="{{ route('extra') }}" class="active">Extra</a>
 
-  </nav>
+            <span class="category-note">
+                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+            </span>
 
-  <!-- EXTRA MENU -->
-  <section class="menu-section">
+        </nav>
 
-    <div class="section-heading">
+        <!-- EXTRA MENU -->
+        <section class="menu-section">
 
+<<<<<<< HEAD
       <div>
         <p class="section-subtitle">
             MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
         </p>
+=======
+            <div class="section-heading">
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
-        <h2 class="section-title">Extra</h2>
-      </div>
+                <div>
+                    <p class="section-subtitle">
+                        MAKANAN &nbsp;—&nbsp; 02 PILIHAN
+                    </p>
 
-      <p class="section-hint">
-        Temukan pilihan untuk waktu bersantap Anda.
-      </p>
+                    <h2 class="section-title">Extra</h2>
+                </div>
 
-    </div>
+                <p class="section-hint">
+                    Temukan pilihan untuk waktu bersantap Anda.
+                </p>
 
+<<<<<<< HEAD
     <div class="menu-list">
             @php
                 $defaultFotos = [
@@ -544,22 +553,82 @@
 
         </div>
   </section>
+=======
+            </div>
 
-  <!-- FOOTER -->
-  <footer>
+            <div class="menu-list">
 
-    <span>
-      © 2026 Daily Crave. Good Food, Good Mood.
-    </span>
+                <!-- NASI PUTIH -->
+                <article class="menu-card">
 
-    <div class="footer-links">
-      <a href="#">Kebijakan Privasi</a>
-      <a href="#">Syarat & Ketentuan</a>
-    </div>
+                    <img src="{{ asset('gambar/extra/nasiputih.png') }}" alt="Nasi Putih">
 
-  </footer>
+                    <div class="menu-info">
 
-</main>
+                        <h3>Nasi Putih</h3>
+
+                        <div class="price">Rp12.000</div>
+
+                        <p>
+                            Nasi putih pilihan dimasak hingga pulen dengan
+                            tekstur lembut dan aroma yang harum. Disajikan
+                            hangat dalam mangkuk khusus sebagai pelengkap
+                            berbagai hidangan utama.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailextra', 'nasi-putih') }}" class="add-button">+</a>
+
+                </article>
+
+                <!-- TELUR -->
+                <article class="menu-card">
+
+                    <img src="{{ asset('gambar/extra/telur.png') }}" alt="Telur">
+
+                    <div class="menu-info">
+
+                        <h3>Telur</h3>
+
+                        <div class="price">Rp11.000</div>
+
+                        <p>
+                            Pilihan olahan telur meliputi omelet, telur ceplok,
+                            dan telur dadar yang dimasak menggunakan mentega
+                            atau minyak dengan tambahan bumbu pilihan.
+                            Tersedia tingkat kematangan sesuai permintaan,
+                            mulai dari setengah matang, ¾ matang,
+                            hingga matang sempurna.
+                        </p>
+
+                    </div>
+
+                    <a href="{{ route('detailextra', 'telur') }}" class="add-button">+</a>
+
+                </article>
+
+            </div>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <span>
+                © 2026 Daily Crave. Good Food, Good Mood.
+            </span>
+
+            <div class="footer-links">
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat & Ketentuan</a>
+            </div>
+
+        </footer>
+
+    </main>
 
 </body>
+
 </html>
