@@ -256,7 +256,7 @@ Route::post('/keranjang/tambah', function (Request $request) {
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang.add');
+})->name('detailmenu.add');
 
 Route::post('/detailmenu/add', function () {
     return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])

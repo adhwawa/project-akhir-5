@@ -963,8 +963,8 @@
 
                                     </div>
 
-                                    <form action="{{ route('detailmenu.add') }}" method="POST">
-                                        @csrf
+<form action="{{ route('detailmenu.add') }}" method="POST" id="formPesanan">
+                                            @csrf
 
                                         <input type="hidden" name="menu" value="{{ $slug }}">
                                         <input type="hidden" name="jumlah" value="1">
