@@ -480,7 +480,14 @@
         <!-- EXTRA MENU -->
         <section class="menu-section">
 
+<<<<<<< HEAD
+      <div>
+        <p class="section-subtitle">
+            MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+        </p>
+=======
             <div class="section-heading">
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                 <div>
                     <p class="section-subtitle">
@@ -494,6 +501,59 @@
                     Temukan pilihan untuk waktu bersantap Anda.
                 </p>
 
+<<<<<<< HEAD
+    <div class="menu-list">
+            @php
+                $defaultFotos = [
+                    'Nasi Putih'        => 'gambar/extra/nasiputih.png',
+                    'Telur'             => 'gambar/extra/telur.png',
+                ];
+            @endphp
+
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/extra/nasiputih.png');
+                    }
+                @endphp
+
+                <article class="menu-card">
+
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
+
+                    <div class="menu-info">
+
+                        <h3>{{ $menu->nama_menu }}</h3>
+
+                        <div class="price">{{ $menu->harga_format }}</div>
+
+                        <p>{{ $menu->deskripsi }}</p>
+
+                    </div>
+
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
+
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
+
+        </div>
+  </section>
+=======
             </div>
 
             <div class="menu-list">
@@ -549,6 +609,7 @@
                 </article>
 
             </div>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
         </section>
 

@@ -441,7 +441,90 @@
 
                 <a href="{{ route('coffeeandtea') }}">Minuman</a>
 
+<<<<<<< HEAD
+            <a href="{{ route('dessert') }}">Dessert</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+
+            <p class="eyebrow">
+                ──── MENU DAILY CRAVE ────
+            </p>
+
+            <h1>
+                Rasa yang akrab.<br>
+                Momen yang hangat.
+            </h1>
+
+            <p class="description">
+                Jelajahi pilihan makanan, minuman, dan dessert.
+                Pilihan rasa yang pas untuk menemani harimu
+                dengan cita rasa yang istimewa.
+            </p>
+
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
+            alt="Hidangan Daily Crave"
+        >
+
+    </section>
+
+
+    <!-- CATEGORY NAVIGATION -->
+
+    <nav class="category-bar">
+
+        <a href="{{ route('maincourse') }}" class="active">
+            Main Course
+        </a>
+
+        <a href="{{ route('nusantara') }}">
+            Nusantara
+        </a>
+
+        <a href="{{ route('comfort') }}">
+            Comfort
+        </a>
+
+        <a href="{{ route('extra') }}">
+            Extra
+        </a>
+
+        <span class="category-note">
+            DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+        </span>
+
+    </nav>
+
+
+    <!-- MAIN COURSE -->
+
+    <section class="menu-section" id="main-course">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="section-subtitle">
+                    MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+                </p>
+
+                <h2 class="section-title">
+                    Main Course
+                </h2>
+=======
                 <a href="{{ route('dessert') }}">Dessert</a>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
             </div>
 
@@ -475,7 +558,53 @@
 
         </section>
 
+            @php
+                $defaultFotos = [
+                    'Grill Chicken Steak'       => 'gambar/maincourse/grillchikensteak.png',
+                    'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+                    'Sop Iga'                   => 'gambar/maincourse/supiga.png',
+                    'Nasi Goreng Katsu'         => 'gambar/maincourse/nasgorkatsu.png',
+                    'Nasi Timbel Ayam Goreng'   => 'gambar/maincourse/nTimbel.png',
+                ];
+            @endphp
 
+<<<<<<< HEAD
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/maincourse/grillchikensteak.png');
+                    }
+                @endphp
+
+                <article class="menu-card">
+
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
+
+                    <div class="menu-info">
+
+                        <h3>{{ $menu->nama_menu }}</h3>
+
+                        <div class="price">{{ $menu->harga_format }}</div>
+
+                        <p>{{ $menu->deskripsi }}</p>
+
+                    </div>
+
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
+=======
         <!-- CATEGORY NAVIGATION -->
 
         <nav class="category-bar">
@@ -616,8 +745,20 @@
                         aria-label="Detail Sop Iga">+</a>
 
                 </article>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
+<<<<<<< HEAD
+        </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+=======
                 <!-- MENU 4 -->
 
                 <article class="menu-card">
@@ -648,6 +789,7 @@
 
 
                 <!-- MENU 5 -->
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                 <article class="menu-card">
 

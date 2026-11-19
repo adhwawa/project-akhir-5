@@ -34,7 +34,7 @@ class MenuController extends Controller
         return view('admin.menu.index', compact('menus', 'kategoriAktif', 'totalSemua', 'search'));
     }
 
-    // Halaman Form Tambah Menu
+    // Tambah Menu
     public function create()
     {
         $menu = new Menu([
@@ -44,7 +44,7 @@ class MenuController extends Controller
         ]);
         $subCategories = SubCategory::all();
 
-        return view('admin.menu.form', compact('menu', 'subCategories'));
+        return view('admin.menu.edit', compact('menu', 'subCategories'));
     }
 
     // Menyimpan data menu baru
@@ -56,7 +56,7 @@ class MenuController extends Controller
             'sub_category_id' => 'required|exists:sub_categories,id',
             'harga'           => 'required|numeric|min:0',
             'status'          => 'required|in:Tersedia,Habis',
-            'foto'            => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'foto'            => 'nullable|image|mimes:jpg,png|max:5120',
             'deskripsi'       => 'nullable|string',
         ]);
 
@@ -78,7 +78,7 @@ class MenuController extends Controller
     {
         $subCategories = SubCategory::all();
 
-        return view('admin.menu.form', compact('menu', 'subCategories'));
+        return view('admin.menu.edit', compact('menu', 'subCategories'));
     }
 
     // Menyimpan perubahan edit tanpa membuat data baru

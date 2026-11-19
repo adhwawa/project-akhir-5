@@ -474,9 +474,9 @@
         <section class="menu-section" id="fresh-juice">
             <div class="section-heading">
                 <div>
-                    <p class="section-subtitle">
-                        MINUMAN &nbsp;—&nbsp; 04 PILIHAN
-                    </p>
+            <p class="section-subtitle">
+                MINUMAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
                     <h2 class="section-title">Fresh Juice</h2>
                 </div>
 
@@ -486,21 +486,57 @@
             </div>
 
             <div class="menu-list">
+            @php
+                $defaultFotos = [
+                    'Fresh Orange'  => 'gambar/freshjuice/orange.png',
+                    'Watermelon'    => 'gambar/freshjuice/watermelon.png',
+                    'Strawberry'    => 'gambar/freshjuice/strawberry.png',
+                    'Apple'         => 'gambar/freshjuice/apple.png',
+                ];
+            @endphp
 
-                <!-- FRESH ORANGE -->
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/freshjuice/orange.png');
+                    }
+                @endphp
+
                 <article class="menu-card">
+<<<<<<< HEAD
+
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
+=======
                     <img src="{{ asset('gambar/fresh juice/orange.png') }}" alt="Fresh Orange">
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                     <div class="menu-info">
-                        <h3>Fresh Orange</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus jeruk segar yang dibuat dari perasan buah jeruk
-                            pilihan tanpa tambahan perasa buatan. Disajikan
-                            dingin dengan es batu dan irisan jeruk sebagai garnish.
-                        </p>
+
+                        <h3>{{ $menu->nama_menu }}</h3>
+
+                        <div class="price">{{ $menu->harga_format }}</div>
+
+                        <p>{{ $menu->deskripsi }}</p>
+
                     </div>
 
+<<<<<<< HEAD
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
+
+=======
                     <a href="{{ route('detailfreshjuice', 'fresh-orange') }}" class="add-button">+</a>
                 </article>
 
@@ -556,7 +592,11 @@
                     </div>
 
                     <a href="{{ route('detailfreshjuice', 'apple') }}" class="add-button">+</a>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
                 </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
             </div>
         </section>
