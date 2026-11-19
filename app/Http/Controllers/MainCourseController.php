@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Menu;
 
 use App\Models\Menu;
 use Illuminate\Support\Str;
@@ -11,11 +12,20 @@ class MainCourseController extends Controller
     public function index()
     {
         $menus = Menu::with('subCategory')
+<<<<<<< HEAD
             ->where('sub_category_id', 1)
             ->where('kategori_utama', 'Makanan')
             ->where('status', 'Tersedia')
             ->where('tampilkan_katalog', 1)
             ->latest()
+=======
+            ->where('kategori_utama', 'Makanan')
+            ->where('tampilkan_katalog', true)
+            ->whereHas('subCategory', function ($q) {
+                $q->where('nama_sub_kategori', 'Main Course');
+            })
+            ->oldest('id')
+>>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
             ->get();
 
         return view('auth.maincourse', compact('menus'));

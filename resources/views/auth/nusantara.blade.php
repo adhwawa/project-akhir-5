@@ -480,6 +480,74 @@
 
             <div class="section-heading">
 
+<<<<<<< HEAD
+        <div>
+            <p class="section-subtitle">
+                MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
+
+          <h2 class="section-title">Nusantara</h2>
+        </div>
+
+        <p class="section-hint">
+          Temukan pilihan untuk waktu bersantap Anda.
+        </p>
+
+      </div>
+      
+      <div class="menu-list">
+
+            @php
+                $defaultFotos = [
+                    'Nasi Iga Bakar'            => 'gambar/nusantara/n.igabakar.png',
+                    'Nasi Campur Taliwang'      => 'gambar/nusantara/taliwang.png',
+                    'Nasi Goreng Jawa'          => 'gambar/nusantara/nasgorjawa.jpeg',
+                    'Mie Goreng Jawa'           => 'gambar/nusantara/miegoreng.png',
+                    'Mie Nyemek Kampung Jawa'   => 'gambar/nusantara/mienyemek.png',
+                ];
+            @endphp
+
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/nusantara/n.igabakar.png');
+                    }
+                @endphp
+
+                <article class="menu-card">
+
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
+
+                    <div class="menu-info">
+
+                        <h3>{{ $menu->nama_menu }}</h3>
+
+                        <div class="price">{{ $menu->harga_format }}</div>
+
+                        <p>{{ $menu->deskripsi }}</p>
+
+                    </div>
+
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
+
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
+=======
                 <div>
                     <p class="section-subtitle">
                         MAKANAN &nbsp;—&nbsp; 05 PILIHAN
@@ -615,6 +683,7 @@
                     <a href="{{ route('detailnusantara', 'mie-nyemek-kampung-jawa') }}" class="add-button">+</a>
 
                 </div>
+>>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
             </div>
 

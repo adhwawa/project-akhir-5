@@ -258,7 +258,7 @@ Route::post('/keranjang/tambah', function (Request $request) {
     return redirect()
         ->back()
         ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
-})->name('keranjang.add');
+})->name('detailmenu.add');
 
 Route::post('/detailmenu/add', function () {
     return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
@@ -549,6 +549,7 @@ Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit
 Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 
+<<<<<<< HEAD
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('/pembayaran', [PembayaranController::class, 'index'])
@@ -563,4 +564,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/pembayaran/{id}/tolak', [PembayaranController::class, 'tolak'])
         ->name('pembayaran.tolak');
 
+=======
+// ADMIN PESANAN
+Route::get('/admin/pesanan', function () {
+    return view('admin.pesanan.index');
+})->name('admin.pesanan');
+
+// MELIHAT DETAIL PESANAN ADMIN
+Route::get('/admin/pesanan/{id}', function ($id) {
+    return view('admin.pesanan.form');
+})->name('admin.pesanan.form');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
+        ->name('admin.dashboard');
+>>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
 });
