@@ -13,7 +13,9 @@ use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\FreshJuiceController;
 use App\Http\Controllers\SoftDrinkController;
 use App\Http\Controllers\DessertController;
-use App\Http\Controllers\QrisController;
+use App\Http\Controllers\PembayaranPelangganController;
+use App\Http\Controllers\AdminControllers\PembayaranController
+    as PembayaranAdminController;
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
 
@@ -547,3 +549,18 @@ Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit
 Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+
+    Route::get('/pembayaran', [PembayaranController::class, 'index'])
+        ->name('pembayaran.index');
+
+    Route::get('/pembayaran/bukti/{id}', [PembayaranController::class, 'bukti'])
+        ->name('pembayaran.bukti');
+
+    Route::post('/pembayaran/{id}/konfirmasi', [PembayaranController::class, 'konfirmasi'])
+        ->name('pembayaran.konfirmasi');
+
+    Route::post('/pembayaran/{id}/tolak', [PembayaranController::class, 'tolak'])
+        ->name('pembayaran.tolak');
+
+});

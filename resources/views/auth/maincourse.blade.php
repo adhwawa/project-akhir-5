@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
-    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
+    <link rel="icon" type="image/png"
+        href="{{ asset('gambar/favicon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
     <style>
@@ -259,28 +260,21 @@
         .add-button {
             width: 40px;
             height: 40px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border: none;
             border-radius: 50%;
-
             background-color: #f5f0e8;
-
             color: #9a785b;
             font-family: 'Poppins', sans-serif;
             font-size: 25px;
             font-weight: 300;
             line-height: 1;
-
             text-decoration: none;
             cursor: pointer;
-
             justify-self: center;
             flex-shrink: 0;
-
             transition: .3s;
         }
 
@@ -288,6 +282,29 @@
             background-color: #806044;
             color: white;
             transform: scale(1.08);
+        }
+
+        /* EMPTY MENU */
+
+        .empty-menu {
+            padding: 45px 20px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #eee7df;
+            border-radius: 12px;
+        }
+
+        .empty-menu h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 400;
+            color: #554033;
+            margin-bottom: 8px;
+        }
+
+        .empty-menu p {
+            color: #8b8177;
+            font-size: 11px;
         }
 
         /* FOOTER */
@@ -413,295 +430,213 @@
                 text-align: center;
                 padding: 22px 5%;
             }
-
         }
     </style>
+
 </head>
 
 <body>
 
-    <main class="container">
+<main class="container">
 
-        <!-- HEADER -->
+    <!-- HEADER -->
 
-        <nav class="navbar">
+    <nav class="navbar">
 
-            <div class="brand">
-                ☼ daily crave
-                <small>FOOD & DRINK</small>
-            </div>
+        <div class="brand">
+            ☼ daily crave
+            <small>FOOD & DRINK</small>
+        </div>
 
-            <div class="nav-menu">
+        <div class="nav-menu">
 
-                <a href="{{ route('dashboard') }}">Menu Kami</a>
-
-                <a href="{{ route('maincourse') }}" class="active">
-                    Makanan
-                </a>
-
-                <a href="{{ route('coffeeandtea') }}">Minuman</a>
-
-                <a href="{{ route('dessert') }}">Dessert</a>
-
-            </div>
-
-        </nav>
-
-
-        <!-- HERO -->
-
-        <section class="hero" id="home">
-
-            <div class="hero-text">
-
-                <p class="eyebrow">
-                    ──── MENU DAILY CRAVE ────
-                </p>
-
-                <h1>
-                    Rasa yang akrab.<br>
-                    Momen yang hangat.
-                </h1>
-
-                <p class="description">
-                    Jelajahi pilihan makanan, minuman, dan dessert.
-                    Pilihan rasa yang pas untuk menemani harimu
-                    dengan cita rasa yang istimewa.
-                </p>
-
-            </div>
-
-            <img src="{{ asset('gambar/makanan.png') }}" alt="Hidangan Daily Crave">
-
-        </section>
-
-
-        <!-- CATEGORY NAVIGATION -->
-
-        <nav class="category-bar">
+            <a href="{{ route('dashboard') }}">
+                Menu Kami
+            </a>
 
             <a href="{{ route('maincourse') }}" class="active">
-                Main Course
+                Makanan
             </a>
 
-            <a href="{{ route('nusantara') }}">
-                Nusantara
+            <a href="{{ route('coffeeandtea') }}">
+                Minuman
             </a>
 
-            <a href="{{ route('comfort') }}">
-                Comfort
+            <a href="{{ route('dessert') }}">
+                Dessert
             </a>
 
-            <a href="{{ route('extra') }}">
-                Extra
-            </a>
+        </div>
 
-            <span class="category-note">
-                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-            </span>
-
-        </nav>
+    </nav>
 
 
-        <!-- MAIN COURSE -->
+    <!-- HERO -->
 
-        <section class="menu-section" id="main-course">
+    <section class="hero" id="home">
 
-            <div class="section-heading">
+        <div class="hero-text">
 
-                <div>
+            <p class="eyebrow">
+                ──── MENU DAILY CRAVE ────
+            </p>
 
-                    <p class="section-subtitle">
-                        MAKANAN &nbsp;—&nbsp; 05 PILIHAN
+            <h1>
+                Rasa yang akrab.<br>
+                Momen yang hangat.
+            </h1>
+
+            <p class="description">
+                Jelajahi pilihan makanan, minuman, dan dessert.
+                Pilihan rasa yang pas untuk menemani harimu
+                dengan cita rasa yang istimewa.
+            </p>
+
+        </div>
+
+        <img src="{{ asset('gambar/makanan.png') }}"
+            alt="Hidangan Daily Crave">
+
+    </section>
+
+
+    <!-- CATEGORY NAVIGATION -->
+
+    <nav class="category-bar">
+
+        <a href="{{ route('maincourse') }}" class="active">
+            Main Course
+        </a>
+
+        <a href="{{ route('nusantara') }}">
+            Nusantara
+        </a>
+
+        <a href="{{ route('comfort') }}">
+            Comfort
+        </a>
+
+        <a href="{{ route('extra') }}">
+            Extra
+        </a>
+
+        <span class="category-note">
+            DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+        </span>
+
+    </nav>
+
+
+    <!-- MAIN COURSE -->
+
+    <section class="menu-section" id="main-course">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="section-subtitle">
+                    MAKANAN — {{ sprintf('%02d', $menus->count()) }} PILIHAN
+                </p>
+
+                <h2 class="section-title">
+                    Main Course
+                </h2>
+
+            </div>
+
+            <p class="section-hint">
+                Temukan pilihan untuk waktu bersantap Anda.
+            </p>
+
+        </div>
+
+
+        <div class="menu-list">
+
+            @forelse ($menus as $menu)
+
+                <article class="menu-card">
+
+                    <!-- FOTO MENU -->
+
+                    <img
+                        src="{{ $menu->foto ? \Illuminate\Support\Facades\Storage::url($menu->foto) : asset('gambar/favicon.png') }}"
+                        alt="{{ $menu->nama_menu }}"
+                        onerror="this.src='{{ asset('gambar/favicon.png') }}'">
+
+                    <!-- INFORMASI MENU -->
+
+                    <div class="menu-info">
+
+                        <h3>
+                            {{ $menu->nama_menu }}
+                        </h3>
+
+                        <div class="price">
+                            Rp{{ number_format($menu->harga, 0, ',', '.') }}
+                        </div>
+
+                        <p>
+                            {{ $menu->deskripsi }}
+                        </p>
+
+                    </div>
+
+                    <!-- TOMBOL DETAIL -->
+
+                    <a
+                        href="{{ route('detailmaincourse', ['slug' => \Illuminate\Support\Str::slug($menu->nama_menu)]) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}">
+                        +
+                    </a>
+
+                </article>
+
+            @empty
+
+                <div class="empty-menu">
+
+                    <h3>Menu Belum Tersedia</h3>
+
+                    <p>
+                        Saat ini belum ada menu Main Course yang ditampilkan.
+                        Silakan kembali lagi nanti.
                     </p>
-
-                    <h2 class="section-title">
-                        Main Course
-                    </h2>
 
                 </div>
 
-                <p class="section-hint">
-                    Temukan pilihan untuk waktu bersantap Anda.
-                </p>
+            @endforelse
 
-            </div>
+        </div>
 
+    </section>
 
-            <div class="menu-list">
 
+    <!-- FOOTER -->
 
-                <!-- MENU 1 -->
+    <footer>
 
-                <article class="menu-card">
+        <span>
+            © 2026 Daily Crave. Good Food, Good Mood.
+        </span>
 
-                    <img src="{{ asset('gambar/maincourse/grillchikensteak.png') }}" alt="Grill Chicken Steak">
+        <div class="footer-links">
 
-                    <div class="menu-info">
+            <a href="#main-course">
+                Kebijakan Privasi
+            </a>
 
-                        <h3>Grill Chicken Steak</h3>
+            <a href="#main-course">
+                Syarat &amp; Ketentuan
+            </a>
 
-                        <div class="price">Rp85.000</div>
+        </div>
 
-                        <p>
-                            Chicken steak menggunakan dada ayam filet pilihan
-                            yang dimarinasi dengan bawang putih, lada hitam,
-                            garam, dan rempah pilihan, kemudian dipanggang
-                            hingga matang sempurna. Disajikan dengan saus
-                            mushroom atau black pepper serta sayuran dan
-                            kentang pilihan.
-                        </p>
+    </footer>
 
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'grill-chicken-steak') }}" class="add-button"
-                        aria-label="Detail Grill Chicken Steak">+</a>
-
-                </article>
-
-
-                <!-- MENU 2 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/speagetibolokatsu.png') }}" alt="Spaghetti Bolognese Katsu">
-
-                    <div class="menu-info">
-
-                        <h3>Spaghetti Bolognese Katsu</h3>
-
-                        <div class="price">Rp58.000</div>
-
-                        <p>
-                            Spaghetti pilihan disajikan dengan saus bolognese
-                            berbahan tomat segar, daging sapi cincang,
-                            bawang bombay, bawang putih, dan rempah pilihan.
-                            Dilengkapi chicken katsu crispy, taburan keju
-                            parmesan, potongan tomat cherry, parsley,
-                            serta sedikit oregano untuk menambah aroma.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'spaghetti-bolognese-katsu') }}" class="add-button"
-                        aria-label="Detail Spaghetti Bolognese Katsu">+</a>
-
-                </article>
-
-
-                <!-- MENU 3 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/supiga.png') }}" alt="Sop Iga">
-
-                    <div class="menu-info">
-
-                        <h3>Sop Iga</h3>
-
-                        <div class="price">Rp74.000</div>
-
-                        <p>
-                            Potongan iga sapi pilihan dimasak perlahan
-                            hingga empuk dalam kuah kaldu rempah yang kaya rasa.
-                            Dilengkapi dengan wortel, kentang, tomat,
-                            daun bawang, seledri, dan taburan bawang goreng.
-                            Disajikan dengan nasi putih hangat, sambal,
-                            serta irisan jeruk nipis sebagai pelengkap.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'sop-iga') }}" class="add-button"
-                        aria-label="Detail Sop Iga">+</a>
-
-                </article>
-
-
-                <!-- MENU 4 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/nasgorkatsu.png') }}" alt="Nasi Goreng Katsu">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Goreng Katsu</h3>
-
-                        <div class="price">Rp64.000</div>
-
-                        <p>
-                            Nasi putih dimasak dengan bumbu rempah,
-                            kecap manis, bawang merah, bawang putih,
-                            telur, dan sayuran pilihan hingga harum.
-                            Disajikan bersama chicken katsu renyah,
-                            telur, irisan mentimun, tomat segar, acar,
-                            serta taburan daun bawang dan bawang goreng.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'nasi-goreng-katsu') }}" class="add-button"
-                        aria-label="Detail Nasi Goreng Katsu">+</a>
-
-                </article>
-
-
-                <!-- MENU 5 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/nTimbel.png') }}" alt="Nasi Timbel Ayam Goreng">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Timbel Ayam Goreng</h3>
-
-                        <div class="price">Rp58.000</div>
-
-                        <p>
-                            Nasi putih hangat dibungkus daun pisang untuk
-                            menghasilkan aroma khas dan disajikan bersama
-                            ayam goreng berbumbu kuning yang meresap hingga
-                            ke dalam. Dilengkapi tahu goreng, tempe goreng,
-                            lalapan segar, mentimun, kol, daun kemangi,
-                            tomat segar, serta sambal terasi sebagai
-                            pelengkap hidangan tradisional.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'nasi-timbel-ayam-goreng') }}" class="add-button"
-                        aria-label="Detail Nasi Timbel Ayam Goreng">+</a>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <span>
-                © 2026 Daily Crave. Good Food, Good Mood.
-            </span>
-
-            <div class="footer-links">
-
-                <a href="#main-course">Kebijakan Privasi</a>
-
-                <a href="#main-course">Syarat &amp; Ketentuan</a>
-
-            </div>
-
-        </footer>
-
-    </main>
+</main>
 
 </body>
-
 </html>

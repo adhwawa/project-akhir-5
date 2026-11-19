@@ -32,4 +32,5 @@ class Menu extends Model
     {
         return 'Rp ' . number_format($this->harga, 0, ',', '.');
     }
+    
 }
