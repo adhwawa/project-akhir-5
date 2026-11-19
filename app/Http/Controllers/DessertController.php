@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
-use App\Models\Menu;
-=======
 use App\Models\Dessert;
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+=======
+use App\Models\Menu;
+>>>>>>> 71dc92581c64bbb101f73420d45178b8df0b0018
 
 class DessertController extends Controller
 {
@@ -14,14 +14,6 @@ class DessertController extends Controller
     public function index()
     {
 <<<<<<< HEAD
-        $menus = Menu::with('subCategory')
-            ->whereIn('kategori_utama', ['Desert', 'Dessert'])
-            ->where('tampilkan_katalog', true)
-            ->oldest('id')
-            ->get();
-
-        return view('auth.dessert', compact('menus'));
-=======
         $menus = Dessert::all();
 
         return view('auth.dessert', compact('menus'));
@@ -38,6 +30,14 @@ class DessertController extends Controller
             'menu' => $menu,
             'slug' => $slug
         ]);
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+=======
+        $menus = Menu::with('subCategory')
+            ->whereIn('kategori_utama', ['Desert', 'Dessert'])
+            ->where('tampilkan_katalog', true)
+            ->oldest('id')
+            ->get();
+
+        return view('auth.dessert', compact('menus'));
+>>>>>>> 71dc92581c64bbb101f73420d45178b8df0b0018
     }
 }

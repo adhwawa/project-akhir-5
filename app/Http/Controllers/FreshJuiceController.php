@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 <<<<<<< HEAD
-use App\Models\Menu;
-=======
 use App\Models\FreshJuice;
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+=======
+use App\Models\Menu;
+>>>>>>> 71dc92581c64bbb101f73420d45178b8df0b0018
 
 class FreshJuiceController extends Controller
 {
@@ -14,17 +14,6 @@ class FreshJuiceController extends Controller
     public function index()
     {
 <<<<<<< HEAD
-        $menus = Menu::with('subCategory')
-            ->where('kategori_utama', 'Minuman')
-            ->where('tampilkan_katalog', true)
-            ->whereHas('subCategory', function ($q) {
-                $q->where('nama_sub_kategori', 'like', '%Juice%');
-            })
-            ->oldest('id')
-            ->get();
-
-        return view('auth.freshjuice', compact('menus'));
-=======
         $menus = FreshJuice::all();
 
         return view('auth.freshjuice', compact('menus'));
@@ -41,6 +30,17 @@ class FreshJuiceController extends Controller
             'menu' => $menu,
             'slug' => $slug
         ]);
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+=======
+        $menus = Menu::with('subCategory')
+            ->where('kategori_utama', 'Minuman')
+            ->where('tampilkan_katalog', true)
+            ->whereHas('subCategory', function ($q) {
+                $q->where('nama_sub_kategori', 'like', '%Juice%');
+            })
+            ->oldest('id')
+            ->get();
+
+        return view('auth.freshjuice', compact('menus'));
+>>>>>>> 71dc92581c64bbb101f73420d45178b8df0b0018
     }
 }

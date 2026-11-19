@@ -10,17 +10,6 @@ class ComfortController extends Controller
     // Menampilkan halaman daftar Comfort
     public function index()
     {
-<<<<<<< HEAD
-        $menus = Menu::with('subCategory')
-            ->where('kategori_utama', 'Makanan')
-            ->where('tampilkan_katalog', true)
-            ->whereHas('subCategory', function ($q) {
-                $q->where('nama_sub_kategori', 'Comfort');
-            })
-            ->oldest('id')
-            ->get();
-        return view('auth.comfort', compact('menus'));
-=======
         $menus = Comfort::all();
 
         return view('auth.comfort', compact('menus'));
@@ -37,6 +26,5 @@ class ComfortController extends Controller
             'menu' => $menu,
             'slug' => $slug
         ]);
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
     }
 }

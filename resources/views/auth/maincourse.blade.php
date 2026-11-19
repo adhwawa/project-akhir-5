@@ -8,7 +8,6 @@
     <title>Daily Crave - Main Course</title>
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -441,90 +440,7 @@
 
                 <a href="{{ route('coffeeandtea') }}">Minuman</a>
 
-<<<<<<< HEAD
-            <a href="{{ route('dessert') }}">Dessert</a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section class="hero" id="home">
-
-        <div class="hero-text">
-
-            <p class="eyebrow">
-                ──── MENU DAILY CRAVE ────
-            </p>
-
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
-
-            <p class="description">
-                Jelajahi pilihan makanan, minuman, dan dessert.
-                Pilihan rasa yang pas untuk menemani harimu
-                dengan cita rasa yang istimewa.
-            </p>
-
-        </div>
-
-        <img
-            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
-            alt="Hidangan Daily Crave"
-        >
-
-    </section>
-
-
-    <!-- CATEGORY NAVIGATION -->
-
-    <nav class="category-bar">
-
-        <a href="{{ route('maincourse') }}" class="active">
-            Main Course
-        </a>
-
-        <a href="{{ route('nusantara') }}">
-            Nusantara
-        </a>
-
-        <a href="{{ route('comfort') }}">
-            Comfort
-        </a>
-
-        <a href="{{ route('extra') }}">
-            Extra
-        </a>
-
-        <span class="category-note">
-            DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-        </span>
-
-    </nav>
-
-
-    <!-- MAIN COURSE -->
-
-    <section class="menu-section" id="main-course">
-
-        <div class="section-heading">
-
-            <div>
-
-                <p class="section-subtitle">
-                    MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
-                </p>
-
-                <h2 class="section-title">
-                    Main Course
-                </h2>
-=======
                 <a href="{{ route('dessert') }}">Dessert</a>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
             </div>
 
@@ -554,57 +470,14 @@
 
             </div>
 
-            <img src="{{ asset('gambar/makanan.png') }}" alt="Hidangan Daily Crave">
+            <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
+                alt="Hidangan Daily Crave"
+            >
 
         </section>
 
-            @php
-                $defaultFotos = [
-                    'Grill Chicken Steak'       => 'gambar/maincourse/grillchikensteak.png',
-                    'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
-                    'Sop Iga'                   => 'gambar/maincourse/supiga.png',
-                    'Nasi Goreng Katsu'         => 'gambar/maincourse/nasgorkatsu.png',
-                    'Nasi Timbel Ayam Goreng'   => 'gambar/maincourse/nTimbel.png',
-                ];
-            @endphp
 
-<<<<<<< HEAD
-            @forelse ($menus as $menu)
-                @php
-                    if ($menu->foto) {
-                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
-                            ? asset($menu->foto)
-                            : asset('storage/' . $menu->foto);
-                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
-                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
-                    } else {
-                        $fotoUrl = asset('gambar/maincourse/grillchikensteak.png');
-                    }
-                @endphp
-
-                <article class="menu-card">
-
-                    <img
-                        src="{{ $fotoUrl }}"
-                        alt="{{ $menu->nama_menu }}"
-                    >
-
-                    <div class="menu-info">
-
-                        <h3>{{ $menu->nama_menu }}</h3>
-
-                        <div class="price">{{ $menu->harga_format }}</div>
-
-                        <p>{{ $menu->deskripsi }}</p>
-
-                    </div>
-
-                    <a
-                        href="{{ route('detailmenu', $menu->id) }}"
-                        class="add-button"
-                        aria-label="Detail {{ $menu->nama_menu }}"
-                    >+</a>
-=======
         <!-- CATEGORY NAVIGATION -->
 
         <nav class="category-bar">
@@ -641,7 +514,7 @@
                 <div>
 
                     <p class="section-subtitle">
-                        MAKANAN &nbsp;—&nbsp; 05 PILIHAN
+                        MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
                     </p>
 
                     <h2 class="section-title">
@@ -659,165 +532,56 @@
 
             <div class="menu-list">
 
+                @php
+                    $defaultFotos = [
+                        'Grill Chicken Steak'       => 'gambar/maincourse/grillchikensteak.png',
+                        'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+                        'Sop Iga'                   => 'gambar/maincourse/supiga.png',
+                        'Nasi Goreng Katsu'         => 'gambar/maincourse/nasgorkatsu.png',
+                        'Nasi Timbel Ayam Goreng'   => 'gambar/maincourse/nTimbel.png',
+                    ];
+                @endphp
 
-                <!-- MENU 1 -->
+                @forelse ($menus as $menu)
+                    @php
+                        if ($menu->foto) {
+                            $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                                ? asset($menu->foto)
+                                : asset('storage/' . $menu->foto);
+                        } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                            $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                        } else {
+                            $fotoUrl = asset('gambar/maincourse/grillchikensteak.png');
+                        }
+                    @endphp
 
-                <article class="menu-card">
+                    <article class="menu-card">
 
-                    <img src="{{ asset('gambar/maincourse/grillchikensteak.png') }}" alt="Grill Chicken Steak">
+                        <img
+                            src="{{ $fotoUrl }}"
+                            alt="{{ $menu->nama_menu }}"
+                        >
 
-                    <div class="menu-info">
+                        <div class="menu-info">
 
-                        <h3>Grill Chicken Steak</h3>
+                            <h3>{{ $menu->nama_menu }}</h3>
 
-                        <div class="price">Rp85.000</div>
+                            <div class="price">{{ $menu->harga_format }}</div>
 
-                        <p>
-                            Chicken steak menggunakan dada ayam filet pilihan
-                            yang dimarinasi dengan bawang putih, lada hitam,
-                            garam, dan rempah pilihan, kemudian dipanggang
-                            hingga matang sempurna. Disajikan dengan saus
-                            mushroom atau black pepper serta sayuran dan
-                            kentang pilihan.
-                        </p>
+                            <p>{{ $menu->deskripsi }}</p>
 
-                    </div>
+                        </div>
 
-                    <a href="{{ route('detailmaincourse', 'grill-chicken-steak') }}" class="add-button"
-                        aria-label="Detail Grill Chicken Steak">+</a>
+                        <a
+                            href="{{ route('detailmenu', $menu->id) }}"
+                            class="add-button"
+                            aria-label="Detail {{ $menu->nama_menu }}"
+                        >+</a>
 
-                </article>
-
-
-                <!-- MENU 2 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/speagetibolokatsu.png') }}" alt="Spaghetti Bolognese Katsu">
-
-                    <div class="menu-info">
-
-                        <h3>Spaghetti Bolognese Katsu</h3>
-
-                        <div class="price">Rp58.000</div>
-
-                        <p>
-                            Spaghetti pilihan disajikan dengan saus bolognese
-                            berbahan tomat segar, daging sapi cincang,
-                            bawang bombay, bawang putih, dan rempah pilihan.
-                            Dilengkapi chicken katsu crispy, taburan keju
-                            parmesan, potongan tomat cherry, parsley,
-                            serta sedikit oregano untuk menambah aroma.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'spaghetti-bolognese-katsu') }}" class="add-button"
-                        aria-label="Detail Spaghetti Bolognese Katsu">+</a>
-
-                </article>
-
-
-                <!-- MENU 3 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/supiga.png') }}" alt="Sop Iga">
-
-                    <div class="menu-info">
-
-                        <h3>Sop Iga</h3>
-
-                        <div class="price">Rp74.000</div>
-
-                        <p>
-                            Potongan iga sapi pilihan dimasak perlahan
-                            hingga empuk dalam kuah kaldu rempah yang kaya rasa.
-                            Dilengkapi dengan wortel, kentang, tomat,
-                            daun bawang, seledri, dan taburan bawang goreng.
-                            Disajikan dengan nasi putih hangat, sambal,
-                            serta irisan jeruk nipis sebagai pelengkap.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'sop-iga') }}" class="add-button"
-                        aria-label="Detail Sop Iga">+</a>
-
-                </article>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
-
-                </article>
-            @empty
-                <p>Belum ada menu tersedia.</p>
-            @endforelse
-
-<<<<<<< HEAD
-        </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-=======
-                <!-- MENU 4 -->
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/nasgorkatsu.png') }}" alt="Nasi Goreng Katsu">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Goreng Katsu</h3>
-
-                        <div class="price">Rp64.000</div>
-
-                        <p>
-                            Nasi putih dimasak dengan bumbu rempah,
-                            kecap manis, bawang merah, bawang putih,
-                            telur, dan sayuran pilihan hingga harum.
-                            Disajikan bersama chicken katsu renyah,
-                            telur, irisan mentimun, tomat segar, acar,
-                            serta taburan daun bawang dan bawang goreng.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'nasi-goreng-katsu') }}" class="add-button"
-                        aria-label="Detail Nasi Goreng Katsu">+</a>
-
-                </article>
-
-
-                <!-- MENU 5 -->
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
-
-                <article class="menu-card">
-
-                    <img src="{{ asset('gambar/maincourse/nTimbel.png') }}" alt="Nasi Timbel Ayam Goreng">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Timbel Ayam Goreng</h3>
-
-                        <div class="price">Rp58.000</div>
-
-                        <p>
-                            Nasi putih hangat dibungkus daun pisang untuk
-                            menghasilkan aroma khas dan disajikan bersama
-                            ayam goreng berbumbu kuning yang meresap hingga
-                            ke dalam. Dilengkapi tahu goreng, tempe goreng,
-                            lalapan segar, mentimun, kol, daun kemangi,
-                            tomat segar, serta sambal terasi sebagai
-                            pelengkap hidangan tradisional.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailmaincourse', 'nasi-timbel-ayam-goreng') }}" class="add-button"
-                        aria-label="Detail Nasi Timbel Ayam Goreng">+</a>
-
-                </article>
-
+                    </article>
+                @empty
+                    <p>Belum ada menu tersedia.</p>
+                @endforelse
 
             </div>
 
