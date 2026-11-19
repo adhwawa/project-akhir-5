@@ -480,9 +480,9 @@
         <div class="section-heading">
 
             <div>
-                <p class="section-subtitle">
-                    MAKANAN &nbsp;—&nbsp; 09 PILIHAN
-                </p>
+            <p class="section-subtitle">
+                MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
 
                 <h2 class="section-title">Comfort</h2>
             </div>
@@ -495,220 +495,62 @@
 
         <div class="menu-list">
 
-            <!-- MENDOAN -->
-            <article class="menu-card">
+            @php
+                $defaultFotos = [
+                    'Mendoan'                   => 'gambar/comfort/mendoan.png',
+                    'Tahu Crispy'               => 'gambar/comfort/tahu.png',
+                    'bakwan Jagung'             => 'gambar/comfort/bakwanjagung.png',
+                    'Singkong Crispy'           => 'gambar/comfort/singkong.png',
+                    'Cireng Crispy'             => 'gambar/comfort/cireng.png',
+                    'Roti bakar Coklat Keju'    => 'gambar/comfort/rotibakar.png',
+                    'Pisang Goreng Crispy'      => 'gambar/comfort/pisanggoreng.png',
+                    'Mix Platter'               => 'gambar/comfort/mixplatter.png',
 
-                <img src="{{ asset('gambar/comfort/mendoan.png') }}"
-                     alt="Mendoan">
+                ];
+            @endphp
 
-                <div class="menu-info">
-                    <h3>Mendoan</h3>
-                    <div class="price">Rp30.000</div>
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/comfort/mendoan.png');
+                    }
+                @endphp
 
-                    <p>
-                        Tempe pilihan dilapisi adonan tepung berbumbu
-                        dengan irisan daun bawang, kemudian digoreng
-                        hingga bagian luar renyah. Disajikan bersama
-                        sambal kecap manis dan cabai rawit.
-                    </p>
-                </div>
+                <article class="menu-card">
 
-                <a href="{{ route('detailcomfort', 'mendoan') }}"
-                class="add-button">+</a>
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
 
-            </article>
+                    <div class="menu-info">
 
-            <!-- TAHU CRISPY -->
-            <article class="menu-card">
+                        <h3>{{ $menu->nama_menu }}</h3>
 
-                <img src="{{ asset('gambar/comfort/tahu.png') }}"
-                     alt="Tahu Crispy">
+                        <div class="price">{{ $menu->harga_format }}</div>
 
-                <div class="menu-info">
-                    <h3>Tahu Crispy</h3>
-                    <div class="price">Rp30.000</div>
+                        <p>{{ $menu->deskripsi }}</p>
 
-                    <p>
-                        Potongan tahu pilihan dibalut tepung berbumbu
-                        dan digoreng hingga menghasilkan lapisan luar
-                        yang renyah dengan bagian dalam lembut.
-                        Disajikan dengan taburan bumbu serta saus.
-                    </p>
-                </div>
+                    </div>
 
-                <a href="{{ route('detailcomfort', 'tahu-crispy') }}"
-                class="add-button">+</a>
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
 
-            </article>
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
-            <!-- BAKWAN JAGUNG -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/bakwajagung.png') }}"
-                     alt="Bakwan Jagung">
-
-                <div class="menu-info">
-                    <h3>Bakwan Jagung</h3>
-                    <div class="price">Rp30.000</div>
-
-                    <p>
-                        Jagung manis dipadukan dengan tepung,
-                        irisan daun bawang, wortel, bawang putih,
-                        dan bumbu pilihan. Digoreng hingga keemasan
-                        dan disajikan bersama cabai rawit.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'bakwan-jagung') }}"
-                class="add-button">+</a>
-
-            </article>
-
-            <!-- SINGKONG CRISPY -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/singkong.png') }}"
-                     alt="Singkong Crispy">
-
-                <div class="menu-info">
-                    <h3>Singkong Crispy</h3>
-                    <div class="price">Rp30.000</div>
-
-                    <p>
-                        Singkong pilihan dipotong memanjang,
-                        direbus hingga empuk, kemudian digoreng
-                        dengan balutan tepung berbumbu hingga
-                        bagian luarnya renyah. Disajikan dengan
-                        saus sambal sebagai pelengkap.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'singkong-crispy') }}"
-                class="add-button">+</a>
-
-            </article>
-
-            <!-- CIRENG CRISPY -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/cireng.png') }}"
-                     alt="Cireng Crispy">
-
-                <div class="menu-info">
-                    <h3>Cireng Crispy</h3>
-                    <div class="price">Rp32.000</div>
-
-                    <p>
-                        Cireng dibuat dari tepung tapioka dengan
-                        campuran bawang putih, daun bawang,
-                        dan bumbu pilihan yang menghasilkan
-                        tekstur kenyal di dalam serta renyah
-                        di luar. Disajikan dengan saus cocolan.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'cireng-crispy') }}"
-                class="add-button">+</a>
-
-            </article>
-
-            <!-- FRENCH FRIES -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/frenchfries.png') }}"
-                     alt="French Fries">
-
-                <div class="menu-info">
-                    <h3>French Fries</h3>
-                    <div class="price">Rp25.000</div>
-
-                    <p>
-                        Kentang pilihan dipotong memanjang
-                        dan digoreng hingga berwarna keemasan
-                        dengan tekstur renyah di luar dan lembut
-                        di dalam. Disajikan dengan taburan
-                        garam dan saus sambal.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'french-fries') }}"
-                class="add-button">+</a>
-
-            </article>
-
-            <!-- ROTI BAKAR -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/rotibakar.png') }}"
-                     alt="Roti Bakar Coklat Keju">
-
-                <div class="menu-info">
-                    <h3>Roti Bakar Coklat Keju</h3>
-                    <div class="price">Rp35.000</div>
-
-                    <p>
-                        Roti tawar tebal dipanggang dengan
-                        olesan margarin hingga berwarna
-                        kecokelatan dan renyah di bagian luar.
-                        Diberi topping meses cokelat, parutan
-                        keju cheddar, serta susu kental manis.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'roti-bakar-coklat-keju') }}"
-                class="add-button">+</a>
-
-            </article>
-
-            <!-- PISANG GORENG -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/pisanggoreng.png') }}"
-                     alt="Pisang Goreng Crispy">
-
-                <div class="menu-info">
-                    <h3>Pisang Goreng Crispy</h3>
-                    <div class="price">Rp32.000</div>
-
-                    <p>
-                        Pisang pilihan dibalut adonan tepung
-                        renyah dan digoreng hingga keemasan
-                        dengan bagian dalam yang lembut.
-                        Disajikan dengan topping keju,
-                        meses cokelat, atau susu kental manis.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'pisang-goreng-crispy') }}"
-                class="add-button">+</a>
-
-            </article>
-
-            <!-- MIX PLATTER -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/comfort/mixplatter.png') }}"
-                     alt="Mix Platter">
-
-                <div class="menu-info">
-                    <h3>Mix Platter</h3>
-                    <div class="price">Rp45.000</div>
-
-                    <p>
-                        Sajian aneka camilan dalam satu piring
-                        yang terdiri dari french fries,
-                        chicken nuggets, sosis goreng,
-                        onion rings, dan chicken wings.
-                        Dilengkapi saus sambal, saus tomat,
-                        dan mayonnaise sebagai pelengkap.
-                    </p>
-                </div>
-
-                <a href="{{ route('detailcomfort', 'mix-platter') }}"
-                class="add-button">+</a>
-
-            </article>
-
+            </div>
         </div>
 
     </section>

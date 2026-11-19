@@ -472,9 +472,9 @@
         <section class="menu-section" id="fresh-juice">
             <div class="section-heading">
                 <div>
-                    <p class="section-subtitle">
-                        MINUMAN &nbsp;—&nbsp; 04 PILIHAN
-                    </p>
+            <p class="section-subtitle">
+                MINUMAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
                     <h2 class="section-title">Fresh Juice</h2>
                 </div>
 
@@ -484,85 +484,55 @@
             </div>
 
             <div class="menu-list">
+            @php
+                $defaultFotos = [
+                    'Fresh Orange'  => 'gambar/freshjuice/orange.png',
+                    'Watermelon'    => 'gambar/freshjuice/watermelon.png',
+                    'Strawberry'    => 'gambar/freshjuice/strawberry.png',
+                    'Apple'         => 'gambar/freshjuice/apple.png',
+                ];
+            @endphp
 
-                <!-- FRESH ORANGE -->
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/freshjuice/orange.png');
+                    }
+                @endphp
+
                 <article class="menu-card">
+
                     <img
-                        src="{{ asset('gambar/fresh juice/orange.png') }}"
-                        alt="Fresh Orange">
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
 
                     <div class="menu-info">
-                        <h3>Fresh Orange</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus jeruk segar yang dibuat dari perasan buah jeruk
-                            pilihan tanpa tambahan perasa buatan. Disajikan
-                            dingin dengan es batu dan irisan jeruk sebagai garnish.
-                        </p>
+
+                        <h3>{{ $menu->nama_menu }}</h3>
+
+                        <div class="price">{{ $menu->harga_format }}</div>
+
+                        <p>{{ $menu->deskripsi }}</p>
+
                     </div>
 
-                    <button class="add-button" type="button">+</button>
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
+
                 </article>
-
-                <!-- WATERMELON -->
-                <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/watermelon.png') }}"
-                        alt="Watermelon">
-
-                    <div class="menu-info">
-                        <h3>Watermelon</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus buah semangka segar yang diblender dengan
-                            tambahan sedikit air dan gula sesuai kebutuhan.
-                            Disajikan dingin dengan es batu serta potongan
-                            kecil buah semangka sebagai topping.
-                        </p>
-                    </div>
-
-                    <button class="add-button" type="button">+</button>
-                </article>
-
-                <!-- STRAWBERRY -->
-                <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/strawberry.png') }}"
-                        alt="Strawberry">
-
-                    <div class="menu-info">
-                        <h3>Strawberry</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus buah strawberry segar yang diblender hingga
-                            halus dengan tambahan sedikit air dan gula.
-                            Disajikan dingin dengan es batu serta potongan
-                            buah stroberi sebagai topping.
-                        </p>
-                    </div>
-
-                    <button class="add-button" type="button">+</button>
-                </article>
-
-                <!-- APPLE -->
-                <article class="menu-card">
-                    <img
-                        src="{{ asset('gambar/fresh juice/apple.png') }}"
-                        alt="Apple">
-
-                    <div class="menu-info">
-                        <h3>Apple</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus buah apel segar yang diblender hingga halus
-                            dengan tambahan sedikit air dan gula.
-                            Disajikan dingin dengan es batu dan irisan
-                            buah apel sebagai garnish.
-                        </p>
-                    </div>
-
-                    <button class="add-button" type="button">+</button>
-                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
             </div>
         </section>

@@ -479,9 +479,9 @@
       <div class="section-heading">
 
         <div>
-          <p class="section-subtitle">
-            MAKANAN &nbsp;—&nbsp; 05 PILIHAN
-          </p>
+            <p class="section-subtitle">
+                MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
 
           <h2 class="section-title">Nusantara</h2>
         </div>
@@ -491,141 +491,59 @@
         </p>
 
       </div>
+      
+      <div class="menu-list">
 
-        <div class="menu-list">
+            @php
+                $defaultFotos = [
+                    'Nasi Iga Bakar'            => 'gambar/nusantara/n.igabakar.png',
+                    'Nasi Campur Taliwang'      => 'gambar/nusantara/taliwang.png',
+                    'Nasi Goreng Jawa'          => 'gambar/nusantara/nasgorjawa.jpeg',
+                    'Mie Goreng Jawa'           => 'gambar/nusantara/miegoreng.png',
+                    'Mie Nyemek Kampung Jawa'   => 'gambar/nusantara/mienyemek.png',
+                ];
+            @endphp
 
-            <!-- MENU 1 -->
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/nusantara/n.igabakar.png');
+                    }
+                @endphp
 
-            <div class="menu-card">
+                <article class="menu-card">
 
-                <img
-          src="{{ asset('gambar/nusantara/n.igabakar.png') }}"
-                alt="Nasi Iga Bakar">
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
 
-                <div class="menu-info">
+                    <div class="menu-info">
 
-                    <h3>Nasi Iga Bakar</h3>
+                        <h3>{{ $menu->nama_menu }}</h3>
 
-                    <p class="price">Rp72.000</p>
+                        <div class="price">{{ $menu->harga_format }}</div>
 
-                    <p class="description">
-                        Iga sapi pilihan dibakar dengan bumbu kecap manis,
-                        berpadu dengan kentang dan sayuran. Disajikan bersama
-                        nasi putih hangat, tumis buncis dan wortel.
-                    </p>
+                        <p>{{ $menu->deskripsi }}</p>
 
-                </div>
+                    </div>
 
-                <a href="{{ route('detailnusantara', 'nasi-iga-bakar') }}"
-                class="add-button">+</a>
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
 
-            </div>
-
-            <!-- MENU 2 -->
-
-            <div class="menu-card">
-
-                <img
-          src="{{ asset('gambar/nusantara/taliwang.png') }}"
-                alt="Nasi Campur Taliwang">
-
-                <div class="menu-info">
-
-                    <h3>Nasi Campur Taliwang</h3>
-
-                    <p class="price">Rp66.000</p>
-
-                    <p class="description">
-                        Nasi putih hangat disajikan bersama ayam bakar
-                        taliwang berbumbu cabai, bawang putih, tomat,
-                        dan rempah khas Lombok. Dilengkapi lauk pilihan.
-                    </p>
-
-                </div>
-
-                <a href="{{ route('detailnusantara', 'nasi-campur-taliwang') }}"
-                class="add-button">+</a>
-
-            </div>
-
-            <!-- MENU 3 -->
-
-            <div class="menu-card">
-
-                <img
-          src="{{ asset('gambar/nusantara/nasgorjawa.jpeg') }}"
-                alt="Nasi Goreng Jawa">
-
-                <div class="menu-info">
-
-                    <h3>Nasi Goreng Jawa</h3>
-
-                    <p class="price">Rp64.000</p>
-
-                    <p class="description">
-                        Nasi putih dimasak dengan bumbu tradisional
-                        berupa bawang merah, bawang putih, cabai,
-                        kecap, dan rempah pilihan.
-                    </p>
-
-                </div>
-
-                <a href="{{ route('detailnusantara', 'nasi-goreng-jawa') }}"
-                class="add-button">+</a>
-
-            </div>
-
-            <!-- MENU 4 -->
-
-            <div class="menu-card">
-
-                <img
-          src="{{ asset('gambar/nusantara/miegoreng.png') }}"
-                alt="Mie Goreng Jawa">
-
-                <div class="menu-info">
-
-                    <h3>Mie Goreng Jawa</h3>
-
-                    <p class="price">Rp60.000</p>
-
-                    <p class="description">
-                        Mie telur dimasak dengan racikan bumbu khas Jawa,
-                        kecap manis, bawang merah, bawang putih,
-                        dan sayuran segar.
-                    </p>
-
-                </div>
-
-                <a href="{{ route('detailnusantara', 'mie-goreng-jawa') }}"
-                class="add-button">+</a>
-
-            </div>
-
-            <!-- MENU 5 -->
-
-            <div class="menu-card">
-
-                <img
-          src="{{ asset('gambar/nusantara/mienyemek.png') }}"
-                alt="Mie Nyemek Kampung Jawa">
-
-                <div class="menu-info">
-
-                    <h3>Mie Nyemek Kampung Jawa</h3>
-
-                    <p class="price">Rp60.000</p>
-
-                    <p class="description">
-                        Mie telur dimasak dengan sedikit kuah kental
-                        berbumbu bawang putih, kemiri, cabai,
-                        dan kecap manis khas Jawa.
-                    </p>
-
-                </div>
-
-                <a href="{{ route('detailnusantara', 'mie-nyemek-kampung-jawa') }}"
-                class="add-button">+</a>
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
             </div>
 

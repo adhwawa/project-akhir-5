@@ -481,7 +481,7 @@
 
       <div>
         <p class="section-subtitle">
-          MAKANAN &nbsp;—&nbsp; 02 PILIHAN
+            MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
         </p>
 
         <h2 class="section-title">Extra</h2>
@@ -494,65 +494,55 @@
     </div>
 
     <div class="menu-list">
+            @php
+                $defaultFotos = [
+                    'Nasi Putih'        => 'gambar/extra/nasiputih.png',
+                    'Telur'             => 'gambar/extra/telur.png',
+                ];
+            @endphp
 
-      <!-- NASI PUTIH -->
-      <article class="menu-card">
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/extra/nasiputih.png');
+                    }
+                @endphp
 
-        <img
-          src="{{ asset('gambar/extra/nasiputih.png') }}"
-          alt="Nasi Putih">
+                <article class="menu-card">
 
-        <div class="menu-info">
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
 
-          <h3>Nasi Putih</h3>
+                    <div class="menu-info">
 
-          <div class="price">Rp12.000</div>
+                        <h3>{{ $menu->nama_menu }}</h3>
 
-          <p>
-            Nasi putih pilihan dimasak hingga pulen dengan
-            tekstur lembut dan aroma yang harum. Disajikan
-            hangat dalam mangkuk khusus sebagai pelengkap
-            berbagai hidangan utama.
-          </p>
+                        <div class="price">{{ $menu->harga_format }}</div>
 
-        </div>
+                        <p>{{ $menu->deskripsi }}</p>
 
-        <a href="{{ route('detailextra', 'nasi-putih') }}"
-          class="add-button">+</a>
+                    </div>
 
-      </article>
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
 
-      <!-- TELUR -->
-      <article class="menu-card">
-
-        <img
-          src="{{ asset('gambar/extra/telur.png') }}"
-          alt="Telur">
-
-        <div class="menu-info">
-
-          <h3>Telur</h3>
-
-          <div class="price">Rp11.000</div>
-
-          <p>
-            Pilihan olahan telur meliputi omelet, telur ceplok,
-            dan telur dadar yang dimasak menggunakan mentega
-            atau minyak dengan tambahan bumbu pilihan.
-            Tersedia tingkat kematangan sesuai permintaan,
-            mulai dari setengah matang, ¾ matang,
-            hingga matang sempurna.
-          </p>
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
         </div>
-
-        <a href="{{ route('detailextra', 'telur') }}"
-          class="add-button">+</a>
-
-      </article>
-
-    </div>
-
   </section>
 
   <!-- FOOTER -->

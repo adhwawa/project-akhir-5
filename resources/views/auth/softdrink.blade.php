@@ -473,9 +473,11 @@
 
         <div class="section-heading">
             <div>
-                <p class="section-subtitle">
-                    MINUMAN — 04 PILIHAN
-                </p>
+
+            <p class="section-subtitle">
+                MINUMAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
+            
                 <h2 class="section-title">Soft Drink</h2>
             </div>
 
@@ -486,62 +488,56 @@
 
         <div class="menu-list">
 
-            <!-- MINERAL WATER -->
-            <article class="menu-card">
-                <img
-                    src="{{ asset('gambar/soft drink/mineralwater.png') }}"
-                    alt="mineralwater">
+            @php
+                $defaultFotos = [
+                    'Mineral Water'  => 'gambar/minuman/mineralwater.png',
+                    'Coke'           => 'gambar/minuman/coke.png',
+                    'Sprite'         => 'gambar/minuman/sprite.png',
+                    'Fanta'          => 'gambar/minuman/fanta.png',
+                ];
+            @endphp 
 
-                <div class="menu-info">
-                    <h3>Mineral Water</h3>
-                    <div class="price">Rp8.000</div>
-                </div>
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/minuman/mineralwater.png');
+                    }
+                @endphp
 
-                <button class="add-button" type="button">+</button>
-            </article>
+                <article class="menu-card">
 
-            <!-- COKE -->
-            <article class="menu-card">
-                <img
-                    src="{{ asset('gambar/soft drink/coke.png') }}"
-                    alt="coke">
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
 
-                <div class="menu-info">
-                    <h3>Coke</h3>
-                    <div class="price">Rp25.000</div>
-                </div>
+                    <div class="menu-info">
 
-                <button class="add-button" type="button">+</button>
-            </article>
+                        <h3>{{ $menu->nama_menu }}</h3>
 
-            <!-- SPRITE -->
-            <article class="menu-card">
-                <img
-                    src="{{ asset('gambar/soft drink/sprite.png') }}"
-                    alt="sprite">
+                        <div class="price">{{ $menu->harga_format }}</div>
 
-                <div class="menu-info">
-                    <h3>Sprite</h3>
-                    <div class="price">Rp25.000</div>
-                </div>
+                        <p>{{ $menu->deskripsi }}</p>
 
-                <button class="add-button" type="button">+</button>
-            </article>
+                    </div>
 
-            <!-- FANTA -->
-            <article class="menu-card">
-                <img
-                    src="{{ asset('gambar/soft drink/fanta.png') }}"
-                    alt="Fanta">
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
 
-                <div class="menu-info">
-                    <h3>Fanta</h3>
-                    <div class="price">Rp25.000</div>
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
-                </div>
-
-                <button class="add-button" type="button">+</button>
-            </article>
 
         </div>
     </section>

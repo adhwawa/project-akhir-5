@@ -535,50 +535,54 @@
 
       <div class="menu-list">
 
-        <!-- MENU 1 -->
-        <article class="menu-card">
-          <img src="{{ asset('gambar/dessert/buahpotong.png') }}" alt="Buah Potong">
-          <div class="menu-info">
-            <h3>Buah Potong</h3>
-            <div class="price">Rp48.000</div>
-            <p>
-              Aneka buah segar yang dipotong kecil dan disajikan dalam satu piring,
-              terdiri dari apel, strawberry, jeruk, anggur, mangga, dan buah
-              musiman lainnya. Disajikan dalam keadaan dingin sebagai hidangan penutup.
-            </p>
-          </div>
-          <button class="add-button">+</button>
-        </article>
+            @php
+                $defaultFotos = [
+                    'Buah Potong'            => 'gambar/dessert/buahpotong.png',
+                    'Ice Buah'               => 'gambar/dessert/icebuah.png',
+                    'Slice Cake'             => 'gambar/dessert/slicecake.png',
+                ];
+            @endphp
 
-        <!-- MENU 2 -->
-        <article class="menu-card">
-          <img src="{{ asset('gambar/dessert/icebuah.png') }}" alt="Ice Buah">
-          <div class="menu-info">
-            <h3>Ice Buah</h3>
-            <div class="price">Rp38.000</div>
-            <p>
-              Campuran aneka buah segar seperti melon, semangka, pepaya, nanas,
-              dan alpukat yang dipotong kecil. Dilengkapi dengan kolang-kaling,
-              nata de coco, sirup, susu kental manis, dan es batu.
-            </p>
-          </div>
-          <button class="add-button">+</button>
-        </article>
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/dessert/buahpotong.png');
+                    }
+                @endphp
 
-        <!-- MENU 3 -->
-        <article class="menu-card">
-          <img src="{{ asset('gambar/dessert/slicecake.png') }}" alt="Slice Cake">
-          <div class="menu-info">
-            <h3>Slice Cake</h3>
-            <div class="price">Rp38.000</div>
-            <p>
-              Potongan kue dengan berbagai pilihan rasa dan tekstur, seperti
-              cokelat, vanilla, atau red velvet. Disajikan per potong dengan
-              lapisan krim atau filling di bagian tengah serta topping sesuai jenis kue.
-            </p>
-          </div>
-          <button class="add-button">+</button>
-        </article>
+                <article class="menu-card">
+
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
+
+                    <div class="menu-info">
+
+                        <h3>{{ $menu->nama_menu }}</h3>
+
+                        <div class="price">{{ $menu->harga_format }}</div>
+
+                        <p>{{ $menu->deskripsi }}</p>
+
+                    </div>
+
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
+
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
       </div>
     </section>

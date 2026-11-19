@@ -479,9 +479,9 @@
         <div class="section-heading">
 
             <div>
-                <p class="section-subtitle">
-                    MINUMAN &nbsp;—&nbsp; 07 PILIHAN
-                </p>
+            <p class="section-subtitle">
+                MINUMAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+            </p>
 
                 <h2 class="section-title">Coffee & Tea</h2>
             </div>
@@ -493,162 +493,59 @@
         </div>
 
         <div class="menu-list">
+            
+            @php
+                $defaultFotos = [
+                    'Jasmine Tea [Ice/Hot]'         => 'gambar/minuman/estea.png',
+                    'Teh Jeruk Nipis [Ice/Hot]'     => 'gambar/minuman/tehjeruknipis.png',
+                    'Lychee Tea [Ice/Hot]'          => 'gambar/minuman/lycheetea.png',
+                    'americano [Ice/Hot]'           => 'gambar/minuman/americano.png',
+                    'coffee latte [Ice/Hot]'        => 'gambar/minuman/coffeelatte.png',
+                    'cappuccino [Ice/Hot]'          => 'gambar/minuman/cappuccino.png',
+                    'mocachino [Ice/Hot]'           => 'gambar/minuman/mochachino.png',
+                ];
+            @endphp
 
-            <!-- 1 JASMINE TEA -->
-            <article class="menu-card">
+            @forelse ($menus as $menu)
+                @php
+                    if ($menu->foto) {
+                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
+                            ? asset($menu->foto)
+                            : asset('storage/' . $menu->foto);
+                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
+                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
+                    } else {
+                        $fotoUrl = asset('gambar/minuman/estea.png');
+                    }
+                @endphp
 
-                <img src="{{ asset('gambar/coffee tea/estea.png') }}"
-                     alt="Jasmine Tea">
+                <article class="menu-card">
 
-                <div class="menu-info">
-                    <h3>Jasmine Tea [Ice/Hot]</h3>
-                    <div class="price">Rp18.000</div>
+                    <img
+                        src="{{ $fotoUrl }}"
+                        alt="{{ $menu->nama_menu }}"
+                    >
 
-                    <p>
-                        Teh melati yang diseduh dari daun teh pilihan
-                        dengan aroma bunga melati. Disajikan dingin
-                        dengan es batu atau hangat tanpa es,
-                        cocok dinikmati sebagai minuman pendamping makanan.
-                    </p>
-                </div>
+                    <div class="menu-info">
 
-                <button class="add-button" type="button">+</button>
+                        <h3>{{ $menu->nama_menu }}</h3>
 
-            </article>
+                        <div class="price">{{ $menu->harga_format }}</div>
 
-            <!-- 2 TEH JERUK NIPIS -->
-            <article class="menu-card">
+                        <p>{{ $menu->deskripsi }}</p>
 
-                <img src="{{ asset('gambar/coffee tea/tehjeruknipis.png') }}"
-                     alt="Teh Jeruk Nipis">
+                    </div>
 
-                <div class="menu-info">
-                    <h3>Teh Jeruk Nipis [Ice/Hot]</h3>
-                    <div class="price">Rp20.000</div>
+                    <a
+                        href="{{ route('detailmenu', $menu->id) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
 
-                    <p>
-                        Teh yang dipadukan dengan perasan jeruk nipis
-                        segar dan tambahan irisan jeruk nipis.
-                        Disajikan dingin dengan es batu atau hangat
-                        untuk memberikan sensasi segar.
-                    </p>
-                </div>
-
-                <button class="add-button" type="button">+</button>
-
-            </article>
-
-            <!-- 3 LYCHEE TEA -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/coffee tea/lecitea.png') }}"
-                     alt="Lychee Tea">
-
-                <div class="menu-info">
-                    <h3>Lychee Tea [Ice/Hot]</h3>
-                    <div class="price">Rp20.000</div>
-
-                    <p>
-                        Teh yang dicampur dengan sirup leci dan
-                        potongan buah leci, dilengkapi es batu
-                        serta irisan buah leci sebagai topping.
-                    </p>
-                </div>
-
-                <button class="add-button" type="button">+</button>
-
-            </article>
-
-            <!-- 4 AMERICANO -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/coffee tea/americano.png') }}"
-                     alt="Americano">
-
-                <div class="menu-info">
-                    <h3>Americano [Ice/Hot]</h3>
-                    <div class="price">Rp25.000</div>
-
-                    <p>
-                        Minuman kopi yang diseduh dari satu atau
-                        dua shot espresso yang dicampur dengan air
-                        panas. Untuk versi dingin, disajikan dengan
-                        es batu dan air tanpa tambahan susu.
-                    </p>
-                </div>
-
-                <button class="add-button" type="button">+</button>
-
-            </article>
-
-            <!-- 5 COFFEE LATTE -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/coffee tea/latte.png') }}"
-                     alt="Coffee Latte">
-
-                <div class="menu-info">
-                    <h3>Coffee Latte [Ice/Hot]</h3>
-                    <div class="price">Rp32.000</div>
-
-                    <p>
-                        Perpaduan espresso dengan susu steamed
-                        yang menghasilkan tekstur lembut dan creamy.
-                        Pada versi dingin, menggunakan susu dingin
-                        dan es batu dengan lapisan foam susu
-                        sebagai pelengkap.
-                    </p>
-                </div>
-
-                <button class="add-button" type="button">+</button>
-
-            </article>
-
-            <!-- 6 CAPPUCCINO -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/coffee tea/cappucino.png') }}"
-                     alt="Cappuccino">
-
-                <div class="menu-info">
-                    <h3>Cappuccino [Ice/Hot]</h3>
-                    <div class="price">Rp32.000</div>
-
-                    <p>
-                        Minuman kopi berbahan dasar espresso
-                        yang dipadukan dengan steamed milk
-                        dan lapisan foam susu tebal di bagian atas.
-                        Dapat dinikmati dengan taburan bubuk cokelat
-                        sebagai topping.
-                    </p>
-                </div>
-
-                <button class="add-button" type="button">+</button>
-
-            </article>
-
-            <!-- 7 MOCCACCINO -->
-            <article class="menu-card">
-
-                <img src="{{ asset('gambar/coffee tea/mocacinno.png') }}"
-                     alt="Mocaccino">
-
-                <div class="menu-info">
-                    <h3>Mocaccino [Ice/Hot]</h3>
-                    <div class="price">Rp32.000</div>
-
-                    <p>
-                        Perpaduan espresso, susu, dan cokelat
-                        yang menghasilkan rasa kopi dan cokelat.
-                        Disajikan dengan kombinasi foam susu
-                        serta taburan bubuk cokelat
-                        atau saus cokelat sebagai topping.
-                    </p>
-                </div>
-
-                <button class="add-button" type="button">+</button>
-
-            </article>
+                </article>
+            @empty
+                <p>Belum ada menu tersedia.</p>
+            @endforelse
 
         </div>
 
