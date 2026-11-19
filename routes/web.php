@@ -125,102 +125,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('menu', MenuController::class)->except(['show']);
 });
 
-// DATA MAINCOURSE
-Route::get('/detail-maincourse/{slug}', function ($slug) {
-    $menus = [
-        'grill-chicken-steak' => [
-            'nama' => 'Grill Chicken Steak',
-            'kategori' => 'MAIN COURSE',
-            'harga' => 85000,
-            'gambar' => 'gambar/maincourse/grillchikensteak.png',
-            'deskripsi' => 'Chicken steak menggunakan dada ayam filet pilihan yang dimarinasi dengan bawang putih, lada hitam, garam, dan rempah pilihan, kemudian dipanggang hingga matang sempurna. Disajikan dengan saus mushroom atau black pepper serta sayuran dan kentang pilihan.'
-        ],
-        'spaghetti-bolognese-katsu' => [
-            'nama' => 'Spaghetti Bolognese Katsu',
-            'kategori' => 'MAIN COURSE',
-            'harga' => 58000,
-            'gambar' => 'gambar/maincourse/speagetibolokatsu.png',
-            'deskripsi' => 'Spaghetti pilihan disajikan dengan saus bolognese berbahan tomat segar, daging sapi cincang, bawang bombay, bawang putih, dan rempah pilihan. Dilengkapi chicken katsu crispy, taburan keju parmesan, potongan tomat cherry, parsley, serta sedikit oregano untuk menambah aroma.'
-        ],
-        'sop-iga' => [
-            'nama' => 'Sop Iga',
-            'kategori' => 'MAIN COURSE',
-            'harga' => 74000,
-            'gambar' => 'gambar/maincourse/supiga.png',
-            'deskripsi' => 'Potongan iga sapi pilihan dimasak perlahan hingga empuk dalam kuah kaldu rempah yang kaya rasa. Dilengkapi wortel, kentang, tomat, daun bawang, seledri, dan taburan bawang goreng. Disajikan dengan nasi putih hangat.'
-        ],
-        'nasi-goreng-katsu' => [
-            'nama' => 'Nasi Goreng Katsu',
-            'kategori' => 'MAIN COURSE',
-            'harga' => 64000,
-            'gambar' => 'gambar/maincourse/nasgorkatsu.png',
-            'deskripsi' => 'Nasi putih dimasak dengan bumbu rempah, kecap manis, bawang merah, bawang putih, telur, dan sayuran pilihan hingga harum. Disajikan bersama chicken katsu renyah, telur, irisan mentimun, tomat segar, acar, serta taburan daun bawang.'
-        ],
-        'nasi-timbel-ayam-goreng' => [
-            'nama' => 'Nasi Timbel Ayam Goreng',
-            'kategori' => 'MAIN COURSE',
-            'harga' => 58000,
-            'gambar' => 'gambar/maincourse/nTimbel.png',
-            'deskripsi' => 'Nasi putih hangat dibungkus daun pisang untuk menghasilkan aroma khas dan disajikan bersama ayam goreng berbumbu kuning. Dilengkapi tahu goreng, tempe goreng, lalapan segar, mentimun, kol, daun kemangi, serta sambal terasi.'
-        ],
-    ];
-
-    abort_unless(isset($menus[$slug]), 404);
-
-    return view('detailmaincourse', [
-        'menu' => $menus[$slug],
-        'slug' => $slug
-    ]);
-})->name('detailmaincourse');
-
-// DETAIL NUSANTARA
-Route::get('/detail-nusantara/{slug}', function ($slug) {
-    $menus = [
-        'nasi-iga-bakar' => [
-            'nama' => 'Nasi Iga Bakar',
-            'kategori' => 'NUSANTARA',
-            'harga' => 72000,
-            'gambar' => 'gambar/nusantara/n.igabakar.png',
-            'deskripsi' => 'Iga sapi pilihan dibakar dengan bumbu kecap manis, berpadu dengan kentang dan sayuran. Disajikan bersama nasi putih hangat, tumis buncis dan wortel.'
-        ],
-        'nasi-campur-taliwang' => [
-            'nama' => 'Nasi Campur Taliwang',
-            'kategori' => 'NUSANTARA',
-            'harga' => 66000,
-            'gambar' => 'gambar/nusantara/taliwang.png',
-            'deskripsi' => 'Nasi putih hangat disajikan bersama ayam bakar taliwang berbumbu cabai, bawang putih, tomat, dan rempah khas Lombok. Dilengkapi lauk pilihan.'
-        ],
-        'nasi-goreng-jawa' => [
-            'nama' => 'Nasi Goreng Jawa',
-            'kategori' => 'NUSANTARA',
-            'harga' => 64000,
-            'gambar' => 'gambar/nusantara/nasgorjawa.png',
-            'deskripsi' => 'Nasi putih dimasak dengan bumbu tradisional berupa bawang merah, bawang putih, cabai, kecap, dan rempah pilihan.'
-        ],
-        'mie-goreng-jawa' => [
-            'nama' => 'Mie Goreng Jawa',
-            'kategori' => 'NUSANTARA',
-            'harga' => 60000,
-            'gambar' => 'gambar/nusantara/miegoreng.png',
-            'deskripsi' => 'Mie telur dimasak dengan racikan bumbu khas Jawa, kecap manis, bawang merah, bawang putih, dan sayuran segar.'
-        ],
-        'mie-nyemek-kampung-jawa' => [
-            'nama' => 'Mie Nyemek Kampung Jawa',
-            'kategori' => 'NUSANTARA',
-            'harga' => 60000,
-            'gambar' => 'gambar/nusantara/mienyemek.png',
-            'deskripsi' => 'Mie telur dimasak dengan sedikit kuah kental berbumbu bawang putih, kemiri, cabai, dan kecap manis khas Jawa.'
-        ],
-    ];
-
-    abort_unless(isset($menus[$slug]), 404);
-
-    return view('detailnusantara', [
-        'menu' => $menus[$slug],
-        'slug' => $slug
-    ]);
-})->name('detailnusantara');
-
 
 // HALAMAN DETAILMENU (KERANJANG)
 Route::get('/detailmenu', function () {
@@ -294,8 +198,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::post('/pembayaran/{id}/tolak', [PembayaranController::class, 'tolak'])
         ->name('pembayaran.tolak');
+});
 
-=======
 // ADMIN PESANAN
 Route::get('/admin/pesanan', function () {
     return view('admin.pesanan.index');
