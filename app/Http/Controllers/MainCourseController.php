@@ -10,9 +10,6 @@ class MainCourseController extends Controller
     // Menampilkan halaman daftar Main Course
     public function index()
     {
-<<<<<<< HEAD
-        $menus = MainCourse::all();
-=======
         $menus = Menu::with('subCategory')
             ->where('kategori_utama', 'Makanan')
             ->where('tampilkan_katalog', true)
@@ -21,7 +18,6 @@ class MainCourseController extends Controller
             })
             ->oldest('id')
             ->get();
->>>>>>> 71dc92581c64bbb101f73420d45178b8df0b0018
 
         return view('auth.maincourse', compact('menus'));
     }
