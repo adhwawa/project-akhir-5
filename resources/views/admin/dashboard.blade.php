@@ -710,7 +710,7 @@
                     Pesanan
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pembayaran.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                         <line x1="2" y1="10" x2="22" y2="10"></line>

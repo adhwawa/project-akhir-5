@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Daily Crave - Main Course</title>
-    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
+<<<<<<< HEAD
+    <link rel="icon" type="image/png"
+        href="{{ asset('gambar/favicon.png') }}">
+
+=======
+>>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
     <style>
@@ -258,28 +263,21 @@
         .add-button {
             width: 40px;
             height: 40px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border: none;
             border-radius: 50%;
-
             background-color: #f5f0e8;
-
             color: #9a785b;
             font-family: 'Poppins', sans-serif;
             font-size: 25px;
             font-weight: 300;
             line-height: 1;
-
             text-decoration: none;
             cursor: pointer;
-
             justify-self: center;
             flex-shrink: 0;
-
             transition: .3s;
         }
 
@@ -287,6 +285,29 @@
             background-color: #806044;
             color: white;
             transform: scale(1.08);
+        }
+
+        /* EMPTY MENU */
+
+        .empty-menu {
+            padding: 45px 20px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #eee7df;
+            border-radius: 12px;
+        }
+
+        .empty-menu h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 400;
+            color: #554033;
+            margin-bottom: 8px;
+        }
+
+        .empty-menu p {
+            color: #8b8177;
+            font-size: 11px;
         }
 
         /* FOOTER */
@@ -412,26 +433,31 @@
                 text-align: center;
                 padding: 22px 5%;
             }
-
         }
     </style>
+
 </head>
 
 <body>
 
-    <main class="container">
+<main class="container">
 
-        <!-- HEADER -->
+    <!-- HEADER -->
 
-        <nav class="navbar">
+    <nav class="navbar">
 
-            <div class="brand">
-                ☼ daily crave
-                <small>FOOD & DRINK</small>
-            </div>
+        <div class="brand">
+            ☼ daily crave
+            <small>FOOD & DRINK</small>
+        </div>
 
-            <div class="nav-menu">
+        <div class="nav-menu">
 
+<<<<<<< HEAD
+            <a href="{{ route('dashboard') }}">
+                Menu Kami
+            </a>
+=======
                 <a href="{{ route('dashboard') }}">Menu Kami</a>
 
                 <a href="{{ route('maincourse') }}" class="active">
@@ -481,57 +507,201 @@
         <!-- CATEGORY NAVIGATION -->
 
         <nav class="category-bar">
+>>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
 
             <a href="{{ route('maincourse') }}" class="active">
-                Main Course
+                Makanan
             </a>
 
-            <a href="{{ route('nusantara') }}">
-                Nusantara
+            <a href="{{ route('coffeeandtea') }}">
+                Minuman
             </a>
 
-            <a href="{{ route('comfort') }}">
-                Comfort
+            <a href="{{ route('dessert') }}">
+                Dessert
             </a>
 
-            <a href="{{ route('extra') }}">
-                Extra
-            </a>
+        </div>
 
-            <span class="category-note">
-                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-            </span>
-
-        </nav>
+    </nav>
 
 
-        <!-- MAIN COURSE -->
+    <!-- HERO -->
 
-        <section class="menu-section" id="main-course">
+    <section class="hero" id="home">
 
-            <div class="section-heading">
+        <div class="hero-text">
 
-                <div>
+            <p class="eyebrow">
+                ──── MENU DAILY CRAVE ────
+            </p>
 
-                    <p class="section-subtitle">
-                        MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
-                    </p>
+<<<<<<< HEAD
+            <h1>
+                Rasa yang akrab.<br>
+                Momen yang hangat.
+            </h1>
 
-                    <h2 class="section-title">
-                        Main Course
-                    </h2>
+            <p class="description">
+                Jelajahi pilihan makanan, minuman, dan dessert.
+                Pilihan rasa yang pas untuk menemani harimu
+                dengan cita rasa yang istimewa.
+            </p>
 
-                </div>
+        </div>
 
-                <p class="section-hint">
-                    Temukan pilihan untuk waktu bersantap Anda.
+        <img src="{{ asset('gambar/makanan.png') }}"
+            alt="Hidangan Daily Crave">
+
+    </section>
+
+
+    <!-- CATEGORY NAVIGATION -->
+
+    <nav class="category-bar">
+
+        <a href="{{ route('maincourse') }}" class="active">
+            Main Course
+        </a>
+
+        <a href="{{ route('nusantara') }}">
+            Nusantara
+        </a>
+
+        <a href="{{ route('comfort') }}">
+            Comfort
+        </a>
+
+        <a href="{{ route('extra') }}">
+            Extra
+        </a>
+
+        <span class="category-note">
+            DAPAT DITAMBAHKAN KE DAFTAR PESANAN
+        </span>
+
+    </nav>
+
+
+    <!-- MAIN COURSE -->
+
+    <section class="menu-section" id="main-course">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="section-subtitle">
+                    MAKANAN — {{ sprintf('%02d', $menus->count()) }} PILIHAN
                 </p>
+
+                <h2 class="section-title">
+                    Main Course
+                </h2>
 
             </div>
 
+            <p class="section-hint">
+                Temukan pilihan untuk waktu bersantap Anda.
+            </p>
 
-            <div class="menu-list">
+        </div>
 
+
+        <div class="menu-list">
+
+            @forelse ($menus as $menu)
+
+                <article class="menu-card">
+
+                    <!-- FOTO MENU -->
+
+                    <img
+                        src="{{ $menu->foto ? \Illuminate\Support\Facades\Storage::url($menu->foto) : asset('gambar/favicon.png') }}"
+                        alt="{{ $menu->nama_menu }}"
+                        onerror="this.src='{{ asset('gambar/favicon.png') }}'">
+
+                    <!-- INFORMASI MENU -->
+
+                    <div class="menu-info">
+
+                        <h3>
+                            {{ $menu->nama_menu }}
+                        </h3>
+
+                        <div class="price">
+                            Rp{{ number_format($menu->harga, 0, ',', '.') }}
+                        </div>
+
+                        <p>
+                            {{ $menu->deskripsi }}
+                        </p>
+
+                    </div>
+
+                    <!-- TOMBOL DETAIL -->
+
+                    <a
+                        href="{{ route('detailmaincourse', ['slug' => \Illuminate\Support\Str::slug($menu->nama_menu)]) }}"
+                        class="add-button"
+                        aria-label="Detail {{ $menu->nama_menu }}">
+                        +
+                    </a>
+
+                </article>
+
+            @empty
+
+                <div class="empty-menu">
+
+                    <h3>Menu Belum Tersedia</h3>
+
+                    <p>
+                        Saat ini belum ada menu Main Course yang ditampilkan.
+                        Silakan kembali lagi nanti.
+=======
+                    <p class="section-subtitle">
+                        MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
+>>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
+                    </p>
+
+                </div>
+
+            @endforelse
+
+        </div>
+
+    </section>
+
+
+<<<<<<< HEAD
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>
+            © 2026 Daily Crave. Good Food, Good Mood.
+        </span>
+
+        <div class="footer-links">
+
+            <a href="#main-course">
+                Kebijakan Privasi
+            </a>
+
+            <a href="#main-course">
+                Syarat &amp; Ketentuan
+            </a>
+
+        </div>
+
+    </footer>
+
+</main>
+
+</body>
+</html>
+=======
                 @php
                     $defaultFotos = [
                         'Grill Chicken Steak'       => 'gambar/maincourse/grillchikensteak.png',
@@ -611,3 +781,7 @@
 </body>
 
 </html>
+<<<<<<< HEAD
+=======
+>>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
+>>>>>>> 7864247441c7b60bba6309419d51de77380fe7a7
