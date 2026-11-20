@@ -509,65 +509,6 @@
         <!-- HERO -->
         <section class="hero">
 
-<<<<<<< HEAD
-            @php
-                $defaultFotos = [
-                    'Mendoan'                   => 'gambar/comfort/mendoan.png',
-                    'Tahu Crispy'               => 'gambar/comfort/tahu.png',
-                    'bakwan Jagung'             => 'gambar/comfort/bakwanjagung.png',
-                    'Singkong Crispy'           => 'gambar/comfort/singkong.png',
-                    'Cireng Crispy'             => 'gambar/comfort/cireng.png',
-                    'Roti bakar Coklat Keju'    => 'gambar/comfort/rotibakar.png',
-                    'Pisang Goreng Crispy'      => 'gambar/comfort/pisanggoreng.png',
-                    'Mix Platter'               => 'gambar/comfort/mixplatter.png',
-
-                ];
-            @endphp
-
-            @forelse ($menus as $menu)
-                @php
-                    if ($menu->foto) {
-                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
-                            ? asset($menu->foto)
-                            : asset('storage/' . $menu->foto);
-                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
-                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
-                    } else {
-                        $fotoUrl = asset('gambar/comfort/mendoan.png');
-                    }
-                @endphp
-
-                <article class="menu-card">
-
-                    <img
-                        src="{{ $fotoUrl }}"
-                        alt="{{ $menu->nama_menu }}"
-                    >
-
-                    <div class="menu-info">
-
-                        <h3>{{ $menu->nama_menu }}</h3>
-
-                        <div class="price">{{ $menu->harga_format }}</div>
-
-                        <p>{{ $menu->deskripsi }}</p>
-
-                    </div>
-
-                    <a
-                        href="{{ route('detailmenu', $menu->id) }}"
-                        class="add-button"
-                        aria-label="Detail {{ $menu->nama_menu }}"
-                    >+</a>
-
-                </article>
-            @empty
-                <p>Belum ada menu tersedia.</p>
-            @endforelse
-
-            </div>
-        </div>
-=======
             <div class="hero-text">
 
                 <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
@@ -797,7 +738,6 @@
                     <a href="{{ route('detailcomfort', 'pisang-goreng-crispy') }}" class="add-button">+</a>
 
                 </article>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                 <!-- MIX PLATTER -->
                 <article class="menu-card">
