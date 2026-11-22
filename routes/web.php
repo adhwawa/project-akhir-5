@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminControllers\PembayaranController
     as PembayaranAdminController;
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
+use App\Http\Controllers\AdminControllers\PelangganController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -216,5 +217,13 @@ Route::get('/admin/pesanan/{id}', function ($id) {
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
         ->name('admin.dashboard');
+
+});
+
+// ADMIN PELANGGAN
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/pelanggan', [PelangganController::class, 'index'])
+        ->name('pelanggan.index');
 
 });
