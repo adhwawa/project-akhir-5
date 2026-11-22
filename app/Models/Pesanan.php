@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pesanan extends Model
 {
+    protected $table = 'pesanans';
+
     protected $fillable = [
         'kode_pesanan',
         'user_id',
@@ -23,7 +26,7 @@ class Pesanan extends Model
         'total_harga' => 'decimal:2',
     ];
 
-    public function pembayaran()
+    public function pembayaran(): HasOne
     {
         return $this->hasOne(Pembayaran::class);
     }

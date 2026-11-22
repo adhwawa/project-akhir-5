@@ -3,24 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pembayaran extends Model
 {
+    protected $table = 'pembayarans';
+
     protected $fillable = [
         'pesanan_id',
         'metode_pembayaran',
-        'jumlah_transfer',
-        'status',
+        'total_pembayaran',
+        'bukti_pembayaran',
+        'status_pembayaran',
         'catatan_admin',
-        'tanggal_konfirmasi',
     ];
 
-    protected $casts = [
-        'jumlah_transfer' => 'decimal:2',
-        'tanggal_konfirmasi' => 'datetime',
-    ];
-
-    public function pesanan()
+    public function pesanan(): BelongsTo
     {
         return $this->belongsTo(Pesanan::class);
     }
