@@ -8,12 +8,9 @@
 
     <title>Daily Crave - Main Course</title>
 
-<<<<<<< HEAD
     <link rel="icon" type="image/png"
         href="{{ asset('gambar/favicon.png') }}">
 
-=======
->>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -453,61 +450,9 @@
 
         <div class="nav-menu">
 
-<<<<<<< HEAD
             <a href="{{ route('dashboard') }}">
                 Menu Kami
             </a>
-=======
-                <a href="{{ route('dashboard') }}">Menu Kami</a>
-
-                <a href="{{ route('maincourse') }}" class="active">
-                    Makanan
-                </a>
-
-                <a href="{{ route('coffeeandtea') }}">Minuman</a>
-
-                <a href="{{ route('dessert') }}">Dessert</a>
-
-            </div>
-
-        </nav>
-
-
-        <!-- HERO -->
-
-        <section class="hero" id="home">
-
-            <div class="hero-text">
-
-                <p class="eyebrow">
-                    ──── MENU DAILY CRAVE ────
-                </p>
-
-                <h1>
-                    Rasa yang akrab.<br>
-                    Momen yang hangat.
-                </h1>
-
-                <p class="description">
-                    Jelajahi pilihan makanan, minuman, dan dessert.
-                    Pilihan rasa yang pas untuk menemani harimu
-                    dengan cita rasa yang istimewa.
-                </p>
-
-            </div>
-
-            <img
-                src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
-                alt="Hidangan Daily Crave"
-            >
-
-        </section>
-
-
-        <!-- CATEGORY NAVIGATION -->
-
-        <nav class="category-bar">
->>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
 
             <a href="{{ route('maincourse') }}" class="active">
                 Makanan
@@ -536,7 +481,6 @@
                 ──── MENU DAILY CRAVE ────
             </p>
 
-<<<<<<< HEAD
             <h1>
                 Rasa yang akrab.<br>
                 Momen yang hangat.
@@ -592,7 +536,7 @@
             <div>
 
                 <p class="section-subtitle">
-                    MAKANAN — {{ sprintf('%02d', $menus->count()) }} PILIHAN
+                    MAKANAN — {{ sprintf('%02d', count($menus)) }} PILIHAN
                 </p>
 
                 <h2 class="section-title">
@@ -609,72 +553,76 @@
 
 
         <div class="menu-list">
+            @php
+                $defaultFotos = [
+                    'Grill Chicken Steak'       => 'gambar/maincourse/grillchikensteak.png',
+                    'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+                    'Spaghetti Bolognise Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+                    'Sop Iga'                   => 'gambar/maincourse/supiga.png',
+                    'Nasi Goreng Katsu'         => 'gambar/maincourse/nasgorkatsu.png',
+                    'Nasi Timbel Ayam Goreng'   => 'gambar/maincourse/nTimbel.png',
+                ];
+            @endphp
 
             @forelse ($menus as $menu)
+               @php
+    $defaultFotos = [
+        'grill chicken steak' => 'gambar/maincourse/grillchikensteak.png',
+        'spaghetti bolognese katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+        'spaghetti bolognise katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+        'sop iga' => 'gambar/maincourse/supiga.png',
+        'nasi goreng katsu' => 'gambar/maincourse/nasgorkatsu.png',
+        'nasi timbel ayam goreng' => 'gambar/maincourse/nTimbel.png',
+    ];
+
+    $namaMenu = strtolower(trim($menu->nama_menu));
+    $fotoCadangan = asset($defaultFotos[$namaMenu] ?? 'gambar/makanan.png');
+
+    $foto = ltrim($menu->foto ?? '', '/');
+
+    if (preg_match('/^https?:\/\//i', $foto)) {
+        $fotoUrl = $foto;
+    } elseif (str_starts_with($foto, 'gambar/')) {
+        $fotoUrl = asset($foto);
+    } elseif ($foto) {
+        $path = preg_replace('#^(storage/|public/)#', '', $foto);
+        $fotoUrl = asset('storage/' . $path);
+    } else {
+        $fotoUrl = $fotoCadangan;
+    }
+@endphp
 
                 <article class="menu-card">
-
-                    <!-- FOTO MENU -->
-
                     <img
-                        src="{{ $menu->foto ? \Illuminate\Support\Facades\Storage::url($menu->foto) : asset('gambar/favicon.png') }}"
-                        alt="{{ $menu->nama_menu }}"
-                        onerror="this.src='{{ asset('gambar/favicon.png') }}'">
-
-                    <!-- INFORMASI MENU -->
+    src="{{ $fotoUrl }}"
+    alt="{{ $menu->nama_menu }}"
+    onerror="this.onerror=null; this.src='{{ $fotoCadangan }}';"
+>
 
                     <div class="menu-info">
-
-                        <h3>
-                            {{ $menu->nama_menu }}
-                        </h3>
-
-                        <div class="price">
-                            Rp{{ number_format($menu->harga, 0, ',', '.') }}
-                        </div>
-
-                        <p>
-                            {{ $menu->deskripsi }}
-                        </p>
-
+                        <h3>{{ $menu->nama_menu }}</h3>
+                        <div class="price">{{ $menu->harga_format }}</div>
+                        <p>{{ $menu->deskripsi }}</p>
                     </div>
 
-                    <!-- TOMBOL DETAIL -->
-
                     <a
-                        href="{{ route('detailmaincourse', ['slug' => \Illuminate\Support\Str::slug($menu->nama_menu)]) }}"
+                        href="{{ route('detailmaincourse', $menu->id) }}"
                         class="add-button"
-                        aria-label="Detail {{ $menu->nama_menu }}">
-                        +
-                    </a>
-
+                        aria-label="Detail {{ $menu->nama_menu }}"
+                    >+</a>
                 </article>
-
             @empty
-
                 <div class="empty-menu">
-
                     <h3>Menu Belum Tersedia</h3>
-
-                    <p>
-                        Saat ini belum ada menu Main Course yang ditampilkan.
-                        Silakan kembali lagi nanti.
-=======
-                    <p class="section-subtitle">
-                        MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
->>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
-                    </p>
-
+                    <p>Saat ini belum ada menu Main Course yang ditampilkan. Silakan kembali lagi nanti.</p>
                 </div>
-
             @endforelse
-
         </div>
 
     </section>
 
 
-<<<<<<< HEAD
+
     <!-- FOOTER -->
 
     <footer>
@@ -701,87 +649,3 @@
 
 </body>
 </html>
-=======
-                @php
-                    $defaultFotos = [
-                        'Grill Chicken Steak'       => 'gambar/maincourse/grillchikensteak.png',
-                        'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
-                        'Sop Iga'                   => 'gambar/maincourse/supiga.png',
-                        'Nasi Goreng Katsu'         => 'gambar/maincourse/nasgorkatsu.png',
-                        'Nasi Timbel Ayam Goreng'   => 'gambar/maincourse/nTimbel.png',
-                    ];
-                @endphp
-
-                @forelse ($menus as $menu)
-                    @php
-                        if ($menu->foto) {
-                            $fotoUrl = str_starts_with($menu->foto, 'gambar/')
-                                ? asset($menu->foto)
-                                : asset('storage/' . $menu->foto);
-                        } elseif (isset($defaultFotos[$menu->nama_menu])) {
-                            $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
-                        } else {
-                            $fotoUrl = asset('gambar/maincourse/grillchikensteak.png');
-                        }
-                    @endphp
-
-                    <article class="menu-card">
-
-                        <img
-                            src="{{ $fotoUrl }}"
-                            alt="{{ $menu->nama_menu }}"
-                        >
-
-                        <div class="menu-info">
-
-                            <h3>{{ $menu->nama_menu }}</h3>
-
-                            <div class="price">{{ $menu->harga_format }}</div>
-
-                            <p>{{ $menu->deskripsi }}</p>
-
-                        </div>
-
-                        <a
-                            href="{{ route('detailmenu', $menu->id) }}"
-                            class="add-button"
-                            aria-label="Detail {{ $menu->nama_menu }}"
-                        >+</a>
-
-                    </article>
-                @empty
-                    <p>Belum ada menu tersedia.</p>
-                @endforelse
-
-            </div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <span>
-                © 2026 Daily Crave. Good Food, Good Mood.
-            </span>
-
-            <div class="footer-links">
-
-                <a href="#main-course">Kebijakan Privasi</a>
-
-                <a href="#main-course">Syarat &amp; Ketentuan</a>
-
-            </div>
-
-        </footer>
-
-    </main>
-
-</body>
-
-</html>
-<<<<<<< HEAD
-=======
->>>>>>> ab4308ac078e82bffa03536409b9dfce8f6da05c
->>>>>>> 7864247441c7b60bba6309419d51de77380fe7a7

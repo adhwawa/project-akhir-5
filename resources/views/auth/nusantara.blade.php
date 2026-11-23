@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -443,56 +442,6 @@
 
     <nav class="navbar">
 
-<<<<<<< HEAD
-        </nav>
-
-        <!-- HERO -->
-        <section class="hero" id="home">
-
-            <div class="hero-text">
-
-                <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
-
-                <h1>
-                    Rasa yang akrab.<br>
-                    Momen yang hangat.
-                </h1>
-
-                <p class="description">
-                    Jelajahi pilihan makanan, minuman, dan dessert.
-                    Pilihan rasa yang pas untuk menemani harimu
-                    dengan cita rasa yang istimewa.
-                </p>
-
-            </div>
-            <img src="{{ asset('gambar/makanan.png') }}" alt="Hidangan Daily Crave">
-
-
-        </section>
-
-        <!-- CATEGORY NAVIGATION -->
-        <nav class="category-bar">
-
-            <a href="{{ route('maincourse') }}">Main Course</a>
-            <a href="{{ route('nusantara') }}" class="active">Nusantara</a>
-            <a href="{{ route('comfort') }}">Comfort</a>
-            <a href="{{ route('extra') }}">Extra</a>
-
-            <span class="category-note">
-                DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-            </span>
-
-        </nav>
-
-        <!-- NUSANTARA -->
-        <section class="menu-section" id="nusantara">
-
-            <div class="section-heading">
-
-                <div>
-                    <p class="section-subtitle">
-                        MAKANAN &nbsp;—&nbsp; 05 PILIHAN
-=======
         <div class="brand">
             ☼ daily crave
             <small>FOOD & DRINK</small>
@@ -586,7 +535,7 @@
             <div>
 
                 <p class="section-subtitle">
-                    MAKANAN — {{ sprintf('%02d', $menus->count()) }} PILIHAN
+MAKANAN — {{ sprintf('%02d', count($menus)) }} PILIHAN
                 </p>
 
                 <h2 class="section-title">
@@ -610,11 +559,24 @@
 
                     <!-- FOTO MENU -->
 
-                    <img
-                        src="{{ $menu->foto ? \Illuminate\Support\Facades\Storage::url($menu->foto) : asset('gambar/favicon.png') }}"
-                        alt="{{ $menu->nama_menu }}"
-                        onerror="this.src='{{ asset('gambar/favicon.png') }}'">
+                    @php
+                        $foto = trim((string) $menu->foto);
+                        $pathFoto = ltrim(preg_replace('#^(storage/|public/)#', '', $foto), '/');
 
+                        if ($foto && filter_var($foto, FILTER_VALIDATE_URL)) {
+                            $gambarUrl = $foto;
+                        } elseif ($foto && file_exists(public_path($pathFoto))) {
+                            $gambarUrl = asset($pathFoto);
+                        } elseif ($foto && file_exists(public_path('storage/' . $pathFoto))) {
+                            $gambarUrl = asset('storage/' . $pathFoto);
+                        } elseif ($foto && \Illuminate\Support\Facades\Storage::disk('public')->exists($pathFoto)) {
+                            $gambarUrl = \Illuminate\Support\Facades\Storage::disk('public')->url($pathFoto);
+                        } else {
+                            $gambarUrl = asset('gambar/makanan.png');
+                        }
+                    @endphp
+
+                    <img src="{{ $gambarUrl }}" alt="{{ $menu->nama_menu }}">
                     <!-- INFORMASI MENU -->
 
                     <div class="menu-info">
@@ -636,11 +598,11 @@
                     <!-- TOMBOL DETAIL -->
 
                     <a
-                        href="{{ route('detailnusantara', ['slug' => \Illuminate\Support\Str::slug($menu->nama_menu)]) }}"
-                        class="add-button"
-                        aria-label="Detail {{ $menu->nama_menu }}">
-                        +
-                    </a>
+href="{{ route('detailnusantara', ['slug' => \Illuminate\Support\Str::slug($menu->nama_menu)]) }}"
+    class="add-button"
+    aria-label="Detail {{ $menu->nama_menu }}">
+    +
+</a>
 
                 </article>
 
@@ -653,164 +615,15 @@
                     <p>
                         Saat ini belum ada menu Main Course yang ditampilkan.
                         Silakan kembali lagi nanti.
->>>>>>> 7864247441c7b60bba6309419d51de77380fe7a7
                     </p>
 
                 </div>
 
-<<<<<<< HEAD
-                <p class="section-hint">
-                    Temukan pilihan untuk waktu bersantap Anda.
-                </p>
-
-            </div>
-
-            <div class="menu-list">
-
-                <!-- MENU 1 -->
-
-                <div class="menu-card">
-
-                    <img src="{{ asset('gambar/nusantara/n.igabakar.png') }}" alt="Nasi Iga Bakar">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Iga Bakar</h3>
-
-                        <p class="price">Rp72.000</p>
-
-                        <p class="description">
-                            Iga sapi pilihan dibakar dengan bumbu kecap manis,
-                            berpadu dengan kentang dan sayuran. Disajikan bersama
-                            nasi putih hangat, tumis buncis dan wortel.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailnusantara', 'nasi-iga-bakar') }}" class="add-button">+</a>
-
-                </div>
-
-                <!-- MENU 2 -->
-
-                <div class="menu-card">
-
-                    <img src="{{ asset('gambar/nusantara/taliwang.png') }}" alt="Nasi Campur Taliwang">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Campur Taliwang</h3>
-
-                        <p class="price">Rp66.000</p>
-
-                        <p class="description">
-                            Nasi putih hangat disajikan bersama ayam bakar
-                            taliwang berbumbu cabai, bawang putih, tomat,
-                            dan rempah khas Lombok. Dilengkapi lauk pilihan.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailnusantara', 'nasi-campur-taliwang') }}" class="add-button">+</a>
-
-                </div>
-
-                <!-- MENU 3 -->
-
-                <div class="menu-card">
-
-                    <img src="{{ asset('gambar/nusantara/nasgorjawa.jpeg') }}" alt="Nasi Goreng Jawa">
-
-                    <div class="menu-info">
-
-                        <h3>Nasi Goreng Jawa</h3>
-
-                        <p class="price">Rp64.000</p>
-
-                        <p class="description">
-                            Nasi putih dimasak dengan bumbu tradisional
-                            berupa bawang merah, bawang putih, cabai,
-                            kecap, dan rempah pilihan.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailnusantara', 'nasi-goreng-jawa') }}" class="add-button">+</a>
-
-                </div>
-
-                <!-- MENU 4 -->
-
-                <div class="menu-card">
-
-                    <img src="{{ asset('gambar/nusantara/miegoreng.png') }}" alt="Mie Goreng Jawa">
-
-                    <div class="menu-info">
-
-                        <h3>Mie Goreng Jawa</h3>
-
-                        <p class="price">Rp60.000</p>
-
-                        <p class="description">
-                            Mie telur dimasak dengan racikan bumbu khas Jawa,
-                            kecap manis, bawang merah, bawang putih,
-                            dan sayuran segar.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailnusantara', 'mie-goreng-jawa') }}" class="add-button">+</a>
-
-                </div>
-
-                <!-- MENU 5 -->
-
-                <div class="menu-card">
-
-                    <img src="{{ asset('gambar/nusantara/mienyemek.png') }}" alt="Mie Nyemek Kampung Jawa">
-
-                    <div class="menu-info">
-
-                        <h3>Mie Nyemek Kampung Jawa</h3>
-
-                        <p class="price">Rp60.000</p>
-
-                        <p class="description">
-                            Mie telur dimasak dengan sedikit kuah kental
-                            berbumbu bawang putih, kemiri, cabai,
-                            dan kecap manis khas Jawa.
-                        </p>
-
-                    </div>
-
-                    <a href="{{ route('detailnusantara', 'mie-nyemek-kampung-jawa') }}" class="add-button">+</a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <p>© 2026 Daily Crave. Good Food, Good Mood.</p>
-
-            <div class="footer-links">
-                <a href="#makanan">Kebijakan Privasi</a>
-                <a href="#makanan">Syarat & Ketentuan</a>
-            </div>
-
-        </footer>
-=======
             @endforelse
->>>>>>> 7864247441c7b60bba6309419d51de77380fe7a7
 
         </div>
 
     </section>
-
 
     <!-- FOOTER -->
 

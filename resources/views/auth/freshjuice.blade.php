@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Daily Crave - Main Course</title>
+    <title>Daily Crave - Fresh Juice</title>
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
 
@@ -508,92 +508,18 @@
                     }
                 @endphp
 
-                <article class="menu-card">
-<<<<<<< HEAD
-
-                    <img
-                        src="{{ $fotoUrl }}"
-                        alt="{{ $menu->nama_menu }}"
-                    >
-=======
-                    <img src="{{ asset('gambar/fresh juice/orange.png') }}" alt="Fresh Orange">
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
+                <div class="menu-card">
+                    <img src="{{ $fotoUrl }}" alt="{{ $menu->nama_menu }}">
 
                     <div class="menu-info">
-
                         <h3>{{ $menu->nama_menu }}</h3>
-
-                        <div class="price">{{ $menu->harga_format }}</div>
-
+                        <div class="price">Rp{{ number_format($menu->harga, 0, ',', '.') }}</div>
                         <p>{{ $menu->deskripsi }}</p>
-
                     </div>
 
-<<<<<<< HEAD
-                    <a
-                        href="{{ route('detailmenu', $menu->id) }}"
-                        class="add-button"
-                        aria-label="Detail {{ $menu->nama_menu }}"
-                    >+</a>
-
-=======
-                    <a href="{{ route('detailfreshjuice', 'fresh-orange') }}" class="add-button">+</a>
-                </article>
-
-                <!-- WATERMELON -->
-                <article class="menu-card">
-                    <img src="{{ asset('gambar/fresh juice/watermelon.png') }}" alt="Watermelon">
-
-                    <div class="menu-info">
-                        <h3>Watermelon</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus buah semangka segar yang diblender dengan
-                            tambahan sedikit air dan gula sesuai kebutuhan.
-                            Disajikan dingin dengan es batu serta potongan
-                            kecil buah semangka sebagai topping.
-                        </p>
-                    </div>
-
-                    <a href="{{ route('detailfreshjuice', 'watermelon') }}" class="add-button">+</a>
-                </article>
-
-                <!-- STRAWBERRY -->
-                <article class="menu-card">
-                    <img src="{{ asset('gambar/fresh juice/strawberry.png') }}" alt="Strawberry">
-
-                    <div class="menu-info">
-                        <h3>Strawberry</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus buah strawberry segar yang diblender hingga
-                            halus dengan tambahan sedikit air dan gula.
-                            Disajikan dingin dengan es batu serta potongan
-                            buah stroberi sebagai topping.
-                        </p>
-                    </div>
-
-                    <a href="{{ route('detailfreshjuice', 'strawberry') }}" class="add-button">+</a>
-                </article>
-
-                <!-- APPLE -->
-                <article class="menu-card">
-                    <img src="{{ asset('gambar/fresh juice/apple.png') }}" alt="Apple">
-
-                    <div class="menu-info">
-                        <h3>Apple</h3>
-                        <div class="price">Rp28.000</div>
-                        <p>
-                            Jus buah apel segar yang diblender hingga halus
-                            dengan tambahan sedikit air dan gula.
-                            Disajikan dingin dengan es batu dan irisan
-                            buah apel sebagai garnish.
-                        </p>
-                    </div>
-
-                    <a href="{{ route('detailfreshjuice', 'apple') }}" class="add-button">+</a>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
-                </article>
+                    <a href="{{ route('detailfreshjuice', ['slug' => \Illuminate\Support\Str::slug($menu->nama_menu)]) }}"
+                        class="add-button" aria-label="Lihat detail {{ $menu->nama_menu }}">+</a>
+                </div>
             @empty
                 <p>Belum ada menu tersedia.</p>
             @endforelse

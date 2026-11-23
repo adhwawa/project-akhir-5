@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Daily Crave - Main Course</title>
+    <title>Daily Crave - Nusantara</title>
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -348,6 +348,14 @@
                 font-size: 11px;
             }
         }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 395px;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -376,7 +384,7 @@
             </a>
 
             <span>
-                Menu / MAIN COURSE / {{ $menu['nama'] }}
+                Menu / NUSANTARA / {{ $menu['nama'] }}
             </span>
 
         </div>
@@ -427,18 +435,36 @@
 
         <!-- DETAIL MENU -->
 
-        <form action="{{ route('detailmenu.add') }}" method="POST" id="formPesanan">
+        <form action="{{ route('detailmenu.add') }}" method="POST">
             @csrf
 
-            <input type="hidden" name="menu" value="{{ $slug }}">
+            <input type="hidden" name="menu" value="{{ $menu['id'] }}">
             <input type="hidden" name="jumlah" id="quantityInput" value="1">
 
             <div class="detail-card">
 
                 <!-- FOOD IMAGE -->
 
-                <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}" class="food-image">
+                @php
+                    $foto = $menu['gambar'] ?? null;
 
+                    if ($foto) {
+                        if (str_starts_with($foto, 'http')) {
+                            $fotoUrl = $foto;
+                        } elseif (str_starts_with($foto, 'gambar/')) {
+                            $fotoUrl = asset($foto);
+                        } elseif (str_starts_with($foto, 'storage/')) {
+                            $fotoUrl = asset($foto);
+                        } else {
+                            $fotoUrl = asset('storage/' . $foto);
+                        }
+                    } else {
+                        $fotoUrl = asset('gambar/makanan.png');
+                    }
+                @endphp
+
+                <img src="{{ $fotoUrl }}" onerror="this.onerror=null;this.src='{{ asset('gambar/makanan.png') }}';"
+                    alt="{{ $menu['nama'] }}">
 
                 <!-- MENU INFORMATION -->
 
@@ -544,25 +570,30 @@
 
 
     <!-- QUANTITY SCRIPT -->
+
     <script>
         const price = {{ (int) $menu['harga'] }};
+
         let qty = 1;
 
         function changeQty(value) {
-            qty = Math.max(1, qty + value);
 
-            document.getElementById('quantity').textContent = qty;
+            qty += value;
+
+            if (qty < 1) {
+                qty = 1;
+            }
+
+            document.getElementById('quantity').innerText = qty;
+
             document.getElementById('quantityInput').value = qty;
 
-            document.getElementById('totalPrice').textContent =
+            document.getElementById('totalPrice').innerText =
                 'Rp' + (price * qty).toLocaleString('id-ID');
-        }
 
-        document.getElementById('formPesanan')
-            .addEventListener('submit', function() {
-                document.getElementById('quantityInput').value = qty;
-            });
+        }
     </script>
+
 </body>
 
 </html>

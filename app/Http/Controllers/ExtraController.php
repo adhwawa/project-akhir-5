@@ -21,10 +21,29 @@ class ExtraController extends Controller
         $menu = Extra::find($slug);
 
         abort_unless($menu, 404);
+        $menuDatabase = \App\Models\Menu::where('kategori_utama', 'Makanan')
+    ->whereHas('subCategory', function ($query) {
+        $query->where('nama_sub_kategori', 'Extra');
+    })
+    ->get()
+    ->first(function ($item) use ($slug) {
+        return \Illuminate\Support\Str::slug($item->nama_menu) === $slug;
+    });
 
-        return view('detailextra', [
-            'menu' => $menu,
-            'slug' => $slug
-        ]);
+abort_unless($menuDatabase, 404);
+
+
+return view('detailextra', [
+    'menu' => [
+        'id' => $menuDatabase->id,
+        'nama' => $menuDatabase->nama_menu,
+        'kategori' => 'EXTRA',
+        'harga' => $menuDatabase->harga,
+        'gambar' => $menuDatabase->foto,
+        'deskripsi' => $menuDatabase->deskripsi,
+    ],
+    'slug' => $slug
+]);
+
     }
 }

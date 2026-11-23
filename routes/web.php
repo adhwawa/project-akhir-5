@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainCourseController;
@@ -126,56 +127,117 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-// HALAMAN DETAILMENU (KERANJANG)
+// HALAMAN DETAIL MENU
 Route::get('/detailmenu', function () {
     return view('detailmenu');
 })->name('detailmenu');
 
-
-// HALAMAN KERANJANG
-// TAMBAH MENU
+// TAMBAH PESANAN
 Route::post('/keranjang/tambah', function (Request $request) {
     $data = $request->validate([
-        'menu' => 'required|string',
+'menu' => 'required|integer|exists:menus,id',
         'jumlah' => 'required|integer|min:1',
         'catatan' => 'nullable|string|max:500',
+        'suhu' => 'nullable|string|max:50',
     ]);
 
-    $cart = session()->get('cart', []);
-    $slug = $data['menu'];
-    $jumlah = (int) $data['jumlah'];
+    $menu = \App\Models\Menu::findOrFail($data['menu']);
 
-    if (isset($cart[$slug])) {
-        $cart[$slug]['jumlah'] = (int) ($cart[$slug]['jumlah'] ?? 0) + $jumlah;
-        if ($request->filled('catatan')) {
-            $cart[$slug]['catatan'] = $data['catatan'];
-        }
+    $key = (string) $menu->id;
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$key])) {
+        $cart[$key]['jumlah'] += (int) $data['jumlah'];
     } else {
-        $cart[$slug] = [
-            'jumlah' => $jumlah,
-            'catatan' => $data['catatan'] ?? '',
+        $cart[$key] = [
+            'id' => $menu->id,
+            'jumlah' => (int) $data['jumlah'],
+            'catatan' => '',
+            'suhu' => '',
         ];
+    }
+
+    if ($request->filled('catatan')) {
+        $cart[$key]['catatan'] = $data['catatan'];
+    }
+
+    if ($request->filled('suhu')) {
+        $cart[$key]['suhu'] = $data['suhu'];
     }
 
     session()->put('cart', $cart);
 
-    return redirect()
-        ->back()
-        ->with('success', 'Menu berhasil ditambahkan ke keranjang!');
+    return redirect()->route('detailmenu')
+        ->with('success', 'Pesanan berhasil ditambahkan!');
 })->name('detailmenu.add');
 
-Route::post('/detailmenu/add', function () {
-    return redirect()->route('detailmenu', ['#' => 'daftar-pesanan'])
-        ->with('success', 'Menu berhasil ditambahkan!');
-})->name('detailmenu.add');
+// KURANGI JUMLAH
+Route::post('/detailmenu/kurang', function (Request $request) {
+    $data = $request->validate([
+        'menu' => 'required|string',
+    ]);
+
+    $cart = session()->get('cart', []);
+    $slug = $data['menu'];
+
+    if (isset($cart[$slug])) {
+        $cart[$slug]['jumlah']--;
+
+        if ($cart[$slug]['jumlah'] <= 0) {
+            unset($cart[$slug]);
+        }
+    }
+
+    session()->put('cart', $cart);
+
+    return redirect()->route('detailmenu');
+})->name('detailmenu.kurang');
+
+// SIMPAN CATATAN
+Route::post('/detailmenu/catatan', function (Request $request) {
+    $data = $request->validate([
+        'menu' => 'required|string',
+        'catatan' => 'nullable|string|max:500',
+    ]);
+
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$data['menu']])) {
+        $cart[$data['menu']]['catatan'] = $data['catatan'] ?? '';
+    }
+
+    session()->put('cart', $cart);
+
+    return redirect()->route('detailmenu')
+        ->with('success', 'Catatan berhasil disimpan!');
+})->name('detailmenu.catatan');
+
+// HAPUS PESANAN
+Route::post('/detailmenu/hapus/{menu}', function ($menu) {
+    $cart = session()->get('cart', []);
+
+    unset($cart[$menu]);
+
+    session()->put('cart', $cart);
+
+    return redirect()->route('detailmenu')
+        ->with('success', 'Pesanan berhasil dihapus!');
+})->name('detailmenu.hapus');
+
+// HALAMAN RINGKASAN PELANGGAN
+Route::get('/ringkasanpelanggan', function () {
+    return view('ringkasanpelanggan');
+})->name('ringkasanpelanggan');
 
 // PAYMENT
-Route::get('/Qris', [QrisController::class, 'index'])
-    ->name('Qris');
+Route::get('/qris', function () {
+    return view('Qris');
+})->name('qris');
 
 Route::get('/pembayaran-berhasil', function () {
     return view('pembayaranberhasil');
 })->name('pembayaran.berhasil');
+
 
 // ADMIN SUB KATEGORI
 Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');

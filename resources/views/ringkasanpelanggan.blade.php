@@ -551,247 +551,37 @@
     @php
         $cart = session()->get('cart', []);
 
-        $menuData = [
-            //MAINCOURSE
-            'grill-chicken-steak' => [
-                'nama' => 'Grill Chicken Steak',
-                'harga' => 85000,
-                'gambar' => 'gambar/maincourse/grillchikensteak.png',
-            ],
-            'spaghetti-bolognese-katsu' => [
-                'nama' => 'Spaghetti Bolognese Katsu',
-                'harga' => 58000,
-                'gambar' => 'gambar/maincourse/speagetibolokatsu.png',
-            ],
-            'sop-iga' => [
-                'nama' => 'Sop Iga',
-                'harga' => 74000,
-                'gambar' => 'gambar/maincourse/supiga.png',
-            ],
-            'nasi-goreng-katsu' => [
-                'nama' => 'Nasi Goreng Katsu',
-                'harga' => 64000,
-                'gambar' => 'gambar/maincourse/nasgorkatsu.png',
-            ],
-            'nasi-timbel-ayam-goreng' => [
-                'nama' => 'Nasi Timbel Ayam Goreng',
-                'harga' => 58000,
-                'gambar' => 'gambar/maincourse/nTimbel.png',
-            ],
-            //NUSANTARA
-            'nasi-iga-bakar' => [
-                'nama' => 'Nasi Iga Bakar',
-                'harga' => 72000,
-                'gambar' => 'gambar/nusantara/n.igabakar.png',
-            ],
+        // Gunakan ID menu database yang sama dengan halaman keranjang.
+        $menuIds = collect(array_keys($cart))
+            ->filter(fn ($id) => ctype_digit((string) $id))
+            ->values();
 
-            'nasi-campur-taliwang' => [
-                'nama' => 'Nasi Campur Taliwang',
-                'harga' => 66000,
-                'gambar' => 'gambar/nusantara/taliwang.png',
-            ],
+        $databaseMenus = \App\Models\Menu::whereIn('id', $menuIds)
+            ->get()
+            ->keyBy('id');
 
-            'nasi-goreng-jawa' => [
-                'nama' => 'Nasi Goreng Jawa',
-                'harga' => 64000,
-                'gambar' => 'gambar/nusantara/nasgorjawa.jpeg',
-            ],
-
-            'mie-goreng-jawa' => [
-                'nama' => 'Mie Goreng Jawa',
-                'harga' => 60000,
-                'gambar' => 'gambar/nusantara/miegoreng.png',
-            ],
-
-            'mie-nyemek-kampung-jawa' => [
-                'nama' => 'Mie Nyemek Kampung Jawa',
-                'harga' => 60000,
-                'gambar' => 'gambar/nusantara/mienyemek.png',
-            ],
-            //COMFORT
-            'mendoan' => [
-                'nama' => 'Mendoan',
-                'harga' => 30000,
-                'gambar' => 'gambar/comfort/mendoan.png',
-            ],
-
-            'tahu-crispy' => [
-                'nama' => 'Tahu Crispy',
-                'harga' => 30000,
-                'gambar' => 'gambar/comfort/tahu.png',
-            ],
-
-            'bakwan-jagung' => [
-                'nama' => 'Bakwan Jagung',
-                'harga' => 30000,
-                'gambar' => 'gambar/comfort/bakwajagung.png',
-            ],
-
-            'singkong-crispy' => [
-                'nama' => 'Singkong Crispy',
-                'harga' => 30000,
-                'gambar' => 'gambar/comfort/singkong.png',
-            ],
-
-            'cireng-crispy' => [
-                'nama' => 'Cireng Crispy',
-                'harga' => 32000,
-                'gambar' => 'gambar/comfort/cireng.png',
-            ],
-
-            'french-fries' => [
-                'nama' => 'French Fries',
-                'harga' => 25000,
-                'gambar' => 'gambar/comfort/frenchfries.png',
-            ],
-
-            'roti-bakar-coklat-keju' => [
-                'nama' => 'Roti Bakar Coklat Keju',
-                'harga' => 35000,
-                'gambar' => 'gambar/comfort/rotibakar.png',
-            ],
-
-            'pisang-goreng-crispy' => [
-                'nama' => 'Pisang Goreng Crispy',
-                'harga' => 32000,
-                'gambar' => 'gambar/comfort/pisanggoreng.png',
-            ],
-
-            'mix-platter' => [
-                'nama' => 'Mix Platter',
-                'harga' => 45000,
-                'gambar' => 'gambar/comfort/mixplatter.png',
-            ],
-            //EXTRA
-            'nasi-putih' => [
-                'nama' => 'Nasi Putih',
-                'harga' => 12000,
-                'gambar' => 'gambar/extra/nasiputih.png',
-            ],
-
-            'telur' => [
-                'nama' => 'Telur',
-                'harga' => 11000,
-                'gambar' => 'gambar/extra/telur.png',
-            ],
-            //COFFE AND TEA
-            'jasmine-tea' => [
-                'nama' => 'Jasmine Tea',
-                'harga' => 18000,
-                'gambar' => 'gambar/coffee tea/estea.png',
-            ],
-
-            'teh-jeruk-nipis' => [
-                'nama' => 'Teh Jeruk Nipis',
-                'harga' => 20000,
-                'gambar' => 'gambar/coffee tea/tehjeruknipis.png',
-            ],
-
-            'lychee-tea' => [
-                'nama' => 'Lychee Tea',
-                'harga' => 20000,
-                'gambar' => 'gambar/coffee tea/lecitea.png',
-            ],
-
-            'americano' => [
-                'nama' => 'Americano',
-                'harga' => 25000,
-                'gambar' => 'gambar/coffee tea/americano.png',
-            ],
-
-            'coffee-latte' => [
-                'nama' => 'Coffee Latte',
-                'harga' => 32000,
-                'gambar' => 'gambar/coffee tea/latte.png',
-            ],
-
-            'cappuccino' => [
-                'nama' => 'Cappuccino',
-                'harga' => 32000,
-                'gambar' => 'gambar/coffee tea/cappucino.png',
-            ],
-
-            'mocaccino' => [
-                'nama' => 'Mocaccino',
-                'harga' => 32000,
-                'gambar' => 'gambar/coffee tea/mocacinno.png',
-            ],
-            //FRESH JUICE
-            'fresh-orange' => [
-                'nama' => 'Fresh Orange',
-                'harga' => 28000,
-                'gambar' => 'gambar/fresh juice/orange.png',
-            ],
-
-            'watermelon' => [
-                'nama' => 'Watermelon',
-                'harga' => 28000,
-                'gambar' => 'gambar/fresh juice/watermelon.png',
-            ],
-
-            'strawberry' => [
-                'nama' => 'Strawberry',
-                'harga' => 28000,
-                'gambar' => 'gambar/fresh juice/strawberry.png',
-            ],
-
-            'apple' => [
-                'nama' => 'Apple',
-                'harga' => 28000,
-                'gambar' => 'gambar/fresh juice/apple.png',
-            ],
-            //SOFT DRINK
-            'mineral-water' => [
-                'nama' => 'Mineral Water',
-                'harga' => 8000,
-                'gambar' => 'gambar/soft drink/mineralwater.png',
-            ],
-
-            'coke' => [
-                'nama' => 'Coke',
-                'harga' => 25000,
-                'gambar' => 'gambar/soft drink/coke.png',
-            ],
-
-            'sprite' => [
-                'nama' => 'Sprite',
-                'harga' => 25000,
-                'gambar' => 'gambar/soft drink/sprite.png',
-            ],
-
-            'fanta' => [
-                'nama' => 'Fanta',
-                'harga' => 25000,
-                'gambar' => 'gambar/soft drink/fanta.png',
-            ],
-            //DESERT
-            'buah-potong' => [
-                'nama' => 'Buah Potong',
-                'harga' => 48000,
-                'gambar' => 'gambar/dessert/buahpotong.png',
-            ],
-
-            'ice-buah' => [
-                'nama' => 'Ice Buah',
-                'harga' => 38000,
-                'gambar' => 'gambar/dessert/icebuah.png',
-            ],
-
-            'slice-cake' => [
-                'nama' => 'Slice Cake',
-                'harga' => 38000,
-                'gambar' => 'gambar/dessert/slicecake.png',
-            ],
-        ];
-
+        $pesanan = [];
         $subtotal = 0;
         $totalJumlah = 0;
 
-        foreach ($cart as $slug => $item) {
-            if (isset($menuData[$slug])) {
-                $subtotal += $menuData[$slug]['harga'] * $item['jumlah'];
-                $totalJumlah += $item['jumlah'];
+        foreach ($cart as $id => $item) {
+            $menu = $databaseMenus->get($id);
+            $jumlah = (int) ($item['jumlah'] ?? 0);
+
+            if (!$menu || $jumlah <= 0) {
+                continue;
             }
+
+            $pesanan[$id] = [
+                'nama' => $menu->nama_menu,
+                'harga' => (int) $menu->harga,
+                'jumlah' => $jumlah,
+                'catatan' => $item['catatan'] ?? '',
+                'suhu' => $item['suhu'] ?? '',
+            ];
+
+            $subtotal += (int) $menu->harga * $jumlah;
+            $totalJumlah += $jumlah;
         }
 
         $namaPelanggan = old('nama_pelanggan', session('nama_pelanggan', ''));
@@ -824,7 +614,7 @@
         <!-- NOTIFIKASI -->
         <div class="notification">
             <div class="notification-icon">✓</div>
-            <div class="notifica tion-text">
+            <div class="notification-text">
                 <strong>Pesanan Siap Diproses</strong>
                 <small>Silakan verifikasi data diri dan meja Anda sebelum konfirmasi akhir.</small>
             </div>
@@ -842,8 +632,8 @@
                     <span class="dine-badge">♜ &nbsp; Dine In</span>
                 </div>
 
-                <form action="#" method="POST" id="confirmationForm">
-                    @csrf
+<form action="{{ url('/qris') }}" method="GET" id="confirmationForm">
+
 
                     <div class="form-group">
                         <label class="form-label" for="nama_pelanggan">
@@ -859,7 +649,7 @@
                             <span>♧ &nbsp; NOMOR MEJA</span>
                         </label>
                         <input type="text" name="nomor_meja" id="nomor_meja" class="form-control table-input"
-                            value="{{ $nomorMeja }}" placeholder="Contoh: 03" required>
+                            value="{{ request('nomor_meja', '') }}" placeholder="Contoh: 01" required>
                         <p class="helper-text">ⓘ Tertera pada barcode kayu di sudut meja Anda.</p>
                     </div>
 
@@ -884,7 +674,7 @@
                         </div>
                         <p class="helper-text">ⓘ Kode QRIS dinamis akan langsung ditampilkan sesaat setelah pesanan
                             dilanjutkan.</p>
-                        <input type="hidden" name="metode_pembayaran" value="QRIuS">
+                        <input type="hidden" name="metode_pembayaran" value="QRIS">
                     </div>
                 </form>
             </div>
@@ -896,28 +686,23 @@
                     <span class="menu-count">{{ $totalJumlah }} Menu</span>
                 </div>
 
-                @forelse($cart as $slug => $item)
-                    @if (isset($menuData[$slug]))
-                        @php
-                            $menu = $menuData[$slug];
-                            $jumlah = $item['jumlah'] ?? 1;
-                            $catatan = $item['catatan'] ?? '';
-                        @endphp
-
-                        <div class="order-item">
-                            <div class="item-icon">♜</div>
-                            <div class="item-info">
-                                <strong>{{ $menu['nama'] }}</strong>
-                                <small>{{ $catatan ? $catatan : 'TIDAK ADA CATATAN' }}</small>
-                                @if ($jumlah > 1)
-                                    <small>{{ $jumlah }} porsi</small>
-                                @endif
-                            </div>
-                            <div class="item-price">
-                                Rp{{ number_format($menu['harga'] * $jumlah, 0, ',', '.') }}
-                            </div>
+                @forelse($pesanan as $id => $item)
+                    <div class="order-item">
+                        <div class="item-icon">♜</div>
+                        <div class="item-info">
+                            <strong>{{ $item['nama'] }}</strong>
+                            <small>{{ $item['catatan'] ?: 'TIDAK ADA CATATAN' }}</small>
+                            @if (!empty($item['suhu']))
+                                <small>Penyajian: {{ $item['suhu'] }}</small>
+                            @endif
+                            @if ($item['jumlah'] > 1)
+                                <small>{{ $item['jumlah'] }} porsi</small>
+                            @endif
                         </div>
-                    @endif
+                        <div class="item-price">
+                            Rp{{ number_format($item['harga'] * $item['jumlah'], 0, ',', '.') }}
+                        </div>
+                    </div>
                 @empty
                     <div style="padding:25px 0; color:#96897e; font-size:11px;">
                         Keranjang Anda masih kosong.
@@ -934,6 +719,11 @@
                     <strong>Termasuk</strong>
                 </div>
 
+                <div class="payment-row">
+                    <span>Biaya Layanan Meja</span>
+                    <strong style="color: green;">GRATIS</strong>
+                </div>
+
                 <div class="payment-total">
                     <div>
                         <span>TOTAL TAGIHAN</span>
@@ -942,8 +732,8 @@
                     <strong>Rp{{ number_format($subtotal, 0, ',', '.') }}</strong>
                 </div>
 
-                <button type="submit" form="confirmationForm" class="checkout"
-                    {{ count($cart) == 0 ? 'disabled' : '' }}>
+                <button type="button" onclick="lanjutKeQris()" class="checkout"
+                    {{ $totalJumlah == 0 ? 'disabled' : '' }}>
                     Lanjutkan Pembayaran &nbsp; →
                 </button>
 
@@ -967,6 +757,14 @@
         </footer>
 
     </div>
+<script>
+    function lanjutKeQris() {
+        const form = document.getElementById('confirmationForm');
+        if (!form.reportValidity()) return;
+        const params = new URLSearchParams(new FormData(form));
+        window.location.href = form.action + '?' + params.toString();
+    }
+</script>
 </body>
 
 </html>

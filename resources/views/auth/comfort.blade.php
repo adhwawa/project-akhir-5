@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Daily Crave - Main Course</title>
+    <title>Daily Crave - Comfort</title>
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
 
@@ -424,77 +424,9 @@
         <!-- NAVBAR -->
         <nav class="navbar">
 
-<<<<<<< HEAD
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
-        </div>
-
-        <div class="nav-menu">
-            <a href="{{ route('dashboard') }}">Menu Kami</a>
-            <a href="{{ route('maincourse') }}" class="active">Makanan</a>
-            <a href="{{ route('coffeeandtea') }}">Minuman</a>
-            <a href='{{ route('dessert') }}'>Dessert</a>
-        </div>
-
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
-
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
-
-            <p class="description">
-                 Jelajahi pilihan makanan, minuman, dan dessert.
-          Pilihan rasa yang pas untuk menemani harimu
-          dengan cita rasa yang istimewa..
-            </p>
-
-        </div>
-
-        <img
-            src="https://images.unsplash.com/photo-1547592180-85f173990554?w=1000"
-            alt="Hidangan Daily Crave">
-
-    </section>
-
-    <!-- CATEGORY -->
-    <nav class="category-bar">
-
-        <a href="{{ route('maincourse') }}">Main Course</a>
-        <a href="{{ route('nusantara') }}">Nusantara</a>
-        <a href="{{ route('comfort') }}" class="active">Comfort</a>
-        <a href="{{ route('extra') }}">Extra</a>
-
-        <span class="category-note">
-        DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-        </span>
-
-    </nav>
-
-    <!-- COMFORT MENU -->
-    <section class="menu-section">
-
-        <div class="section-heading">
-
-            <div>
-            <p class="section-subtitle">
-                MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
-            </p>
-
-                <h2 class="section-title">Comfort</h2>
-=======
             <div class="brand">
                 ☼ daily crave
                 <small>FOOD & DRINK</small>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
             </div>
 
             <div class="nav-menu">

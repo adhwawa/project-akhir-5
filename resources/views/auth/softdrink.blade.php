@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Daily Crave - Main Course</title>
+    <title>Daily Crave - Soft Drink</title>
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
 
@@ -422,77 +422,11 @@
 <body>
     <main class="container">
 
-<<<<<<< HEAD
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="brand">
-            ☼ daily crave
-            <small>FOOD & DRINK</small>
-        </div>
-
-        <div class="nav-menu">
-            <a href="{{ route('dashboard') }}">Menu Kami</a>
-            <a href="{{ route('maincourse') }}">Makanan</a>
-            <a href="{{ route('coffeeandtea') }}" class="active">Minuman</a>
-            <a href='{{ route('dessert') }}'>Dessert</a>
-        </div>
-    </nav>
-
-     <!-- HERO -->
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <p>──── MENU DAILY CRAVE ────</p>
-
-            <h1>
-                Rasa yang akrab.<br>
-                Momen yang hangat.
-            </h1>
-
-            <p class="description">
-                Jelajahi pilihan minuman, dan temukan rasa
-                yang menyegarkan untuk menemani waktu santai Anda.
-            </p>
-
-        </div>
-
-        <img
-            src="https://cdn-brilio-net.akamaized.net/news/2021/09/23/214006/2571601-1000xauto-resep-minuman-khas-nusantara.jpg"
-            class="hero-image"
-            alt="Pilihan minuman Daily Crave">
-
-    </section>
-
-    <!-- CATEGORY -->
-    <nav class="category-bar">
-        <a href="{{ route('coffeeandtea') }}">Coffee & Tea</a>
-        <a href="{{ route('freshjuice') }}">Fresh Juice</a>
-        <a href="{{ route('softdrink') }}" class="active">Soft Drink</a>
-
-        <span class="category-note">
-            DAPAT DITAMBAHKAN KE DAFTAR PESANAN
-        </span>
-    </nav>
-
-    <!-- SOFT DRINK -->
-    <section class="menu-section">
-
-        <div class="section-heading">
-            <div>
-
-            <p class="section-subtitle">
-                MINUMAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
-            </p>
-            
-                <h2 class="section-title">Soft Drink</h2>
-=======
         <!-- NAVBAR -->
         <nav class="navbar">
             <div class="brand">
                 ☼ daily crave
                 <small>FOOD & DRINK</small>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
             </div>
 
             <div class="nav-menu">
@@ -506,58 +440,6 @@
         <!-- HERO -->
         <section class="hero">
 
-<<<<<<< HEAD
-            @php
-                $defaultFotos = [
-                    'Mineral Water'  => 'gambar/minuman/mineralwater.png',
-                    'Coke'           => 'gambar/minuman/coke.png',
-                    'Sprite'         => 'gambar/minuman/sprite.png',
-                    'Fanta'          => 'gambar/minuman/fanta.png',
-                ];
-            @endphp 
-
-            @forelse ($menus as $menu)
-                @php
-                    if ($menu->foto) {
-                        $fotoUrl = str_starts_with($menu->foto, 'gambar/')
-                            ? asset($menu->foto)
-                            : asset('storage/' . $menu->foto);
-                    } elseif (isset($defaultFotos[$menu->nama_menu])) {
-                        $fotoUrl = asset($defaultFotos[$menu->nama_menu]);
-                    } else {
-                        $fotoUrl = asset('gambar/minuman/mineralwater.png');
-                    }
-                @endphp
-
-                <article class="menu-card">
-
-                    <img
-                        src="{{ $fotoUrl }}"
-                        alt="{{ $menu->nama_menu }}"
-                    >
-
-                    <div class="menu-info">
-
-                        <h3>{{ $menu->nama_menu }}</h3>
-
-                        <div class="price">{{ $menu->harga_format }}</div>
-
-                        <p>{{ $menu->deskripsi }}</p>
-
-                    </div>
-
-                    <a
-                        href="{{ route('detailmenu', $menu->id) }}"
-                        class="add-button"
-                        aria-label="Detail {{ $menu->nama_menu }}"
-                    >+</a>
-
-                </article>
-            @empty
-                <p>Belum ada menu tersedia.</p>
-            @endforelse
-
-=======
             <div class="hero-text">
 
                 <p class="eyebrow">──── MENU DAILY CRAVE ────</p>
@@ -643,7 +525,6 @@
 
                     <a href="{{ route('detailsoftdrink', 'sprite') }}" class="add-button">+</a>
                 </article>
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                 <!-- FANTA -->
                 <article class="menu-card">

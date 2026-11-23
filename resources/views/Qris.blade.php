@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QRIS - Daily Crave</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
 
     <style>
         * {
@@ -564,75 +566,62 @@
 @php
     $data = $data ?? [];
 
-    /*
-    |--------------------------------------------------------------------------
-    | DATA MENU
-    |--------------------------------------------------------------------------
-    | Sesuaikan slug dan nama gambar dengan Ringkasan Pelanggan.
-    */
-
+    // Keranjang menggunakan ID menu dari database, bukan slug.
     $cart = session()->get('cart', []);
+    $ids = collect(array_keys($cart))->filter(fn ($id) => ctype_digit((string) $id))->values();
+    $databaseMenus = \App\Models\Menu::whereIn('id', $ids)->get()->keyBy('id');
 
-    $menuData = [
-        'grill-chicken-steak' => [
-            'nama' => 'Grill Chicken Steak',
-            'harga' => 85000,
-            'gambar' => 'gambar/maincourse/grillchikensteak.png'
-        ],
-
-        'spaghetti-bolognese-katsu' => [
-            'nama' => 'Spaghetti Bolognese Katsu',
-            'harga' => 58000,
-            'gambar' => 'gambar/maincourse/speagetibolokatsu.png'
-        ],
-
-        'sop-iga' => [
-            'nama' => 'Sop Iga',
-            'harga' => 74000,
-            'gambar' => 'gambar/maincourse/supiga.png'
-        ],
-
-        'nasi-goreng-katsu' => [
-            'nama' => 'Nasi Goreng Katsu',
-            'harga' => 64000,
-            'gambar' => 'gambar/maincourse/nasgorkatsu.png'
-        ],
-
-        'nasi-timbel-ayam-goreng' => [
-            'nama' => 'Nasi Timbel Ayam Goreng',
-            'harga' => 58000,
-            'gambar' => 'gambar/maincourse/nTimbel.png'
-        ],
-    ];
-
-    /*
-    |--------------------------------------------------------------------------
-    | HITUNG TOTAL PESANAN
-    |--------------------------------------------------------------------------
-    */
-
+    $menuData = [];
     $subtotal = 0;
     $totalJumlah = 0;
 
-    foreach ($cart as $slug => $item) {
-        if (isset($menuData[$slug])) {
-            $jumlahItem = $item['jumlah'] ?? 1;
+    $fotoCadangan = [
+        'Grill Chicken Steak' => 'gambar/maincourse/grillchikensteak.png',
+        'Spaghetti Bolognise Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+        'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+        'Sop Iga' => 'gambar/maincourse/supiga.png',
+        'Nasi Goreng Katsu' => 'gambar/maincourse/nasgorkatsu.png',
+        'Nasi Timbel Ayam Goreng' => 'gambar/maincourse/nTimbel.png',
+    ];
 
-            $subtotal += $menuData[$slug]['harga'] * $jumlahItem;
-            $totalJumlah += $jumlahItem;
+    foreach ($cart as $id => $item) {
+        $menu = $databaseMenus->get($id);
+        $jumlah = (int) ($item['jumlah'] ?? 0);
+        if (!$menu || $jumlah <= 0) continue;
+
+        $foto = $menu->foto;
+        $cadangan = asset($fotoCadangan[$menu->nama_menu] ?? 'gambar/makanan.png');
+        if (!$foto) {
+            $gambar = $cadangan;
+        } elseif (\Illuminate\Support\Str::startsWith($foto, ['http://', 'https://'])) {
+            $gambar = $foto;
+        } elseif (\Illuminate\Support\Str::startsWith($foto, 'gambar/')) {
+            $gambar = asset($foto);
+        } elseif (\Illuminate\Support\Str::startsWith($foto, 'storage/')) {
+            $gambar = asset($foto);
+        } else {
+            $gambar = asset('storage/' . ltrim($foto, '/'));
         }
+
+        $menuData[$id] = [
+            'nama' => $menu->nama_menu,
+            'harga' => (int) $menu->harga,
+            'gambar' => $gambar,
+            'cadangan' => $cadangan,
+            'jumlah' => $jumlah,
+            'catatan' => $item['catatan'] ?? '',
+            'suhu' => $item['suhu'] ?? '',
+        ];
+        $subtotal += (int) $menu->harga * $jumlah;
+        $totalJumlah += $jumlah;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | DATA PELANGGAN
-    |--------------------------------------------------------------------------
-    */
-
-    $namaPelanggan = $data['nama_pemesan']
+    // Ambil nama dan meja dari formulir Ringkasan Pelanggan.
+    $namaPelanggan = request()->query('nama_pelanggan')
+        ?? $data['nama_pemesan']
         ?? session('nama_pelanggan', '');
-
-    $nomorMeja = $data['nomor_meja']
+    $nomorMeja = request()->query('nomor_meja')
+        ?? $data['nomor_meja']
         ?? session('nomor_meja', '03');
 
     $kodePesanan = $data['nomor_order']
@@ -918,60 +907,30 @@
 
                 <!-- DAFTAR MENU -->
 
-                @forelse($cart as $slug => $item)
-
-                    @if(isset($menuData[$slug]))
-
-                        @php
-                            $menu = $menuData[$slug];
-                            $jumlah = $item['jumlah'] ?? 1;
-                            $catatan = $item['catatan'] ?? '';
-                        @endphp
-
-                        <div class="menu">
-
-                            <img
-                                src="{{ asset($menu['gambar']) }}"
-                                alt="{{ $menu['nama'] }}"
-                                class="menu-image"
-                                onerror="this.style.display='none'"
-                            >
-
-                            <div class="menu-info">
-
-                                <div class="menu-name">
-                                    {{ $menu['nama'] }}
-                                </div>
-
-                                <div class="menu-note">
-                                    {{ $catatan ?: 'TIDAK ADA CATATAN' }}
-                                </div>
-
-                                <div class="menu-note">
-                                    {{ $jumlah }} porsi
-                                </div>
-
-                            </div>
-
-                            <div class="menu-price">
-                                Rp{{ number_format(
-                                    $menu['harga'] * $jumlah,
-                                    0,
-                                    ',',
-                                    '.'
-                                ) }}
-                            </div>
-
+                @forelse($menuData as $id => $menu)
+                    <div class="menu">
+                        <img
+                            src="{{ $menu['gambar'] }}"
+                            alt="{{ $menu['nama'] }}"
+                            class="menu-image"
+                            onerror="this.onerror=null;this.src=@js($menu['cadangan']);"
+                        >
+                        <div class="menu-info">
+                            <div class="menu-name">{{ $menu['nama'] }}</div>
+                            <div class="menu-note">{{ $menu['catatan'] ?: 'TIDAK ADA CATATAN' }}</div>
+                            @if(!empty($menu['suhu']))
+                                <div class="menu-note">Penyajian: {{ $menu['suhu'] }}</div>
+                            @endif
+                            <div class="menu-note">{{ $menu['jumlah'] }} porsi</div>
                         </div>
-
-                    @endif
-
+                        <div class="menu-price">
+                            Rp{{ number_format($menu['harga'] * $menu['jumlah'], 0, ',', '.') }}
+                        </div>
+                    </div>
                 @empty
-
                     <div class="menu-note" style="padding:15px 0;">
                         Belum ada menu dalam pesanan.
                     </div>
-
                 @endforelse
 
 

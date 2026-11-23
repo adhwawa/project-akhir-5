@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Daily Crave - Nusantara</title>
+    <title>Daily Crave - Detail Nusantara</title>
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -348,6 +348,14 @@
                 font-size: 11px;
             }
         }
+
+        img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 395px;
+    object-fit: cover;
+}
     </style>
 </head>
 
@@ -430,14 +438,33 @@
         <form action="{{ route('detailmenu.add') }}" method="POST">
             @csrf
 
-            <input type="hidden" name="menu" value="{{ $slug }}">
+            <input type="hidden" name="menu" value="{{ $menu['id'] }}">
             <input type="hidden" name="jumlah" id="quantityInput" value="1">
 
             <div class="detail-card">
 
-                <!-- FOOD IMAGE -->
+                 <!-- FOOD IMAGE -->
 
-                <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}" class="food-image">
+                @php
+                    $foto = $menu['gambar'] ?? null;
+
+                    if ($foto) {
+                        if (str_starts_with($foto, 'http')) {
+                            $fotoUrl = $foto;
+                        } elseif (str_starts_with($foto, 'gambar/')) {
+                            $fotoUrl = asset($foto);
+                        } elseif (str_starts_with($foto, 'storage/')) {
+                            $fotoUrl = asset($foto);
+                        } else {
+                            $fotoUrl = asset('storage/' . $foto);
+                        }
+                    } else {
+                        $fotoUrl = asset('gambar/makanan.png');
+                    }
+                @endphp
+
+                <img src="{{ $fotoUrl }}" onerror="this.onerror=null;this.src='{{ asset('gambar/makanan.png') }}';"
+                    alt="{{ $menu['nama'] }}">
 
 
                 <!-- MENU INFORMATION -->

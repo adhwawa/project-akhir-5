@@ -480,14 +480,7 @@
         <!-- EXTRA MENU -->
         <section class="menu-section">
 
-<<<<<<< HEAD
-      <div>
-        <p class="section-subtitle">
-            MAKANAN &nbsp;—&nbsp; {{ str_pad($menus->count(), 2, '0', STR_PAD_LEFT) }} PILIHAN
-        </p>
-=======
             <div class="section-heading">
->>>>>>> c5063edab9f546212c5069946789d635b86cbbb9
 
                 <div>
                     <p class="section-subtitle">

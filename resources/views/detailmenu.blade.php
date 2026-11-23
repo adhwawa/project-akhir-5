@@ -631,163 +631,63 @@
 
 <body>
 
+
     @php
         $cart = session()->get('cart', []);
 
-        $menuData = [
-            //MAINCOURSE
-            'grill-chicken-steak' => [
-                'nama' => 'Grill Chicken Steak',
-                'harga' => 85000,
-                'gambar' => 'gambar/maincourse/grillchikensteak.png',
-            ],
-            'spaghetti-bolognese-katsu' => [
-                'nama' => 'Spaghetti Bolognese Katsu',
-                'harga' => 58000,
-                'gambar' => 'gambar/maincourse/speagetibolokatsu.png',
-            ],
-            'sop-iga' => ['nama' => 'Sop Iga', 'harga' => 74000, 'gambar' => 'gambar/maincourse/supiga.png'],
-            'nasi-goreng-katsu' => [
-                'nama' => 'Nasi Goreng Katsu',
-                'harga' => 64000,
-                'gambar' => 'gambar/maincourse/nasgorkatsu.png',
-            ],
-            'nasi-timbel-ayam-goreng' => [
-                'nama' => 'Nasi Timbel Ayam Goreng',
-                'harga' => 58000,
-                'gambar' => 'gambar/maincourse/nTimbel.png',
-            ],
-            //NUSANTARA
-            'nasi-iga-bakar' => [
-                'nama' => 'Nasi Iga Bakar',
-                'harga' => 72000,
-                'gambar' => 'gambar/nusantara/n.igabakar.png',
-            ],
+        $menuIds = collect(array_keys($cart))->filter(fn($key) => ctype_digit((string) $key))->values();
 
-            'nasi-campur-taliwang' => [
-                'nama' => 'Nasi Campur Taliwang',
-                'harga' => 66000,
-                'gambar' => 'gambar/nusantara/taliwang.png',
-            ],
+        $databaseMenus = \App\Models\Menu::whereIn('id', $menuIds)->get()->keyBy('id');
 
-            'nasi-goreng-jawa' => [
-                'nama' => 'Nasi Goreng Jawa',
-                'harga' => 64000,
-                'gambar' => 'gambar/nusantara/nasgorjawa.jpeg',
-            ],
-
-            'mie-goreng-jawa' => [
-                'nama' => 'Mie Goreng Jawa',
-                'harga' => 60000,
-                'gambar' => 'gambar/nusantara/miegoreng.png',
-            ],
-
-            'mie-nyemek-kampung-jawa' => [
-                'nama' => 'Mie Nyemek Kampung Jawa',
-                'harga' => 60000,
-                'gambar' => 'gambar/nusantara/mienyemek.png',
-            ],
-            //COMFORT
-            'mendoan' => ['nama' => 'Mendoan', 'harga' => 30000, 'gambar' => 'gambar/comfort/mendoan.png'],
-
-            'tahu-crispy' => ['nama' => 'Tahu Crispy', 'harga' => 30000, 'gambar' => 'gambar/comfort/tahu.png'],
-
-            'bakwan-jagung' => [
-                'nama' => 'Bakwan Jagung',
-                'harga' => 30000,
-                'gambar' => 'gambar/comfort/bakwajagung.png',
-            ],
-
-            'singkong-crispy' => [
-                'nama' => 'Singkong Crispy',
-                'harga' => 30000,
-                'gambar' => 'gambar/comfort/singkong.png',
-            ],
-
-            'cireng-crispy' => ['nama' => 'Cireng Crispy', 'harga' => 32000, 'gambar' => 'gambar/comfort/cireng.png'],
-
-            'french-fries' => [
-                'nama' => 'French Fries',
-                'harga' => 25000,
-                'gambar' => 'gambar/comfort/frenchfries.png',
-            ],
-
-            'roti-bakar-coklat-keju' => [
-                'nama' => 'Roti Bakar Coklat Keju',
-                'harga' => 35000,
-                'gambar' => 'gambar/comfort/rotibakar.png',
-            ],
-
-            'pisang-goreng-crispy' => [
-                'nama' => 'Pisang Goreng Crispy',
-                'harga' => 32000,
-                'gambar' => 'gambar/comfort/pisanggoreng.png',
-            ],
-
-            'mix-platter' => ['nama' => 'Mix Platter', 'harga' => 45000, 'gambar' => 'gambar/comfort/mixplatter.png'],
-            //EXTRA
-            'nasi-putih' => ['nama' => 'Nasi Putih', 'harga' => 12000, 'gambar' => 'gambar/extra/nasiputih.png'],
-
-            'telur' => ['nama' => 'Telur', 'harga' => 11000, 'gambar' => 'gambar/extra/telur.png'],
-            //COFFE AND TEA
-            'jasmine-tea' => ['nama' => 'Jasmine Tea', 'harga' => 18000, 'gambar' => 'gambar/coffee tea/estea.png'],
-
-            'teh-jeruk-nipis' => [
-                'nama' => 'Teh Jeruk Nipis',
-                'harga' => 20000,
-                'gambar' => 'gambar/coffee tea/tehjeruknipis.png',
-            ],
-
-            'lychee-tea' => ['nama' => 'Lychee Tea', 'harga' => 20000, 'gambar' => 'gambar/coffee tea/lecitea.png'],
-
-            'americano' => ['nama' => 'Americano', 'harga' => 25000, 'gambar' => 'gambar/coffee tea/americano.png'],
-
-            'coffee-latte' => ['nama' => 'Coffee Latte', 'harga' => 32000, 'gambar' => 'gambar/coffee tea/latte.png'],
-
-            'cappuccino' => ['nama' => 'Cappuccino', 'harga' => 32000, 'gambar' => 'gambar/coffee tea/cappucino.png'],
-
-            'mocaccino' => ['nama' => 'Mocaccino', 'harga' => 32000, 'gambar' => 'gambar/coffee tea/mocacinno.png'],
-            //FRESH JUICE
-            'fresh-orange' => ['nama' => 'Fresh Orange', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/orange.png'],
-
-            'watermelon' => ['nama' => 'Watermelon', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/watermelon.png'],
-
-            'strawberry' => ['nama' => 'Strawberry', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/strawberry.png'],
-
-            'apple' => ['nama' => 'Apple', 'harga' => 28000, 'gambar' => 'gambar/fresh juice/apple.png'],
-            //SOFT DRINK
-            'mineral-water' => [
-                'nama' => 'Mineral Water',
-                'harga' => 8000,
-                'gambar' => 'gambar/soft drink/mineralwater.png',
-            ],
-
-            'coke' => ['nama' => 'Coke', 'harga' => 25000, 'gambar' => 'gambar/soft drink/coke.png'],
-
-            'sprite' => ['nama' => 'Sprite', 'harga' => 25000, 'gambar' => 'gambar/soft drink/sprite.png'],
-
-            'fanta' => ['nama' => 'Fanta', 'harga' => 25000, 'gambar' => 'gambar/soft drink/fanta.png'],
-            //DESERT
-            'buah-potong' => ['nama' => 'Buah Potong', 'harga' => 48000, 'gambar' => 'gambar/dessert/buahpotong.png'],
-
-            'ice-buah' => ['nama' => 'Ice Buah', 'harga' => 38000, 'gambar' => 'gambar/dessert/icebuah.png'],
-
-            'slice-cake' => ['nama' => 'Slice Cake', 'harga' => 38000, 'gambar' => 'gambar/dessert/slicecake.png'],
-        ];
-
+        $pesanan = [];
         $subtotal = 0;
         $totalJumlah = 0;
 
         foreach ($cart as $key => $item) {
-            $slug = $item['slug'] ?? $key;
-            if (isset($menuData[$slug])) {
-                $jumlah = (int) ($item['jumlah'] ?? 0);
-                $subtotal += $menuData[$slug]['harga'] * $jumlah;
-                $totalJumlah += $jumlah;
+            $menu = $databaseMenus->get($key);
+            $jumlah = (int) ($item['jumlah'] ?? 0);
+
+            if (!$menu || $jumlah <= 0) {
+                continue;
             }
+            $foto = ltrim($menu->foto ?? '', '/');
+
+            if (preg_match('/^https?:\/\//i', $foto)) {
+                $gambar = $foto;
+            } elseif (str_starts_with($foto, 'gambar/')) {
+                $gambar = asset($foto);
+            } elseif ($foto !== '') {
+                $pathFoto = preg_replace('#^(storage/|public/)#', '', $foto);
+                $gambar = asset('storage/' . $pathFoto);
+            } else {
+                $gambar = asset('gambar/makanan.png');
+            }
+
+            $pesanan[$key] = [
+                'nama' => $menu->nama_menu,
+                'harga' => (int) $menu->harga,
+                'gambar' => $gambar,
+                'jumlah' => $jumlah,
+                'catatan' => $item['catatan'] ?? '',
+                'suhu' => $item['suhu'] ?? '',
+            ];
+
+            $subtotal += $menu->harga * $jumlah;
+            $totalJumlah += $jumlah;
         }
 
-        $rekomendasi = ['spaghetti-bolognese-katsu', 'sop-iga'];
+        // Foto cadangan untuk file upload lama yang tidak bisa diakses (403/404).
+        // Foto upload admin yang valid tetap dipakai secara otomatis.
+        $fotoCadangan = [
+            'grill chicken steak' => 'gambar/maincourse/grillchikensteak.png',
+            'spaghetti bolognise katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+            'spaghetti bolognese katsu' => 'gambar/maincourse/speagetibolokatsu.png',
+            'sop iga' => 'gambar/maincourse/supiga.png',
+            'nasi goreng katsu' => 'gambar/maincourse/nasgorkatsu.png',
+            'nasi timbel ayam goreng' => 'gambar/maincourse/nTimbel.png',
+        ];
+
+        $rekomendasi = \App\Models\Menu::whereIn('id', [2, 3])->get();
     @endphp
 
     <div class="container">
@@ -813,24 +713,23 @@
 
         <div class="notification">
             <span class="notification-icon">✓</span>
-
             <div class="notification-text">
                 <strong>Periksa Kembali Pesanan Anda</strong>
-                <span>Pastikan menu, jumlah porsi, dan catatan sudah sesuai sebelum melanjutkan.</span>
+                <span>
+                    Pastikan menu, jumlah porsi, dan catatan
+                    sudah sesuai sebelum melanjutkan.
+                </span>
             </div>
         </div>
 
         <div class="content">
-
             <div class="left-content">
 
                 <div class="card" id="daftar-pesanan">
-
                     <div class="section-label">DETAIL PESANAN</div>
+
                     <div class="title-row">
-                        <h2 class="card-title">
-                            Ringkasan pesanan
-                        </h2>
+                        <h2 class="card-title">Ringkasan pesanan</h2>
 
                         <a href="{{ route('maincourse') }}" class="add-more">
                             + Tambah pesanan
@@ -839,20 +738,23 @@
 
                     @if ($totalJumlah > 0)
 
-                        @foreach ($cart as $key => $item)
+                        @foreach ($pesanan as $key => $item)
                             @php
-                                $slug = $item['slug'] ?? $key;
-                                $menu = $menuData[$slug] ?? null;
-                                $jumlah = (int) ($item['jumlah'] ?? 0);
-                            @endphp
+                                $menu = [
+                                    'nama' => $item['nama'],
+                                    'harga' => $item['harga'],
+                                    'gambar' => $item['gambar'],
+                                ];
 
+                                $jumlah = $item['jumlah'];
+                            @endphp
                             @if ($menu && $jumlah > 0)
                                 <div class="cart-item">
 
-                                    <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}">
+                                    <img src="{{ $item['gambar'] }}" alt="{{ $item['nama'] }}"
+                                        onerror="this.onerror=null; this.src='{{ asset($fotoCadangan[mb_strtolower(trim($item['nama']))] ?? 'gambar/makanan.png') }}';">
 
                                     <div class="item-info">
-
                                         <h3>{{ $menu['nama'] }}</h3>
 
                                         <p>
@@ -860,27 +762,31 @@
                                         </p>
 
                                         @if (!empty($item['suhu']))
-                                            <small>Penyajian: {{ $item['suhu'] }}</small>
+                                            <small>
+                                                Penyajian: {{ $item['suhu'] }}
+                                            </small>
                                         @endif
 
                                         <form action="{{ route('detailmenu.catatan') }}" method="POST"
                                             class="note-form">
                                             @csrf
-                                            <input type="hidden" name="menu" value="{{ $key ?? $slug }}">
-                                            <textarea name="catatan" class="note-input" maxlength="500" rows="2" placeholder="Tulis catatan pesanan...">{{ $item['catatan'] ?? '' }}</textarea>
-                                            <button type="submit" class="save-note">Simpan Catatan</button>
-                                        </form>
 
+                                            <input type="hidden" name="menu" value="{{ $key }}">
+
+                                            <textarea name="catatan" class="note-input" maxlength="500" rows="2" placeholder="Tulis catatan pesanan...">{{ $item['catatan'] ?? '' }}</textarea>
+
+                                            <button type="submit" class="save-note">
+                                                Simpan Catatan
+                                            </button>
+                                        </form>
                                     </div>
 
                                     <div class="item-action">
-
                                         <p class="item-price">
                                             Rp{{ number_format($menu['harga'] * $jumlah, 0, ',', '.') }}
                                         </p>
 
                                         <div class="quantity">
-
                                             <form action="{{ route('detailmenu.kurang') }}" method="POST">
                                                 @csrf
 
@@ -895,110 +801,95 @@
                                                 @csrf
 
                                                 <input type="hidden" name="menu" value="{{ $key }}">
+
                                                 <input type="hidden" name="jumlah" value="1">
 
                                                 <button type="submit">+</button>
                                             </form>
-
                                         </div>
 
-                                        <div>
-                                            <form action="{{ route('detailmenu.hapus', $key) }}" method="POST"
-                                                onsubmit="return confirm('Hapus pesanan ini?')">
-                                                @csrf
+                                        <form action="{{ route('detailmenu.hapus', $key) }}" method="POST"
+                                            onsubmit="return confirm('Hapus pesanan ini?')">
+                                            @csrf
 
-                                                <button type="submit" class="remove-button">
-                                                    Hapus Pesanan
-                                                </button>
-                                            </form>
-                                        </div>
-
+                                            <button type="submit" class="remove-button">
+                                                Hapus Pesanan
+                                            </button>
+                                        </form>
                                     </div>
-
                                 </div>
                             @endif
                         @endforeach
                     @else
                         <div class="empty">
-
                             <h3>Keranjang Anda masih kosong.</h3>
-
                             <p>Yuk, pilih hidangan favorit Anda!</p>
 
                             <a href="{{ route('maincourse') }}">
                                 Jelajahi Menu
                             </a>
-
                         </div>
-
                     @endif
-
                 </div>
 
                 <div class="recommend">
-
                     <h2>Teman untuk hidangan Anda</h2>
-
                     <p>Jelajahi rasa lainnya dari dapur daily crave.</p>
 
                     <div class="recommend-list">
-
-                        @foreach ($rekomendasi as $slug)
-                            @if (!isset($cart[$slug]) && isset($menuData[$slug]))
+                        @foreach ($rekomendasi as $menu)
+                            @if (!isset($cart[$menu->id]))
                                 @php
-                                    $menu = $menuData[$slug];
+                                    $fotoRekomendasi = $menu->foto;
+
+                                    $gambarRekomendasi = $fotoRekomendasi
+                                        ? (\Illuminate\Support\Str::startsWith($fotoRekomendasi, 'gambar/')
+                                            ? asset($fotoRekomendasi)
+                                            : asset('storage/' . $fotoRekomendasi))
+                                        : asset('gambar/makanan.png');
                                 @endphp
 
                                 <div class="recommend-item">
-
-                                    <img src="{{ asset($menu['gambar']) }}" alt="{{ $menu['nama'] }}">
+                                    <img src="{{ $gambarRekomendasi }}" alt="{{ $menu->nama_menu }}"
+                                        onerror="this.onerror=null;this.src='{{ asset($fotoCadangan[mb_strtolower(trim($menu->nama_menu))] ?? 'gambar/makanan.png') }}';">
 
                                     <div class="recommend-info">
-
-                                        <h3>{{ $menu['nama'] }}</h3>
-
-                                        <p>
-                                            Rp{{ number_format($menu['harga'], 0, ',', '.') }}
-                                        </p>
-
+                                        <h3>{{ $menu->nama_menu }}</h3>
+                                        <p>Rp{{ number_format($menu->harga, 0, ',', '.') }}</p>
                                     </div>
 
-<form action="{{ route('detailmenu.add') }}" method="POST" id="formPesanan">
-                                            @csrf
+                                    <form action="{{ route('detailmenu.add') }}" method="POST">
+                                        @csrf
 
-                                        <input type="hidden" name="menu" value="{{ $slug }}">
+                                        <input type="hidden" name="menu" value="{{ $menu->id }}">
                                         <input type="hidden" name="jumlah" value="1">
 
                                         <button type="submit">+</button>
                                     </form>
-
                                 </div>
                             @endif
                         @endforeach
-
                     </div>
-
                 </div>
-
             </div>
 
             <div class="card payment">
-
                 <div class="payment-heading">
-                    <h2 class="card-title">Ringkasan pembayaran</h2>
-                    <span class="menu-count">{{ $totalJumlah }} Menu</span>
+                    <h2 class="card-title">
+                        Ringkasan pembayaran
+                    </h2>
+
+                    <span class="menu-count">
+                        {{ $totalJumlah }} Menu
+                    </span>
                 </div>
 
                 <div class="payment-row">
-
-                    <span>
-                        Subtotal menu
-                    </span>
+                    <span>Subtotal menu</span>
 
                     <strong>
                         Rp{{ number_format($subtotal, 0, ',', '.') }}
                     </strong>
-
                 </div>
 
                 <div class="payment-row">
@@ -1012,13 +903,11 @@
                 </div>
 
                 <div class="payment-total">
-
                     <span>TOTAL TAGIHAN</span>
 
                     <strong>
                         Rp{{ number_format($subtotal, 0, ',', '.') }}
                     </strong>
-
                 </div>
 
                 @if ($totalJumlah > 0)
@@ -1032,15 +921,13 @@
                 @endif
 
                 <p class="payment-note">
-                    Periksa menu dan catatan Anda sebelum melanjutkan ke konfirmasi pesanan.
+                    Periksa menu dan catatan Anda sebelum
+                    melanjutkan ke konfirmasi pesanan.
                 </p>
-
             </div>
-
         </div>
 
         <footer>
-
             <div class="logo">
                 ☼ daily crave
                 <small>DAPUR & RUANG TEMU</small>
@@ -1050,12 +937,10 @@
                 Rasa yang dekat, cerita yang hangat.
             </p>
 
-            <small>© 2026 Daily Crave</small>
-
+            <small>©️ 2026 Daily Crave</small>
         </footer>
 
     </div>
-
 </body>
 
 </html>
