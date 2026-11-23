@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Str;
+use App\Models\Menu;
 
 use Illuminate\Http\Request;
-
 class DashboardController extends Controller
+{ 
+public function index()
 {
-    public function index()
-    {
-        return view('dashboard');
-    }
+    $menus = Menu::with('subCategory')
+        ->orderBy('id')
+        ->get();
+
+    return view('dashboard', compact('menus'));
+}
 }
