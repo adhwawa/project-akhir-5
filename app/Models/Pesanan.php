@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pesanan extends Model
 {
-    protected $table = 'pesanans';
+    protected $table = 'orders';
 
     protected $fillable = [
         'kode_pesanan',
