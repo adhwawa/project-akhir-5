@@ -18,7 +18,6 @@ class AuthController extends Controller
     // Proses login
     public function login(Request $request)
     {
-            // Validasi input
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -30,7 +29,7 @@ class AuthController extends Controller
 
         // Pemeriksaan email admin
         if (
-            $role == 'admin' &&
+            $role === 'admin' &&
             !str_ends_with($email, '@dailycrave.com')
         ) {
             return back()->withErrors([
@@ -38,9 +37,9 @@ class AuthController extends Controller
             ])->withInput($request->only('email', 'role'));
         }
 
-        // Pelanggan tidak boleh menggunakan email admin
+        // Pelanggan tidak boleh memakai email admin
         if (
-            $role == 'user' &&
+            $role === 'user' &&
             str_ends_with($email, '@dailycrave.com')
         ) {
             return back()->withErrors([
@@ -48,40 +47,36 @@ class AuthController extends Controller
             ])->withInput($request->only('email', 'role'));
         }
 
-        // Data login
+        // Proses autentikasi
         $credentials = [
             'email' => $email,
             'password' => $request->password,
             'role' => $role,
         ];
 
-        // Proses login
         if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
 
-            // Jika admin
-            if (Auth::user()->role == 'admin') {
-
+            if (Auth::user()->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             }
 
-            // Jika pelanggan
             return redirect()->route('dashboard');
         }
 
-        // Jika login gagal
         return back()->withErrors([
             'email' => 'Email atau password salah.'
         ])->withInput($request->only('email', 'role'));
     }
+
     // Menampilkan halaman register
     public function showRegister()
     {
         return view('auth.register');
     }
 
-    // Proses register
+    // Proses register pelanggan
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -90,10 +85,20 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
+        $email = strtolower(trim($data['email']));
+
+        // Email khusus admin tidak boleh mendaftar sebagai pelanggan
+        if (str_ends_with($email, '@dailycrave.com')) {
+            return back()->withErrors([
+                'email' => 'Email @dailycrave.com khusus untuk admin.'
+            ])->withInput($request->only('name', 'email'));
+        }
+
         $user = User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'email' => $email,
             'password' => Hash::make($data['password']),
+            'role' => 'user',
         ]);
 
         Auth::login($user);

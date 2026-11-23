@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Crave - Data Menu</title>
+    <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -538,7 +540,7 @@
                     Menu
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                         <line x1="7" y1="7" x2="7.01" y2="7"></line>
@@ -546,7 +548,7 @@
                     Sub-Kategori
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pesanan') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
@@ -556,7 +558,7 @@
                     Pesanan
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pembayaran.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                         <line x1="2" y1="10" x2="22" y2="10"></line>
