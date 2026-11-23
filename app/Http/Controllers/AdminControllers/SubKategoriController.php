@@ -1,103 +1,103 @@
 <?php
 
-namespace App\Http\Controllers\AdminControllers;
+// namespace App\Http\Controllers\AdminControllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\SubKategori;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+// use App\Http\Controllers\Controller;
+// use App\Models\SubCategory;
+// use Illuminate\Http\Request;
+// use Illuminate\Support\Str;
 
-class SubKategoriController extends Controller
-{
-    public function index(Request $request)
-    {
-        $search = $request->query('search');
+// class SubKategoriController extends Controller
+// {
+//     public function index(Request $request)
+//     {
+//         $search = $request->query('search');
 
-        $subKategoris = SubKategori::when($search, function ($query, $search) {
-                $query->where('nama', 'like', "%{$search}%")
-                      ->orWhere('kategori', 'like', "%{$search}%")
-                      ->orWhere('slug', 'like', "%{$search}%");
-            })
-            ->orderBy('id', 'asc')
-            ->paginate(8)
-            ->withQueryString();
+//         $subKategoris = SubCategory::when($search, function ($query, $search) {
+//                 $query->where('nama_sub_kategori', 'like', "%{$search}%")
+//                       ->orWhere('kategori_utama', 'like', "%{$search}%")
+//                       ->orWhere('slug', 'like', "%{$search}%");
+//             })
+//             ->orderBy('id', 'asc')
+//             ->paginate(8)
+//             ->withQueryString();
 
-        return view('admin.Sub-Kategori.index', compact('subKategoris', 'search'));
-    }
+//         return view('admin.Sub-Kategori.index', compact('subKategoris', 'search'));
+//     }
 
-    public function create()
-    {
-        return view('admin.Sub-Kategori.form', [
-            'mode' => 'create',
-            'subKategori' => null,
-        ]);
-    }
+//     public function create()
+//     {
+//         return view('admin.Sub-Kategori.form', [
+//             'mode' => 'create',
+//             'subKategori' => null,
+//         ]);
+//     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:100',
-            'kategori' => 'required|string|max:50',
-            'slug' => 'nullable|string|max:100',
-            'status' => 'required|in:Tersedia,Tidak Tersedia',
-        ]);
+//     public function store(Request $request)
+//     {
+//         $request->validate([
+//             'nama' => 'required|string|max:100',
+//             'kategori' => 'required|string|max:50',
+//             'slug' => 'nullable|string|max:100',
+//             'status' => 'required|in:Tersedia,Tidak Tersedia',
+//         ]);
 
-        $slug = $request->slug
-            ? '/' . ltrim($request->slug, '/')
-            : '/' . Str::slug($request->nama);
+//         $slug = $request->slug
+//             ? '/' . ltrim($request->slug, '/')
+//             : '/' . Str::slug($request->nama);
 
-        SubKategori::create([
-            'nama' => $request->nama,
-            'kategori' => $request->kategori,
-            'slug' => $slug,
-            'status' => $request->status,
-        ]);
+//         SubCategory::create([
+//             'nama' => $request->nama,
+//             'kategori' => $request->kategori,
+//             'slug' => $slug,
+//             'status' => $request->status,
+//         ]);
 
-        return redirect()->route('admin.subkategori.index')
-            ->with('success', 'Sub kategori berhasil ditambahkan!');
-    }
+//         return redirect()->route('admin.subkategori.index')
+//             ->with('success', 'Sub kategori berhasil ditambahkan!');
+//     }
 
-    public function edit($id)
-    {
-        $subKategori = SubKategori::findOrFail($id);
+//     public function edit($id)
+//     {
+//         $subKategori = SubCategory::findOrFail($id);
 
-        return view('admin.Sub-Kategori.form', [
-            'mode' => 'edit',
-            'subKategori' => $subKategori,
-        ]);
-    }
+//         return view('admin.Sub-Kategori.form', [
+//             'mode' => 'edit',
+//             'subKategori' => $subKategori,
+//         ]);
+//     }
 
-    public function update(Request $request, $id)
-    {
-        $subKategori = SubKategori::findOrFail($id);
+//     public function update(Request $request, $id)
+//     {
+//         $subKategori = SubCategory::findOrFail($id);
 
-        $request->validate([
-            'nama' => 'required|string|max:100',
-            'kategori' => 'required|string|max:50',
-            'slug' => 'nullable|string|max:100',
-            'status' => 'required|in:Tersedia,Tidak Tersedia',
-        ]);
+//         $request->validate([
+//             'nama' => 'required|string|max:100',
+//             'kategori' => 'required|string|max:50',
+//             'slug' => 'nullable|string|max:100',
+//             'status' => 'required|in:Tersedia,Tidak Tersedia',
+//         ]);
 
-        $slug = $request->slug
-            ? '/' . ltrim($request->slug, '/')
-            : '/' . Str::slug($request->nama);
+//         $slug = $request->slug
+//             ? '/' . ltrim($request->slug, '/')
+//             : '/' . Str::slug($request->nama);
 
-        $subKategori->update([
-            'nama' => $request->nama,
-            'kategori' => $request->kategori,
-            'slug' => $slug,
-            'status' => $request->status,
-        ]);
+//         $subKategori->update([
+//             'nama' => $request->nama,
+//             'kategori' => $request->kategori,
+//             'slug' => $slug,
+//             'status' => $request->status,
+//         ]);
 
-        return redirect()->route('admin.subkategori.index')
-            ->with('success', 'Sub kategori berhasil diperbarui!');
-    }
+//         return redirect()->route('admin.subkategori.index')
+//             ->with('success', 'Sub kategori berhasil diperbarui!');
+//     }
 
-    public function destroy($id)
-    {
-        SubKategori::findOrFail($id)->delete();
+//     public function destroy($id)
+//     {
+//         SubCategory::findOrFail($id)->delete();
 
-        return redirect()->route('admin.subkategori.index')
-            ->with('success', 'Sub kategori berhasil dihapus!');
-    }
-}
+//         return redirect()->route('admin.subkategori.index')
+//             ->with('success', 'Sub kategori berhasil dihapus!');
+//     }
+// }

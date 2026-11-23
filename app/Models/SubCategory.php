@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SubCategory extends Model
 {
-    protected $fillable = ['kategori_utama', 'nama_sub_kategori', 'slug', 'status'];
+    // protected $table = 'sub_categories';
+    protected $fillable = [
+        'kategori_utama',
+        'nama_sub_kategori',
+        'slug', 'status'
+    ];
 
     public function menus(): HasMany
     {

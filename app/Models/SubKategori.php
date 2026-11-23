@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+// namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 
-class SubKategori extends Model
-{
-    protected $fillable = ['nama', 'kategori', 'slug', 'status'];
-}
+// class SubKategori extends Model
+// {
+//     protected $fillable = ['nama', 'kategori', 'slug', 'status'];
+// }

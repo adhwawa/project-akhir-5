@@ -267,12 +267,6 @@ Route::prefix('admin')
         ])->name('pembayaran.tolak');
 
     });
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 253f8187bca7ab3de2e2b3bf231d722e570f1e14
 
 // ADMIN SUB KATEGORI
 Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
