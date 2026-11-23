@@ -20,7 +20,15 @@ return new class extends Migration
 
             $table->unsignedBigInteger('total_pembayaran');
 
+            $table->unsignedBigInteger('jumlah_transfer')->default(0);
+
             $table->string('bukti_pembayaran')->nullable();
+
+            $table->enum('status', [
+                'Menunggu',
+                'Dikonfirmasi',
+                'Ditolak'
+            ])->default('Menunggu');
 
             $table->enum('status_pembayaran', [
                 'Menunggu',
@@ -29,6 +37,8 @@ return new class extends Migration
             ])->default('Menunggu');
 
             $table->text('catatan_admin')->nullable();
+
+            $table->timestamp('tanggal_konfirmasi')->nullable();
 
             $table->timestamps();
         });

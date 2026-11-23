@@ -635,33 +635,81 @@
             <nav class="nav-links">
 
                 <a href="{{ route('admin.dashboard') }}" class="nav-item">
-                    <i class="fa-solid fa-border-all"></i>
+
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                    </svg>
+
                     Dashboard
+
                 </a>
+
 
                 <a href="{{ route('admin.menu.index') }}" class="nav-item">
-                    <i class="fa-solid fa-utensils"></i>
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                        <path d="M7 2v20"></path>
+                        <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+                    </svg>
+
                     Menu
+
                 </a>
 
-                <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
-                    <i class="fa-solid fa-tags"></i>
+
+                {{-- <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    </svg>
+
                     Sub-Kategori
-                </a>
+
+                </a> --}}
+
 
                 <a href="{{ route('admin.pesanan') }}" class="nav-item active">
-                    <i class="fa-regular fa-clipboard"></i>
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+
                     Pesanan
+
                 </a>
+
 
                 <a href="{{ route('admin.pembayaran.index') }}" class="nav-item">
-                    <i class="fa-regular fa-credit-card"></i>
+
+                    <svg viewBox="0 0 24 24">
+                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+
                     Pembayaran
+
                 </a>
 
+
                 <a href="{{ route('admin.pelanggan.index') }}" class="nav-item">
-                    <i class="fa-solid fa-users"></i>
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+
                     Pelanggan
+
                 </a>
 
             </nav>

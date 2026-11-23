@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pesanan extends Model
 {
-    protected $table = 'orders';
+    protected $table = 'pesanans';
 
     protected $fillable = [
         'kode_pesanan',
@@ -28,6 +28,6 @@ class Pesanan extends Model
 
     public function pembayaran(): HasOne
     {
-        return $this->hasOne(Pembayaran::class);
+        return $this->hasOne(Pembayaran::class, 'pesanan_id');
     }
 }
