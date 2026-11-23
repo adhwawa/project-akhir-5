@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminControllers\PembayaranController
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
 use App\Http\Controllers\AdminControllers\PelangganController;
+use App\Http\Controllers\AdminControllers\PesananController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -295,9 +296,8 @@ Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 
 // ADMIN PESANAN
-Route::get('/admin/pesanan', function () {
-    return view('admin.pesanan.index');
-})->name('admin.pesanan');
+Route::get('/admin/pesanan', [PesananController::class, 'index'])
+    ->name('admin.pesanan');
 
 // MELIHAT DETAIL PESANAN ADMIN
 Route::get('/admin/pesanan/{id}', function ($id) {

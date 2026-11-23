@@ -338,176 +338,160 @@
             color: #ffffff;
         }
 
-        /* TABEL DATA MENU */
         
-        /* ===== TABEL PESANAN ===== */
+        /* ================= CARD PESANAN ================= */
+
+        .menu-card {
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #f0e8de;
+            border-radius: 22px;
+            padding: 32px 36px;
+            box-shadow: 0 4px 20px rgba(74, 53, 37, 0.03);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .card-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c1e14;
+        }
+
+        .card-header p {
+            font-size: 13px;
+            color: #8c735f;
+            margin-top: 4px;
+        }
+
+        /* ================= TABEL PESANAN ================= */
 
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
         }
 
-        table {
+        .table-wrapper table {
             width: 100%;
-            table-layout: fixed;
+            min-width: 850px;
             border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
             table-layout: fixed;
-            border-collapse: collapse;
+            margin-top: 0;
         }
 
-        table th:nth-child(1),
-        table td:nth-child(1) {
-            width: 12%;
-        }
+        /* Lebar kolom */
+        .table-wrapper th:nth-child(1),
+        .table-wrapper td:nth-child(1) { width: 12%; }
 
-        table th:nth-child(2),
-        table td:nth-child(2) {
-            width: 14%;
-        }
+        .table-wrapper th:nth-child(2),
+        .table-wrapper td:nth-child(2) { width: 16%; }
 
-        table th:nth-child(3),
-        table td:nth-child(3) {
-            width: 32%;
-        }
+        .table-wrapper th:nth-child(3),
+        .table-wrapper td:nth-child(3) { width: 35%; }
 
-        table th:nth-child(4),
-        table td:nth-child(4) {
-            width: 14%;
-        }
+        .table-wrapper th:nth-child(4),
+        .table-wrapper td:nth-child(4) { width: 15%; }
 
-        table th:nth-child(5),
-        table td:nth-child(5) {
-            width: 16%;
-        }
+        .table-wrapper th:nth-child(5),
+        .table-wrapper td:nth-child(5) { width: 13%; }
 
-        table th:nth-child(6),
-        table td:nth-child(6) {
-            width: 12%;
-        }
+        .table-wrapper th:nth-child(6),
+        .table-wrapper td:nth-child(6) { width: 9%; }
 
-        /* Header tabel */
-        table thead th {
-            padding: 16px 12px;
+        /* Header */
+        .table-wrapper thead th {
+            padding: 18px 12px;
             text-align: left;
+            font-family: 'Poppins', sans-serif;
             font-size: 12px;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
             color: #987b64;
             border-bottom: 1px solid #eee4da;
             white-space: nowrap;
         }
 
+        /* Baris */
+        .table-wrapper tbody tr {
+            height: 70px;
+            transition: background 0.2s ease;
+        }
+
+        .table-wrapper tbody tr:hover {
+            background-color: #fcfaf7;
+        }
+
         /* Isi tabel */
-        table tbody td {
-            padding: 19px 12px;
+        .table-wrapper tbody td {
+            padding: 18px 12px;
+            font-family: 'Poppins', sans-serif;
             font-size: 14px;
-            color: #382719;
+            color: #2c1e14;
             border-bottom: 1px solid #f0e9e2;
             vertical-align: middle;
         }
 
-        /* Baris tabel */
-        table tbody tr {
-            height: 70px;
-        }
-
-        /* Nama item */
-        table tbody td:nth-child(3) {
+        /* Item pesanan */
+        .table-wrapper tbody td:nth-child(3) {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
+        /* Harga */
+        .table-wrapper tbody td:nth-child(4) {
+            white-space: nowrap;
+        }
+
         /* Dropdown status */
-        table select {
-            width: 135px;
-            padding: 10px 12px;
+        .table-wrapper select.status {
+            width: 100%;
+            max-width: 150px;
+            padding: 11px 12px;
             border: 1px solid #eadbcd;
-            border-radius: 10px;
-            background: white;
+            border-radius: 12px;
+            background-color: #fff;
             color: #65452f;
+            font-family: 'Poppins', sans-serif;
             font-size: 13px;
-        }
-
-        /* Tombol detail */
-        table td a {
-            color: #704b32;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        table td a:hover {
-            color: #a47750;
-        }   
-
-
-        thead th:last-child { text-align: right; }
-
-        tbody tr {
-            border-bottom: 1px solid #f7f2ec;
-            transition: background 0.15s;
-        }
-
-        tbody tr:hover { background-color: #fcfaf7; }
-
-        tbody td {
-            padding: 16px 12px;
-            font-size: 13.5px;
-            color: #2c1e14;
-        }
-
-        .menu-name { font-weight: 500; }
-
-        .cat-badge {
-            display: inline-block;
-            background-color: #faf3eb;
-            border: 1px solid #efe2d3;
-            color: #8c6a4f;
-            font-size: 12px;
-            padding: 4px 12px;
-            border-radius: 8px;
-        }
-
-        .price-text { font-weight: 600; }
-
-        .status-badge {
-            display: inline-block;
-            font-size: 11.5px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .status-tersedia { background-color: #e6f6ec; color: #16a34a; }
-        .status-habis { background-color: #fde8e8; color: #dc2626; }
-
-        .action-group {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 12px;
-        }
-
-        .btn-icon {
-            background: none;
-            border: none;
+            outline: none;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-            transition: transform 0.15s;
         }
 
-        .btn-icon:hover { transform: scale(1.12); }
-        .btn-edit { color: #3b82f6; }
-        .btn-delete { color: #ef4444; }
+        .table-wrapper select.status:focus {
+            border-color: #9b7658;
+        }
+
+        /* Detail */
+        .table-wrapper .detail-link {
+            color: #704b32;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .table-wrapper .detail-link:hover {
+            color: #a47750;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-card {
+                padding: 22px 18px;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+        }
 
         /* ================= MODAL HAPUS ================= */
         .modal-overlay {
@@ -603,6 +587,35 @@
             .main-content { padding: 24px 20px; }
             .search-box { width: 100%; }
         }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .status-badge.menunggu {
+            background: #fff4df;
+            color: #b7791f;
+        }
+
+        .status-badge.diproses {
+            background: #e8f0ff;
+            color: #2563eb;
+        }
+
+        .status-badge.selesai {
+            background: #e6f6ec;
+            color: #16a34a;
+        }
+
+        .status-badge.dibatalkan {
+            background: #fde8e8;
+            color: #dc2626;
+        }
     </style>
 </head>
 
@@ -671,136 +684,106 @@
         </div>
     </aside>
 
+
     <!-- HALAMAN UTAMA -->
-    <main class="main">
+    <main class="main-content">
 
         <!-- HEADER -->
-        <div class="header">
+        <div class="topbar">
 
-            <div>
+            <div class="page-header">
                 <h1>Pesanan</h1>
                 <p>Kelola data pesanan restoran Anda.</p>
             </div>
 
-            <div class="header-right">
-                <input type="text"
-                    class="search"
-                    id="searchInput"
-                    placeholder="⌕  Cari di Pesanan...">
+            <div class="topbar-actions">
 
-                <i class="fa-regular fa-bell"></i>
-                <i class="fa-solid fa-circle-user"></i>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text"
+                        id="searchInput"
+                        placeholder="Cari data pesanan...">
+                </div>
+
+                <button class="notif-btn">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+
+                <div class="top-avatar">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+
             </div>
-
         </div>
 
-        <!-- TABEL PESANAN -->
-        <section class="content">
+        <!-- CARD PESANAN -->
+        <section class="menu-card">
 
-            <h3>Kelola Pesanan</h3>
+            <div class="card-header">
+                <div>
+                    <h2>Data Pesanan</h2>
+                    <p>Daftar lengkap pesanan pelanggan restoran Anda.</p>
+                </div>
+            </div>
 
-            <table id="orderTable">
+            <!-- TABEL -->
+            <div class="table-wrapper">
 
-                <thead>
-                    <tr>
-                        <th>ID Pesanan</th>
-                        <th>Pelanggan</th>
-                        <th>Item</th>
-                        <th>Total Harga</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
+                <table id="orderTable">
 
-                <tbody>
+                    <thead>
+                        <tr>
+                            <th>ID Pesanan</th>
+                            <th>Pelanggan</th>
+                            <th>Item</th>
+                            <th>Total Harga</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
 
-                    <tr>
-                        <td>#ORD-092</td>
-                        <td>Budi Santoso</td>
-                        <td>Nasi Goreng Rempah (x2), Es Kopi Susu...</td>
-                        <td>Rp146.000</td>
-                        <td>
-                            <select class="status">
-                                <option selected>Menunggu</option>
-                                <option>Diproses</option>
-                                <option>Selesai</option>
-                                <option>Dibatalkan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.pesanan.form', ['id' => 92]) }}" class="detail-link">
-                                Lihat Detail
-                            </a>
-                        </td>
-                    </tr>
+                    
+                    <tbody>
+                        @foreach ($pesanans as $pesanan)
+                            <tr>
+                                <td>#ORD-{{ $pesanan->id }}</td>
 
-                    <tr>
-                        <td>#ORD-091</td>
-                        <td>Siti Aminah</td>
-                        <td>Pasta Truffle, Lemonade</td>
-                        <td>Rp105.000</td>
-                        <td>
-                            <select class="status">
-                                <option>Menunggu</option>
-                                <option selected>Diproses</option>
-                                <option>Selesai</option>
-                                <option>Dibatalkan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.pesanan.form', ['id' => 91]) }}" class="detail-link">
-                                Lihat Detail
-                            </a>
-                        </td>
-                    </tr>
+                                <td>
+                                    {{ $pesanan->nama_pelanggan }}
+                                </td>
 
-                    <tr>
-                        <td>#ORD-090</td>
-                        <td>Andi Wijaya</td>
-                        <td>Croissant Butter, Hot Cappuccino</td>
-                        <td>Rp60.000</td>
-                        <td>
-                            <select class="status">
-                                <option>Menunggu</option>
-                                <option>Diproses</option>
-                                <option selected>Selesai</option>
-                                <option>Dibatalkan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.pesanan.form', ['id' => 90]) }}" class="detail-link">
-                                Lihat Detail
-                            </a>
-                        </td>
-                    </tr>
+                                <td>
+                                    {{ $pesanan->nama_menu }}
+                                </td>
 
-                    <tr>
-                        <td>#ORD-089</td>
-                        <td>Rina Melati</td>
-                        <td>Matcha Latte (x3)</td>
-                        <td>Rp105.000</td>
-                        <td>
-                            <select class="status">
-                                <option>Menunggu</option>
-                                <option>Diproses</option>
-                                <option>Selesai</option>
-                                <option selected>Dibatalkan</option>
-                            </select>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.pesanan.form', ['id' => 89]) }}" class="detail-link">
-                                Lihat Detail
-                            </a>
-                        </td>
-                    </tr>
+                                <td>
+                                    Rp{{ number_format($pesanan->total_harga, 0, ',', '.') }}
+                                </td>
 
-                </tbody>
+                                <td>
+                                    <span class="status-badge {{ strtolower($pesanan->status_pesanan) }}">
+                                        {{ $pesanan->status_pesanan }}
+                                    </span>
+                                </td>
 
-            </table>
+                                <td>
+                                    <a href="{{ route('admin.pesanan.form', ['id' => $pesanan->id]) }}"
+                                    class="detail-link">
+                                        Lihat Detail
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
 
+
+                </table>
+
+            </div>
         </section>
 
     </main>
+
 
     <!-- FITUR PENCARIAN -->
     <script>
