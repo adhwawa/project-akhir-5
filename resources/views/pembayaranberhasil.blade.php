@@ -482,25 +482,28 @@
 
 <body>
     @php
-        // $pesanan wajib berasal dari controller setelah verifikasi pembayaran oleh admin.
-        $pesanan = $pesanan ?? null;
-        $statusPembayaran = strtolower((string) data_get($pesanan, 'status_pembayaran', ''));
-        $terverifikasi = in_array($statusPembayaran, ['verified', 'terverifikasi', 'paid', 'lunas', 'berhasil'], true);
+        $items = $pesanan->detail_menu ?? [];
 
-        $nomor = data_get($pesanan, 'nomor_transaksi', data_get($pesanan, 'id', '-'));
-        $meja = data_get($pesanan, 'nomor_meja', '-');
-        $nama = data_get($pesanan, 'nama_pelanggan', 'Pelanggan');
-        $items = data_get($pesanan, 'items', []);
-        $subtotal = collect($items)->sum(
-            fn($item) => (int) data_get($item, 'harga', 0) * (int) data_get($item, 'jumlah', 0),
-        );
-        $total = data_get($pesanan, 'total', $subtotal);
-        $waktu = data_get($pesanan, 'waktu_pembayaran', '-');
-        $status = strtolower((string) data_get($pesanan, 'status_dapur', 'menunggu'));
-        $gambar = data_get($items, '0.gambar');
-        $estimasi = data_get($pesanan, 'estimasi_menit');
-        $rrn = data_get($pesanan, 'nomor_referensi');
-        $nmid = data_get($pesanan, 'nmid_merchant');
+        $nama = $pesanan->nama_pelanggan;
+        $meja = $pesanan->nomor_meja;
+        $nomor = $pesanan->kode_pesanan;
+
+        $subtotal = (float) $pesanan->subtotal;
+        $total = (float) $pesanan->total_harga;
+
+        $statusPembayaran = $pesanan->pembayaran->status_pembayaran ?? '';
+
+        $terverifikasi = $statusPembayaran === 'Dikonfirmasi';
+
+        $status = $pesanan->status_pesanan ?? 'menunggu_pembayaran';
+
+        $estimasi = null;
+        $waktu = $pesanan->updated_at
+            ? $pesanan->updated_at->format('d-m-Y H:i')
+            : '-';
+
+        $nmid = null;
+        $rrn = null;
     @endphp
     @if (!$pesanan || !$terverifikasi)
         <main class="wrap" style="min-height:65vh;display:grid;place-items:center;text-align:center">
@@ -550,19 +553,23 @@
             <div class="main">
                 <div>
                     <div class="food-hero">
-                        @if ($gambar)
-                            <img src="{{ asset($gambar) }}"
-                            alt="{{ data_get($items, '0.nama', 'Hidangan pesanan') }}">@else<div
-                                style="height:100%;display:grid;place-items:center;color:#69594d">Daily Crave • Pesanan
-                                Anda</div>
-                        @endif
-                        <div class="food-overlay">
-                            <div>MEJA {{ $meja }} • SANTAP DI TEMPAT @if ($estimasi)
-                                    <span class="tag">◷ Estimasi {{ $estimasi }} Mnt</span>
-                                @endif
-                            </div>
-                            <strong>{{ data_get($items, '0.nama', 'Pesanan Daily Crave') }}</strong>
+
+                        <div style="height:100%;display:grid;place-items:center;color:#69594d">
+                            Daily Crave • Pesanan Anda
                         </div>
+
+                        <div class="food-overlay">
+
+                            <div>
+                                MEJA {{ $meja }} • SANTAP DI TEMPAT
+                            </div>
+
+                            <strong>
+                                {{ data_get($items, '0.nama', 'Pesanan Daily Crave') }}
+                            </strong>
+
+                        </div>
+
                     </div>
                     <section class="ticket">
                         <div class="ticket-heading">
@@ -573,7 +580,7 @@
                         @foreach ($items as $item)
                             <div class="item"><span>{{ data_get($item, 'jumlah', 1) }}x</span>
                                 <div>
-                                    {{ data_get($item, 'nama', 'Menu') }}<small>{{ data_get($item, 'detail', '') }}</small>
+                                    {{ data_get($item, 'nama', 'Menu') }}<small>{{ data_get($item, 'suhu', '') }}</small>
                                     @if (data_get($item, 'catatan'))
                                         <small>CATATAN: {{ data_get($item, 'catatan') }}</small>
                                     @endif

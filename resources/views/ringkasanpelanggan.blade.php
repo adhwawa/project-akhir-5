@@ -585,7 +585,7 @@
         }
 
         $namaPelanggan = old('nama_pelanggan', session('nama_pelanggan', ''));
-        $nomorMeja = old('nomor_meja', session('nomor_meja', '03'));
+        $nomorMeja = old('nomor_meja', '');
         $kodePesanan = session('kode_pesanan', 'DC-8842');
     @endphp
 
@@ -632,7 +632,8 @@
                     <span class="dine-badge">♜ &nbsp; Dine In</span>
                 </div>
 
-<form action="{{ url('/qris') }}" method="GET" id="confirmationForm">
+<form action="{{ route('pembayaran.checkout') }}" method="POST" id="confirmationForm">
+    @csrf
 
 
                     <div class="form-group">
@@ -649,7 +650,7 @@
                             <span>♧ &nbsp; NOMOR MEJA</span>
                         </label>
                         <input type="text" name="nomor_meja" id="nomor_meja" class="form-control table-input"
-                            value="{{ request('nomor_meja', '') }}" placeholder="Contoh: 01" required>
+                            value="{{ $nomorMeja }}" placeholder="Contoh: 01" required>
                         <p class="helper-text">ⓘ Tertera pada barcode kayu di sudut meja Anda.</p>
                     </div>
 
@@ -760,9 +761,12 @@
 <script>
     function lanjutKeQris() {
         const form = document.getElementById('confirmationForm');
-        if (!form.reportValidity()) return;
-        const params = new URLSearchParams(new FormData(form));
-        window.location.href = form.action + '?' + params.toString();
+
+        if (!form.reportValidity()) {
+            return;
+        }
+
+        form.submit();
     }
 </script>
 </body>

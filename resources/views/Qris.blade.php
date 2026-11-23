@@ -1106,66 +1106,63 @@
 <!-- JAVASCRIPT -->
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 
-    // COUNTDOWN
+    const kodePesanan = @json($pesanan->kode_pesanan);
 
-    let seconds = 168;
+    const statusUrl = @json(
+        route('pembayaran.status', $pesanan->kode_pesanan)
+    );
 
-    const countdown = document.getElementById('countdown');
+    const berhasilUrl = @json(
+        route('pembayaran.berhasil', $pesanan->kode_pesanan)
+    );
 
-    setInterval(function () {
+    let sudahDialihkan = false;
 
-        if (seconds <= 0) {
-            countdown.textContent = '00:00';
-            return;
-        }
+    async function cekStatusPembayaran() {
 
-        seconds--;
+        if (sudahDialihkan) return;
 
-        let minutes = Math.floor(seconds / 60);
-        let secs = seconds % 60;
-
-        countdown.textContent =
-            String(minutes).padStart(2, '0') +
-            ':' +
-            String(secs).padStart(2, '0');
-
-    }, 1000);
-
-
-    // SALIN NMID
-
-    function copyNMID() {
-
-        const nmid = @json($nmid);
-
-        navigator.clipboard.writeText(nmid)
-            .then(function () {
-                alert('NMID berhasil disalin.');
-            })
-            .catch(function () {
-                alert('Gagal menyalin NMID.');
+        try {
+            const response = await fetch(statusUrl, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                cache: 'no-store'
             });
 
+            if (!response.ok) {
+                return;
+            }
+
+            const data = await response.json();
+
+            if (
+                data.status_pembayaran === 'Dikonfirmasi'
+            ) {
+                sudahDialihkan = true;
+
+                window.location.href = berhasilUrl;
+            }
+
+        } catch (error) {
+            console.error(
+                'Gagal mengecek status pembayaran:',
+                error
+            );
+        }
     }
 
+    // Cek status pertama kali
+    cekStatusPembayaran();
 
-    // DOWNLOAD QRIS
+    // Cek kembali setiap 3 detik
+    setInterval(cekStatusPembayaran, 3000);
 
-    function downloadQR() {
-
-        const image = document.querySelector('.qr-image');
-
-        const link = document.createElement('a');
-
-        link.href = image.src;
-
-        link.download = 'QRIS-Daily-Crave.png';
-
-        link.click();
-
-    }
-
+});
 </script>
 
 </body>

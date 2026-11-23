@@ -754,7 +754,7 @@
                 </a>
 
 
-                <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
+                {{-- <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
 
                     <svg viewBox="0 0 24 24">
                         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
@@ -763,7 +763,7 @@
 
                     Sub-Kategori
 
-                </a>
+                </a> --}}
 
 
                 <a href="{{ route('admin.pesanan') }}" class="nav-item">
@@ -1197,29 +1197,13 @@
                                 </td>
 
 
-                                <!-- BUKTI PEMBAYARAN -->
+                                <!-- INFORMASI PEMBAYARAN QRIS -->
 
                                 <td>
 
-                                    @if($pembayaran->bukti_pembayaran)
-
-                                        <a href="{{ route('admin.pembayaran.bukti', $pembayaran->id) }}"
-                                           target="_blank"
-                                           class="btn-action btn-view">
-
-                                            Lihat Bukti
-
-                                        </a>
-
-                                    @else
-
-                                        <span style="color:#9b826e;font-size:12px;">
-
-                                            Belum tersedia
-
-                                        </span>
-
-                                    @endif
+                                    <span class="cat-badge">
+                                        {{ $pembayaran->metode_pembayaran }}
+                                    </span>
 
                                 </td>
 
@@ -1255,27 +1239,23 @@
                                         @if($pembayaran->status_pembayaran === 'Menunggu')
 
 
-                                            <!-- KONFIRMASI -->
+                                            <!-- KONFIRMASI PEMBAYARAN QRIS -->
 
-                                            @if($pembayaran->bukti_pembayaran)
+                                            <form
+                                                action="{{ route('admin.pembayaran.konfirmasi', $pembayaran->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Apakah pembayaran QRIS ini sudah diterima?')">
 
-                                                <form
-                                                    action="{{ route('admin.pembayaran.konfirmasi', $pembayaran->id) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Yakin ingin mengonfirmasi pembayaran ini?')">
+                                                @csrf
 
-                                                    @csrf
+                                                <button type="submit"
+                                                        class="btn-action btn-confirm">
 
-                                                    <button type="submit"
-                                                            class="btn-action btn-confirm">
+                                                    Konfirmasi
 
-                                                        Konfirmasi
+                                                </button>
 
-                                                    </button>
-
-                                                </form>
-
-                                            @endif
+                                            </form>
 
 
                                             <!-- TOLAK -->

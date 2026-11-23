@@ -75,6 +75,7 @@ class PembayaranController extends Controller
         return response()->file($path);
     }
 
+    
     public function konfirmasi($id)
     {
         DB::transaction(function () use ($id) {
@@ -84,10 +85,6 @@ class PembayaranController extends Controller
 
             if ($pembayaran->status_pembayaran !== 'Menunggu') {
                 abort(422, 'Pembayaran sudah diproses.');
-            }
-
-            if (!$pembayaran->bukti_pembayaran) {
-                abort(422, 'Bukti pembayaran belum tersedia.');
             }
 
             $pembayaran->update([
@@ -105,6 +102,7 @@ class PembayaranController extends Controller
             'Pembayaran berhasil dikonfirmasi.'
         );
     }
+
 
     public function tolak(Request $request, $id)
     {
