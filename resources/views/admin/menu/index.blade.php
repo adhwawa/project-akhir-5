@@ -540,7 +540,7 @@
                     Menu
                 </a>
 
-                <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
+                <a href="{{ route('admin.subkategori') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                         <line x1="7" y1="7" x2="7.01" y2="7"></line>
@@ -566,7 +566,7 @@
                     Pembayaran
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pelanggan.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                         <circle cx="9" cy="7" r="4"></circle>
