@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -17,17 +18,17 @@ return new class extends Migration
 
             $table->string('metode_pembayaran')->default('QRIS');
 
-            $table->decimal('jumlah_transfer', 12, 2);
+            $table->unsignedBigInteger('total_pembayaran');
 
-            $table->enum('status', [
-                'menunggu',
-                'berhasil',
-                'ditolak'
-            ])->default('menunggu');
+            $table->string('bukti_pembayaran')->nullable();
+
+            $table->enum('status_pembayaran', [
+                'Menunggu',
+                'Dikonfirmasi',
+                'Ditolak'
+            ])->default('Menunggu');
 
             $table->text('catatan_admin')->nullable();
-
-            $table->timestamp('tanggal_konfirmasi')->nullable();
 
             $table->timestamps();
         });

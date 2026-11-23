@@ -699,7 +699,7 @@
                     Dashboard
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.menu.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -715,7 +715,7 @@
                     Sub Kategori
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pesanan') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
@@ -725,7 +725,7 @@
                     Pesanan
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pembayaran.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                         <line x1="2" y1="10" x2="22" y2="10"></line>

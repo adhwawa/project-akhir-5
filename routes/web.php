@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminControllers\PembayaranController
     as PembayaranAdminController;
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
+use App\Http\Controllers\AdminControllers\PelangganController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -125,14 +126,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('menu', MenuController::class)->except(['show']);
 });
 
-
-// HALAMAN DETAILMENU (KERANJANG)
-Route::get('/detailmenu', function () {
-    return view('detailmenu');
-})->name('detailmenu');
-
-
-// HALAMAN KERANJANG
 // TAMBAH MENU
 Route::post('/keranjang/tambah', function (Request $request) {
     $data = $request->validate([
@@ -169,13 +162,39 @@ Route::post('/detailmenu/add', function () {
         ->with('success', 'Menu berhasil ditambahkan!');
 })->name('detailmenu.add');
 
-// PAYMENT
-Route::get('/Qris', [QrisController::class, 'index'])
-    ->name('Qris');
+// PEMBAYARAN ADMIN
 
-Route::get('/pembayaran-berhasil', function () {
-    return view('pembayaranberhasil');
-})->name('pembayaran.berhasil');
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware('auth')
+    ->group(function () {
+
+        // Daftar pembayaran
+        Route::get('/pembayaran', [
+            PembayaranAdminController::class,
+            'index'
+        ])->name('pembayaran.index');
+
+        // Melihat bukti pembayaran
+        Route::get('/pembayaran/bukti/{id}', [
+            PembayaranAdminController::class,
+            'bukti'
+        ])->name('pembayaran.bukti');
+
+        // Konfirmasi pembayaran
+        Route::post('/pembayaran/{id}/konfirmasi', [
+            PembayaranAdminController::class,
+            'konfirmasi'
+        ])->name('pembayaran.konfirmasi');
+
+        // Menolak pembayaran
+        Route::post('/pembayaran/{id}/tolak', [
+            PembayaranAdminController::class,
+            'tolak'
+        ])->name('pembayaran.tolak');
+
+    });
+
 
 // ADMIN SUB KATEGORI
 Route::get('/admin/sub-kategori', [SubKategoriController::class, 'index'])->name('admin.subkategori.index');
@@ -184,21 +203,6 @@ Route::post('/admin/sub-kategori', [SubKategoriController::class, 'store'])->nam
 Route::get('/admin/sub-kategori/{id}/edit', [SubKategoriController::class, 'edit'])->name('admin.subkategori.edit');
 Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])->name('admin.subkategori.update');
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
-
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-
-    Route::get('/pembayaran', [PembayaranController::class, 'index'])
-        ->name('pembayaran.index');
-
-    Route::get('/pembayaran/bukti/{id}', [PembayaranController::class, 'bukti'])
-        ->name('pembayaran.bukti');
-
-    Route::post('/pembayaran/{id}/konfirmasi', [PembayaranController::class, 'konfirmasi'])
-        ->name('pembayaran.konfirmasi');
-
-    Route::post('/pembayaran/{id}/tolak', [PembayaranController::class, 'tolak'])
-        ->name('pembayaran.tolak');
-});
 
 // ADMIN PESANAN
 Route::get('/admin/pesanan', function () {
@@ -213,5 +217,13 @@ Route::get('/admin/pesanan/{id}', function ($id) {
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
         ->name('admin.dashboard');
+
+});
+
+// ADMIN PELANGGAN
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/pelanggan', [PelangganController::class, 'index'])
+        ->name('pelanggan.index');
 
 });
