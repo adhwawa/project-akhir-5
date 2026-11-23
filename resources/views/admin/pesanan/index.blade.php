@@ -654,12 +654,12 @@
                     Pesanan
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pembayaran.index') }}" class="nav-item">
                     <i class="fa-regular fa-credit-card"></i>
                     Pembayaran
                 </a>
 
-                <a href="#" class="nav-item">
+                <a href="{{ route('admin.pelanggan.index') }}" class="nav-item">
                     <i class="fa-solid fa-users"></i>
                     Pelanggan
                 </a>

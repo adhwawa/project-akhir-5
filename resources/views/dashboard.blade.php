@@ -398,6 +398,17 @@
 
 <body>
 
+    @php
+        // Kelompokkan menu berdasarkan subkategori yang dipilih admin.
+        $menuGroups = $menus->groupBy(fn ($menu) => $menu->subCategory?->slug);
+        $foodSlugs = ['main-course', 'nusantara', 'comfort', 'extra'];
+        $drinkSlugs = ['coffe-tea', 'coffee-tea', 'fresh-juice', 'soft-drink'];
+        $dessertMenus = $menuGroups->get('desert', collect())
+            ->concat($menuGroups->get('dessert', collect()))->values();
+        $foodCount = collect($foodSlugs)->sum(fn ($slug) => $menuGroups->get($slug, collect())->count());
+        $drinkCount = collect($drinkSlugs)->sum(fn ($slug) => $menuGroups->get($slug, collect())->count());
+    @endphp
+
     <div class="container">
 
         <!-- HEADER -->
@@ -449,7 +460,7 @@
 
         <section class="menu-section food-section" id="makanan">
 
-            <p class="section-subtitle">01 - 21 PILIHAN</p>
+            <p class="section-subtitle">01 - {{ $foodCount }} PILIHAN</p>
 
             <h2 class="section-title">Makanan</h2>
 
@@ -460,17 +471,9 @@
                     <h3>Main Course</h3>
 
                     <ul>
-
-                        <li>Grill Chicken Steak</li>
-
-                        <li>Spaghetti Bolognese Katsu</li>
-
-                        <li>Sop Iga</li>
-
-                        <li>Nasi Goreng Katsu</li>
-
-                        <li>Nasi Timbel Ayam Goreng</li>
-
+                        @foreach ($menuGroups->get('main-course', collect()) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -480,17 +483,9 @@
                     <h3>Nusantara</h3>
 
                     <ul>
-
-                        <li>Nasi Iga Bakar</li>
-
-                        <li>Nasi Campur Taliwang</li>
-
-                        <li>Nasi Goreng Jawa</li>
-
-                        <li>Mie Goreng Jawa</li>
-
-                        <li>Mie Nyemek Kampung Jawa</li>
-
+                        @foreach ($menuGroups->get('nusantara', collect()) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -500,25 +495,9 @@
                     <h3>Comfort</h3>
 
                     <ul>
-
-                        <li>Mendoan</li>
-
-                        <li>Tahu Crispy</li>
-
-                        <li>Bakwan Jagung</li>
-
-                        <li>Singkong Crispy</li>
-
-                        <li>Cireng Crispy</li>
-
-                        <li>French Fries</li>
-
-                        <li>Roti Bakar Coklat Keju</li>
-
-                        <li>Pisang Goreng Crispy</li>
-
-                        <li>Mix Platter</li>
-
+                        @foreach ($menuGroups->get('comfort', collect()) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -532,11 +511,9 @@
                     <h3>Extra</h3>
 
                     <ul>
-
-                        <li>Nasi</li>
-
-                        <li>Olahan Telur</li>
-
+                        @foreach ($menuGroups->get('extra', collect()) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -549,7 +526,7 @@
 
         <section class="menu-section drink-section" id="minuman">
 
-            <p class="section-subtitle">02 - 14 PILIHAN</p>
+            <p class="section-subtitle">02 - {{ $drinkCount }} PILIHAN</p>
 
             <h2 class="section-title">Minuman</h2>
 
@@ -560,21 +537,9 @@
                     <h3>Coffee & Tea</h3>
 
                     <ul>
-
-                        <li>Jasmine Tea Ice / Hot</li>
-
-                        <li>Teh Jeruk Nipis Ice / Hot</li>
-
-                        <li>Es Teh Leci</li>
-
-                        <li>Americano Ice / Hot</li>
-
-                        <li>Coffee Latte Ice / Hot</li>
-
-                        <li>Cappuccino Ice / Hot</li>
-
-                        <li>Moccacino Ice / Hot</li>
-
+                        @foreach ($menuGroups->get('coffe-tea', collect())->concat($menuGroups->get('coffee-tea', collect())) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -584,15 +549,9 @@
                     <h3>Fresh Juice</h3>
 
                     <ul>
-
-                        <li>Watermelon</li>
-
-                        <li>Apple</li>
-
-                        <li>Fresh Orange</li>
-
-                        <li>Strawberry</li>
-
+                        @foreach ($menuGroups->get('fresh-juice', collect()) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -602,15 +561,9 @@
                     <h3>Soft Drink</h3>
 
                     <ul>
-
-                        <li>Le Minerale</li>
-
-                        <li>Coke</li>
-
-                        <li>Sprite</li>
-
-                        <li>Fanta</li>
-
+                        @foreach ($menuGroups->get('soft-drink', collect()) as $menu)
+                            <li>{{ $menu->nama_menu }}</li>
+                        @endforeach
                     </ul>
 
                 </div>
@@ -623,7 +576,7 @@
 
         <section class="menu-section dessert-section">
 
-            <p class="section-subtitle">03 - 3 PILIHAN</p>
+            <p class="section-subtitle">03 - {{ $dessertMenus->count() }} PILIHAN</p>
 
             <h2 class="section-title">Dessert</h2>
 
@@ -632,9 +585,11 @@
                 <div class="category">
 
                     <ul>
-
-                        <li>Buah Potong</li>
-
+                        @foreach ($dessertMenus as $index => $menu)
+                            @if ($index % 3 === 0)
+                                <li>{{ $menu->nama_menu }}</li>
+                            @endif
+                        @endforeach
                     </ul>
 
                 </div>
@@ -642,9 +597,11 @@
                 <div class="category">
 
                     <ul>
-
-                        <li>Es Buah</li>
-
+                        @foreach ($dessertMenus as $index => $menu)
+                            @if ($index % 3 === 1)
+                                <li>{{ $menu->nama_menu }}</li>
+                            @endif
+                        @endforeach
                     </ul>
 
                 </div>
@@ -652,9 +609,11 @@
                 <div class="category">
 
                     <ul>
-
-                        <li>Slice Cake</li>
-
+                        @foreach ($dessertMenus as $index => $menu)
+                            @if ($index % 3 === 2)
+                                <li>{{ $menu->nama_menu }}</li>
+                            @endif
+                        @endforeach
                     </ul>
 
                 </div>
