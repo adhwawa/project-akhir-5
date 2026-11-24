@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminControllers\PembayaranController
 use App\Http\Controllers\RingkasanPelangganController;
 use App\Http\Controllers\AdminControllers\SubKategoriController;
 use App\Http\Controllers\AdminControllers\PelangganController;
+use App\Http\Controllers\AdminControllers\PesananController;
 
 // HALAMAN AWAL
 Route::get('/', function () {
@@ -230,29 +231,47 @@ Route::get('/ringkasanpelanggan', function () {
 })->name('ringkasanpelanggan');
 
 
-// PAYMENT
-Route::get('/qris', function () {
-    return view('Qris');
-})->name('qris');
+// PEMBAYARAN PELANGGAN
+Route::middleware('auth')->group(function () {
+
+    // Proses checkout
+    Route::post('/checkout/qris', [
+        PembayaranPelangganController::class,
+        'checkout'
+    ])->name('pembayaran.checkout');
+
+    // Menampilkan halaman QRIS
+    Route::get('/qris/{kode}', [
+        PembayaranPelangganController::class,
+        'qris'
+    ])->name('pembayaran.qris');
+
+    // Mengecek status pembayaran
+    Route::get('/pembayaran/{kode}/status', [
+        PembayaranPelangganController::class,
+        'status'
+    ])->name('pembayaran.status');
+
+    // Menampilkan struk pembayaran
+    Route::get('/pembayaran/{kode}/berhasil', [
+        PembayaranPelangganController::class,
+        'berhasil'
+    ])->name('pembayaran.berhasil');
+
+});
 
 // PEMBAYARAN ADMIN
-
+// PEMBAYARAN ADMIN
 Route::prefix('admin')
     ->name('admin.')
     ->middleware('auth')
     ->group(function () {
 
-        // Daftar pembayaran
+        // Menampilkan data pembayaran
         Route::get('/pembayaran', [
             PembayaranAdminController::class,
             'index'
         ])->name('pembayaran.index');
-
-        // Melihat bukti pembayaran
-        Route::get('/pembayaran/bukti/{id}', [
-            PembayaranAdminController::class,
-            'bukti'
-        ])->name('pembayaran.bukti');
 
         // Konfirmasi pembayaran
         Route::post('/pembayaran/{id}/konfirmasi', [
@@ -277,20 +296,14 @@ Route::put('/admin/sub-kategori/{id}', [SubKategoriController::class, 'update'])
 Route::delete('/admin/sub-kategori/{id}', [SubKategoriController::class, 'destroy'])->name('admin.subkategori.destroy');
 
 // ADMIN PESANAN
-Route::get('/admin/pesanan', function () {
-    return view('admin.pesanan.index');
-})->name('admin.pesanan');
+Route::get('/admin/pesanan', [PesananController::class, 'index'])
+    ->name('admin.pesanan');
 
 // MELIHAT DETAIL PESANAN ADMIN
 Route::get('/admin/pesanan/{id}', function ($id) {
     return view('admin.pesanan.form');
 })->name('admin.pesanan.form');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])
-        ->name('admin.dashboard');
-
-});
 
 // ADMIN PELANGGAN
 Route::prefix('admin')->name('admin.')->group(function () {

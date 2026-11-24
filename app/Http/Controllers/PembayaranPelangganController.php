@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\Pesanan;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
@@ -10,68 +11,71 @@ use Illuminate\Support\Str;
 
 class PembayaranPelangganController extends Controller
 {
+    // MEMBUAT PESANAN DAN DATA PEMBAYARAN
     public function checkout(Request $request)
     {
+        $request->validate([
+            'nama_pelanggan' => 'required|string|max:255',
+            'nomor_meja' => 'required|string|max:50',
+            'metode_pembayaran' => 'required|in:QRIS',
+        ]);
+
         $cart = session('cart', []);
 
         if (empty($cart)) {
             return back()->with('error', 'Keranjang masih kosong.');
         }
 
-        /*
-         * Data menu dan harga harus berasal dari
-         * daftar menu asli Daily Crave.
-         *
-         * Jangan menggunakan harga dari input browser.
-         */
+        $menuIds = collect(array_keys($cart))
+            ->filter(fn ($id) => ctype_digit((string) $id))
+            ->map(fn ($id) => (int) $id)
+            ->values();
 
-        $menuData = config('dailycrave.menu', []);
+        $menus = Menu::whereIn('id', $menuIds)
+            ->where('status', 'Tersedia')
+            ->get()
+            ->keyBy('id');
 
         $detailMenu = [];
         $subtotal = 0;
 
-        foreach ($cart as $slug => $item) {
+        foreach ($cart as $id => $item) {
+            $menu = $menus->get((int) $id);
+            $jumlah = (int) ($item['jumlah'] ?? 0);
 
-            if (!isset($menuData[$slug])) {
+            if (!$menu || $jumlah < 1) {
                 continue;
             }
 
-            $jumlah = (int) ($item['jumlah'] ?? 1);
-
-            if ($jumlah < 1) {
-                continue;
-            }
-
-            $menu = $menuData[$slug];
-            $harga = (int) $menu['harga'];
+            $harga = (int) $menu->harga;
+            $totalItem = $harga * $jumlah;
 
             $detailMenu[] = [
-                'slug' => $slug,
-                'nama' => $menu['nama'],
+                'id' => $menu->id,
+                'nama' => $menu->nama_menu,
                 'harga' => $harga,
                 'jumlah' => $jumlah,
-                'subtotal' => $harga * $jumlah,
+                'subtotal' => $totalItem,
+                'catatan' => $item['catatan'] ?? '',
+                'suhu' => $item['suhu'] ?? '',
             ];
 
-            $subtotal += $harga * $jumlah;
+            $subtotal += $totalItem;
         }
 
         if (empty($detailMenu)) {
             return back()->with(
                 'error',
-                'Data menu tidak ditemukan.'
+                'Menu dalam keranjang tidak tersedia. Silakan periksa kembali pesanan.'
             );
         }
 
-        // Sesuaikan pajak dengan perhitungan checkout aslimu.
+        // Total mengikuti tampilan ringkasan saat ini.
+        // Di halaman ringkasan, pajak ditampilkan sudah termasuk.
         $total = $subtotal;
 
-        $nama = auth()->user()->name;
-        $meja = session('nomor_meja');
-
         $pesanan = DB::transaction(function () use (
-            $nama,
-            $meja,
+            $request,
             $detailMenu,
             $subtotal,
             $total
@@ -79,8 +83,8 @@ class PembayaranPelangganController extends Controller
             $pesanan = Pesanan::create([
                 'kode_pesanan' => 'DC-' . strtoupper(Str::random(8)),
                 'user_id' => auth()->id(),
-                'nama_pelanggan' => $nama,
-                'nomor_meja' => $meja,
+                'nama_pelanggan' => $request->nama_pelanggan,
+                'nomor_meja' => $request->nomor_meja,
                 'detail_menu' => $detailMenu,
                 'subtotal' => $subtotal,
                 'total_harga' => $total,
@@ -90,12 +94,15 @@ class PembayaranPelangganController extends Controller
             Pembayaran::create([
                 'pesanan_id' => $pesanan->id,
                 'metode_pembayaran' => 'QRIS',
+                'total_pembayaran' => $total,
                 'jumlah_transfer' => $total,
-                'status' => 'menunggu',
+                'status_pembayaran' => 'Menunggu',
             ]);
 
             return $pesanan;
         });
+
+        session()->forget('cart');
 
         return redirect()->route(
             'pembayaran.qris',
@@ -103,6 +110,7 @@ class PembayaranPelangganController extends Controller
         );
     }
 
+    // MENAMPILKAN HALAMAN QRIS
     public function qris($kode)
     {
         $pesanan = Pesanan::with('pembayaran')
@@ -125,6 +133,7 @@ class PembayaranPelangganController extends Controller
         ]);
     }
 
+    // MENGECEK STATUS PEMBAYARAN SECARA BERKALA
     public function status($kode)
     {
         $pesanan = Pesanan::with('pembayaran')
@@ -137,8 +146,38 @@ class PembayaranPelangganController extends Controller
         );
 
         return response()->json([
-            'status_pembayaran' => $pesanan->pembayaran->status,
+            'status_pembayaran' =>
+                $pesanan->pembayaran->status_pembayaran ?? 'Menunggu',
+
             'status_pesanan' => $pesanan->status_pesanan,
+
+            'catatan_admin' =>
+                $pesanan->pembayaran->catatan_admin ?? null,
+        ]);
+    }
+
+    // MENAMPILKAN HALAMAN PEMBAYARAN BERHASIL
+    public function berhasil($kode)
+    {
+        $pesanan = Pesanan::with('pembayaran')
+            ->where('kode_pesanan', $kode)
+            ->firstOrFail();
+
+        abort_unless(
+            $pesanan->user_id === auth()->id(),
+            403
+        );
+
+        if (!$pesanan->pembayaran ||
+            $pesanan->pembayaran->status_pembayaran !== 'Dikonfirmasi') {
+            return redirect()->route(
+                'pembayaran.qris',
+                $pesanan->kode_pesanan
+            );
+        }
+
+        return view('pembayaranberhasil', [
+            'pesanan' => $pesanan,
         ]);
     }
 }
