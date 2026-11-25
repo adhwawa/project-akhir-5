@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -27,7 +28,7 @@
             overflow-x: hidden;
         }
 
-        /* SIDEBAR - UKURAN MENGIKUTI REFERENSI */
+        /* SIDEBAR */
 
         .sidebar {
             width: 260px;
@@ -122,6 +123,8 @@
             gap: 18px;
         }
 
+        /* PROFIL ADMIN */
+
         .user-profile {
             display: flex;
             align-items: center;
@@ -146,6 +149,7 @@
             justify-content: center;
             font-weight: 600;
             font-size: 14px;
+            flex-shrink: 0;
         }
 
         .user-details h4 {
@@ -157,6 +161,26 @@
         .user-details p {
             font-size: 11px;
             color: #8c735f;
+        }
+
+        .logout-form {
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #c93b3b;
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color .2s ease;
+        }
+
+        .logout-btn:hover {
+            color: #a52222;
         }
 
         .system-status {
@@ -581,33 +605,51 @@
 
             </nav>
 
-
         </div>
+
+        <!-- PROFIL ADMIN DAN LOGOUT -->
 
         <div class="sidebar-footer">
 
             <div class="user-profile">
+
                 <div class="user-info">
 
-                    <div class="avatar-circle">
-                        {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
-                    </div>
+                    <div class="avatar-circle">A</div>
 
                     <div class="user-details">
-                        <h4>{{ auth()->user()->name ?? 'Admin User' }}</h4>
+                        <h4>Admin User</h4>
                         <p>Administrator</p>
                     </div>
 
                 </div>
+
+                <form action="{{ route('admin.logout') }}" method="POST" class="logout-form">
+                    @csrf
+
+                    <button type="submit" class="logout-btn" title="Keluar">
+
+                        <svg width="22" height="22" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+
+                    </button>
+                </form>
+
             </div>
 
             <div class="system-status">
+
                 <div class="status-indicator">
                     <span class="status-dot"></span>
                     <span>Sistem Kasir Online</span>
                 </div>
 
                 <span class="version-badge">v2.4</span>
+
             </div>
 
         </div>

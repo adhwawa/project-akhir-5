@@ -477,6 +477,8 @@
                 flex-wrap: wrap
             }
         }
+
+
     </style>
 </head>
 
@@ -554,23 +556,19 @@
                 <div>
                     <div class="food-hero">
 
-                        <div style="height:100%;display:grid;place-items:center;color:#69594d">
-                            Daily Crave • Pesanan Anda
-                        </div>
+    <img src="{{ asset('gambar/gambardashboard.png') }}" alt="Makanan Daily Crave">
 
-                        <div class="food-overlay">
+    <div class="food-overlay">
+        <div>
+            MEJA {{ $meja }} • SANTAP DI TEMPAT
+        </div>
 
-                            <div>
-                                MEJA {{ $meja }} • SANTAP DI TEMPAT
-                            </div>
+        <strong>
+            {{ data_get($items, '0.nama', 'Pesanan Daily Crave') }}
+        </strong>
+    </div>
 
-                            <strong>
-                                {{ data_get($items, '0.nama', 'Pesanan Daily Crave') }}
-                            </strong>
-
-                        </div>
-
-                    </div>
+</div>
                     <section class="ticket">
                         <div class="ticket-heading">
                             <div>▤ &nbsp; Rincian Tiket Pesanan<small>Pemesanan Mandiri Meja

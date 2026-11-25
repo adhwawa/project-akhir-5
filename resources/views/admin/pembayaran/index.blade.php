@@ -593,22 +593,61 @@
 
 
         /* ================= PAGINATION ================= */
+/* PAGINATION */
+.pagination {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
 
-        .pagination {
-            margin-top: 22px;
-            font-size: 12px;
-        }
+.pagination nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
 
-        .pagination nav {
-            display: flex;
-            justify-content: flex-end;
-        }
+.pagination nav > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 
-        .pagination a,
-        .pagination span {
-            color: #6b4c35;
-        }
+.pagination nav a,
+.pagination nav span {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 13px;
+    text-decoration: none;
+    color: #76543c;
+    background: #fff;
+    border: 1px solid #eadfd3;
+}
 
+.pagination nav a:hover {
+    background: #f3e9df;
+    border-color: #c9a98d;
+}
+
+.pagination nav span[aria-current="page"] {
+    background: #76543c;
+    color: white;
+    border-color: #76543c;
+}
+
+.pagination nav svg {
+    width: 15px;
+    height: 15px;
+}
+
+.pagination nav span[aria-disabled="true"] {
+    color: #c8bdb3;
+    background: #f8f6f3;
+}
 
         /* ================= RESPONSIVE ================= */
 

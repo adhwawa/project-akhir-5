@@ -6,15 +6,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Crave - Data Pesanan</title>
-    
+
     <link rel="icon" type="image/png" href="{{ asset('gambar/favicon.png') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -28,6 +31,7 @@
         /* ================= SIDEBAR ================= */
         .sidebar {
             width: 260px;
+            min-width: 260px;
             background-color: #f4eee6;
             border-right: 1px solid #e8dfd3;
             display: flex;
@@ -70,7 +74,11 @@
             letter-spacing: 1px;
         }
 
-        .nav-links { display: flex; flex-direction: column; gap: 8px; }
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
         .nav-item {
             display: flex;
@@ -85,7 +93,10 @@
             transition: all 0.2s ease;
         }
 
-        .nav-item:hover { background-color: #ebe2d6; color: #4a3525; }
+        .nav-item:hover {
+            background-color: #ebe2d6;
+            color: #4a3525;
+        }
 
         .nav-item.active {
             background-color: #6b4c35;
@@ -104,23 +115,29 @@
         .sidebar-footer {
             border-top: 1px solid #e5dbd0;
             padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
+            width: 100%;
         }
 
         .user-profile {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 8px;
+            width: 100%;
             padding: 0 6px;
         }
 
-        .user-info { display: flex; align-items: center; gap: 12px; }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
 
         .avatar-circle {
             width: 38px;
             height: 38px;
+            min-width: 38px;
             background-color: #5c3d28;
             color: #ffffff;
             border-radius: 50%;
@@ -131,43 +148,35 @@
             font-size: 14px;
         }
 
-        .user-details h4 { font-size: 13px; font-weight: 600; color: #3d2819; }
-        .user-details p { font-size: 11px; color: #8c735f; }
+        .user-details h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #3d2819;
+        }
+
+        .user-details p {
+            font-size: 11px;
+            color: #8c735f;
+        }
+
+        .sidebar-footer form {
+            margin: 0;
+            padding: 0;
+            flex-shrink: 0;
+        }
 
         .logout-btn {
             background: none;
             border: none;
             color: #c93b3b;
             cursor: pointer;
-            padding: 6px;
+            padding: 8px;
             border-radius: 8px;
+            font-size: 15px;
         }
 
-        .system-status {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 6px;
-            font-size: 11.5px;
-            color: #7a624f;
-        }
-
-        .status-indicator { display: flex; align-items: center; gap: 8px; }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #16a34a;
-            border-radius: 50%;
-        }
-
-        .version-badge {
-            background-color: #e8dfd3;
-            color: #7a624f;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 10.5px;
-            font-weight: 500;
+        .logout-btn:hover {
+            background-color: #f3e1dc;
         }
 
         /* ================= MAIN CONTENT ================= */
@@ -177,6 +186,7 @@
             display: flex;
             flex-direction: column;
             gap: 28px;
+            min-width: 0;
         }
 
         .topbar {
@@ -195,9 +205,16 @@
             margin-bottom: 4px;
         }
 
-        .page-header p { font-size: 13px; color: #8c735f; }
+        .page-header p {
+            font-size: 13px;
+            color: #8c735f;
+        }
 
-        .topbar-actions { display: flex; align-items: center; gap: 18px; }
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
 
         .search-box {
             display: flex;
@@ -210,7 +227,11 @@
             gap: 10px;
         }
 
-        .search-box svg { width: 16px; height: 16px; color: #9b826e; }
+        .search-box svg {
+            width: 16px;
+            height: 16px;
+            color: #9b826e;
+        }
 
         .search-box input {
             border: none;
@@ -241,6 +262,16 @@
             border: 1.5px solid #fbf9f6;
         }
 
+        .system-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            font-size: 11.5px;
+            color: #7a624f;
+        }
+
+
         .top-avatar {
             width: 36px;
             height: 36px;
@@ -265,82 +296,7 @@
             align-items: center;
         }
 
-        /* ================= MENU CARD & TABLE ================= */
-        .menu-card {
-            background-color: #ffffff;
-            border: 1px solid #f0e8de;
-            border-radius: 20px;
-            padding: 28px 32px;
-            box-shadow: 0 4px 20px rgba(74, 53, 37, 0.03);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 22px;
-        }
-
-        .card-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 600;
-            color: #2c1e14;
-        }
-
-        .card-header p { font-size: 12.5px; color: #8c735f; margin-top: 2px; }
-
-        .btn-primary {
-            background-color: #6b4c35;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 11px 20px;
-            border-radius: 12px;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover { background-color: #543b28; }
-
-        /* FILTER KATEGORI */
-        .filter-bar {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding-bottom: 22px;
-            border-bottom: 1px solid #f2ebe1;
-        }
-
-        .filter-label { font-size: 12.5px; color: #8c735f; margin-right: 4px; }
-
-        .filter-pill {
-            text-decoration: none;
-            font-size: 12.5px;
-            font-weight: 500;
-            padding: 7px 18px;
-            border-radius: 20px;
-            background-color: #f4eee6;
-            color: #7a624f;
-            transition: all 0.2s;
-        }
-
-        .filter-pill:hover { background-color: #e8dfd3; color: #4a3525; }
-
-        .filter-pill.active {
-            background-color: #6b4c35;
-            color: #ffffff;
-        }
-
-        
         /* ================= CARD PESANAN ================= */
-
         .menu-card {
             width: 100%;
             background-color: #ffffff;
@@ -371,7 +327,6 @@
         }
 
         /* ================= TABEL PESANAN ================= */
-
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -385,26 +340,36 @@
             margin-top: 0;
         }
 
-        /* Lebar kolom */
         .table-wrapper th:nth-child(1),
-        .table-wrapper td:nth-child(1) { width: 12%; }
+        .table-wrapper td:nth-child(1) {
+            width: 12%;
+        }
 
         .table-wrapper th:nth-child(2),
-        .table-wrapper td:nth-child(2) { width: 16%; }
+        .table-wrapper td:nth-child(2) {
+            width: 15%;
+        }
 
         .table-wrapper th:nth-child(3),
-        .table-wrapper td:nth-child(3) { width: 35%; }
+        .table-wrapper td:nth-child(3) {
+            width: 30%;
+        }
 
         .table-wrapper th:nth-child(4),
-        .table-wrapper td:nth-child(4) { width: 15%; }
+        .table-wrapper td:nth-child(4) {
+            width: 15%;
+        }
 
         .table-wrapper th:nth-child(5),
-        .table-wrapper td:nth-child(5) { width: 13%; }
+        .table-wrapper td:nth-child(5) {
+            width: 16%;
+        }
 
         .table-wrapper th:nth-child(6),
-        .table-wrapper td:nth-child(6) { width: 9%; }
+        .table-wrapper td:nth-child(6) {
+            width: 12%;
+        }
 
-        /* Header */
         .table-wrapper thead th {
             padding: 18px 12px;
             text-align: left;
@@ -418,7 +383,6 @@
             white-space: nowrap;
         }
 
-        /* Baris */
         .table-wrapper tbody tr {
             height: 70px;
             transition: background 0.2s ease;
@@ -428,7 +392,6 @@
             background-color: #fcfaf7;
         }
 
-        /* Isi tabel */
         .table-wrapper tbody td {
             padding: 18px 12px;
             font-family: 'Poppins', sans-serif;
@@ -438,19 +401,16 @@
             vertical-align: middle;
         }
 
-        /* Item pesanan */
         .table-wrapper tbody td:nth-child(3) {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
-        /* Harga */
         .table-wrapper tbody td:nth-child(4) {
             white-space: nowrap;
         }
 
-        /* Dropdown status */
         .table-wrapper select.status {
             width: 100%;
             max-width: 150px;
@@ -469,17 +429,50 @@
             border-color: #9b7658;
         }
 
-        /* Detail */
         .table-wrapper .detail-link {
             color: #704b32;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             text-decoration: none;
             white-space: nowrap;
+            display: inline-block;
         }
 
         .table-wrapper .detail-link:hover {
             color: #a47750;
+        }
+
+        /* ================= STATUS PESANAN ================= */
+        .status-badge {
+            display: inline-block;
+            padding: 8px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: normal;
+            text-align: center;
+            max-width: 100%;
+            line-height: 1.5;
+        }
+
+        .status-badge.menunggu-pembayaran {
+            background: #fff4df;
+            color: #b7791f;
+        }
+
+        .status-badge.diproses {
+            background: #e8f0ff;
+            color: #2563eb;
+        }
+
+        .status-badge.selesai {
+            background: #e6f6ec;
+            color: #16a34a;
+        }
+
+        .status-badge.dibatalkan {
+            background: #fde8e8;
+            color: #dc2626;
         }
 
         /* Responsive */
@@ -490,6 +483,25 @@
 
             .table-wrapper {
                 overflow-x: auto;
+            }
+
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                min-width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e8dfd3;
+            }
+
+            .main-content {
+                padding: 24px 20px;
+            }
+
+            .search-box {
+                width: 100%;
             }
         }
 
@@ -506,7 +518,9 @@
             padding: 20px;
         }
 
-        .modal-overlay.show { display: flex; }
+        .modal-overlay.show {
+            display: flex;
+        }
 
         .modal-box {
             background-color: #ffffff;
@@ -542,9 +556,22 @@
             margin: 0 auto 16px;
         }
 
-        .modal-box h3 { font-size: 18px; font-weight: 600; color: #2c1e14; margin-bottom: 8px; }
-        .modal-box p { font-size: 13px; color: #8c735f; line-height: 1.5; }
-        .modal-box p strong { color: #2c1e14; }
+        .modal-box h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c1e14;
+            margin-bottom: 8px;
+        }
+
+        .modal-box p {
+            font-size: 13px;
+            color: #8c735f;
+            line-height: 1.5;
+        }
+
+        .modal-box p strong {
+            color: #2c1e14;
+        }
 
         .modal-actions {
             display: grid;
@@ -565,7 +592,9 @@
             cursor: pointer;
         }
 
-        .btn-cancel:hover { background-color: #f4eee6; }
+        .btn-cancel:hover {
+            background-color: #f4eee6;
+        }
 
         .btn-danger {
             padding: 10px 16px;
@@ -579,43 +608,41 @@
             cursor: pointer;
         }
 
-        .btn-danger:hover { background-color: #dc2626; }
-
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e8dfd3; }
-            .main-content { padding: 24px 20px; }
-            .search-box { width: 100%; }
+        .btn-danger:hover {
+            background-color: #dc2626;
         }
 
-        .status-badge {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 500;
-            white-space: nowrap;
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            font-size: 11.5px;
+            color: #7a624f;
         }
 
-        .status-badge.menunggu {
-            background: #fff4df;
-            color: #b7791f;
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .status-badge.diproses {
-            background: #e8f0ff;
-            color: #2563eb;
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #16a34a;
+            border-radius: 50%;
         }
 
-        .status-badge.selesai {
-            background: #e6f6ec;
-            color: #16a34a;
+        .version-badge {
+            background: #e8dfd3;
+            color: #7a624f;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10.5px;
         }
 
-        .status-badge.dibatalkan {
-            background: #fde8e8;
-            color: #dc2626;
-        }
     </style>
 </head>
 
@@ -623,115 +650,126 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
+
         <div>
             <div class="sidebar-header">
                 <div class="brand">
                     ☼ daily crave
                     <small>DAPUR & KOPI INDONESIA</small>
                 </div>
+
                 <span class="admin-badge">ADMIN</span>
             </div>
 
             <nav class="nav-links">
 
                 <a href="{{ route('admin.dashboard') }}" class="nav-item">
-
                     <svg viewBox="0 0 24 24">
                         <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
                         <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
                         <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
                         <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
                     </svg>
-
                     Dashboard
-
                 </a>
 
-
                 <a href="{{ route('admin.menu.index') }}" class="nav-item">
-
                     <svg viewBox="0 0 24 24">
                         <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
                         <path d="M7 2v20"></path>
                         <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
                     </svg>
-
                     Menu
-
                 </a>
 
-
-                {{-- <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
-
+                {{--
+                <a href="{{ route('admin.subkategori.index') }}" class="nav-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                         <line x1="7" y1="7" x2="7.01" y2="7"></line>
                     </svg>
-
                     Sub-Kategori
-
-                </a> --}}
-
+                </a>
+                --}}
 
                 <a href="{{ route('admin.pesanan') }}" class="nav-item active">
-
                     <svg viewBox="0 0 24 24">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
                         <line x1="16" y1="13" x2="8" y2="13"></line>
                         <line x1="16" y1="17" x2="8" y2="17"></line>
                     </svg>
-
                     Pesanan
-
                 </a>
 
-
                 <a href="{{ route('admin.pembayaran.index') }}" class="nav-item">
-
                     <svg viewBox="0 0 24 24">
                         <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                         <line x1="2" y1="10" x2="22" y2="10"></line>
                     </svg>
-
                     Pembayaran
-
                 </a>
 
-
                 <a href="{{ route('admin.pelanggan.index') }}" class="nav-item">
-
                     <svg viewBox="0 0 24 24">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                         <circle cx="9" cy="7" r="4"></circle>
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
-
                     Pelanggan
-
                 </a>
 
             </nav>
         </div>
 
-        <div class="sidebar-footer">
+        <!-- PROFIL ADMIN DAN LOGOUT -->
+      <div class="sidebar-footer">
+
             <div class="user-profile">
+
                 <div class="user-info">
+
                     <div class="avatar-circle">A</div>
+
                     <div class="user-details">
                         <h4>Admin User</h4>
                         <p>Administrator</p>
                     </div>
+
                 </div>
 
-                <button class="logout-btn" title="Keluar">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </button>
-            </div>
-        </div>
-    </aside>
+                <form action="{{ route('admin.logout') }}" method="POST" class="logout-form">
+                    @csrf
 
+                    <button type="submit" class="logout-btn" title="Keluar">
+
+                        <svg width="22" height="22" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+
+                    </button>
+                </form>
+
+            </div>
+
+            <div class="system-status">
+
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Sistem Kasir Online</span>
+                </div>
+
+                <span class="version-badge">v2.4</span>
+
+            </div>
+
+        </div>
+
+    </aside>
 
     <!-- HALAMAN UTAMA -->
     <main class="main-content">
@@ -748,6 +786,7 @@
 
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
+
                     <input type="text"
                         id="searchInput"
                         placeholder="Cari data pesanan...">
@@ -762,6 +801,7 @@
                 </div>
 
             </div>
+
         </div>
 
         <!-- CARD PESANAN -->
@@ -790,10 +830,12 @@
                         </tr>
                     </thead>
 
-                    
                     <tbody>
+
                         @foreach ($pesanans as $pesanan)
+
                             <tr>
+
                                 <td>#ORD-{{ $pesanan->id }}</td>
 
                                 <td>
@@ -809,29 +851,37 @@
                                 </td>
 
                                 <td>
-                                    <span class="status-badge {{ strtolower($pesanan->status_pesanan) }}">
-                                        {{ $pesanan->status_pesanan }}
+                                    @php
+                                        $status = strtolower($pesanan->status_pesanan ?? '');
+                                        $statusClass = str_replace('_', '-', $status);
+                                        $statusLabel = ucfirst(str_replace('_', ' ', $status));
+                                    @endphp
+
+                                    <span class="status-badge {{ $statusClass }}">
+                                        {{ $statusLabel }}
                                     </span>
                                 </td>
 
                                 <td>
                                     <a href="{{ route('admin.pesanan.form', ['id' => $pesanan->id]) }}"
-                                    class="detail-link">
+                                        class="detail-link">
                                         Lihat Detail
                                     </a>
                                 </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
 
+                            </tr>
+
+                        @endforeach
+
+                    </tbody>
 
                 </table>
 
             </div>
+
         </section>
 
     </main>
-
 
     <!-- FITUR PENCARIAN -->
     <script>
@@ -842,11 +892,8 @@
             let rows = document.querySelectorAll('#orderTable tbody tr');
 
             rows.forEach(function(row) {
-
                 let data = row.innerText.toLowerCase();
-
                 row.style.display = data.includes(keyword) ? '' : 'none';
-
             });
 
         });

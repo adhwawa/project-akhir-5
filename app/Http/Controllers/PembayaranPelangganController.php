@@ -102,12 +102,16 @@ class PembayaranPelangganController extends Controller
             return $pesanan;
         });
 
-        session()->forget('cart');
+        // session()->forget('cart');
 
-        return redirect()->route(
-            'pembayaran.qris',
-            $pesanan->kode_pesanan
-        );
+      session()->put('cart', $cart);
+session()->put('nama_pelanggan', $pesanan->nama_pelanggan);
+session()->put('nomor_meja', $pesanan->nomor_meja);
+
+return redirect()->route(
+    'pembayaran.qris',
+    $pesanan->kode_pesanan
+);
     }
 
     // MENAMPILKAN HALAMAN QRIS
@@ -117,10 +121,10 @@ class PembayaranPelangganController extends Controller
             ->where('kode_pesanan', $kode)
             ->firstOrFail();
 
-        abort_unless(
-            $pesanan->user_id === auth()->id(),
+            abort_unless(
+            (int) $pesanan->user_id === (int) auth()->id(),
             403
-        );
+            );
 
         return view('Qris', [
             'pesanan' => $pesanan,

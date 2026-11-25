@@ -563,72 +563,86 @@
 
 <body>
 
+
 @php
     $data = $data ?? [];
 
-    // Keranjang menggunakan ID menu dari database, bukan slug.
-    $cart = session()->get('cart', []);
-    $ids = collect(array_keys($cart))->filter(fn ($id) => ctype_digit((string) $id))->values();
-    $databaseMenus = \App\Models\Menu::whereIn('id', $ids)->get()->keyBy('id');
+    // Ambil detail menu dari pesanan yang tersimpan
+    $detailTersimpan = $pesanan->detail_menu ?? [];
+
+    // Ambil ID menu untuk mendapatkan foto dari database
+    $ids = collect($detailTersimpan)
+        ->pluck('id')
+        ->filter()
+        ->values();
+
+    $databaseMenus = \App\Models\Menu::whereIn('id', $ids)
+        ->get()
+        ->keyBy('id');
 
     $menuData = [];
-    $subtotal = 0;
+    $subtotal = (float) $pesanan->subtotal;
+    $total = (float) $pesanan->total_harga;
     $totalJumlah = 0;
 
-    $fotoCadangan = [
-        'Grill Chicken Steak' => 'gambar/maincourse/grillchikensteak.png',
-        'Spaghetti Bolognise Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
-        'Spaghetti Bolognese Katsu' => 'gambar/maincourse/speagetibolokatsu.png',
-        'Sop Iga' => 'gambar/maincourse/supiga.png',
-        'Nasi Goreng Katsu' => 'gambar/maincourse/nasgorkatsu.png',
-        'Nasi Timbel Ayam Goreng' => 'gambar/maincourse/nTimbel.png',
-    ];
+    // Susun data menu untuk ditampilkan
+    foreach ($detailTersimpan as $item) {
+        $id = $item['id'] ?? null;
 
-    foreach ($cart as $id => $item) {
         $menu = $databaseMenus->get($id);
-        $jumlah = (int) ($item['jumlah'] ?? 0);
-        if (!$menu || $jumlah <= 0) continue;
 
-        $foto = $menu->foto;
-        $cadangan = asset($fotoCadangan[$menu->nama_menu] ?? 'gambar/makanan.png');
+        // Data nama dan harga tetap diambil dari detail pesanan
+        $nama = $item['nama'] ?? 'Menu';
+        $harga = (int) ($item['harga'] ?? 0);
+        $jumlah = (int) ($item['jumlah'] ?? 0);
+
+        if ($jumlah < 1) {
+            continue;
+        }
+
+        // Ambil foto menu dari database
+        $foto = $menu->foto ?? null;
+
+        // Gambar cadangan jika foto tidak tersedia
+        $cadangan = asset('gambar/makanan.png');
+
         if (!$foto) {
             $gambar = $cadangan;
-        } elseif (\Illuminate\Support\Str::startsWith($foto, ['http://', 'https://'])) {
+        } elseif (\Illuminate\Support\Str::startsWith(
+            $foto,
+            ['http://', 'https://']
+        )) {
             $gambar = $foto;
-        } elseif (\Illuminate\Support\Str::startsWith($foto, 'gambar/')) {
-            $gambar = asset($foto);
-        } elseif (\Illuminate\Support\Str::startsWith($foto, 'storage/')) {
+        } elseif (\Illuminate\Support\Str::startsWith(
+            $foto,
+            ['gambar/', 'storage/']
+        )) {
             $gambar = asset($foto);
         } else {
             $gambar = asset('storage/' . ltrim($foto, '/'));
         }
 
-        $menuData[$id] = [
-            'nama' => $menu->nama_menu,
-            'harga' => (int) $menu->harga,
+        $key = $id ?? count($menuData);
+
+        $menuData[$key] = [
+            'nama' => $nama,
+            'harga' => $harga,
             'gambar' => $gambar,
             'cadangan' => $cadangan,
             'jumlah' => $jumlah,
             'catatan' => $item['catatan'] ?? '',
             'suhu' => $item['suhu'] ?? '',
         ];
-        $subtotal += (int) $menu->harga * $jumlah;
+
         $totalJumlah += $jumlah;
     }
 
-    // Ambil nama dan meja dari formulir Ringkasan Pelanggan.
-    $namaPelanggan = request()->query('nama_pelanggan')
-        ?? $data['nama_pemesan']
-        ?? session('nama_pelanggan', '');
-    $nomorMeja = request()->query('nomor_meja')
-        ?? $data['nomor_meja']
-        ?? session('nomor_meja', '03');
+    // Identitas pelanggan dari data pesanan
+    $namaPelanggan = $pesanan->nama_pelanggan;
+    $nomorMeja = $pesanan->nomor_meja;
+    $kodePesanan = $pesanan->kode_pesanan;
 
-    $kodePesanan = $data['nomor_order']
-        ?? session('kode_pesanan', 'DC-8842');
-
-    $nmid = $data['nmid']
-        ?? 'ID10200492817';
+    $nmid = $data['nmid'] ?? 'ID10200492817';
 
 @endphp
 
@@ -747,7 +761,7 @@
                     <span>Nominal Transaksi</span>
 
                     <strong>
-                        Rp{{ number_format($subtotal, 0, ',', '.') }}
+                        Rp{{ number_format($total, 0, ',', '.') }}
                     </strong>
 
                 </div>
@@ -797,62 +811,6 @@
         <div class="right">
 
 
-            <!-- STATUS TRANSAKSI -->
-
-            <div class="transaction-status">
-
-                <div class="status-heading">
-
-                    <span>STATUS TRANSAKSI</span>
-
-                    <span>
-                        Lunas Terverifikasi
-                    </span>
-
-                </div>
-
-                <div class="success-content">
-
-                    <div class="success-icon">
-                        ✓
-                    </div>
-
-                    <div>
-
-                        <div class="success-title">
-                            Pembayaran Berhasil Diterima!
-                        </div>
-
-                        <div class="success-text">
-
-                            Transaksi
-                            Rp{{ number_format($subtotal, 0, ',', '.') }}
-                            oleh {{ $namaPelanggan ?: 'Pelanggan' }}
-                            telah terverifikasi via QRIS.
-
-                            Dapur Daily Crave sedang menyiapkan
-                            pesanan Anda.
-
-                            @if($totalJumlah > 0)
-                                Total {{ $totalJumlah }} porsi menu.
-                            @endif
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="manual">
-                    ♧ &nbsp; Cek Status Pembayaran Manual
-                </div>
-
-                <div class="help">
-                    Ada kendala saat memindai?
-                    <strong>→ Panggil Bantuan</strong>
-                </div>
-
-            </div>
 
 
             <!-- RINCIAN TIKET -->
@@ -863,7 +821,7 @@
 
                     <div>
                         <div class="ticket-title">
-                            RINCIAN TIKET
+                            RINCIAN PESANAN
                         </div>
 
                         <div class="ticket-sub">

@@ -585,8 +585,8 @@
         }
 
         $namaPelanggan = old('nama_pelanggan', session('nama_pelanggan', ''));
-        $nomorMeja = old('nomor_meja', '');
-        $kodePesanan = session('kode_pesanan', 'DC-8842');
+$nomorMeja = old('nomor_meja', session('nomor_meja', ''));
+$kodePesanan = session('kode_pesanan', 'DC-8842');
     @endphp
 
     <div class="container">
